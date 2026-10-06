@@ -2,7 +2,7 @@ name: Deploy DeepitySite to GitHub Pages
 
 on:
   push:
-    branches: [website]
+    branches: [main]
   workflow_dispatch: {}
 
 # Least-privilege scope for the official Pages deployment flow - see
@@ -12,9 +12,6 @@ permissions:
   pages: write
   id-token: write
 
-# Only one live deployment at a time. Don't cancel a deployment that's
-# already in progress just because another push came in - let it finish,
-# the next push will queue behind it.
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -23,8 +20,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # No 'ref' needed - this workflow only triggers on pushes to the
-      # website branch itself, so the default checkout is already correct.
       - name: Check out website branch
         uses: actions/checkout@v4
 
@@ -34,18 +29,12 @@ jobs:
           node-version: "20"
           cache: "npm"
 
-      # NOTE: assumes npm (package-lock.json). If DeepitySite uses yarn or
-      # pnpm instead, swap the cache setting above and the two commands
-      # below to match (yarn install --frozen-lockfile / yarn build, or
-      # pnpm install --frozen-lockfile / pnpm build).
       - name: Install dependencies
         run: npm ci
 
       - name: Build
         run: npm run build
 
-      # Vite's default build output directory is dist/ - update this path
-      # if vite.config.js overrides build.outDir.
       - name: Upload build output
         uses: actions/upload-pages-artifact@v3
         with:
