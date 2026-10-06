@@ -26,7 +26,7 @@ export default function App() {
       {showSplash && <SplashScreen onDone={() => setShowSplash(false)} />}
 
       <div style={{ position: "relative", zIndex: 1 }}>
-        <BrowserRouter basename="/Deepity">
+        <BrowserRouter basename="/">
           <ScrollToTop />
           <Navbar />
 
