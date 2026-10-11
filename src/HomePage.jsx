@@ -1,3 +1,4 @@
+import "./HomePage.css";
 import { Link } from "react-router-dom";
 import Arrow from "./components/arrow";
 import PythonIcon from "./assets/python.png";
@@ -75,81 +76,62 @@ const syntaxCustomStyle = {
 export default function HomePage() {
   return (
     <div className="bg-[#e4e6e7]">
-            <section
-        className="container-fluid border-bottom"
-        style={{
-          minHeight: "90vh",
-          background:
-            "linear-gradient(135deg, rgba(255,255,255,0.96), rgba(228,230,231,0.9))",
-        }}
-      >
-        <div className="container min-vh-100 d-flex align-items-center py-5">
-          <div className="row align-items-center g-5 w-100">
-            <div className="col-lg-7 text-center text-lg-start">
-              <img
-                src={`${import.meta.env.BASE_URL}docs/deepity-mark.png`}
-                alt="Deepity logo"
-                className="mb-4"
-                style={{ width: "72px", height: "72px" }}
-              />
+<section className="home-hero">
+  <div className="home-hero__container">
+    <div className="home-hero__row">
+      <div className="home-hero__content">
+        <img
+          src={`${import.meta.env.BASE_URL}docs/deepity-mark.png`}
+          alt="Deepity logo"
+          className="home-hero__logo"
+        />
 
-              <p className="text-uppercase fw-semibold text-secondary mb-3">
-                Predictive Coding • C++ • Python
-              </p>
+        <p className="home-hero__eyebrow">
+          Predictive Coding • C++ • Python
+        </p>
 
-              <h1 className="display-2 fw-bold mb-4 AllianceNo2">
-                Build intelligent systems without backpropagation.
-              </h1>
+        <h1 className="home-hero__title AllianceNo2">
+          Build intelligent systems without backpropagation.
+        </h1>
 
-              <p className="lead text-secondary mb-4">
-                Deepity is a high-performance implementation of Predictive
-                Coding Networks, built for fast experimentation and
-                CPU-first machine learning.
-              </p>
+        <p className="home-hero__description">
+          Deepity is a high-performance implementation of Predictive Coding
+          Networks, built for fast experimentation and CPU-first machine learning.
+        </p>
 
-              <div className="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
-                <a
-                  href="#Explained"
-                  className="btn btn-dark btn-lg px-4 py-3"
-                >
-                  Get Started
-                </a>
+        <div className="home-hero__actions">
+          <a href="#Explained" className="home-hero__button home-hero__button--dark">
+            Get Started
+          </a>
 
-                <a
-                  href="https://github.com/Deepity-HQ/Deepity"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-outline-dark btn-lg px-4 py-3"
-                >
-                  GitHub
-                </a>
-              </div>
-            </div>
+          <a
+            href="https://github.com/Deepity-HQ/Deepity"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="home-hero__button home-hero__button--outline"
+          >
+            GitHub
+          </a>
+        </div>
+      </div>
 
-            <div className="col-lg-5">
-              <div className="bg-white border rounded-4 shadow-lg p-4 p-md-5">
-                <p className="text-uppercase fw-semibold text-secondary mb-2">
-                  MNIST Benchmark
-                </p>
+      <div className="home-hero__benchmark-column">
+        <div className="home-hero__benchmark">
+          <p className="home-hero__benchmark-label">MNIST Benchmark</p>
+          <div className="home-hero__benchmark-number">15s</div>
+          <p className="home-hero__benchmark-description">
+            MNIST training benchmark on a laptop CPU.
+          </p>
 
-                <div className="display-3 fw-bold mb-2">15s</div>
-
-                <p className="fs-5 mb-4">
-                  MNIST training benchmark on a laptop CPU.
-                </p>
-
-                <div className="border-top pt-3">
-                  <div className="d-flex justify-content-between">
-                    <span className="text-secondary">Test accuracy</span>
-                    <strong>97.73%</strong>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="home-hero__benchmark-result">
+            <span>Test accuracy</span>
+            <strong>97.73%</strong>
           </div>
         </div>
-      </section>
-
+      </div>
+    </div>
+  </div>
+</section>
       <section className="bg-[#e6e8e9] border-b border-[#202d3b]-200 px-8 py-20">
         <div className="mx-auto max-w-5xl">
           <h2 className="text-3xl AllianceNo2">Proven Performance</h2>
@@ -195,7 +177,6 @@ export default function HomePage() {
           </p>
         </div>
       </section>
-
       <section className="bg-[#e6e8e9] border-b border-[#202d3b]-200 px-8 py-20">
         <div className="mx-auto max-w-5xl">
           <h2 className="text-3xl AllianceNo2 justify-center text-center">
