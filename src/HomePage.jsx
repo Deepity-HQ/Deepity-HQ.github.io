@@ -75,23 +75,80 @@ const syntaxCustomStyle = {
 export default function HomePage() {
   return (
     <div className="bg-[#e4e6e7]">
-      <div
-        className="min-h-screen flex flex-col items-center justify-center AllianceNo2 gap-4 text-center border-b border-[#202d3b]-200 backdrop-blur-md"
-        style={heroStyle}
+            <section
+        className="container-fluid border-bottom"
+        style={{
+          minHeight: "90vh",
+          background:
+            "linear-gradient(135deg, rgba(255,255,255,0.96), rgba(228,230,231,0.9))",
+        }}
       >
-        <span className="text-4xl AllianceNo2">Welcome to Deepity</span>
-        <span className="text-lg AllianceNo2 mb-10">
-          A high-performance implementation of
-          <br /> Predictive Coding Networks in C++ and Python.
-        </span>
-        <a
-          href="#Explained"
-          className="group flex items-center gap-4 shadow-lg border border-black px-5 py-3 mt-3 text-base text-black font-bold no-underline transition-colors duration-300 hover:bg-black hover:text-white hover:scale-105"
-        >
-          Get Started
-          <Arrow />
-        </a>
-      </div>
+        <div className="container min-vh-100 d-flex align-items-center py-5">
+          <div className="row align-items-center g-5 w-100">
+            <div className="col-lg-7 text-center text-lg-start">
+              <img
+                src={`${import.meta.env.BASE_URL}docs/deepity-mark.png`}
+                alt="Deepity logo"
+                className="mb-4"
+                style={{ width: "72px", height: "72px" }}
+              />
+
+              <p className="text-uppercase fw-semibold text-secondary mb-3">
+                Predictive Coding • C++ • Python
+              </p>
+
+              <h1 className="display-2 fw-bold mb-4 AllianceNo2">
+                Build intelligent systems without backpropagation.
+              </h1>
+
+              <p className="lead text-secondary mb-4">
+                Deepity is a high-performance implementation of Predictive
+                Coding Networks, built for fast experimentation and
+                CPU-first machine learning.
+              </p>
+
+              <div className="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
+                <a
+                  href="#Explained"
+                  className="btn btn-dark btn-lg px-4 py-3"
+                >
+                  Get Started
+                </a>
+
+                <a
+                  href="https://github.com/Deepity-HQ/Deepity"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-outline-dark btn-lg px-4 py-3"
+                >
+                  GitHub
+                </a>
+              </div>
+            </div>
+
+            <div className="col-lg-5">
+              <div className="bg-white border rounded-4 shadow-lg p-4 p-md-5">
+                <p className="text-uppercase fw-semibold text-secondary mb-2">
+                  MNIST Benchmark
+                </p>
+
+                <div className="display-3 fw-bold mb-2">15s</div>
+
+                <p className="fs-5 mb-4">
+                  MNIST training benchmark on a laptop CPU.
+                </p>
+
+                <div className="border-top pt-3">
+                  <div className="d-flex justify-content-between">
+                    <span className="text-secondary">Test accuracy</span>
+                    <strong>97.73%</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="bg-[#e6e8e9] border-b border-[#202d3b]-200 px-8 py-20">
         <div className="mx-auto max-w-5xl">
