@@ -58,7 +58,7 @@ export default function Benchmarks() {
         with the same network. Everything ran on one laptop CPU.
       </PageHeader>
 
-      <div className="mx-auto max-w-[1200px] px-3 pb-24 md:px-6">
+      <div className="mx-auto max-w-[1200px] px-3 pb-16 md:px-6">
         <Reveal className="panel-cloud rounded-[2rem] border border-line p-3 md:rounded-[2.5rem] md:p-8">
           <div className="grid gap-3 md:gap-4 lg:grid-cols-5">
             <Card

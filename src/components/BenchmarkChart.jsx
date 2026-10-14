@@ -187,7 +187,7 @@ export default function BenchmarkChart() {
                 p.value === 96.8 ? (
                   <text
                     key="dkp-label"
-                    x={p.x}
+                    x={p.x - 24}
                     y={p.y - 12}
                     textAnchor="middle"
                     fill={accent}

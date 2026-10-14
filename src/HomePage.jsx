@@ -119,7 +119,7 @@ const reasons = [
   },
 ];
 
-const sectionClass = "relative px-5 py-24 md:px-8 md:py-32";
+const sectionClass = "relative px-5 py-16 md:px-8 md:py-20";
 
 export default function HomePage() {
   return (

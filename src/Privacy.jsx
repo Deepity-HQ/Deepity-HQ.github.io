@@ -25,7 +25,7 @@ export default function Privacy() {
         What this website collects, in plain terms. Last updated {UPDATED}.
       </PageHeader>
 
-      <div className="mx-auto max-w-2xl px-5 pb-24">
+      <div className="mx-auto max-w-2xl px-5 pb-16">
         <Block title="What we collect">
           <p className="m-0">
             Only what you send us. If you use the early access form, we receive

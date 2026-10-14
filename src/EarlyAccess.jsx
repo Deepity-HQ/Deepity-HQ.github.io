@@ -69,7 +69,7 @@ export default function EarlyAccess() {
         Tell us what you are building with Deepity and we will get in touch.
       </PageHeader>
 
-      <div className="mx-auto max-w-3xl px-3 pb-24 md:px-6">
+      <div className="mx-auto max-w-3xl px-3 pb-16 md:px-6">
         <Reveal className="panel-cloud rounded-[2rem] border border-line p-3 md:rounded-[2.5rem] md:p-8">
           <div className="card-dark mx-auto max-w-xl p-6 md:p-10">
           {status === "sent" ? (

@@ -26,7 +26,7 @@ export default function Theory() {
         step by step.
       </PageHeader>
 
-      <div className="mx-auto max-w-[1000px] px-5 pb-24 md:px-8">
+      <div className="mx-auto max-w-[1000px] px-5 pb-16 md:px-8">
         <Reveal className="glass p-8 md:p-12">
           <h2 className="m-0 font-[family-name:var(--font-display)] text-3xl tracking-[-0.02em] md:text-4xl">
             Local errors instead of backpropagation

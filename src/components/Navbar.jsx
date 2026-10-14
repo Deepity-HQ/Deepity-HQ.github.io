@@ -102,12 +102,12 @@ export default function Navbar() {
 
   return (
     <header className="pointer-events-none fixed inset-x-0 top-0 z-50">
-      <div className="mx-auto flex max-w-[1400px] items-center justify-between px-3 py-3 md:px-4">
+      <div className="mx-auto flex max-w-[1400px] items-center justify-between px-3 py-3 md:px-4 lg:grid lg:grid-cols-[1fr_auto_1fr]">
         <Link
           to="/"
           onClick={closeMenu}
           aria-label="Deepity home"
-          className="pointer-events-auto flex items-center py-1 pl-3 pr-5 no-underline"
+          className="pointer-events-auto flex items-center justify-self-start py-1 pl-3 pr-5 no-underline"
         >
           <img src={DeepityLogo} width="48" height="48" alt="" />
         </Link>
@@ -126,7 +126,7 @@ export default function Navbar() {
           {links.map((l) => renderLink(l, "", true))}
         </nav>
 
-        <div className="pointer-events-auto hidden items-center gap-2 lg:flex">
+        <div className="pointer-events-auto hidden items-center gap-2 justify-self-end lg:flex">
           <a
             href={GITHUB_URL}
             target="_blank"
