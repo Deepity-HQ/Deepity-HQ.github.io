@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const EXTEND = 140; // roads run this far past the box so lights enter/leave unseen
 const JOG = 60; // size of the 45-degree steps on the side roads
 const CORNER = 36; // how far before/after a bend the rounding starts
-const SEGMENTS = 14; // pieces per light (at most); shorter lights hide the extras // a light is a few short segments chained along the road
+const SEGMENTS = 14; // a light is a chain of up to this many short pieces
 
 /**
  * Roads are straight runs joined by 45-degree steps, like circuit traces, with
@@ -32,9 +32,8 @@ function buildRoads(w, h, layout = "hero") {
 }
 
 /**
- * Two roads in the top-left corner of a box, each running from one outer edge
- * to the other so neither ends inside the box. "br" mirrors them to the
- * bottom-right corner.
+ * Two roads for a corner box, each running from one outer edge to the other so
+ * neither ends inside the box. They start top-left; "br" mirrors them.
  */
 function buildCornerRoads(w, h, layout) {
   const E = EXTEND;
@@ -150,24 +149,22 @@ const CARS = [0, 1, 2, 3].flatMap((road) =>
   })),
 );
 
-/**
- * Decorative circuit-style highways in the hero, with solid lights driving
- * along them. Lines are plain SVG; lights are tiny elements moved with
- * transform keyframes (Web Animations API), which the browser can run without
- * repainting. Each light rotates through bends at constant speed.
-
- * `layout="tl"` or `"br"` draws a small cluster of roads in that corner of the
- * box instead. The box is as wide as the margin beside the 1400px panels, so the roads never go
- * behind content, and it scrolls with the page.
- * Paused when off-screen; not created for reduced-motion users; hidden below
- * the lg breakpoint, where the margins are too narrow to keep clear of text.
- */
 const BOX = {
   hero: "absolute inset-0",
-  tl: "absolute left-0 top-0 h-[640px] w-[max(0px,calc(50vw-700px))]",
   br: "absolute bottom-0 right-0 h-[640px] w-[max(0px,calc(50vw-700px))]",
 };
 
+/**
+ * Decorative circuit-style roads with solid lights driving along them. The
+ * lines are SVG; each light is a chain of tiny elements moved with transform
+ * keyframes (Web Animations API), so the browser can animate them without
+ * repainting. Lights keep a constant speed through bends.
+ *
+ * layout="hero" fills its parent. layout="br" draws two roads in the bottom-right
+ * corner, in the margin beside the 1400px panels so they never sit behind content.
+ * Paused while off-screen, skipped for reduced motion, and hidden below the lg
+ * breakpoint, where the margins are too narrow to stay clear of text.
+ */
 export default function Highway({ layout = "hero" }) {
   const boxRef = useRef(null);
   const animsRef = useRef([]);
@@ -245,15 +242,14 @@ export default function Highway({ layout = "hero" }) {
       // Fade both ends of the light over a few pieces.
       const ramp = Math.min(4, Math.floor(count / 3)) + 1;
       const ends = Math.min(1, (j + 1) / ramp, (count - j) / ramp);
-      const span = 1;
-      const head = j; // samples behind the car's head
+      const head = j; // samples behind the light's head
       const width = step;
 
       // Angle of the chord between this piece's own two end points, so
       // consecutive pieces meet end to end even through a bend.
       const raw = pts.map((_, i) => {
         const hi = Math.max(i - head, 0);
-        const ti = Math.max(i - head - span, 0);
+        const ti = Math.max(i - head - 1, 0);
         return hi === ti
           ? ang[hi]
           : Math.atan2(pts[hi][1] - pts[ti][1], pts[hi][0] - pts[ti][0]);

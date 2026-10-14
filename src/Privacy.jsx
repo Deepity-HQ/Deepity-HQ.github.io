@@ -53,9 +53,9 @@ export default function Privacy() {
         <Block title="Third parties">
           <p className="m-0">
             The site is hosted on GitHub Pages, and GitHub may log visitors&apos;
-            IP addresses as part of serving it. The homepage embeds a Discord
-            widget, which is loaded from Discord and is covered by Discord&apos;s
-            own privacy policy. Links to GitHub and other sites lead to
+            IP addresses as part of serving it. The early access form is
+            processed by Formspree, which receives what you submit and passes
+            it on to us. Links to GitHub, Discord and other sites lead to
             services with their own policies.
           </p>
         </Block>

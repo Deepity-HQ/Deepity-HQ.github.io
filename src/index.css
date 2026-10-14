@@ -299,13 +299,6 @@ pre {
 }
 .ring-progress { stroke-dasharray: 565.5; animation: ring-fill 3.2s linear forwards; }
 
-/* Progress line under the active step (components/PCStepper.jsx) */
-@keyframes step-fill {
-  from { width: 0; }
-  to { width: 100%; }
-}
-.step-progress { animation: step-fill 3.2s linear forwards; }
-
 /* Scroll reveal: opacity/transform are driven from JS (components/Reveal.jsx) */
 
 /* Rotating text (components/RotatingText.jsx) */
@@ -328,7 +321,6 @@ pre {
     display: none;
   }
   .wire-light,
-  .step-progress,
   .ring-progress,
   .node-ring {
     animation: none;
@@ -338,9 +330,6 @@ pre {
   }
   .ring-progress {
     stroke-dashoffset: 0;
-  }
-  .step-progress {
-    width: 100%;
   }
 }
 
