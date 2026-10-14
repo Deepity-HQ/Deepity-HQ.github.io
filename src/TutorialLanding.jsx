@@ -1,6 +1,8 @@
 import { useState } from "react";
+import useDocumentTitle from "./lib/useDocumentTitle";
 import MainFooter from "./components/MainFooter";
 import TutorialCard from "./components/TutorialCard";
+import Reveal from "./components/Reveal";
 
 const tutorialsData = [
   {
@@ -8,7 +10,7 @@ const tutorialsData = [
     subtitle: "Beginner",
     description:
       "For people with little to no knowledge of predictive coding and Deepity.",
-    img: "./doorway.webp",
+    img: "/doorway.webp",
     link: "0-introduction",
   },
   {
@@ -16,7 +18,7 @@ const tutorialsData = [
     subtitle: "Beginner",
     description:
       "Explanation of what makes Deepity special and how to load/use it.",
-    img: "./laptop.webp",
+    img: "/laptop.webp",
     link: "/tutorial/1-beginning",
   },
   {
@@ -24,7 +26,7 @@ const tutorialsData = [
     subtitle: "Intermediate",
     description:
       "Get your first experience training the canonical PCN on a simple function.",
-    img: "./ripple.webp",
+    img: "/ripple.webp",
     link: "/notfound",
   },
   {
@@ -32,7 +34,7 @@ const tutorialsData = [
     subtitle: "Intermediate",
     description:
       "Now that you know how to use a SimplePCN, try converting to a SequentialPCN and tweaking parameters like precision and lambda.",
-    img: "./dartboard.webp",
+    img: "/dartboard.webp",
     link: "/notfound",
   },
   {
@@ -40,7 +42,7 @@ const tutorialsData = [
     subtitle: "Hard",
     description:
       "Attempt to convolve the output over an image in 2D, capturing higher accuracy.",
-    img: "./dimension.webp",
+    img: "/dimension.webp",
     link: "/notfound",
   },
   {
@@ -48,29 +50,41 @@ const tutorialsData = [
     subtitle: "Hard",
     description:
       "Research how propagating feedback can make convergence hyperfast.",
-    img: "./wired.webp",
+    img: "/wired.webp",
     link: "/notfound",
   },
 ];
 
-export default function TutorialLanding() {
-  const [searchQuery, setSearchQuery] = useState("");
+const LEVELS = ["All", "Beginner", "Intermediate", "Hard"];
 
-  const filteredTutorials = tutorialsData.filter(
+export default function TutorialLanding() {
+  useDocumentTitle("Tutorials");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [level, setLevel] = useState("All");
+
+  const filteredTutorials = tutorialsData
+    .filter((tutorial) => level === "All" || tutorial.subtitle === level)
+    .filter(
     (tutorial) =>
       tutorial.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       tutorial.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       tutorial.subtitle.toLowerCase().includes(searchQuery.toLowerCase()),
-  );
+    );
 
   return (
-    <div className="bg-gradient-to-t from-[#DDDDDD] to-[#e4e6e7] min-h-screen pt-[90px]">
-      <div className="min-h-screen">
-        <div className="max-w-7xl mx-auto px-4 pb-2 pt-4">
+    <div className="min-h-screen pt-14">
+      <div className="mx-auto min-h-screen max-w-[1280px]">
+        <div className="px-5 pb-6 pt-16 text-center md:px-8">
+          <div className="label mb-4">Tutorials</div>
+          <h1 className="m-0 font-[family-name:var(--font-display)] text-4xl tracking-[-0.02em] md:text-6xl">
+            Learn Deepity
+          </h1>
+        </div>
+        <div className="px-5 pt-6 md:px-8">
           <div className="relative">
             <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
               <svg
-                className="w-5 h-5 text-gray-400"
+                className="w-4 h-4 text-dim"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 20 20"
@@ -89,25 +103,41 @@ export default function TutorialLanding() {
               placeholder="Search tutorials..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full p-4 pl-12 text-gray-800 bg-white rounded-2xl shadow-sm hover:shadow-md focus:shadow-md focus:outline-none transition-shadow border-none"
+              className="w-full rounded-full border border-line-strong bg-panel p-4 pl-12 font-[inherit] text-[16px] text-fg placeholder:text-faint focus:border-accent focus:outline-none"
             />
+          </div>
+          <div className="mt-4 flex flex-wrap justify-center gap-2">
+            {LEVELS.map((l) => (
+              <button
+                key={l}
+                type="button"
+                aria-pressed={level === l}
+                onClick={() => setLevel(l)}
+                className={`cursor-pointer rounded-full border px-4 py-1.5 text-sm transition-colors ${
+                  level === l ? "border-transparent bg-white text-black" : "border-line bg-white/[0.04] text-dim hover:text-fg"
+                }`}
+              >
+                {l}
+              </button>
+            ))}
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 max-w-7xl mx-auto w-full">
+        <div className="grid w-full grid-cols-1 gap-6 px-5 py-6 pb-16 md:grid-cols-2 md:px-8 lg:grid-cols-3">
           {filteredTutorials.length > 0 ? (
             filteredTutorials.map((tutorial, index) => (
-              <TutorialCard
-                key={index}
-                title={tutorial.title}
-                subtitle={tutorial.subtitle}
-                description={tutorial.description}
-                img={tutorial.img}
-                link={tutorial.link}
-              />
+              <Reveal key={tutorial.title} delay={(index % 3) * 90} className="h-full">
+                <TutorialCard
+                  title={tutorial.title}
+                  subtitle={tutorial.subtitle}
+                  description={tutorial.description}
+                  img={tutorial.img}
+                  link={tutorial.link}
+                />
+              </Reveal>
             ))
           ) : (
-            <div className="col-span-full text-center py-10 text-gray-500">
+            <div className="col-span-full text-center py-10 text-dim">
               No tutorials found matching "{searchQuery}"
             </div>
           )}

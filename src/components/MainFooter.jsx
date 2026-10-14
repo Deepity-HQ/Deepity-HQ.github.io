@@ -1,59 +1,42 @@
 import { Link } from "react-router-dom";
+import { DISCORD_WIDGET_ID, GITHUB_URL } from "../config";
+import { DiscordMark, GitHubMark } from "./icons";
+
+const linkClass = "text-dim no-underline transition-colors hover:text-accent";
+const iconClass =
+  "flex h-10 w-10 items-center justify-center rounded-full border border-line bg-[#131314] text-fg transition-colors hover:border-accent hover:bg-[#232325]";
 
 export default function MainFooter() {
   return (
-    <footer className="bg-gradient-to-b from-[#11161c] via-[#0d1217] to-[#050709] px-8 py-12 text-white">
-      <div className="mx-auto max-w-5xl">
-        <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
-          <div>
-            <div className="flex items-center gap-2">
-              <img
-                src={`${import.meta.env.BASE_URL}d-100-light.png`}
-                alt="Deepity Logo"
-                className="h-10 w-auto"
-              />
-              <div className="text-2xl AllianceNo1">Deepity</div>
-            </div>
-            <p className="mt-2 max-w-sm text-sm text-white/50">
-              High-performance Predictive Coding Networks for C++ and Python.
-            </p>
-          </div>
-          <div className="flex gap-10 text-sm">
-            <div className="flex flex-col gap-2">
-              <span className="font-bold text-white/80">Project</span>
-              <a
-                href="https://github.com/Ra4ster/Deepity"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/50 no-underline hover:text-white"
-              >
-                GitHub
-              </a>
-              <Link
-                to="/docs/index.html"
-                className="text-white/50 no-underline hover:text-white"
-              >
-                Documentation
-              </Link>
-            </div>
+    <footer className="px-5 pb-10 pt-8 md:px-8">
+      <div className="mx-auto flex max-w-[1200px] flex-col items-center gap-6 border-t border-line pt-8 md:flex-row md:justify-between">
+        <nav aria-label="Footer" className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-[15px]">
+          <a href="/docs/index.html" className={linkClass}>Docs</a>
+          <Link to="/tutorial" className={linkClass}>Tutorials</Link>
+          <Link to="/benchmarks" className={linkClass}>Benchmarks</Link>
+          <Link to="/theory" className={linkClass}>Theory</Link>
+          <Link to="/about" className={linkClass}>About</Link>
+          <Link to="/early-access" className={linkClass}>Early access</Link>
+          <Link to="/privacy" className={linkClass}>Privacy</Link>
+        </nav>
 
-            <div className="flex flex-col gap-2">
-              <span className="font-bold text-white/80">Developer</span>
-              <a
-                href="https://ra4ster.github.io"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/50 no-underline hover:text-white"
-              >
-                Ra4ster
-              </a>
-            </div>
-          </div>
-        </div>
+        <p className="m-0 text-center text-[15px] text-faint">
+          © {new Date().getFullYear()} Deepity. MIT licensed.
+        </p>
 
-        <div className="mt-10 border-t border-white/10 pt-5 text-xs text-white/40">
-          © {new Date().getFullYear()} Ra4ster · Deepity is open source under
-          the MIT License.
+        <div className="flex gap-2">
+          <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" aria-label="Deepity on GitHub" className={iconClass}>
+            <GitHubMark size={18} />
+          </a>
+          <a
+            href={`https://discord.com/widget?id=${DISCORD_WIDGET_ID}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Deepity on Discord"
+            className={iconClass}
+          >
+            <DiscordMark size={18} />
+          </a>
         </div>
       </div>
     </footer>

@@ -14,7 +14,7 @@ export default function UtilButton({ backLink, nextLink }) {
         onClick={() => goTo(backLink, -1)}
         aria-label="Go back"
         title="Go back"
-        className="group flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-black bg-white text-black shadow-lg transition-all duration-300 hover:scale-105 hover:bg-black hover:text-white"
+        className="group flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-line-strong bg-white/10 text-fg transition-colors duration-150 hover:border-accent hover:bg-accent hover:text-accent-ink"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -26,7 +26,6 @@ export default function UtilButton({ backLink, nextLink }) {
           strokeWidth="3"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="transition-transform duration-300 group-hover:rotate-90"
           aria-hidden="true"
         >
           <path d="m15 18-6-6 6-6" />
@@ -38,7 +37,7 @@ export default function UtilButton({ backLink, nextLink }) {
         onClick={() => goTo(nextLink, 1)}
         aria-label="Go to next page"
         title="Go to next page"
-        className="group flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-black bg-white text-black shadow-lg transition-all duration-300 hover:scale-105 hover:bg-black hover:text-white"
+        className="group flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-line-strong bg-white/10 text-fg transition-colors duration-150 hover:border-accent hover:bg-accent hover:text-accent-ink"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -50,7 +49,6 @@ export default function UtilButton({ backLink, nextLink }) {
           strokeWidth="3"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="transition-transform duration-300 group-hover:rotate-90"
           aria-hidden="true"
         >
           <path d="m9 18 6-6-6-6" />

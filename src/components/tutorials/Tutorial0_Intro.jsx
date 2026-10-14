@@ -1,5 +1,8 @@
+import useDocumentTitle from "../../lib/useDocumentTitle";
 import MainFooter from "../MainFooter";
+import Reveal from "../Reveal";
 import UtilButton from "../UtilButton";
+import TutorialRail from "../TutorialRail";
 import CodeBlock from "../CodeBlock";
 import PythonLogo from "../../assets/python.png";
 
@@ -33,16 +36,18 @@ output = model.predict(x, 150)
 print(output)`;
 
 export default function Tutorial0_Intro() {
+  useDocumentTitle("Tutorial 0: Introduction");
   return (
-    <div className="bg-gradient-to-t from-[#DDDDDD] to-[#e4e6e7] min-h-screen pt-[90px]">
-      <div className="min-h-screen max-w-7xl mx-auto pb-12">
+    <div className="min-h-screen px-3 pt-20 pb-6 md:px-4">
+      <div className="min-h-screen max-w-7xl mx-auto pt-6 pb-12 rounded-[2rem] border border-line bg-bg/90">
         <UtilButton backLink="/tutorial" nextLink="/tutorial/1-beginning" />
+        <TutorialRail current={0} />
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 px-8 my-5">
           <div className="max-w-full md:max-w-[55%]">
-            <h1 className="AllianceNo2 text-4xl font-bold m-5">
+            <h1 className="ff-display text-4xl font-bold m-5">
               Tutorial 0: Introduction
             </h1>
-            <p className="text-lg m-5 AllianceNo1">
+            <p className="text-lg m-5 ff-body">
               In this tutorial, we will cover more about what predictive coding
               networks (PCNs, as we will refer to them) are, why they're useful,
               and what makes them different from classical neural networks.
@@ -55,7 +60,7 @@ export default function Tutorial0_Intro() {
                 href="https://arxiv.org/pdf/2506.06332"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:underline text-blue-600 font-semibold"
+                className="link text-accent"
               >
                 Introduction to Predictive Coding Networks for Machine Learning
                 (Stenlund 2025)
@@ -65,7 +70,7 @@ export default function Tutorial0_Intro() {
                 href="https://en.wikipedia.org/wiki/Predictive_coding"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:underline text-blue-600 font-semibold"
+                className="link text-accent"
               >
                 Wikipedia article
               </a>{" "}
@@ -74,19 +79,19 @@ export default function Tutorial0_Intro() {
           </div>
           <div className="mt-5 md:mt-10 px-5">
             <img
-              src="../doorway.webp"
+              src="/doorway.webp"
               alt="Intro Image"
               width="550"
-              className="rounded-lg shadow-xl border border-gray-400"
+              className="rounded-lg shadow-xl border border-line-strong"
             />
           </div>
         </div>
 
-        <div className="border-t border-gray-400 my-8 mx-8" />
+        <div className="border-t border-line-strong my-8 mx-8" />
 
-        <div className="px-8 md:px-12 space-y-10 AllianceNo1 text-lg text-gray-800">
-          <section>
-            <h2 className="text-2xl font-bold mb-4 AllianceNo2">
+        <div className="px-8 md:px-12 space-y-10 ff-body text-lg text-fg">
+          <Reveal as="section">
+            <h2 className="text-2xl font-bold mb-4 ff-display">
               The Limits of Classical Neural Networks
             </h2>
             <p className="mb-4">
@@ -123,11 +128,13 @@ export default function Tutorial0_Intro() {
             <div className="my-10 flex flex-col md:flex-row justify-center items-start gap-8">
               <div className="flex flex-col items-center w-full md:max-w-[500px]">
                 <img
+ loading="lazy"
+ decoding="async"
                   src="https://www.researchgate.net/publication/355403594/figure/fig1/AS:1080896144842786@1634717131435/Fully-connected-neural-network_Q640.jpg"
                   alt="Feedforward neural networks visualized"
-                  className="block w-full rounded shadow-md border border-black/15"
+                  className="block w-full border border-line-strong"
                 />
-                <p className="mt-3 text-center text-sm text-gray-600 AllianceNo1">
+                <p className="mt-3 text-center text-sm text-dim ff-body">
                   Fig. 1: Feedforward neural networks are a classic one-way
                   pipeline.
                 </p>
@@ -141,18 +148,18 @@ export default function Tutorial0_Intro() {
                     code={feedforwardCode}
                   />
                 </div>
-                <p className="mt-3 text-center text-sm text-gray-600 AllianceNo1">
+                <p className="mt-3 text-center text-sm text-dim ff-body">
                   Fig. 2: Standard frameworks map inputs to outputs
                   sequentially.
                 </p>
               </div>
             </div>
-          </section>
+          </Reveal>
 
-          <div className="border-t border-gray-400 my-8 mx-8" />
+          <div className="border-t border-line-strong my-8 mx-8" />
 
-          <section>
-            <h2 className="text-2xl font-bold mb-4 AllianceNo2">
+          <Reveal as="section">
+            <h2 className="text-2xl font-bold mb-4 ff-display">
               What is a Predictive Coding Network?
             </h2>
             <p className="mb-4">
@@ -171,12 +178,14 @@ export default function Tutorial0_Intro() {
             </p>
             <div className="my-6 flex flex-col items-center">
               <img
+ loading="lazy"
+ decoding="async"
                 src="https://www.frontiersin.org/files/Articles/1062678/fncom-16-1062678-HTML/image_m/fncom-16-1062678-g001.jpg"
                 alt="Comparing PCNs with FFNNs"
                 width="650"
-                className="rounded border border-black/15 shadow-md"
+                className="rounded border border-line-strong"
               />
-              <p className="mt-3 text-center text-sm text-gray-600">
+              <p className="mt-3 text-center text-sm text-dim">
                 Fig. 3: Feedforward backpropagation compared to Local
                 Hebbian-style learning
               </p>
@@ -188,14 +197,14 @@ export default function Tutorial0_Intro() {
                 language="python"
                 code={deepityCode}
               />
-              <p className="mt-3 text-center text-sm text-gray-600 AllianceNo1">
+              <p className="mt-3 text-center text-sm text-dim ff-body">
                 Fig. 4: Equivalent code in Deepity.
               </p>
             </div>
-          </section>
-          <div className="border-t border-gray-400 my-8 mx-8" />
-          <section>
-            <h2 className="text-2xl font-bold mb-4 AllianceNo2">
+          </Reveal>
+          <div className="border-t border-line-strong my-8 mx-8" />
+          <Reveal as="section">
+            <h2 className="text-2xl font-bold mb-4 ff-display">
               Practical Bottlenecks
             </h2>
             <p className="mb-4">
@@ -213,9 +222,9 @@ export default function Tutorial0_Intro() {
               Building the infrastructure to make PCNs fast is historically the
               largest barrier to entry.
             </p>
-          </section>
-          <section>
-            <h2 className="text-2xl font-bold mb-4 AllianceNo2">
+          </Reveal>
+          <Reveal as="section">
+            <h2 className="text-2xl font-bold mb-4 ff-display">
               Implications of Future Work
             </h2>
             <p className="mb-4">
@@ -244,7 +253,7 @@ export default function Tutorial0_Intro() {
               the fly, effectively encoding context directly into its structure
               as it interacts with the world.
             </p>
-          </section>
+          </Reveal>
           <small>
             <i>
               You can click the buttons on the right to navigate through

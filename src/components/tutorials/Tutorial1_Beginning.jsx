@@ -1,12 +1,15 @@
 import React from "react";
+import useDocumentTitle from "../../lib/useDocumentTitle";
 import MainFooter from "../MainFooter";
+import Reveal from "../Reveal";
 import UtilButton from "../UtilButton";
+import TutorialRail from "../TutorialRail";
 import CodeBlock from "../CodeBlock";
 import CmdLogo from "../../assets/cmd.png";
 import buildingImage from "../../assets/buildingdeepity.png";
 
 const buildCode = `# Clone the Deepity repository
-git clone https://github.com/Ra4ster/Deepity.git
+git clone https://github.com/Deepity-HQ/Deepity.git
 cd Deepity
 
 # Compile the C++ backend
@@ -27,19 +30,21 @@ model.fit(x_train, y_train, epochs=10, batch_size=64)
 predictions = model.predict(x_test, settling_steps=20)`;
 
 export default function Tutorial1_Beginning() {
+  useDocumentTitle("Tutorial 1: Understanding Deepity");
   return (
-    <div className="bg-gradient-to-t from-[#DDDDDD] to-[#e4e6e7] min-h-screen pt-[90px]">
-      <div className="min-h-screen max-w-7xl mx-auto pb-12">
+    <div className="min-h-screen px-3 pt-20 pb-6 md:px-4">
+      <div className="min-h-screen max-w-7xl mx-auto pt-6 pb-12 rounded-[2rem] border border-line bg-bg/90">
         <UtilButton
-          backLink="/tutorial/0-intro"
-          nextLink="/tutorial/2-architecture"
+          backLink="/tutorial/0-introduction"
+          nextLink="/notfound"
         />
+        <TutorialRail current={1} />
 
         <div className="px-8 my-5">
-          <h1 className="AllianceNo2 text-4xl font-bold m-5">
+          <h1 className="ff-display text-4xl font-bold m-5">
             Tutorial 1: Understanding the Deepity Library
           </h1>
-          <p className="text-lg m-5 AllianceNo1 max-w-4xl text-gray-800">
+          <p className="text-lg m-5 ff-body max-w-4xl text-fg">
             Now that you understand the theory behind Predictive Coding
             Networks, it is time to look at Deepity itself. We will cover the
             library's design, how to compile its C++ backend, and the core
@@ -48,11 +53,11 @@ export default function Tutorial1_Beginning() {
           </p>
         </div>
 
-        <div className="border-t border-gray-400 my-8 mx-8" />
+        <div className="border-t border-line-strong my-8 mx-8" />
 
-        <div className="px-8 md:px-12 space-y-10 AllianceNo1 text-lg text-gray-800">
-          <section>
-            <h2 className="text-2xl font-bold mb-4 AllianceNo2">
+        <div className="px-8 md:px-12 space-y-10 ff-body text-lg text-fg">
+          <Reveal as="section">
+            <h2 className="text-2xl font-bold mb-4 ff-display">
               1. What Makes Deepity Special?
             </h2>
             <p className="mb-4">
@@ -71,28 +76,30 @@ export default function Tutorial1_Beginning() {
             </p>
             <div className="mx-auto flex w-full flex-col items-center md:max-w-[500px]">
               <img
-                src="../nanobind.jpg"
+ loading="lazy"
+ decoding="async"
+                src="/nanobind.webp"
                 alt="Feedforward neural networks visualized"
-                className="block w-full rounded shadow-md border border-black/15"
+                className="block w-full border border-line-strong"
               />
-              <p className="mt-3 text-center text-sm text-gray-600 AllianceNo1">
+              <p className="mt-3 text-center text-sm text-dim ff-body">
                 <a
                   href="https://github.com/wjakob/nanobind"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline"
+                  className="link text-accent"
                 >
                   Fig. 1: Nanobind, Deepity's lightweight Python binding
                   dependency.
                 </a>
               </p>
             </div>
-          </section>
+          </Reveal>
 
-          <div className="border-t border-gray-400 my-8 mx-8" />
+          <div className="border-t border-line-strong my-8 mx-8" />
 
-          <section>
-            <h2 className="text-2xl font-bold mb-4 AllianceNo2">
+          <Reveal as="section">
+            <h2 className="text-2xl font-bold mb-4 ff-display">
               2. Building, Loading, and GitHub Workflows
             </h2>
             <p className="mb-4">
@@ -109,13 +116,15 @@ export default function Tutorial1_Beginning() {
 
             <div className="mx-auto flex w-full flex-col items-center md:max-w-[1000px] mb-8">
               <img
+ loading="lazy"
+ decoding="async"
                 src={buildingImage}
                 alt="Building Deepity"
-                className="block h-auto w-full rounded shadow-md border border-black/15"
+                className="block h-auto w-full border border-line-strong"
                 height="717"
                 width="2586"
               />
-              <p className="mt-3 text-center text-sm text-gray-600 AllianceNo1">
+              <p className="mt-3 text-center text-sm text-dim ff-body">
                 Fig. 2: Building Deepity using the provided{" "}
                 <code>build.py</code> script.
               </p>
@@ -128,16 +137,16 @@ export default function Tutorial1_Beginning() {
                 language="bash"
                 code={buildCode}
               />
-              <p className="mt-3 text-center text-sm text-gray-600 AllianceNo1">
+              <p className="mt-3 text-center text-sm text-dim ff-body">
                 Fig. 3: Compiling the Deepity backend via the command line.
               </p>
             </div>
-          </section>
+          </Reveal>
 
-          <div className="border-t border-gray-400 my-8 mx-8" />
+          <div className="border-t border-line-strong my-8 mx-8" />
 
-          <section>
-            <h2 className="text-2xl font-bold mb-4 AllianceNo2">
+          <Reveal as="section">
+            <h2 className="text-2xl font-bold mb-4 ff-display">
               3. Declarative Architecture
             </h2>
             <p className="mb-4">
@@ -152,12 +161,12 @@ export default function Tutorial1_Beginning() {
               library will then verify that the layer dimensions match from the
               input layer through to the output layer before proceeding.
             </p>
-          </section>
+          </Reveal>
 
-          <div className="border-t border-gray-400 my-8 mx-8" />
+          <div className="border-t border-line-strong my-8 mx-8" />
 
-          <section>
-            <h2 className="text-2xl font-bold mb-4 AllianceNo2">
+          <Reveal as="section">
+            <h2 className="text-2xl font-bold mb-4 ff-display">
               4. Configuring the Backend
             </h2>
             <p className="mb-4">
@@ -174,16 +183,16 @@ export default function Tutorial1_Beginning() {
 
             <div className="mx-auto w-full max-w-[800px] flex flex-col items-center mt-6">
               <CodeBlock title="Python" language="python" code={configCode} />
-              <p className="mt-3 text-center text-sm text-gray-600 AllianceNo1">
+              <p className="mt-3 text-center text-sm text-dim ff-body">
                 Fig. 4: Configuring the optimization and inference parameters.
               </p>
             </div>
-          </section>
+          </Reveal>
 
-          <div className="border-t border-gray-400 my-8 mx-8" />
+          <div className="border-t border-line-strong my-8 mx-8" />
 
-          <section>
-            <h2 className="text-2xl font-bold mb-4 AllianceNo2">
+          <Reveal as="section">
+            <h2 className="text-2xl font-bold mb-4 ff-display">
               5. Training and Inference
             </h2>
             <p className="mb-4">
@@ -202,11 +211,11 @@ export default function Tutorial1_Beginning() {
 
             <div className="mx-auto w-full max-w-[800px] flex flex-col items-center mt-6">
               <CodeBlock title="Python" language="python" code={trainCode} />
-              <p className="mt-3 text-center text-sm text-gray-600 AllianceNo1">
+              <p className="mt-3 text-center text-sm text-dim ff-body">
                 Fig. 5: Executing training and settled inference.
               </p>
             </div>
-          </section>
+          </Reveal>
         </div>
       </div>
       <MainFooter />

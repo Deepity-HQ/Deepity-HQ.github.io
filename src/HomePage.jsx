@@ -1,293 +1,346 @@
-import "./HomePage.css";
 import { Link } from "react-router-dom";
-import Arrow from "./components/arrow";
-import PythonIcon from "./assets/python.png";
-import CppIcon from "./assets/cpp.png";
-import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
-import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import { lazy, Suspense, useState, memo } from "react";
 import MainFooter from "./components/MainFooter";
-import CodeBlock from "./components/CodeBlock";
+import CodeTabs from "./components/CodeTabs";
+import SectionHead from "./components/SectionHead";
+import Reveal from "./components/Reveal";
+import RotatingText from "./components/RotatingText";
+import Highway from "./components/Highway";
+import BenchmarkSummary from "./components/BenchmarkSummary";
+import { DEVELOPER_URL, DISCORD_WIDGET_ID, GITHUB_URL } from "./config";
 
-const BenchmarkChart = lazy(() => import("./components/BenchmarkChart"));
-const PCNRepresentation = lazy(() => import("./components/PCNRepresentation"));
 
 const pythoncode = `from pydeepity import SimplePCN
 from pydeepity.layer import Linear, Sigmoid
-import numpy as np
 
-# Architecture is declared, not assembled layer-by-layer.
+# The network from the benchmark: 784 -> 512 -> 512 -> 10
 net = SimplePCN(
-    Linear(784, 512), Sigmoid(),
+    Linear(784, 512),
     Linear(512, 512), Sigmoid(),
-    Linear(512, 10),
+    Linear(512, 10), Sigmoid(),
     batch_size=250,
 )
-net.configure(learning_rate=0.001, inference_rate=0.08, optimizer="ADAM")
+net.configure(learning_rate=0.00373, inference_rate=0.091, lmbda=0.0, optimizer="ADAMW")
 
-X = np.array([-1, -1, -1, 1, 1, -1, 1, 1], dtype=np.float32)
-Y = np.array([-1, 1, 1, -1], dtype=np.float32)
-
-# One call settles, updates weights, and reports energy.
-for epoch in range(1500):
-  energy = net.train_step_with_projection(X, Y, 150)
-
-predictions = net.predict_with_projection(X, 150)
+# X_train: (N, 784) float32 in [0, 1]. Y_train: (N, 10) one-hot.
+# examples/mnist.py loads MNIST and has the full script.
+for epoch in range(100):
+    for b in range(len(X_train) // 250):
+        X = X_train[b * 250:(b + 1) * 250]
+        Y = Y_train[b * 250:(b + 1) * 250]
+        energy = net.train_step_with_projection(X, Y, 20)  # 20 settling steps
 `;
 
 const cppcode = `#include <deepity/networks/SimplePCNetwork.h>
 #include <random>
 
-Deep::SimplePCNetwork net(4);
-net.AddLayer(784, 512, 0.001f, 0.08f, 0.0f, Deep::ActivationType::SIGMOID, Deep::ActivationType::dSIGMOID);
-net.AddLayer(512, 512, 0.001f, 0.08f, 0.0f, Deep::ActivationType::SIGMOID, Deep::ActivationType::dSIGMOID);
-net.AddLayer(512, 10, 0.001f, 0.08f, 0.0f, Deep::ActivationType::LINEAR, Deep::ActivationType::dLINEAR);
-net.AddLayer(10, 0, 0.001f, 0.08f, 0.0f, Deep::ActivationType::LINEAR, Deep::ActivationType::dLINEAR);
+// The network from the benchmark: 784 -> 512 -> 512 -> 10
+Deep::SimplePCNetwork net(250);  // batch size
+net.AddLayer(784, 512, 0.00373f, 0.091f, 0.0f, Deep::ActivationType::LINEAR, Deep::ActivationType::dLINEAR);
+net.AddLayer(512, 512, 0.00373f, 0.091f, 0.0f, Deep::ActivationType::SIGMOID, Deep::ActivationType::dSIGMOID);
+net.AddLayer(512, 10, 0.00373f, 0.091f, 0.0f, Deep::ActivationType::SIGMOID, Deep::ActivationType::dSIGMOID);
+net.AddLayer(10, 0, 0.00373f, 0.091f, 0.0f, Deep::ActivationType::LINEAR, Deep::ActivationType::dLINEAR);
 
-net.SetOptimizer(Deep::OptimizerType::ADAM);
+net.SetOptimizer(Deep::OptimizerType::ADAMW);
 net.Compile();
 
-std::mt19937 rng(42);
+std::mt19937 rng(7);
 net.RandomizeWeights(rng);
 
-std::vector<float> X = {-1, -1, -1, 1, 1, -1, 1, 1};
-std::vector<float> Y = {-1, 1, 1, -1};
+// X: one batch, 250 * 784 floats. Y: 250 * 10 one-hot floats.
+float energy = net.TrainStepWithProjection(X, Y, 20);  // 20 settling steps`;
 
-// One call settles, updates weights, and reports energy.
-for (int epoch = 0; epoch < 1500; ++epoch)
-    float energy = net.TrainStepWithProjection(X, Y, 150);
+const codeFiles = [
+  { name: "train.py", language: "python", code: pythoncode },
+  { name: "train.cpp", language: "cpp", code: cppcode },
+];
 
-std::vector<float> predictions = net.PredictWithProjection(X, 150);`;
+// Edit freely: these cycle in the hero.
+const useCases = [
+  "High-performance computing",
+  "Embedded systems",
+  "Edge devices",
+  "Low-power environments",
+  "Continual learning",
+  "Neuromorphic research",
+  "Rapid experimentation",
+];
 
-const heroStyle = {
-  backgroundImage: `url(${import.meta.env.BASE_URL}flowerpot.webp)`,
-  backgroundSize: "cover",
-  backgroundPosition: "center 65%",
-};
+const specs = [
+  { value: "1.8×", caption: "Faster than ngc-learn at the same accuracy" },
+  { value: "98.22%", caption: "Accuracy on MNIST, trained on a laptop" },
+  { value: "CPU + GPU", caption: "From laptop CPUs to NVIDIA GPUs" },
+  { value: "MIT", caption: "Free and open source" },
+];
 
-const syntaxCustomStyle = {
-  margin: 0,
-  padding: "1.25rem",
-  fontSize: "14px",
-  fontFamily: "Fira Code, monospace",
-  background: "#fafafa",
-};
+const stack = [
+  { name: "OpenBLAS", href: "https://www.openmathlib.org/OpenBLAS/" },
+  { name: "Intel MKL", href: "https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html" },
+  { name: "OpenMP", href: "https://www.openmp.org/" },
+  { name: "Google Highway", href: "https://github.com/google/highway" },
+  { name: "SLEEF", href: "https://sleef.org/" },
+  { name: "CUDA", href: "https://developer.nvidia.com/cuda-toolkit" },
+  { name: "CUTLASS", href: "https://github.com/NVIDIA/cutlass" },
+  { name: "nanobind", href: "https://github.com/wjakob/nanobind" },
+  { name: "Google Benchmark", href: "https://github.com/google/benchmark" },
+];
+
+const ideas = [
+  {
+    title: "Learns locally",
+    text: "Each neuron adjusts from the errors right next to it, the way many neuroscientists think the brain works. No error signal has to travel back through the whole network.",
+  },
+  {
+    title: "Fits small hardware",
+    text: "Local learning suits edge devices, embedded systems and low-power machines, where a large GPU isn't an option.",
+  },
+  {
+    title: "Keeps learning",
+    text: "Predictive coding is a good fit for systems that keep learning after deployment, a hard problem for standard networks.",
+  },
+];
+
+const reasons = [
+  {
+    title: "Written from scratch",
+    text: "A C++ and CUDA engine for predictive coding, not a layer on top of JAX or PyTorch. Python bindings are built on nanobind, and the compiled extension is under 2MB.",
+  },
+  {
+    title: "CPU and GPU",
+    text: "Fast on the CPU with Google Highway and SLEEF SIMD kernels and OpenBLAS or Intel MKL. A CUDA backend built on cuBLAS, with optional CUTLASS kernels, runs on NVIDIA GPUs. It is in active development and has been tested on the Ohio Supercomputer Center and Vast.ai.",
+  },
+  {
+    title: "Documented and tested",
+    text: "Doxygen docs and runnable examples. GitHub Actions builds the library on Linux and Windows and type-checks the Python package on every push.",
+  },
+  {
+    title: "Open source",
+    text: "MIT licensed. Made and maintained by one developer.",
+    link: { href: DEVELOPER_URL, label: "About the developer ↗" },
+  },
+];
+
+const sectionClass = "relative px-5 py-24 md:px-8 md:py-32";
 
 export default function HomePage() {
   return (
-    <div className="bg-[#e4e6e7]">
-<section className="home-hero">
-  <div className="home-hero__container">
-    <div className="home-hero__row">
-      <div className="home-hero__content">
-        <img
-          src={`${import.meta.env.BASE_URL}docs/deepity-mark.png`}
-          alt="Deepity logo"
-          className="home-hero__logo"
-        />
+    <div className="relative">
+      <Highway layout="br" />
+      <section className="px-3 pb-6 pt-20 md:px-4">
+        <div className="relative mx-auto flex min-h-[max(640px,min(calc(100svh-6.5rem),56rem))] max-w-[1400px] flex-col overflow-hidden rounded-[2rem] border border-line hero-glow md:rounded-[2.5rem]">
+          <div className="relative flex flex-1 flex-col">
+          <Highway />
 
-        <p className="home-hero__eyebrow">
-          Predictive Coding • C++ • Python
-        </p>
+          <Reveal mode="leave" className="relative z-10 flex flex-1 flex-col items-center justify-center px-5 pb-10 pt-16 text-center md:px-10">
+            <Reveal
+              as="h1"
+              delay={80}
+              className="m-0 max-w-5xl text-balance font-[family-name:var(--font-display)] text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.03] tracking-[-0.03em]"
+            >
+              Today&apos;s AI learns one way. Deepity{" "}
+              <span className="bg-gradient-to-r from-fg to-accent bg-clip-text text-transparent">
+                learns tomorrow&apos;s.
+              </span>
+            </Reveal>
 
-        <h1 className="home-hero__title AllianceNo2">
-          Build intelligent systems without backpropagation.
-        </h1>
+            <Reveal as="p" delay={160} className="mx-auto mt-8 max-w-2xl text-lg text-dim md:text-xl">
+              Deepity is an open-source engine for predictive coding. Neurons
+              learn from local errors, not backpropagation, as the brain is
+              thought to. It runs on CPUs and NVIDIA GPUs.
+            </Reveal>
 
-        <p className="home-hero__description">
-          Deepity is a high-performance implementation of Predictive Coding
-          Networks, built for fast experimentation and CPU-first machine learning.
-        </p>
+            <Reveal delay={220} className="mt-8 flex flex-wrap items-baseline justify-center gap-x-4">
+              <span className="label">Built for</span>
+              <RotatingText
+                items={useCases}
+                className="font-[family-name:var(--font-display)] text-xl tracking-[-0.01em] text-accent md:text-2xl"
+              />
+            </Reveal>
 
-        <div className="home-hero__actions">
-          <a href="#Explained" className="home-hero__button home-hero__button--dark">
-            Get Started
-          </a>
-
-          <a
-            href="https://github.com/Deepity-HQ/Deepity"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="home-hero__button home-hero__button--outline"
-          >
-            GitHub
-          </a>
-        </div>
-      </div>
-
-      <div className="home-hero__benchmark-column">
-        <div className="home-hero__benchmark">
-          <p className="home-hero__benchmark-label">MNIST Benchmark</p>
-          <div className="home-hero__benchmark-number">15s</div>
-          <p className="home-hero__benchmark-description">
-            MNIST training benchmark on a laptop CPU.
-          </p>
-
-          <div className="home-hero__benchmark-result">
-            <span>Test accuracy</span>
-            <strong>97.73%</strong>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-      <section className="bg-[#e6e8e9] border-b border-[#202d3b]-200 px-8 py-20">
-        <div className="mx-auto max-w-5xl">
-          <h2 className="text-3xl AllianceNo2">Proven Performance</h2>
-
-          <p className="mt-3 max-w-2xl text-base text-black/70 AllianceNo2 text-lg">
-            Deepity's DKPPCN reaches 97.73% test accuracy on MNIST, approaching
-            PyTorch's feedforward backprop accuracy while training entirely on
-            the CPU.
-          </p>
-          <Suspense fallback={<div className="h-96" />}>
-            <BenchmarkChart />
-          </Suspense>
-        </div>
-      </section>
-
-      <section
-        className="bg-[#e6e8e9] border-b border-[#202d3b]-200 px-8 py-20"
-        id="Explained"
-      >
-        <div className="mx-auto max-w-5xl justify-center align-items text-center">
-          <h2 className="text-3xl AllianceNo2">What is Predictive Coding?</h2>
-
-          <p className="mt-3 text-black text-lg AllianceNo2">
-            Deepity implements Predictive Coding Networks, where neurons
-            iteratively minimize local prediction errors rather than propagating
-            gradients backward through the entire network.
-          </p>
-          <Suspense fallback={<div className="h-48" />}>
-            <PCNRepresentation />
-          </Suspense>
-          <p className="mt-3 text-black text-lg AllianceNo2">
-            This approach is inspired by the brain's predictive coding theory,
-            which suggests that the brain constantly generates predictions about
-            incoming sensory information and updates its internal model based on
-            the prediction errors. This architecture is capable of learning
-            complex representations, continuous learning, and even generalized
-            learning across tasks.
-            <br />
-            <br />
-            The problem is this algorithm is computationally expensive and slow
-            to train, which is why Deepity focuses on optimizing its
-            implementation for better performance.
-          </p>
-        </div>
-      </section>
-      <section className="bg-[#e6e8e9] border-b border-[#202d3b]-200 px-8 py-20">
-        <div className="mx-auto max-w-5xl">
-          <h2 className="text-3xl AllianceNo2 justify-center text-center">
-            Why Deepity?
-          </h2>
-          <ul className="mt-5 list-disc list-inside text-black/70 text-lg AllianceNo2">
-            <li className="m-3">
-              <b>CPU-First</b>: Bundled with OpenBLAS and OpenMP for optimized
-              CPU performance, making it ideal for edge devices and low-power
-              environments. Custom SIMD kernels for Intel and AMD CPUs, with ARM
-              support in progress.
-            </li>
-            <li className="m-3">
-              <b>Strongly Bound</b>: Built with nanobind for seamless
-              integration with Python ecosystems and a wheel size under 1MB.
-            </li>
-            <li className="m-3">
-              <b>Well-Documented</b>: Comprehensive documentation (using
-              Doxygen) and examples to help users get started quickly. Examples
-              are tested during every push with GitHub Actions.
-            </li>
-            <li className="m-3">
-              <b>Open-Source</b>: Licensed under the MIT License, making it
-              freely available for anyone to use and contribute to. Deepity was
-              made by a single developer and is actively maintained with a focus
-              on performance and usability. For my full story, check out{" "}
-              <a
-                href="https://ra4ster.github.io"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline text-blue-600"
-              >
-                my website here
-              </a>
-              .
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <section className="bg-[#e6e8e9] border-b border-[#202d3b]-200 px-8 py-10">
-        <div className="mx-auto max-w-5xl">
-          <h2 className="text-3xl AllianceNo2">Code Examples</h2>
-          <p className="mt-2 text-black/70 AllianceNo2">
-            Deepity is designed to be easy to use and integrate into existing
-            projects. Here are some code examples to get you started.
-          </p>
-
-          <div className="mt-6 grid gap-6 lg:grid-cols-2">
-            <CodeBlock
-              language="python"
-              code={pythoncode}
-              icon={PythonIcon}
-              title="Python"
-            />
-
-            <CodeBlock
-              language="cpp"
-              code={cppcode}
-              icon={CppIcon}
-              title="C++"
-            />
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#e6e8e9] border-b border-[#202d3b]/20 px-8 py-20">
-        <div className="mx-auto max-w-5xl flex flex-col md:flex-row items-start md:items-center justify-between gap-12">
-          <div className="flex-1">
-            <h2 className="text-3xl AllianceNo2">Interested in Development?</h2>
-
-            <p className="mt-3 max-w-2xl text-black/70 AllianceNo1">
-              Deepity is an open-source implementation of Predictive Coding
-              Networks, and I welcome contributions from the community. If
-              you're interested in contributing to the project, please check out
-              the GitHub repository and feel free to submit pull requests or
-              open issues. Your contributions can help improve the performance,
-              usability, and documentation of Deepity.
-            </p>
-
-            <div className="mt-8 flex flex-wrap gap-4">
-              <a
-                href="mailto:jackrose2335@gmail.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="border border-black hover:shadow-lg px-5 py-3 font-bold no-underline text-black transition-colors hover:bg-black hover:text-white AllianceNo1"
-              >
-                Contact Me
-              </a>
-
-              <Link
-                to="/docs"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="border border-black hover:shadow-lg px-5 py-3 font-bold no-underline text-black transition-colors hover:bg-black hover:text-white AllianceNo1"
-              >
-                Learn More Theory
+            <Reveal delay={300} className="mt-10 flex flex-wrap justify-center gap-3">
+              <Link to="/tutorial" className="btn btn--solid">
+                Get started
               </Link>
-            </div>
+              <Link to="/benchmarks" className="btn">
+                See the benchmarks
+              </Link>
+            </Reveal>
+          </Reveal>
+
+          <button
+            type="button"
+            onClick={() => document.getElementById("idea")?.scrollIntoView({ behavior: "smooth" })}
+            className="absolute bottom-14 left-[5.5rem] z-10 hidden cursor-pointer items-center gap-3 rounded-full border border-line bg-[#131314] py-1.5 pl-1.5 pr-4 text-sm text-dim transition-colors hover:border-accent hover:text-fg xl:flex"
+          >
+            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-black">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M12 5v14M6 13l6 6 6-6" />
+              </svg>
+            </span>
+            Scroll down
+          </button>
+
           </div>
 
-          <iframe
-            src="https://discord.com/widget?id=1545278281807433808&theme=dark"
-            width="350"
-            height="350"
-            allowtransparency="true"
-            sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
-            className="shrink-0 w-full md:w-[350px] shadow-xl hover:shadow-2xl hover:scale-102 transition-all duration-300"
-          />
+          {/* Key numbers */}
+          <dl className="relative z-10 m-0 grid grid-cols-2 border-t border-line bg-black/50 lg:grid-cols-4">
+            {specs.map((s, i) => (
+              <Reveal
+                key={s.caption}
+                delay={i * 90}
+                className={`px-6 py-6 text-center md:py-8 ${i % 2 === 1 ? "border-l border-line" : ""} ${
+                  i > 1 ? "border-t border-line lg:border-t-0" : ""
+                } ${i > 0 ? "lg:border-l lg:border-line" : ""}`}
+              >
+                <dd className="m-0 font-[family-name:var(--font-display)] text-4xl tracking-[-0.03em] md:text-5xl font-light">
+                  {s.value}
+                </dd>
+                <dt className="label mt-2">{s.caption}</dt>
+              </Reveal>
+            ))}
+          </dl>
+        </div>
+
+        <Reveal className="mx-auto mt-10 flex max-w-[1200px] flex-wrap items-center justify-center gap-x-10 gap-y-3 px-4 font-[family-name:var(--font-display)] text-lg">
+          {stack.map(({ name, href }) => (
+            <a
+              key={name}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-dim no-underline transition-colors hover:text-accent"
+            >
+              {name}
+            </a>
+          ))}
+        </Reveal>
+      </section>
+      {/* ------------------------------------------------------------ ABOUT */}
+      <section id="idea" className={`${sectionClass} scroll-mt-16`}>
+        <div className="mx-auto max-w-[1100px]">
+          <SectionHead label="The idea" title="A different way to train neural networks">
+            Most AI today is trained with backpropagation, which needs a lot of
+            memory and, in practice, GPUs.
+          </SectionHead>
+          <div className="grid gap-4 md:grid-cols-3">
+            {ideas.map((r, i) => (
+              <Reveal key={r.title} delay={i * 100} className="glass p-8">
+                <h3 className="m-0 font-[family-name:var(--font-display)] text-2xl tracking-[-0.01em]">
+                  {r.title}
+                </h3>
+                <p className="mb-0 mt-3 text-lg text-dim">{r.text}</p>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal className="mt-8 text-center">
+            <Link to="/theory" className="btn">How it works →</Link>
+          </Reveal>
         </div>
       </section>
+
+      {/* ----------------------------------------------------- PERFORMANCE */}
+      <section id="results" className={`${sectionClass} scroll-mt-16`}>
+        <div className="mx-auto max-w-[1100px]">
+          <SectionHead label="Results" title="Faster, at the same accuracy">
+            On the standard MNIST handwriting test, Deepity matches the
+            accuracy of the existing predictive coding library, ngc-learn, in
+            about half the time. Everything ran on one laptop CPU.
+          </SectionHead>
+          <Reveal>
+            <BenchmarkSummary />
+            <div className="mt-8 text-center">
+              <Link to="/benchmarks" className="btn">See the full benchmarks</Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* -------------------------------------------------------------- WHY */}
+      <section className={sectionClass}>
+        <div className="mx-auto max-w-[1100px]">
+          <SectionHead label="Features" title="Built to be used" />
+          <div className="grid gap-4 md:grid-cols-2">
+            {reasons.map((r, i) => (
+              <Reveal key={r.title} delay={(i % 2) * 100} className="glass p-8 md:p-10">
+                <h3 className="m-0 font-[family-name:var(--font-display)] text-3xl tracking-[-0.01em]">
+                  {r.title}
+                </h3>
+                <p className="mb-0 mt-4 text-lg text-dim">{r.text}</p>
+                {r.link && (
+                  <a
+                    href={r.link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link mt-5 inline-block text-lg"
+                  >
+                    {r.link.label}
+                  </a>
+                )}
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------------- CODE */}
+      <section id="code" className={`${sectionClass} scroll-mt-16`}>
+        <div className="mx-auto max-w-[1100px]">
+          <SectionHead label="Usage" title="Code examples">
+            The same network in Python and C++.
+          </SectionHead>
+          <Reveal>
+            <CodeTabs files={codeFiles} />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ----------------------------------------------------- EARLY ACCESS */}
+      <section className="px-5 py-12 md:px-8">
+        <Reveal className="glass mx-auto flex max-w-[1100px] flex-col items-center justify-between gap-8 p-8 text-center md:flex-row md:p-12 md:text-left">
+          <div>
+            <h2 className="m-0 font-[family-name:var(--font-display)] text-3xl tracking-[-0.02em] md:text-4xl">
+              Building with predictive coding?
+            </h2>
+            <p className="mb-0 mt-3 text-lg text-dim">
+              Request early access and tell us what you are working on.
+            </p>
+          </div>
+          <Link to="/early-access" className="btn btn--solid shrink-0">
+            Request early access
+          </Link>
+        </Reveal>
+      </section>
+
+      {/* ------------------------------------------------------- CONTRIBUTE */}
+      <section className="px-3 pb-12 pt-12 md:px-4">
+        <Reveal className="panel-glow relative mx-auto max-w-[1400px] overflow-hidden rounded-[2rem] border border-line px-6 py-16 md:rounded-[2.5rem] md:px-16 md:py-24">
+          <div className="relative flex flex-col items-center">
+            <div className="max-w-2xl text-center">
+              <div className="label mb-4">Contribute</div>
+              <h2 className="m-0 font-[family-name:var(--font-display)] text-4xl leading-[1.05] tracking-[-0.02em] md:text-6xl">
+                Help build it
+              </h2>
+              <p className="mt-6 text-lg text-dim">
+                Deepity is open source under the MIT license. Code, bug reports and
+                docs fixes are all welcome.
+              </p>
+
+              <div className="mt-8 flex flex-wrap justify-center gap-3">
+                <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="btn btn--solid">
+                  View on GitHub ↗
+                </a>
+                <a href={`${GITHUB_URL}/issues`} target="_blank" rel="noopener noreferrer" className="btn">
+                  Open an issue ↗
+                </a>
+                <a href={`https://discord.com/widget?id=${DISCORD_WIDGET_ID}`} target="_blank" rel="noopener noreferrer" className="btn">
+                  Discord ↗
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </Reveal>
+      </section>
+
       <MainFooter />
     </div>
   );

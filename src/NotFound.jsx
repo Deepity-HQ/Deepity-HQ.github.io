@@ -1,46 +1,32 @@
 import { Link } from "react-router-dom";
 import MainFooter from "./components/MainFooter";
+import useDocumentTitle from "./lib/useDocumentTitle";
 
-function NotFound() {
+/**
+ * "construction": a page that is planned but not built yet (linked from the
+ * unfinished tutorials). "missing": an address that does not exist.
+ */
+function NotFound({ variant = "missing" }) {
+  const construction = variant === "construction";
+  useDocumentTitle(construction ? "Coming soon" : "Page not found");
+
   return (
-    <div className="bg-[#e4e6e7] min-h-screen">
-      <div
-        className="min-h-screen flex flex-col items-center justify-center AllianceNo1 gap-4 text-center backdrop-blur-md pt-[80px]"
-        style={{
-          backgroundImage: `url(${import.meta.env.BASE_URL}flowerpot.webp)`,
-          backgroundSize: "cover",
-          backgroundPosition: "center 65%",
-        }}
-      >
-        <span className="text-4xl AllianceNo1 text-black">
-          Under Construction
-        </span>
+    <div className="min-h-screen">
+      <div className="flex min-h-screen flex-col items-center justify-center gap-4 px-5 pt-14 text-center">
+        <span className="label">{construction ? "Coming soon" : "404"}</span>
 
-        <span className="text-lg AllianceNo1 text-black/70 mb-10 max-w-md">
-          This page is still being built.
-        </span>
+        <h1 className="m-0 font-[family-name:var(--font-display)] text-5xl tracking-[-0.02em] md:text-7xl">
+          {construction ? "Under construction" : "Page not found"}
+        </h1>
 
-        <Link
-          to="/"
-          className="group flex items-center gap-4 shadow-lg border border-black px-5 py-3 mt-3 text-base text-black font-bold no-underline transition-all duration-300 hover:bg-black hover:text-white hover:scale-105"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="transition-transform duration-400 group-hover:rotate-90"
-          >
-            <path d="m12 19-7-7 7-7" />
-            <path d="M19 12H5" />
-          </svg>
-          Back to Home
-          <i className="fa fa-arrow-left"></i>
+        <p className="mb-8 max-w-md text-dim">
+          {construction
+            ? "This page is still being built."
+            : "That address doesn't exist, or the page has moved."}
+        </p>
+
+        <Link to="/" className="btn">
+          ← Back to home
         </Link>
       </div>
       <MainFooter />

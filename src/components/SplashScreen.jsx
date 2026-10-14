@@ -7,9 +7,9 @@ export default function SplashScreen({ onDone }) {
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
-    const minEnterTime = reduceMotion ? 150 : 700;
-    const fillDuration = reduceMotion ? 150 : 500;
-    const exitDuration = reduceMotion ? 150 : 500;
+    const minEnterTime = reduceMotion ? 150 : 350;
+    const fillDuration = reduceMotion ? 150 : 350;
+    const exitDuration = reduceMotion ? 150 : 300;
 
     let cancelled = false;
     const frame = requestAnimationFrame(() => setPhase("shown"));
@@ -50,29 +50,29 @@ export default function SplashScreen({ onDone }) {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center gap-4 bg-[#e4e6e7] transition-opacity duration-500 ${
+      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center gap-4 bg-bg transition-opacity duration-300 ${
         phase === "exit" ? "opacity-0" : "opacity-100"
       }`}
     >
       <img
-        src={`${import.meta.env.BASE_URL}d-100.png`}
+        src={`${import.meta.env.BASE_URL}d-100-light.png`}
         alt="Deepity"
-        className={`h-16 w-16 transition-all duration-700 ease-out ${
-          revealed ? "scale-100 opacity-100" : "scale-90 opacity-0"
+        className={`h-16 w-16 transition-opacity duration-300 ${
+          revealed ? "opacity-100" : "opacity-0"
         }`}
       />
 
       <span
-        className={`AllianceNo1 delay-150 text-3xl text-[#0a0a0a] transition-all duration-700 ease-out ${
-          revealed ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
+        className={`font-[family-name:var(--font-display)] text-3xl text-fg transition-opacity duration-300 ${
+          revealed ? "opacity-100" : "opacity-0"
         }`}
       >
         Deepity
       </span>
 
-      <div className="h-[2px] w-40 overflow-hidden bg-black/10">
+      <div className="h-px w-40 overflow-hidden bg-line">
         <div
-          className={`h-full bg-[#0a0a0a] transition-all duration-[500ms] ease-out ${
+          className={`h-full bg-fg transition-all duration-[400ms] ease-out ${
             barFilled ? "w-full" : "w-0"
           }`}
         />
