@@ -1,9 +1,10 @@
 import Reveal from "./Reveal";
 
 /** Centered page title block used by the content pages. */
-export default function PageHeader({ label, title, children }) {
+export default function PageHeader({ label, title, icon, children }) {
   return (
     <Reveal as="header" className="mx-auto max-w-3xl px-5 pb-12 pt-32 text-center md:pt-40">
+      {icon && <img src={icon} width="72" height="72" alt="" className="mx-auto mb-6 h-[72px] w-[72px]" />}
       <div className="label mb-4">{label}</div>
       <h1 className="m-0 font-[family-name:var(--font-display)] text-5xl leading-[1.04] tracking-[-0.03em] md:text-7xl">
         {title}

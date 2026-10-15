@@ -43,7 +43,7 @@ export default function ArchDiagram() {
       <div
         className={`card-dark p-5 transition-colors duration-300 ${on ? "!border-[color:var(--accent)] bg-white/[0.05]" : ""} ${className}`}
       >
-        <div className={`font-[family-name:var(--font-display)] text-xl tracking-[-0.01em] ${on || id === "core" ? "text-accent" : ""}`}>
+        <div className={`font-[family-name:var(--font-display)] text-xl tracking-[-0.01em] ${on || id === "core" ? "text-accent-text" : ""}`}>
           {n.title}
         </div>
         <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-sm text-dim">

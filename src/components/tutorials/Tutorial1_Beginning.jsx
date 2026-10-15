@@ -87,7 +87,7 @@ export default function Tutorial1_Beginning() {
                   href="https://github.com/wjakob/nanobind"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="link text-accent"
+                  className="link text-accent-text"
                 >
                   Fig. 1: Nanobind, Deepity's lightweight Python binding
                   dependency.

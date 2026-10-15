@@ -13,7 +13,7 @@ export default function BenchmarkSummary() {
       {results.map((r) => (
         <div key={r.label} className="glass p-6">
           <div
-            className={`font-[family-name:var(--font-display)] font-light text-4xl tracking-[-0.03em] ${r.accent ? "text-accent" : ""}`}
+            className={`font-[family-name:var(--font-display)] font-light text-4xl tracking-[-0.03em] ${r.accent ? "text-accent-text" : ""}`}
           >
             <CountUp value={r.value} decimals={r.decimals} suffix="%" />
           </div>

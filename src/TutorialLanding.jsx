@@ -10,7 +10,7 @@ const tutorialsData = [
     subtitle: "Beginner",
     description:
       "For people with little to no knowledge of predictive coding and Deepity.",
-    img: "/doorway.webp",
+    img: "/tutorials/doorway.webp",
     link: "0-introduction",
   },
   {
@@ -18,7 +18,7 @@ const tutorialsData = [
     subtitle: "Beginner",
     description:
       "Explanation of what makes Deepity special and how to load/use it.",
-    img: "/laptop.webp",
+    img: "/tutorials/laptop.webp",
     link: "/tutorial/1-beginning",
   },
   {
@@ -26,7 +26,7 @@ const tutorialsData = [
     subtitle: "Intermediate",
     description:
       "Get your first experience training the canonical PCN on a simple function.",
-    img: "/ripple.webp",
+    img: "/tutorials/ripple.webp",
     link: "/notfound",
   },
   {
@@ -34,7 +34,7 @@ const tutorialsData = [
     subtitle: "Intermediate",
     description:
       "Now that you know how to use a SimplePCN, try converting to a SequentialPCN and tweaking parameters like precision and lambda.",
-    img: "/dartboard.webp",
+    img: "/tutorials/dartboard.webp",
     link: "/notfound",
   },
   {
@@ -42,7 +42,7 @@ const tutorialsData = [
     subtitle: "Hard",
     description:
       "Attempt to convolve the output over an image in 2D, capturing higher accuracy.",
-    img: "/dimension.webp",
+    img: "/tutorials/dimension.webp",
     link: "/notfound",
   },
   {
@@ -50,7 +50,7 @@ const tutorialsData = [
     subtitle: "Hard",
     description:
       "Research how propagating feedback can make convergence hyperfast.",
-    img: "/wired.webp",
+    img: "/tutorials/wired.webp",
     link: "/notfound",
   },
 ];

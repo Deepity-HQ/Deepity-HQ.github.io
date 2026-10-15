@@ -1,4 +1,4 @@
-import { copyFileSync } from 'node:fs'
+import { copyFileSync, rmSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 import react, { reactCompilerPreset } from '@vitejs/plugin-react'
@@ -22,10 +22,28 @@ function spaFallback() {
   };
 }
 
+// public/branding holds the full brand kit (AI, EPS, PDF and other source files).
+// It stays in the repo for reference but should not be deployed; the site uses
+// the trimmed copies in public/brand instead.
+function skipBranding() {
+  let outDir = "dist";
+  return {
+    name: "skip-branding-kit",
+    apply: "build",
+    configResolved(config) {
+      outDir = config.build.outDir;
+    },
+    closeBundle() {
+      rmSync(resolve(outDir, "branding"), { recursive: true, force: true });
+    },
+  };
+}
+
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     spaFallback(),
+    skipBranding(),
     react(),
     tailwindcss(),
     babel({ presets: [reactCompilerPreset()] })

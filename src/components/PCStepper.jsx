@@ -39,6 +39,12 @@ export default function PCStepper() {
       <div className="mx-auto grid max-w-4xl items-center gap-10 md:grid-cols-[260px_1fr]">
         <div className="relative mx-auto h-[220px] w-[220px]">
           <svg viewBox="0 0 220 220" className="absolute inset-0 h-full w-full -rotate-90" aria-hidden="true">
+            <defs>
+              <linearGradient id="ring-gradient" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stopColor="#b229ff" />
+                <stop offset="1" stopColor="#29cbfc" />
+              </linearGradient>
+            </defs>
             <circle cx="110" cy="110" r={R} fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="10" />
             <circle
               key={`${active}-${auto}`}
@@ -47,7 +53,7 @@ export default function PCStepper() {
               cy="110"
               r={R}
               fill="none"
-              stroke="rgba(255,255,255,0.9)"
+              stroke="url(#ring-gradient)"
               strokeWidth="10"
               strokeLinecap="round"
               strokeDasharray="565.5"

@@ -55,24 +55,16 @@ export default function SplashScreen({ onDone }) {
       }`}
     >
       <img
-        src={`${import.meta.env.BASE_URL}d-100-light.png`}
+        src={`${import.meta.env.BASE_URL}brand/logo-white.svg`}
         alt="Deepity"
-        className={`h-16 w-16 transition-opacity duration-300 ${
+        className={`h-auto w-64 transition-opacity duration-300 ${
           revealed ? "opacity-100" : "opacity-0"
         }`}
       />
 
-      <span
-        className={`font-[family-name:var(--font-display)] text-3xl text-fg transition-opacity duration-300 ${
-          revealed ? "opacity-100" : "opacity-0"
-        }`}
-      >
-        Deepity
-      </span>
-
       <div className="h-px w-40 overflow-hidden bg-line">
         <div
-          className={`h-full bg-fg transition-all duration-[400ms] ease-out ${
+          className={`h-full bg-gradient-to-r from-accent to-cool transition-all duration-[400ms] ease-out ${
             barFilled ? "w-full" : "w-0"
           }`}
         />

@@ -32,7 +32,7 @@ export function CopyButton({ code, label }) {
     <button
       type="button"
       onClick={handleCopy}
-      className={`cursor-pointer border-0 bg-transparent px-1 text-[13px] font-[family-name:var(--font-display)] uppercase tracking-[0.05em] ${copied ? "text-accent" : "text-dim hover:text-fg"} transition-colors`}
+      className={`cursor-pointer border-0 bg-transparent px-1 text-[13px] font-[family-name:var(--font-display)] uppercase tracking-[0.05em] ${copied ? "text-accent-text" : "text-dim hover:text-fg"} transition-colors`}
       aria-label={`Copy ${label} code`}
     >
       {copied ? "Copied" : "Copy"}

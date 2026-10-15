@@ -24,7 +24,7 @@ export default function ColumnBars() {
                   height: seen ? `${(r.time / max) * AREA}px` : "0px",
                   transitionDelay: `${i * 120}ms`,
                   background: r.ours
-                    ? "linear-gradient(to bottom, var(--accent), rgba(180,211,192,0.08))"
+                    ? "linear-gradient(to bottom, var(--accent), var(--glow-cool))"
                     : "linear-gradient(to bottom, rgba(255,255,255,0.35), rgba(255,255,255,0.04))",
                 }}
               />

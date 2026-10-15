@@ -60,7 +60,7 @@ export default function Tutorial0_Intro() {
                 href="https://arxiv.org/pdf/2506.06332"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="link text-accent"
+                className="link text-accent-text"
               >
                 Introduction to Predictive Coding Networks for Machine Learning
                 (Stenlund 2025)
@@ -70,7 +70,7 @@ export default function Tutorial0_Intro() {
                 href="https://en.wikipedia.org/wiki/Predictive_coding"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="link text-accent"
+                className="link text-accent-text"
               >
                 Wikipedia article
               </a>{" "}

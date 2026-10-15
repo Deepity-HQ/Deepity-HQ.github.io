@@ -53,14 +53,16 @@ function token(name, fallback) {
 
 const SERIES = [
   { key: "simple", label: "Deepity", dot: "var(--accent)" },
-  { key: "dkp", label: "Deepity DKP", dot: "color-mix(in srgb, var(--accent) 55%, transparent)" },
+  { key: "dkp", label: "Deepity DKP", dot: "var(--glow-cool)" },
   { key: "ngc", label: "ngc-learn", dot: "var(--fg-dim)" },
 ];
 
 export default function BenchmarkChart() {
   const [off, setOff] = useState({});
   const toggle = (k) => setOff((o) => ({ ...o, [k]: !o[k] }));
-  const accent = token("--accent", "#4ade80");
+  const accent = token("--accent", "#b229ff");
+  const accentText = token("--accent-text", "#cb7bff");
+  const cool = token("--glow-cool", "#29cbfc");
   const grid = token("--line", "rgba(255,255,255,0.09)");
   const dim = token("--fg-dim", "#9a9a9a");
   const fg = token("--fg", "#e6e6e6");
@@ -162,7 +164,7 @@ export default function BenchmarkChart() {
                     key="simple-label"
                     x={p.x + 8}
                     y={p.y + 4}
-                    fill={accent}
+                    fill={accentText}
                     fontSize={13}
                     fontFamily={mono}
                   >
@@ -177,8 +179,7 @@ export default function BenchmarkChart() {
               dataKey="dkp"
               hide={off.dkp}
               name="Deepity DKP"
-              stroke={accent}
-              strokeOpacity={0.55}
+              stroke={cool}
               strokeWidth={2}
               dot={false}
               connectNulls
@@ -190,7 +191,7 @@ export default function BenchmarkChart() {
                     x={p.x - 24}
                     y={p.y - 12}
                     textAnchor="middle"
-                    fill={accent}
+                    fill={cool}
                     fontSize={13}
                     fontFamily={mono}
                   >

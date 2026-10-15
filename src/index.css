@@ -1,14 +1,16 @@
 @import "tailwindcss";
+/* Only scan app code for class names; the branding kit and docs are not source. */
+@source not "../public";
 
 /* ------------------------------------------------------------------
    Design tokens
-   To re-skin the site, change --accent (the sage highlight, also used
-   to tint the ambient glow) and --glow-cool (the secondary glow).
+   Brand accents sampled from the Deepity purple-to-cyan gradient.
    ------------------------------------------------------------------ */
 :root {
-  --accent: #b4d3c0;
-  --accent-ink: #0a0f0c; /* text drawn on a solid accent fill */
-  --glow-cool: #8aa5b3; /* secondary ambient glow */
+  --accent: #b229ff; /* brand purple: fills, glows, borders */
+  --accent-text: #cb7bff; /* the same purple, lightened to read as text on near-black */
+  --accent-ink: #ffffff; /* text drawn on a solid accent fill */
+  --glow-cool: #29cbfc; /* brand cyan: the other end of the logo gradient */
 
   --bg: #050505;
   --panel: #0c0c0d;
@@ -36,7 +38,9 @@
 /* Expose tokens to Tailwind: bg-accent, text-dim, border-line, ... */
 @theme inline {
   --color-accent: var(--accent);
+  --color-accent-text: var(--accent-text);
   --color-accent-ink: var(--accent-ink);
+  --color-cool: var(--glow-cool);
   --color-bg: var(--bg);
   --color-panel: var(--panel);
   --color-panel2: var(--panel-2);
@@ -190,8 +194,8 @@ pre {
       text-decoration-color 160ms ease;
   }
   .link:hover {
-    color: var(--accent);
-    text-decoration-color: var(--accent);
+    color: var(--accent-text);
+    text-decoration-color: var(--accent-text);
   }
 }
 
@@ -203,16 +207,16 @@ pre {
 .hero-glow {
   background:
     linear-gradient(to bottom, rgba(0, 0, 0, 0.3), transparent 40%, rgba(0, 0, 0, 0.7)),
-    radial-gradient(ellipse 70% 120% at 85% 0%, color-mix(in srgb, var(--accent) 52%, transparent), transparent 70%),
-    radial-gradient(ellipse 60% 90% at 5% 105%, color-mix(in srgb, var(--glow-cool) 46%, transparent), transparent 70%),
+    radial-gradient(ellipse 70% 120% at 85% 0%, color-mix(in srgb, var(--accent) 36%, transparent), transparent 70%),
+    radial-gradient(ellipse 60% 90% at 5% 105%, color-mix(in srgb, var(--glow-cool) 30%, transparent), transparent 70%),
     #000;
   background-clip: padding-box; /* keep the border over plain black so it stays even */
 }
 /* Big section panel with cloud light entering from two corners (like the reference's insight panels). */
 .panel-cloud {
   background:
-    radial-gradient(ellipse 60% 55% at 100% 0%, color-mix(in srgb, var(--accent) 34%, transparent), transparent 70%),
-    radial-gradient(ellipse 55% 50% at 0% 100%, color-mix(in srgb, var(--accent) 26%, transparent), transparent 70%),
+    radial-gradient(ellipse 60% 55% at 100% 0%, color-mix(in srgb, var(--accent) 30%, transparent), transparent 70%),
+    radial-gradient(ellipse 55% 50% at 0% 100%, color-mix(in srgb, var(--glow-cool) 22%, transparent), transparent 70%),
     #060607;
   background-clip: padding-box;
 }
@@ -271,7 +275,7 @@ pre {
   background: var(--accent);
 }
 .highway__car--back {
-  background: #ffffff;
+  background: var(--glow-cool);
 }
 
 /* Light travelling down an architecture wire (components/ArchDiagram.jsx) */

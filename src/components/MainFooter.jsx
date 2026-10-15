@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { DISCORD_WIDGET_ID, GITHUB_URL } from "../config";
 import { DiscordMark, GitHubMark } from "./icons";
 
-const linkClass = "text-dim no-underline transition-colors hover:text-accent";
+const linkClass = "text-dim no-underline transition-colors hover:text-accent-text";
 const iconClass =
   "flex h-10 w-10 items-center justify-center rounded-full border border-line bg-[#131314] text-fg transition-colors hover:border-accent hover:bg-[#232325]";
 
@@ -20,7 +20,8 @@ export default function MainFooter() {
           <Link to="/privacy" className={linkClass}>Privacy</Link>
         </nav>
 
-        <p className="m-0 text-center text-[15px] text-faint">
+        <p className="m-0 flex items-center gap-3 text-center text-[15px] text-faint">
+          <img src="/brand/mark-white.svg" width="20" height="20" alt="" className="h-5 w-5 opacity-70" />
           © {new Date().getFullYear()} Deepity. MIT licensed.
         </p>
 

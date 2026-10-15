@@ -8,7 +8,6 @@ import Highway from "./components/Highway";
 import BenchmarkSummary from "./components/BenchmarkSummary";
 import { DEVELOPER_URL, DISCORD_WIDGET_ID, GITHUB_URL } from "./config";
 
-
 const pythoncode = `from pydeepity import SimplePCN
 from pydeepity.layer import Linear, Sigmoid
 
@@ -74,7 +73,10 @@ const specs = [
 
 const stack = [
   { name: "OpenBLAS", href: "https://www.openmathlib.org/OpenBLAS/" },
-  { name: "Intel MKL", href: "https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html" },
+  {
+    name: "Intel MKL",
+    href: "https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html",
+  },
   { name: "OpenMP", href: "https://www.openmp.org/" },
   { name: "Google Highway", href: "https://github.com/google/highway" },
   { name: "SLEEF", href: "https://sleef.org/" },
@@ -128,57 +130,83 @@ export default function HomePage() {
       <section className="px-3 pb-6 pt-20 md:px-4">
         <div className="relative mx-auto flex min-h-[max(640px,min(calc(100svh-6.5rem),56rem))] max-w-[1400px] flex-col overflow-hidden rounded-[2rem] border border-line hero-glow md:rounded-[2.5rem]">
           <div className="relative flex flex-1 flex-col">
-          <Highway />
+            <Highway />
 
-          <Reveal mode="leave" className="relative z-10 flex flex-1 flex-col items-center justify-center px-5 pb-10 pt-16 text-center md:px-10">
             <Reveal
-              as="h1"
-              delay={80}
-              className="m-0 max-w-5xl text-balance font-[family-name:var(--font-display)] text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.03] tracking-[-0.03em]"
+              mode="leave"
+              className="relative z-10 flex flex-1 flex-col items-center justify-center px-5 pb-10 pt-16 text-center md:px-10"
             >
-              Today&apos;s AI learns one way. Deepity{" "}
-              <span className="bg-gradient-to-r from-fg to-accent bg-clip-text text-transparent">
-                learns tomorrow&apos;s.
+              <Reveal
+                as="h1"
+                delay={80}
+                className="m-0 max-w-5xl text-balance font-[family-name:var(--font-display)] text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.03] tracking-[-0.03em]"
+              >
+                Today&apos;s AI learns one way. Deepity{" "}
+                <span className="bg-gradient-to-r from-accent-text to-cool bg-clip-text text-transparent">
+                  learns tomorrow&apos;s.
+                </span>
+              </Reveal>
+
+              <Reveal
+                as="p"
+                delay={160}
+                className="mx-auto mt-8 max-w-2xl text-lg text-dim md:text-xl"
+              >
+                Deepity is an open-source engine for predictive coding. Neurons
+                learn from local errors, not backpropagation, as the brain is
+                thought to. It runs on CPUs and NVIDIA GPUs.
+              </Reveal>
+
+              <Reveal
+                delay={220}
+                className="mt-8 flex flex-wrap items-baseline justify-center gap-x-4"
+              >
+                <span className="label">Built for</span>
+                <RotatingText
+                  items={useCases}
+                  className="font-[family-name:var(--font-display)] text-xl tracking-[-0.01em] text-accent-text md:text-2xl"
+                />
+              </Reveal>
+
+              <Reveal
+                delay={300}
+                className="mt-10 flex flex-wrap justify-center gap-3"
+              >
+                <Link to="/tutorial" className="btn btn--solid">
+                  Get started
+                </Link>
+                <Link to="/benchmarks" className="btn">
+                  See the benchmarks
+                </Link>
+              </Reveal>
+            </Reveal>
+
+            <button
+              type="button"
+              onClick={() =>
+                document
+                  .getElementById("idea")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+              className="absolute bottom-14 left-[5.5rem] z-10 hidden cursor-pointer items-center gap-3 rounded-full border border-line bg-[#131314] py-1.5 pl-1.5 pr-4 text-sm text-dim transition-colors hover:border-accent hover:text-fg xl:flex"
+            >
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-black">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M12 5v14M6 13l6 6 6-6" />
+                </svg>
               </span>
-            </Reveal>
-
-            <Reveal as="p" delay={160} className="mx-auto mt-8 max-w-2xl text-lg text-dim md:text-xl">
-              Deepity is an open-source engine for predictive coding. Neurons
-              learn from local errors, not backpropagation, as the brain is
-              thought to. It runs on CPUs and NVIDIA GPUs.
-            </Reveal>
-
-            <Reveal delay={220} className="mt-8 flex flex-wrap items-baseline justify-center gap-x-4">
-              <span className="label">Built for</span>
-              <RotatingText
-                items={useCases}
-                className="font-[family-name:var(--font-display)] text-xl tracking-[-0.01em] text-accent md:text-2xl"
-              />
-            </Reveal>
-
-            <Reveal delay={300} className="mt-10 flex flex-wrap justify-center gap-3">
-              <Link to="/tutorial" className="btn btn--solid">
-                Get started
-              </Link>
-              <Link to="/benchmarks" className="btn">
-                See the benchmarks
-              </Link>
-            </Reveal>
-          </Reveal>
-
-          <button
-            type="button"
-            onClick={() => document.getElementById("idea")?.scrollIntoView({ behavior: "smooth" })}
-            className="absolute bottom-14 left-[5.5rem] z-10 hidden cursor-pointer items-center gap-3 rounded-full border border-line bg-[#131314] py-1.5 pl-1.5 pr-4 text-sm text-dim transition-colors hover:border-accent hover:text-fg xl:flex"
-          >
-            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-black">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M12 5v14M6 13l6 6 6-6" />
-              </svg>
-            </span>
-            Scroll down
-          </button>
-
+              Scroll down
+            </button>
           </div>
 
           {/* Key numbers */}
@@ -207,7 +235,7 @@ export default function HomePage() {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-dim no-underline transition-colors hover:text-accent"
+              className="text-dim no-underline transition-colors hover:text-accent-text"
             >
               {name}
             </a>
@@ -217,7 +245,10 @@ export default function HomePage() {
       {/* ------------------------------------------------------------ ABOUT */}
       <section id="idea" className={`${sectionClass} scroll-mt-16`}>
         <div className="mx-auto max-w-[1100px]">
-          <SectionHead label="The idea" title="A different way to train neural networks">
+          <SectionHead
+            label="The idea"
+            title="A different way to train neural networks"
+          >
             Most AI today is trained with backpropagation, which needs a lot of
             memory and, in practice, GPUs.
           </SectionHead>
@@ -232,7 +263,9 @@ export default function HomePage() {
             ))}
           </div>
           <Reveal className="mt-8 text-center">
-            <Link to="/theory" className="btn">How it works →</Link>
+            <Link to="/theory" className="btn">
+              How it works →
+            </Link>
           </Reveal>
         </div>
       </section>
@@ -241,14 +274,16 @@ export default function HomePage() {
       <section id="results" className={`${sectionClass} scroll-mt-16`}>
         <div className="mx-auto max-w-[1100px]">
           <SectionHead label="Results" title="Faster, at the same accuracy">
-            On the standard MNIST handwriting test, Deepity matches the
-            accuracy of the existing predictive coding library, ngc-learn, in
-            about half the time. Everything ran on one laptop CPU.
+            On the standard MNIST handwriting test, Deepity matches the accuracy
+            of the existing predictive coding library, ngc-learn, in about half
+            the time. Everything ran on one laptop CPU.
           </SectionHead>
           <Reveal>
             <BenchmarkSummary />
             <div className="mt-8 text-center">
-              <Link to="/benchmarks" className="btn">See the full benchmarks</Link>
+              <Link to="/benchmarks" className="btn">
+                See the full benchmarks
+              </Link>
             </div>
           </Reveal>
         </div>
@@ -260,7 +295,11 @@ export default function HomePage() {
           <SectionHead label="Features" title="Built to be used" />
           <div className="grid gap-4 md:grid-cols-2">
             {reasons.map((r, i) => (
-              <Reveal key={r.title} delay={(i % 2) * 100} className="glass p-8 md:p-10">
+              <Reveal
+                key={r.title}
+                delay={(i % 2) * 100}
+                className="glass p-8 md:p-10"
+              >
                 <h3 className="m-0 font-[family-name:var(--font-display)] text-3xl tracking-[-0.01em]">
                   {r.title}
                 </h3>
@@ -320,23 +359,37 @@ export default function HomePage() {
                 Help build it
               </h2>
               <p className="mt-6 text-lg text-dim">
-                Deepity is open source under the MIT license. Code, bug reports and
-                docs fixes are all welcome.
+                Deepity is open source under the MIT license. Code, bug reports
+                and docs fixes are all welcome.
               </p>
 
               <div className="mt-8 flex flex-wrap justify-center gap-3">
-                <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="btn btn--solid">
+                <a
+                  href={GITHUB_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn--solid"
+                >
                   View on GitHub ↗
                 </a>
-                <a href={`${GITHUB_URL}/issues`} target="_blank" rel="noopener noreferrer" className="btn">
+                <a
+                  href={`${GITHUB_URL}/issues`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn"
+                >
                   Open an issue ↗
                 </a>
-                <a href={`https://discord.com/widget?id=${DISCORD_WIDGET_ID}`} target="_blank" rel="noopener noreferrer" className="btn">
+                <a
+                  href={`https://discord.com/widget?id=${DISCORD_WIDGET_ID}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn"
+                >
                   Discord ↗
                 </a>
               </div>
             </div>
-
           </div>
         </Reveal>
       </section>

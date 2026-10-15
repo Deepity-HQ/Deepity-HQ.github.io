@@ -67,7 +67,7 @@ export default function Benchmarks() {
               text="Held-out test images. Deepity matches ngc-learn and beats the PyTorch baseline."
             >
               <div className="text-center">
-                <div className="font-[family-name:var(--font-display)] font-light text-7xl tracking-[-0.04em] text-accent md:text-8xl">
+                <div className="font-[family-name:var(--font-display)] font-light text-7xl tracking-[-0.04em] text-accent-text md:text-8xl">
                   <CountUp value={98.22} decimals={2} suffix="%" />
                 </div>
                 <div className="label mt-3">Deepity, held-out</div>
