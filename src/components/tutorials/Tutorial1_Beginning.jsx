@@ -33,7 +33,7 @@ export default function Tutorial1_Beginning() {
   useDocumentTitle("Tutorial 1: Understanding Deepity");
   return (
     <div className="min-h-screen px-3 pt-20 pb-6 md:px-4">
-      <div className="min-h-screen max-w-7xl mx-auto pt-6 pb-12 rounded-[2rem] border border-line bg-bg/90">
+      <div className="min-h-screen max-w-7xl mx-auto pt-6 pb-12 rounded-2xl border border-line bg-bg/90">
         <UtilButton
           backLink="/tutorial/0-introduction"
           nextLink="/notfound"
@@ -150,10 +150,9 @@ export default function Tutorial1_Beginning() {
               3. Declarative Architecture
             </h2>
             <p className="mb-4">
-              Networks in Deepity are initialized declaratively. Rather than
-              appending layers sequentially, you define the complete structure
-              upfront by passing layer components directly into the network's
-              constructor.
+              Networks in Deepity are initialized declaratively. You define the
+              complete structure upfront by passing layer components directly
+              into the network's constructor.
             </p>
             <p className="mb-6">
               For instance, a simple network is constructed by providing

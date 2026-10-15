@@ -18,14 +18,13 @@ const fieldClass =
 
 export default function EarlyAccess() {
   useDocumentTitle("Request early access");
-  // idle | sending | sent | mailto | error
   const [status, setStatus] = useState("idle");
   const [useCase, setUseCase] = useState(USE_CASES[0]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
-    if (form.get("company")) return; // honeypot: real people leave this empty
+    if (form.get("company")) return;
 
     const data = {
       name: String(form.get("name") || "").trim(),
@@ -35,7 +34,6 @@ export default function EarlyAccess() {
     };
 
     if (!EARLY_ACCESS_ENDPOINT) {
-      // No form backend configured: hand off to the visitor's email app.
       const body = [
         `Name: ${data.name}`,
         `Email: ${data.email}`,
@@ -65,12 +63,12 @@ export default function EarlyAccess() {
 
   return (
     <div>
-      <PageHeader label="Early access" title="Request early access">
+      <PageHeader title="Request early access" width={768}>
         Tell us what you are building with Deepity and we will get in touch.
       </PageHeader>
 
       <div className="mx-auto max-w-3xl px-3 pb-16 md:px-6">
-        <Reveal className="panel-cloud rounded-[2rem] border border-line p-3 md:rounded-[2.5rem] md:p-8">
+        <Reveal className="panel-flat rounded-2xl border border-line p-3 md:p-8">
           <div className="card-dark mx-auto max-w-xl p-6 md:p-10">
           {status === "sent" ? (
             <div role="status" className="text-center">
@@ -116,7 +114,6 @@ export default function EarlyAccess() {
                 <textarea name="message" rows={4} className={fieldClass} />
               </label>
 
-              {/* Honeypot field for bots; hidden from people and screen readers */}
               <input
                 name="company"
                 type="text"

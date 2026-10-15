@@ -32,10 +32,9 @@ const caveats = [
   "The Deepity curve is accuracy on a training subset, logged every 10 epochs. The cards show held-out accuracy.",
   "ngc-learn only logs whole-percent accuracy, so its line is stepped and its 98% is a rounded best result.",
   "PyTorch trained faster than Deepity here (627.8s vs 952.6s) and was 0.7 points less accurate. The 1.8× speedup is over ngc-learn only.",
-  "This is one laptop, one seed and one dataset. Treat it as a starting point, not a ranking.",
+  "This is one laptop, one seed and one dataset. Treat it as a starting point.",
 ];
 
-/** Visual on top, centered title and one gray line below, like the reference's insight cards. */
 function Card({ title, text, children, className = "" }) {
   return (
     <div className={`card-dark flex flex-col p-6 md:p-8 ${className}`}>
@@ -53,13 +52,13 @@ export default function Benchmarks() {
 
   return (
     <div>
-      <PageHeader label="Benchmarks" title="Deepity vs ngc-learn and PyTorch">
+      <PageHeader title="Deepity vs ngc-learn and PyTorch" width={1200}>
         On MNIST, Deepity reaches 98.22% accuracy, 1.8× faster than ngc-learn
         with the same network. Everything ran on one laptop CPU.
       </PageHeader>
 
       <div className="mx-auto max-w-[1200px] px-3 pb-16 md:px-6">
-        <Reveal className="panel-cloud rounded-[2rem] border border-line p-3 md:rounded-[2.5rem] md:p-8">
+        <Reveal className="panel-flat rounded-2xl border border-line p-3 md:p-8">
           <div className="grid gap-3 md:gap-4 lg:grid-cols-5">
             <Card
               className="lg:col-span-3"

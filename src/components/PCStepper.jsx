@@ -11,7 +11,6 @@ const reduced = () =>
   typeof window !== "undefined" &&
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-/** Ring plus three status rows. Cycles on its own until someone clicks a step. */
 export default function PCStepper() {
   const [active, setActive] = useState(0);
   const [auto, setAuto] = useState(!reduced());
@@ -28,7 +27,7 @@ export default function PCStepper() {
   };
 
   return (
-    <div className="panel-cloud rounded-[2rem] border border-line px-4 py-10 md:rounded-[2.5rem] md:px-10 md:py-14">
+    <div className="panel-flat rounded-2xl border border-line px-4 py-10 md:px-10 md:py-14">
       <div className="mx-auto mb-10 max-w-xl text-center">
         <h2 className="m-0 font-[family-name:var(--font-display)] text-3xl tracking-[-0.02em] md:text-5xl">
           The loop, step by step

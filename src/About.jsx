@@ -8,16 +8,16 @@ import { DEVELOPER_URL, GITHUB_URL } from "./config";
 
 const facts = [
   {
-    title: "Written from scratch",
-    text: "A C++ and CUDA engine for predictive coding, not a layer on top of JAX or PyTorch. Python bindings are built on nanobind, and the compiled extension is under 2MB.",
+    title: "No framework underneath",
+    text: "Deepity is written in C++ and CUDA and depends on no deep learning framework. Python access goes through nanobind.",
   },
   {
     title: "CPU and GPU",
-    text: "Fast on the CPU with Google Highway and SLEEF SIMD kernels and OpenBLAS or Intel MKL. A CUDA backend built on cuBLAS, with optional CUTLASS kernels, runs on NVIDIA GPUs. It is in active development and has been tested on the Ohio Supercomputer Center and Vast.ai.",
+    text: "The CUDA backend is built on cuBLAS, with optional CUTLASS kernels, and is in active development. It has been tested on the Ohio Supercomputer Center and Vast.ai.",
   },
   {
     title: "Documented and tested",
-    text: "Doxygen reference docs and a Google Benchmark suite. GitHub Actions builds the library on Linux and Windows and type-checks the Python package on every push.",
+    text: "Reference docs are generated with Doxygen, and a Google Benchmark suite covers performance.",
   },
   {
     title: "MIT licensed",
@@ -37,7 +37,7 @@ export default function About() {
 
   return (
     <div>
-      <PageHeader label="About" title="About Deepity" icon="/brand/mark-color.svg">
+      <PageHeader title="About Deepity" icon="/brand/mark-color.svg">
         Deepity is an open-source library for training Predictive Coding
         Networks from C++ and Python. It is built and maintained by one
         developer.

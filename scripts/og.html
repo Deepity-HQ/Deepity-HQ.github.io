@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Deepity social card</title>
+<style>
+  @font-face {
+    font-family: "Hanken Grotesk Variable";
+    src: url("../node_modules/@fontsource-variable/hanken-grotesk/files/hanken-grotesk-latin-wght-normal.woff2") format("woff2");
+    font-weight: 100 900;
+  }
+  @font-face {
+    font-family: "Funnel Display Variable";
+    src: url("../node_modules/@fontsource-variable/funnel-display/files/funnel-display-latin-wght-normal.woff2") format("woff2");
+    font-weight: 300 800;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 1200px; height: 630px; background: #000; }
+  .card {
+    position: relative;
+    width: 1200px;
+    height: 630px;
+    padding: 72px 80px;
+    overflow: hidden;
+    color: #f2f2f2;
+    font-family: "Hanken Grotesk Variable", system-ui, sans-serif;
+    background:
+      radial-gradient(ellipse 70% 120% at 95% 0%, rgba(178, 41, 255, 0.36), transparent 70%),
+      radial-gradient(ellipse 60% 90% at 0% 105%, rgba(41, 203, 252, 0.28), transparent 70%),
+      #000;
+  }
+  .grain {
+    position: absolute; inset: 0; opacity: 0.16;
+    background: url("../public/grain.webp") 0 0 / 320px 320px;
+  }
+  .logo { position: relative; height: 44px; display: block; }
+  h1 {
+    font-family: "Funnel Display Variable", sans-serif;
+    position: absolute; left: 80px; bottom: 150px; margin: 0; width: 1060px;
+    font-size: 84px; line-height: 1.04; font-weight: 500; letter-spacing: -0.03em;
+  }
+  h1 span { color: #cb7bff; }
+  p {
+    position: absolute; left: 80px; bottom: 72px; margin: 0;
+    font-size: 28px; color: #9b9da0;
+  }
+  .url { position: absolute; right: 80px; bottom: 72px; font-size: 28px; color: #9b9da0; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="grain"></div>
+    <img class="logo" src="../public/brand/logo-white.svg" alt="Deepity" />
+    <h1>Train neural networks <span>without backpropagation.</span></h1>
+    <p>Open-source predictive coding for C++ and Python</p>
+    <div class="url">deepity.dev</div>
+  </div>
+</body>
+</html>

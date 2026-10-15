@@ -21,12 +21,12 @@
   --fg-dim: #9b9da0;
   --fg-faint: #7d8084;
 
-  --radius: 1.5rem;
+  --radius: 0.875rem;
 
-  --font-body: "Geist Variable", system-ui, -apple-system, "Segoe UI", Roboto,
+  --font-body: "Hanken Grotesk Variable", system-ui, -apple-system, "Segoe UI", Roboto,
     Helvetica, Arial, sans-serif;
-  --font-display: "Geist Variable", system-ui, -apple-system, "Segoe UI", Roboto,
-    Helvetica, Arial, sans-serif;
+  --font-display: "Funnel Display Variable", "Hanken Grotesk Variable", system-ui, -apple-system, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo,
     Consolas, monospace;
 
@@ -65,14 +65,7 @@ html {
   /* No rubber-band bounce, so scrolling past the top never shows what is above the page. */
   overscroll-behavior-y: none;
   scrollbar-color: var(--line-strong) var(--bg);
-  /* Static ambient glow (top-right and bottom-left of the page). Kept as
-     plain background gradients on purpose: animated, blurred or
-     opacity-grouped layers dropped Firefox to ~2fps in profiling. */
   background-color: var(--bg);
-  background-repeat: no-repeat;
-  background-image:
-    radial-gradient(ellipse 55vw 45vw at 100% 0%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%),
-    radial-gradient(ellipse 50vw 40vw at 0% 100%, color-mix(in srgb, var(--glow-cool) 14%, transparent), transparent 70%);
 }
 
 body {
@@ -80,14 +73,14 @@ body {
   color: var(--fg);
   font-family: var(--font-body);
   font-size: 17px;
-  font-weight: 350;
+  font-weight: 400;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Headings are set light, like the rest of the display type. */
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 300;
+  font-family: var(--font-display);
+  font-weight: 500;
 }
 b, strong {
   font-weight: 550;
@@ -131,11 +124,7 @@ pre {
 
 /* Frosted surface used for cards, panels and the floating nav */
 .glass {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.07),
-    rgba(255, 255, 255, 0.025)
-  );
+  background: var(--panel);
   border: 1px solid var(--line);
   border-radius: var(--radius);
 }
@@ -154,7 +143,7 @@ pre {
   gap: 0.5rem;
   padding: 0.75rem 1.4rem;
   border: 1px solid var(--line-strong);
-  border-radius: 9999px;
+  border-radius: 0.625rem;
   background: #131314; /* opaque, so the grain behind never shows through */
   color: var(--fg);
   font-family: var(--font-display);
@@ -199,11 +188,7 @@ pre {
   }
 }
 
-/* ------------------------------------------------------------------
-   Panel glows: soft light painted as the panel's own background.
-   Static by design (no child layers, no blur, no animation) so the
-   compositor has almost nothing to redraw while scrolling.
-   ------------------------------------------------------------------ */
+/* Hero glow: static, painted as the panel's own background. */
 .hero-glow {
   background:
     linear-gradient(to bottom, rgba(0, 0, 0, 0.3), transparent 40%, rgba(0, 0, 0, 0.7)),
@@ -212,26 +197,14 @@ pre {
     #000;
   background-clip: padding-box; /* keep the border over plain black so it stays even */
 }
-/* Big section panel with cloud light entering from two corners (like the reference's insight panels). */
-.panel-cloud {
-  background:
-    radial-gradient(ellipse 60% 55% at 100% 0%, color-mix(in srgb, var(--accent) 30%, transparent), transparent 70%),
-    radial-gradient(ellipse 55% 50% at 0% 100%, color-mix(in srgb, var(--glow-cool) 22%, transparent), transparent 70%),
-    #060607;
-  background-clip: padding-box;
-}
 /* Sparse film grain behind the content of the panels with corner light. A real
    noise bitmap (public/grain.webp), so it never shows a pattern at any zoom, and
    it is painted once so it costs nothing while scrolling. */
-.hero-glow,
-.panel-glow,
-.panel-cloud {
+.hero-glow {
   position: relative;
   isolation: isolate;
 }
-.hero-glow::before,
-.panel-glow::before,
-.panel-cloud::before {
+.hero-glow::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -244,17 +217,14 @@ pre {
 }
 
 /* Dark card that sits inside a panel. */
-.card-dark {
-  background: linear-gradient(180deg, rgba(22, 22, 23, 0.94), rgba(10, 10, 11, 0.94));
+.panel-flat {
+  background: #0a0a0b;
   border: 1px solid var(--line);
-  border-radius: 1.75rem;
 }
-.panel-glow {
-  background:
-    radial-gradient(ellipse 55% 120% at 95% 0%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 70%),
-    radial-gradient(ellipse 45% 110% at 0% 100%, color-mix(in srgb, var(--glow-cool) 20%, transparent), transparent 70%),
-    #0a0a0b;
-  background-clip: padding-box;
+.card-dark {
+  background: #0e0e0f;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
 }
 
 /* ------------------------------------------------------------------

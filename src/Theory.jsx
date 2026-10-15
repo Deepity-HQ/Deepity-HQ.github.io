@@ -21,7 +21,7 @@ export default function Theory() {
 
   return (
     <div>
-      <PageHeader label="Theory" title="How predictive coding works">
+      <PageHeader title="How predictive coding works">
         A short tour of the idea behind Deepity. The tutorials go through it
         step by step.
       </PageHeader>
@@ -29,12 +29,12 @@ export default function Theory() {
       <div className="mx-auto max-w-[1000px] px-5 pb-16 md:px-8">
         <Reveal className="glass p-8 md:p-12">
           <h2 className="m-0 font-[family-name:var(--font-display)] text-3xl tracking-[-0.02em] md:text-4xl">
-            Local errors instead of backpropagation
+            Learning from local errors
           </h2>
           <p className="mt-5 text-lg text-dim">
 Backpropagation sends one error signal backward through the whole
-            network. Predictive coding doesn&apos;t. Each layer works from its
-            own local error, in the three steps below.
+            network. In predictive coding, each layer works from its own local
+            error, in the three steps below.
           </p>
           <p className="mb-0 mt-4 text-lg text-dim">
             The approach is inspired by the brain&apos;s predictive coding

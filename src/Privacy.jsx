@@ -21,7 +21,7 @@ export default function Privacy() {
 
   return (
     <div>
-      <PageHeader label="Privacy" title="Privacy">
+      <PageHeader title="Privacy">
         What this website collects, in plain terms. Last updated {UPDATED}.
       </PageHeader>
 

@@ -11,7 +11,6 @@ const STEPS = [
   { n: 5, to: "/notfound" },
 ];
 
-/** Thin reading-progress line at the top of the screen. */
 function ReadingProgress() {
   const bar = useRef(null);
   useEffect(() => {
@@ -41,7 +40,6 @@ function ReadingProgress() {
   );
 }
 
-/** Numbered chips for the tutorial series, current one filled white, plus the progress line. */
 export default function TutorialRail({ current }) {
   return (
     <>

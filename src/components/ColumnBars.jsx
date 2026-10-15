@@ -6,9 +6,8 @@ const runs = [
   { name: "PyTorch", time: 627.8 },
 ];
 const max = Math.max(...runs.map((r) => r.time));
-const AREA = 200; // px height of the tallest column
+const AREA = 200;
 
-/** Training time as vertical gradient columns that rise when scrolled into view. */
 export default function ColumnBars() {
   const [ref, seen] = useInView();
   return (

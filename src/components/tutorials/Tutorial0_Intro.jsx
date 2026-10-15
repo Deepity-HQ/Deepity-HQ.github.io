@@ -39,7 +39,7 @@ export default function Tutorial0_Intro() {
   useDocumentTitle("Tutorial 0: Introduction");
   return (
     <div className="min-h-screen px-3 pt-20 pb-6 md:px-4">
-      <div className="min-h-screen max-w-7xl mx-auto pt-6 pb-12 rounded-[2rem] border border-line bg-bg/90">
+      <div className="min-h-screen max-w-7xl mx-auto pt-6 pb-12 rounded-2xl border border-line bg-bg/90">
         <UtilButton backLink="/tutorial" nextLink="/tutorial/1-beginning" />
         <TutorialRail current={0} />
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 px-8 my-5">
@@ -238,10 +238,9 @@ export default function Tutorial0_Intro() {
             <p className="mb-4">
               Furthermore, because learning in a PCN is a localized, continuous
               settling process, it enables true <b>local AI adaptation</b>.
-              Instead of relying on static models hosted on massive server
-              farms, AI running locally on your hardware could organically learn
-              from you and adapt its behavior to your specific needs in
-              real-time.
+              AI running on your own hardware could learn from you and adapt
+              to your specific needs in real time, with no static model hosted
+              on a server farm in the loop.
             </p>
             <p>
               Perhaps most importantly, continuous local learning could

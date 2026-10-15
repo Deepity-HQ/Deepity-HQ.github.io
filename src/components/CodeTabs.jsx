@@ -3,7 +3,6 @@ import SyntaxHighlighter from "./highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { CopyButton } from "./CodeBlock";
 
-/** VS Code-style tabbed window. `files`: [{ name, language, code }] */
 export default function CodeTabs({ files }) {
   const [active, setActive] = useState(0);
   const file = files[active];

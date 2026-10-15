@@ -14,9 +14,9 @@ const DeepityLogo = `${import.meta.env.BASE_URL}brand/logo-white.svg`;
 const base =
   "rounded-full px-4 py-2 text-[15px] font-[family-name:var(--font-display)] no-underline transition-colors";
 const idle = "text-dim hover:bg-white/10 hover:text-fg";
-const idleDesktop = "text-dim hover:bg-white/[0.04] hover:text-fg"; // hover only fades a faint background; the sliding highlight marks the selection
+const idleDesktop = "text-dim hover:bg-white/[0.04] hover:text-fg";
 const active = "text-accent-text";
-const activeBg = "bg-white/10 text-accent-text"; // mobile menu: no sliding highlight there
+const activeBg = "bg-white/10 text-accent-text";
 
 function GitHubMark() {
   return (
@@ -55,9 +55,6 @@ export default function Navbar() {
     { label: "About", to: "/about", on: pathname === "/about" },
   ];
 
-  // The highlight slides to the selected page. On click it moves first, and the
-  // route change runs as a low-priority transition so mounting the next page
-  // does not stall the slide.
   const navigate = useNavigate();
   const linkRefs = useRef({});
   const [pending, setPending] = useState(null);
@@ -194,7 +191,6 @@ export default function Navbar() {
 
       {isOpen && (
         <>
-          {/* Dims the page behind the menu; tapping it closes the menu. */}
           <div
             aria-hidden="true"
             onClick={closeMenu}

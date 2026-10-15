@@ -10,7 +10,6 @@ const NODES = {
   gpu: { title: "GPU", items: ["CUDA", "cuBLAS", "CUTLASS (optional)"] },
 };
 
-// Each chip lights up the part of the stack it belongs to.
 const CHIPS = [
   ["pydeepity", "py"],
   ["nanobind", "bind"],
@@ -23,7 +22,6 @@ const CHIPS = [
   ["CUTLASS", "gpu"],
 ];
 
-/** Vertical connector with a light that travels down it, clipped to the wire. */
 function Wire({ delay = 0 }) {
   return (
     <div className="relative mx-auto h-10 w-px overflow-hidden bg-[color:var(--line-strong)]" aria-hidden="true">
@@ -32,7 +30,6 @@ function Wire({ delay = 0 }) {
   );
 }
 
-/** How the pieces of the library fit together. */
 export default function ArchDiagram() {
   const [sel, setSel] = useState(null);
 
@@ -56,7 +53,7 @@ export default function ArchDiagram() {
   };
 
   return (
-    <Reveal className="panel-cloud mt-4 rounded-[2rem] border border-line px-4 py-10 md:rounded-[2.5rem] md:px-10 md:py-14">
+    <Reveal className="panel-flat mt-4 rounded-2xl border border-line px-4 py-10 md:px-10 md:py-14">
       <div className="mx-auto mb-10 max-w-xl text-center">
         <h2 className="m-0 font-[family-name:var(--font-display)] text-3xl tracking-[-0.02em] md:text-5xl">
           How it fits together

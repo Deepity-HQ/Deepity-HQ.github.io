@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "@fontsource-variable/geist/wght.css";
+import "@fontsource-variable/hanken-grotesk/wght.css";
+import "@fontsource-variable/funnel-display/wght.css";
 import "@fontsource/jetbrains-mono/400.css";
 import "./index.css";
 import { PLAUSIBLE_DOMAIN } from "./config";

@@ -1,40 +1,26 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-const EXTEND = 140; // roads run this far past the box so lights enter/leave unseen
-const JOG = 60; // size of the 45-degree steps on the side roads
-const CORNER = 36; // how far before/after a bend the rounding starts
-const SEGMENTS = 14; // a light is a chain of up to this many short pieces
+const EXTEND = 140;
+const JOG = 60;
+const CORNER = 36;
+const SEGMENTS = 14;
 
-/**
- * Roads are straight runs joined by 45-degree steps, like circuit traces, with
- * soft corners. They are generated from the box size and kept to the outer
- * margins and the top/bottom bands, so they never pass behind the headline,
- * text or buttons. Together they run left, right, down and up.
- */
 function buildRoads(w, h, layout = "hero") {
   if (layout !== "hero") return buildCornerRoads(w, h, layout);
-  const a = Math.max(24, w * 0.035); // side road, outer x
-  const b = a + JOG; // side road, inner x (still well inside the empty margin)
-  const x1 = w * 0.16; // where the top/bottom roads step
+  const a = Math.max(24, w * 0.035);
+  const b = a + JOG;
+  const x1 = w * 0.16;
   const step = 22;
   const E = EXTEND;
   return [
-    // top -> down, left edge
     { tone: "accent", pts: [[a, -E], [a, h * 0.2], [b, h * 0.2 + JOG], [b, h * 0.62], [a, h * 0.62 + JOG], [a, h + E]] },
-    // bottom -> up, right edge
     { tone: "white", pts: [[w - a, h + E], [w - a, h * 0.8], [w - b, h * 0.8 - JOG], [w - b, h * 0.38], [w - a, h * 0.38 - JOG], [w - a, -E]] },
-    // left -> right, across the top
     { tone: "accent", pts: [[-E, 34], [x1, 34], [x1 + step, 12], [w - x1 - step, 12], [w - x1, 34], [w + E, 34]] },
-    // right -> left, across the bottom
     { tone: "white", pts: [[w + E, h - 32], [w - x1, h - 32], [w - x1 - step, h - 10], [x1 + step, h - 10], [x1, h - 32], [-E, h - 32]] },
   ];
 }
 
-/**
- * Two roads for a corner box, each running from one outer edge to the other so
- * neither ends inside the box. They start top-left; "br" mirrors them.
- */
 function buildCornerRoads(w, h, layout) {
   const E = EXTEND;
   const j = Math.min(JOG, w * 0.25);
@@ -49,13 +35,6 @@ function buildCornerRoads(w, h, layout) {
   return roads;
 }
 
-/**
- * Stops on the side roads, named after the layers of the stack (Python down to
- * CPU and CUDA). Each is a small dot that grows into a labeled pill on hover
- * and links somewhere: `hash` scrolls to a section of this page, `to` opens a
- * page, `href` opens a plain URL. `dir` is the side the pill grows toward,
- * always the middle of the panel.
- */
 function buildNodes(w, h) {
   const a = Math.max(24, w * 0.035);
   const b = a + JOG;
@@ -68,7 +47,6 @@ function buildNodes(w, h) {
 }
 
 function HighwayNode({ n, w }) {
-  // 14px is half the dot area; the extra 1px is the transparent border that surrounds it.
   const side = n.dir === "right" ? { left: n.x - 15 } : { right: w - n.x - 15 };
   const cls =
     "highway-node group pointer-events-auto absolute flex items-center rounded-full border border-transparent no-underline transition-colors duration-300 hover:border-line-strong hover:bg-[#131314] focus-visible:border-line-strong focus-visible:bg-[#131314] " +
@@ -115,7 +93,6 @@ function HighwayNode({ n, w }) {
   );
 }
 
-/** Polyline -> SVG path with a soft quadratic bend at every interior vertex. */
 function roundedPath(pts, k) {
   let d = `M${pts[0][0].toFixed(1)},${pts[0][1].toFixed(1)}`;
   for (let i = 1; i < pts.length - 1; i++) {
@@ -135,12 +112,9 @@ function roundedPath(pts, k) {
   return `${d} L${last[0].toFixed(1)},${last[1].toFixed(1)}`;
 }
 
-// Every light on every road moves at this speed (pixels per second), so lights
-// on the same road can never catch up with each other.
 const SPEED = 200;
-const EDGE_FADE = 90; // lights fade in/out over this many px as they cross the box edge
+const EDGE_FADE = 90;
 
-// Two lights per road, half a lap apart. `len` is the length of the light.
 const CARS = [0, 1, 2, 3].flatMap((road) =>
   [0, 1].map((n) => ({
     road,
@@ -154,24 +128,12 @@ const BOX = {
   br: "absolute bottom-0 right-0 h-[640px] w-[max(0px,calc(50vw-700px))]",
 };
 
-/**
- * Decorative circuit-style roads with solid lights driving along them. The
- * lines are SVG; each light is a chain of tiny elements moved with transform
- * keyframes (Web Animations API), so the browser can animate them without
- * repainting. Lights keep a constant speed through bends.
- *
- * layout="hero" fills its parent. layout="br" draws two roads in the bottom-right
- * corner, in the margin beside the 1400px panels so they never sit behind content.
- * Paused while off-screen, skipped for reduced motion, and hidden below the lg
- * breakpoint, where the margins are too narrow to stay clear of text.
- */
 export default function Highway({ layout = "hero" }) {
   const boxRef = useRef(null);
   const animsRef = useRef([]);
   const [size, setSize] = useState({ w: 0, h: 0 });
   const [paused, setPaused] = useState(false);
 
-  // Track the box size (debounced) so roads are laid out for the real pixels.
   useEffect(() => {
     const box = boxRef.current;
     if (!box) return;
@@ -198,7 +160,6 @@ export default function Highway({ layout = "hero" }) {
   );
   const paths = useMemo(() => roads.map((r) => roundedPath(r.pts, CORNER)), [roads]);
 
-  // (Re)build the light animations whenever the roads change.
   useEffect(() => {
     const box = boxRef.current;
     animsRef.current.forEach((a) => a.cancel());
@@ -210,7 +171,6 @@ export default function Highway({ layout = "hero" }) {
     const segs = box.querySelectorAll("[data-seg]");
     if (pathEls.length !== roads.length) return;
 
-    // Sample each road once; its lights share the result.
     const profiles = Array.from(pathEls).map((path) => {
       const total = path.getTotalLength();
       const n = Math.min(420, Math.max(120, Math.round(total / 6)));
@@ -231,22 +191,17 @@ export default function Highway({ layout = "hero" }) {
       const car = CARS[Number(el.dataset.car)];
       const j = Number(el.dataset.seg);
       const { n, pts, ang, step, dur } = profiles[car.road];
-      // Every piece spans exactly one sample step (about 6px), so piece j's
-      // tail is exactly where piece j+1's head is: no rounding gaps.
       const count = Math.min(SEGMENTS, Math.max(5, Math.round(car.len / step)));
       if (j >= count) {
         el.style.display = "none";
         return;
       }
       el.style.display = "";
-      // Fade both ends of the light over a few pieces.
       const ramp = Math.min(4, Math.floor(count / 3)) + 1;
       const ends = Math.min(1, (j + 1) / ramp, (count - j) / ramp);
-      const head = j; // samples behind the light's head
+      const head = j;
       const width = step;
 
-      // Angle of the chord between this piece's own two end points, so
-      // consecutive pieces meet end to end even through a bend.
       const raw = pts.map((_, i) => {
         const hi = Math.max(i - head, 0);
         const ti = Math.max(i - head - 1, 0);
@@ -254,9 +209,6 @@ export default function Highway({ layout = "hero" }) {
           ? ang[hi]
           : Math.atan2(pts[hi][1] - pts[ti][1], pts[hi][0] - pts[ti][0]);
       });
-      // Unwrap so the angle never jumps by 2*PI between keyframes (a road
-      // heading left sits at +-180 degrees, and the browser would otherwise
-      // spin the piece a full turn to interpolate).
       for (let i = 1; i < raw.length; i++) {
         while (raw[i] - raw[i - 1] > Math.PI) raw[i] -= 2 * Math.PI;
         while (raw[i] - raw[i - 1] < -Math.PI) raw[i] += 2 * Math.PI;
@@ -265,18 +217,16 @@ export default function Highway({ layout = "hero" }) {
       const frames = pts.map((_, i) => {
         const k = Math.max(i - head, 0);
         const [x, y] = pts[k];
-        // Roads start EXTEND px outside the box, so the box edge is that far
-        // along from either end of the road.
         const s = k * step;
         const edge = Math.min(1, Math.max(0, (s - EXTEND) / EDGE_FADE), Math.max(0, (n * step - s - EXTEND) / EDGE_FADE));
         return {
           opacity: ends * edge,
-          offset: i / n, // constant speed: equal time per equal distance
+          offset: i / n,
           transform: `translate(${(x - width).toFixed(1)}px, ${(y - 0.75).toFixed(1)}px) rotate(${raw[i].toFixed(4)}rad)`,
         };
       });
 
-      el.style.width = `${width + 1}px`; // 1px overlap hides sub-pixel seams
+      el.style.width = `${width + 1}px`;
       animsRef.current.push(
         el.animate(frames, {
           duration: dur * 1000,
@@ -295,7 +245,6 @@ export default function Highway({ layout = "hero" }) {
     };
   }, [roads]);
 
-  // Pause everything while the hero is off-screen.
   useEffect(() => {
     const box = boxRef.current;
     if (!box || typeof IntersectionObserver === "undefined") return;

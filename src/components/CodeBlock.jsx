@@ -40,7 +40,6 @@ export function CopyButton({ code, label }) {
   );
 }
 
-/** Dark, editor-style code window. */
 const CodeBlock = memo(({ language, code, icon, title }) => (
   <div className="flex h-full w-full flex-col overflow-hidden rounded-2xl border border-line bg-panel">
     <div className="flex items-center justify-between border-b border-line bg-panel2 px-4 py-2">

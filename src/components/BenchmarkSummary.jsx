@@ -6,7 +6,6 @@ const results = [
   { value: 97.51, decimals: 2, label: "PyTorch backprop", note: "627.8s, MSE loss" },
 ];
 
-/** The three matched-setup results, shared by the home page and /benchmarks. */
 export default function BenchmarkSummary() {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">

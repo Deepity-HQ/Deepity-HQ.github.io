@@ -1,7 +1,6 @@
 import { BlockMath } from "react-katex";
 import "katex/dist/katex.min.css";
 
-/** Two-layer prediction/error diagram plus the canonical PCN equations. */
 export default function PCNRepresentation() {
   return (
     <div className="grid gap-px border border-line-strong bg-line-strong lg:grid-cols-2">

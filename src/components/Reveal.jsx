@@ -1,16 +1,5 @@
 import { useLayoutEffect, useRef } from "react";
 
-/**
- * Scroll-linked reveal. Instead of firing once, each element's opacity and
- * offset are a function of where it sits in the viewport, smoothed toward
- * that target every frame so motion trails the scroll and reverses when you
- * scroll back up.
- *
- *   mode="enter" (default): rises/fades in as it enters from the bottom.
- *   mode="leave":           drifts slower than the page and fades out as it
- *                           scrolls off the top (used for the hero).
- *   delay (ms):             offsets the start point, so siblings stagger.
- */
 
 const clamp01 = (v) => Math.min(1, Math.max(0, v));
 const ease = (v) => 1 - Math.pow(1 - v, 3);
@@ -22,8 +11,6 @@ let listening = false;
 
 function apply(it, p) {
   const { el } = it;
-  // Fully revealed: drop the inline styles so the element no longer needs
-  // its own compositor layer (matters for tall tutorial sections).
   if (p >= 0.999) {
     el.style.opacity = "";
     el.style.transform = "";
@@ -40,8 +27,6 @@ function tick() {
   const vh = window.innerHeight;
   let moving = false;
 
-  // Read every position first, then write: interleaving reads with style
-  // writes would force a layout reflow per element per frame.
   const tops = [];
   for (const it of items) tops.push(it.el.getBoundingClientRect().top);
 
@@ -107,13 +92,10 @@ export default function Reveal({
 }) {
   const ref = useRef(null);
 
-  // Layout effect so the hidden start state is applied before first paint.
   useLayoutEffect(() => {
     const el = ref.current;
     if (!el) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    // Animating a block taller than the screen means re-rasterizing a huge
-    // layer every frame; just show it.
     if (el.offsetHeight > window.innerHeight * 1.2) return;
 
     const it = { el, mode, delay, cur: mode === "leave" ? 1 : 0, last: null };

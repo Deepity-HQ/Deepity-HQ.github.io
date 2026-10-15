@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-/** Cycles through `items` with a vertical slide. Static list for reduced motion. */
 export default function RotatingText({ items, interval = 2600, className = "" }) {
   const [{ cur, prev }, setState] = useState({ cur: 0, prev: null });
   const reduce =
@@ -24,7 +23,6 @@ export default function RotatingText({ items, interval = 2600, className = "" })
     <span
       className={`relative inline-block overflow-hidden whitespace-nowrap align-bottom leading-[1.3] ${className}`}
     >
-      {/* Invisible sizer keeps the width/height of the longest entry */}
       <span aria-hidden="true" className="invisible block select-none">
         {longest}
       </span>

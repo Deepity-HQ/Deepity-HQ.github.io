@@ -5,7 +5,6 @@ const reduced = () =>
   typeof window !== "undefined" &&
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-/** Counts from 0 to `value` the first time it scrolls into view. */
 export default function CountUp({ value, decimals = 0, suffix = "", duration = 1200 }) {
   const [ref, seen] = useInView();
   const [shown, setShown] = useState(reduced() ? value : 0);

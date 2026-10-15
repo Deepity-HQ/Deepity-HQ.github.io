@@ -53,7 +53,6 @@ const codeFiles = [
   { name: "train.cpp", language: "cpp", code: cppcode },
 ];
 
-// Edit freely: these cycle in the hero.
 const useCases = [
   "High-performance computing",
   "Embedded systems",
@@ -103,12 +102,12 @@ const ideas = [
 
 const reasons = [
   {
-    title: "Written from scratch",
-    text: "A C++ and CUDA engine for predictive coding, not a layer on top of JAX or PyTorch. Python bindings are built on nanobind, and the compiled extension is under 2MB.",
+    title: "Its own engine",
+    text: "The core is C++ and CUDA code written for predictive coding, with Python bindings through nanobind. The compiled extension is under 2MB.",
   },
   {
     title: "CPU and GPU",
-    text: "Fast on the CPU with Google Highway and SLEEF SIMD kernels and OpenBLAS or Intel MKL. A CUDA backend built on cuBLAS, with optional CUTLASS kernels, runs on NVIDIA GPUs. It is in active development and has been tested on the Ohio Supercomputer Center and Vast.ai.",
+    text: "SIMD kernels from Google Highway and SLEEF, plus OpenBLAS or Intel MKL, keep it fast on the CPU. A CUDA backend covers NVIDIA GPUs.",
   },
   {
     title: "Documented and tested",
@@ -128,7 +127,7 @@ export default function HomePage() {
     <div className="relative">
       <Highway layout="br" />
       <section className="px-3 pb-6 pt-20 md:px-4">
-        <div className="relative mx-auto flex min-h-[max(640px,min(calc(100svh-6.5rem),56rem))] max-w-[1400px] flex-col overflow-hidden rounded-[2rem] border border-line hero-glow md:rounded-[2.5rem]">
+        <div className="relative mx-auto flex min-h-[max(640px,min(calc(100svh-6.5rem),56rem))] max-w-[1400px] flex-col overflow-hidden rounded-2xl border border-line hero-glow">
           <div className="relative flex flex-1 flex-col">
             <Highway />
 
@@ -141,9 +140,9 @@ export default function HomePage() {
                 delay={80}
                 className="m-0 max-w-5xl text-balance font-[family-name:var(--font-display)] text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.03] tracking-[-0.03em]"
               >
-                Today&apos;s AI learns one way. Deepity{" "}
-                <span className="bg-gradient-to-r from-accent-text to-cool bg-clip-text text-transparent">
-                  learns tomorrow&apos;s.
+                Train neural networks{" "}
+                <span className="text-accent-text">
+                  without backpropagation.
                 </span>
               </Reveal>
 
@@ -152,9 +151,10 @@ export default function HomePage() {
                 delay={160}
                 className="mx-auto mt-8 max-w-2xl text-lg text-dim md:text-xl"
               >
-                Deepity is an open-source engine for predictive coding. Neurons
-                learn from local errors, not backpropagation, as the brain is
-                thought to. It runs on CPUs and NVIDIA GPUs.
+                Deepity is an open-source predictive coding engine for C++ and
+                Python. Each neuron learns from its own local error, as the
+                brain is thought to, and training runs on CPUs and NVIDIA
+                GPUs.
               </Reveal>
 
               <Reveal
@@ -209,7 +209,6 @@ export default function HomePage() {
             </button>
           </div>
 
-          {/* Key numbers */}
           <dl className="relative z-10 m-0 grid grid-cols-2 border-t border-line bg-black/50 lg:grid-cols-4">
             {specs.map((s, i) => (
               <Reveal
@@ -242,19 +241,15 @@ export default function HomePage() {
           ))}
         </Reveal>
       </section>
-      {/* ------------------------------------------------------------ ABOUT */}
       <section id="idea" className={`${sectionClass} scroll-mt-16`}>
-        <div className="mx-auto max-w-[1100px]">
-          <SectionHead
-            label="The idea"
-            title="A different way to train neural networks"
-          >
+        <div className="mx-auto max-w-[1400px]">
+          <SectionHead title="A different way to train neural networks">
             Most AI today is trained with backpropagation, which needs a lot of
             memory and, in practice, GPUs.
           </SectionHead>
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-10 md:grid-cols-3 md:gap-12">
             {ideas.map((r, i) => (
-              <Reveal key={r.title} delay={i * 100} className="glass p-8">
+              <Reveal key={r.title} delay={i * 100} className="border-t border-line-strong pt-6">
                 <h3 className="m-0 font-[family-name:var(--font-display)] text-2xl tracking-[-0.01em]">
                   {r.title}
                 </h3>
@@ -262,7 +257,7 @@ export default function HomePage() {
               </Reveal>
             ))}
           </div>
-          <Reveal className="mt-8 text-center">
+          <Reveal className="mt-8">
             <Link to="/theory" className="btn">
               How it works →
             </Link>
@@ -270,17 +265,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ----------------------------------------------------- PERFORMANCE */}
       <section id="results" className={`${sectionClass} scroll-mt-16`}>
-        <div className="mx-auto max-w-[1100px]">
-          <SectionHead label="Results" title="Faster, at the same accuracy">
+        <div className="mx-auto max-w-[1400px]">
+          <SectionHead title="Faster, at the same accuracy">
             On the standard MNIST handwriting test, Deepity matches the accuracy
             of the existing predictive coding library, ngc-learn, in about half
             the time. Everything ran on one laptop CPU.
           </SectionHead>
           <Reveal>
             <BenchmarkSummary />
-            <div className="mt-8 text-center">
+            <div className="mt-8">
               <Link to="/benchmarks" className="btn">
                 See the full benchmarks
               </Link>
@@ -289,41 +283,40 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* -------------------------------------------------------------- WHY */}
       <section className={sectionClass}>
-        <div className="mx-auto max-w-[1100px]">
-          <SectionHead label="Features" title="Built to be used" />
-          <div className="grid gap-4 md:grid-cols-2">
-            {reasons.map((r, i) => (
+        <div className="mx-auto max-w-[1400px]">
+          <SectionHead title="What is inside" />
+          <div className="border-b border-line-strong">
+            {reasons.map((r) => (
               <Reveal
                 key={r.title}
-                delay={(i % 2) * 100}
-                className="glass p-8 md:p-10"
+                className="grid gap-3 border-t border-line-strong py-8 md:grid-cols-[1fr_2fr] md:gap-12"
               >
-                <h3 className="m-0 font-[family-name:var(--font-display)] text-3xl tracking-[-0.01em]">
+                <h3 className="m-0 font-[family-name:var(--font-display)] text-2xl tracking-[-0.01em]">
                   {r.title}
                 </h3>
-                <p className="mb-0 mt-4 text-lg text-dim">{r.text}</p>
-                {r.link && (
-                  <a
-                    href={r.link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="link mt-5 inline-block text-lg"
-                  >
-                    {r.link.label}
-                  </a>
-                )}
+                <div>
+                  <p className="m-0 text-lg text-dim">{r.text}</p>
+                  {r.link && (
+                    <a
+                      href={r.link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="link mt-4 inline-block text-lg"
+                    >
+                      {r.link.label}
+                    </a>
+                  )}
+                </div>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ------------------------------------------------------------- CODE */}
       <section id="code" className={`${sectionClass} scroll-mt-16`}>
-        <div className="mx-auto max-w-[1100px]">
-          <SectionHead label="Usage" title="Code examples">
+        <div className="mx-auto max-w-[1400px]">
+          <SectionHead title="Code examples">
             The same network in Python and C++.
           </SectionHead>
           <Reveal>
@@ -332,9 +325,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ----------------------------------------------------- EARLY ACCESS */}
       <section className="px-5 py-12 md:px-8">
-        <Reveal className="glass mx-auto flex max-w-[1100px] flex-col items-center justify-between gap-8 p-8 text-center md:flex-row md:p-12 md:text-left">
+        <Reveal className="glass mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-8 p-8 text-center md:flex-row md:p-12 md:text-left">
           <div>
             <h2 className="m-0 font-[family-name:var(--font-display)] text-3xl tracking-[-0.02em] md:text-4xl">
               Building with predictive coding?
@@ -349,9 +341,8 @@ export default function HomePage() {
         </Reveal>
       </section>
 
-      {/* ------------------------------------------------------- CONTRIBUTE */}
       <section className="px-3 pb-12 pt-12 md:px-4">
-        <Reveal className="panel-glow relative mx-auto max-w-[1400px] overflow-hidden rounded-[2rem] border border-line px-6 py-16 md:rounded-[2.5rem] md:px-16 md:py-24">
+        <Reveal className="panel-flat relative mx-auto max-w-[1400px] overflow-hidden rounded-2xl border border-line px-6 py-16 md:px-16 md:py-24">
           <div className="relative flex flex-col items-center">
             <div className="max-w-2xl text-center">
               <div className="label mb-4">Contribute</div>
