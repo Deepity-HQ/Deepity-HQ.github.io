@@ -79,7 +79,7 @@ export default function Tutorial0_Intro() {
           </div>
           <div className="mt-5 md:mt-10 px-5">
             <img
-              src="/doorway.webp"
+              src="/tutorials/doorway.webp"
               alt="Intro Image"
               width="550"
               className="rounded-lg shadow-xl border border-line-strong"
