@@ -138,7 +138,7 @@ export default function HomePage() {
               <Reveal
                 as="h1"
                 delay={80}
-                className="m-0 max-w-5xl text-balance font-[family-name:var(--font-display)] text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.03] tracking-[-0.03em]"
+                className="m-0 max-w-5xl text-balance font-[family-name:var(--font-display)] break-words text-[clamp(1.6rem,8.4vw,2.6rem)] sm:text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.03] tracking-[-0.03em]"
               >
                 Train neural networks{" "}
                 <span className="text-accent-text">
