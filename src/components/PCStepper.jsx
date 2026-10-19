@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const steps = [
   { name: "Predict", text: "Each layer predicts the activity of the layer it connects to." },
   { name: "Compare", text: "The gap between the prediction and the actual activity is that layer's prediction error." },
-  { name: "Update", text: "Neurons change to shrink their own error, and the weights follow. No gradient travels backward through the network." },
+  { name: "Update", text: "Neurons change to shrink their own error, and the weights follow. Each update uses only that layer and its neighbors." },
 ];
 
 const R = 90;
@@ -28,14 +28,14 @@ export default function PCStepper() {
 
   return (
     <div className="panel-flat rounded-2xl border border-line px-4 py-10 md:px-10 md:py-14">
-      <div className="mx-auto mb-10 max-w-xl text-center">
-        <h2 className="m-0 font-[family-name:var(--font-display)] text-3xl tracking-[-0.02em] md:text-5xl">
-          The loop, step by step
+      <div className="mb-10 max-w-xl">
+        <h2 className="m-0 font-[family-name:var(--font-display)] text-3xl tracking-[-0.02em] md:text-4xl">
+          Predict, compare, update
         </h2>
-        <p className="mb-0 mt-4 text-dim">Every layer repeats these three steps until its error settles.</p>
+        <p className="mb-0 mt-4 text-dim">Each layer repeats this cycle until its error stops changing.</p>
       </div>
 
-      <div className="mx-auto grid max-w-4xl items-center gap-10 md:grid-cols-[260px_1fr]">
+      <div className="grid items-center gap-10 md:grid-cols-[260px_1fr]">
         <div className="relative mx-auto h-[220px] w-[220px]">
           <svg viewBox="0 0 220 220" className="absolute inset-0 h-full w-full -rotate-90" aria-hidden="true">
             <defs>

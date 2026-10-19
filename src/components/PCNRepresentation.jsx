@@ -37,15 +37,16 @@ export default function PCNRepresentation() {
       </div>
 
       <div className="bg-panel p-6">
-        <div className="label mb-2">The canonical formulation</div>
+        <div className="label mb-2">The equations</div>
         <div className="overflow-x-auto text-fg">
           <BlockMath math={String.raw`\mu_l = W_l\, f(x_{l-1}), \qquad \varepsilon_l = x_l - \mu_l`} />
           <BlockMath math={String.raw`E = \tfrac{1}{2} \sum_l \lVert \varepsilon_l \rVert^2`} />
           <BlockMath math={String.raw`x_l \leftarrow x_l - \eta\, \frac{\partial E}{\partial x_l}, \qquad W_l \leftarrow W_l - \alpha\, \frac{\partial E}{\partial W_l}`} />
         </div>
-        <p className="mt-2 text-[12px] text-dim">
-          Every term is local to a layer and its neighbors. Nothing is
-          propagated through the whole network.
+        <p className="mt-2 text-[13px] text-dim">
+          μ is a layer&apos;s prediction, ε its prediction error and E the
+          total energy. η is the inference rate and α the learning rate. Each
+          equation involves one layer and its neighbors.
         </p>
       </div>
     </div>
