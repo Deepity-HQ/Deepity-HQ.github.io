@@ -1,19 +1,7 @@
-import { useState, memo } from "react";
-import SyntaxHighlighter from "./highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { useState, memo, lazy, Suspense } from "react";
+import { codeBoxStyle, codeTagProps } from "./codeStyle";
 
-const syntaxCustomStyle = {
-  margin: 0,
-  padding: "1rem",
-  fontSize: "13px",
-  fontFamily: "var(--font-mono)",
-  flex: 1,
-  overflow: "auto",
-  background: "var(--panel)",
-  borderRadius: 0,
-};
-
-const codeTagProps = { style: { fontFamily: "var(--font-mono)" } };
+const HighlightedCode = lazy(() => import("./HighlightedCode"));
 
 export function CopyButton({ code, label }) {
   const [copied, setCopied] = useState(false);
@@ -50,14 +38,15 @@ const CodeBlock = memo(({ language, code, icon, title }) => (
       <CopyButton code={code} label={title} />
     </div>
 
-    <SyntaxHighlighter
-      language={language}
-      style={vscDarkPlus}
-      customStyle={syntaxCustomStyle}
-      codeTagProps={codeTagProps}
+    <Suspense
+      fallback={
+        <pre style={{ ...codeBoxStyle, color: "var(--fg)" }}>
+          <code {...codeTagProps}>{code}</code>
+        </pre>
+      }
     >
-      {code}
-    </SyntaxHighlighter>
+      <HighlightedCode language={language} code={code} />
+    </Suspense>
   </div>
 ));
 

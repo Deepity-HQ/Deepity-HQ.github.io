@@ -3,7 +3,6 @@ import MainFooter from "./components/MainFooter";
 import PageHeader from "./components/PageHeader";
 import ArchDiagram from "./components/ArchDiagram";
 import Reveal from "./components/Reveal";
-import useDocumentTitle from "./lib/useDocumentTitle";
 import { DEVELOPER_URL, GITHUB_URL } from "./config";
 
 const facts = [
@@ -33,7 +32,6 @@ const links = [
 ];
 
 export default function About() {
-  useDocumentTitle("About");
 
   return (
     <div>

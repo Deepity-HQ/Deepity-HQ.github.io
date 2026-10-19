@@ -1,4 +1,3 @@
-import useDocumentTitle from "../../lib/useDocumentTitle";
 import MainFooter from "../MainFooter";
 import Reveal from "../Reveal";
 import UtilButton from "../UtilButton";
@@ -36,7 +35,6 @@ output = model.predict(x, 150)
 print(output)`;
 
 export default function Tutorial0_Intro() {
-  useDocumentTitle("Tutorial 0: Introduction");
   return (
     <div className="min-h-screen px-3 pt-20 pb-6 md:px-4">
       <div className="min-h-screen max-w-7xl mx-auto pt-6 pb-12 rounded-2xl border border-line bg-bg/90">

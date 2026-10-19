@@ -4,6 +4,16 @@ export default function SplashScreen({ onDone }) {
   const [phase, setPhase] = useState("enter");
 
   useEffect(() => {
+    if (document.documentElement.dataset.splash === "off") {
+      onDone?.();
+      return;
+    }
+    try {
+      sessionStorage.setItem("splash-seen", "1");
+    } catch {
+      /* storage unavailable */
+    }
+
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
@@ -50,7 +60,7 @@ export default function SplashScreen({ onDone }) {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center gap-4 bg-bg transition-opacity duration-300 ${
+      className={`splash fixed inset-0 z-[100] flex flex-col items-center justify-center gap-4 bg-bg transition-opacity duration-300 ${
         phase === "exit" ? "opacity-0" : "opacity-100"
       }`}
     >

@@ -41,7 +41,7 @@ export default function Navbar() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [isOpen]);
-  const { pathname } = useLocation();
+  const pathname = useLocation().pathname.replace(/(.)\/+$/, "$1");
 
   const links = [
     { label: "Docs", href: "/docs/index.html", external: true },

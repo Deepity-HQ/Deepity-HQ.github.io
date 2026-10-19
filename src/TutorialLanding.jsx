@@ -1,5 +1,4 @@
 import { useState } from "react";
-import useDocumentTitle from "./lib/useDocumentTitle";
 import MainFooter from "./components/MainFooter";
 import TutorialCard from "./components/TutorialCard";
 import Reveal from "./components/Reveal";
@@ -58,7 +57,6 @@ const tutorialsData = [
 const LEVELS = ["All", "Beginner", "Intermediate", "Hard"];
 
 export default function TutorialLanding() {
-  useDocumentTitle("Tutorials");
   const [searchQuery, setSearchQuery] = useState("");
   const [level, setLevel] = useState("All");
 

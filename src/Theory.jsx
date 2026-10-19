@@ -4,7 +4,6 @@ import MainFooter from "./components/MainFooter";
 import PageHeader from "./components/PageHeader";
 import Reveal from "./components/Reveal";
 import PCStepper from "./components/PCStepper";
-import useDocumentTitle from "./lib/useDocumentTitle";
 
 const PCNRepresentation = lazy(() => import("./components/PCNRepresentation"));
 
@@ -43,7 +42,6 @@ const offers = [
 ];
 
 export default function Theory() {
-  useDocumentTitle("Theory");
 
   return (
     <div>

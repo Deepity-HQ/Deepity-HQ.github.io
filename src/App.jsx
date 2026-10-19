@@ -1,19 +1,21 @@
 import Navbar from "./components/Navbar";
 import HomePage from "./HomePage";
-import NotFound from "./NotFound";
-import About from "./About";
-import Benchmarks from "./Benchmarks";
-import Theory from "./Theory";
-import EarlyAccess from "./EarlyAccess";
-import Privacy from "./Privacy";
 import "./index.css";
 
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
-import TutorialLanding from "./TutorialLanding";
-import Tutorial0_Intro from "./components/tutorials/Tutorial0_Intro";
-import Tutorial1_Beginning from "./components/tutorials/Tutorial1_Beginning";
+import { lazy, Suspense, useEffect, useState } from "react";
+import { metaFor, canonicalFor, normalizePath } from "./routes";
 import SplashScreen from "./components/SplashScreen";
+
+const NotFound = lazy(() => import("./NotFound"));
+const About = lazy(() => import("./About"));
+const Benchmarks = lazy(() => import("./Benchmarks"));
+const Theory = lazy(() => import("./Theory"));
+const EarlyAccess = lazy(() => import("./EarlyAccess"));
+const Privacy = lazy(() => import("./Privacy"));
+const TutorialLanding = lazy(() => import("./TutorialLanding"));
+const Tutorial0_Intro = lazy(() => import("./components/tutorials/Tutorial0_Intro"));
+const Tutorial1_Beginning = lazy(() => import("./components/tutorials/Tutorial1_Beginning"));
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -25,7 +27,28 @@ function ScrollToTop() {
   return null;
 }
 
-export default function App() {
+function setMeta(selector, attr, value) {
+  document.head.querySelector(selector)?.setAttribute(attr, value);
+}
+
+function PageMeta() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    const meta = metaFor(pathname);
+    const path = normalizePath(pathname);
+    document.title = meta.title;
+    setMeta('meta[name="description"]', "content", meta.description);
+    setMeta('link[rel="canonical"]', "href", canonicalFor(path));
+    setMeta('meta[property="og:url"]', "content", canonicalFor(path));
+    setMeta('meta[property="og:title"]', "content", meta.ogTitle ?? meta.title);
+    setMeta('meta[property="og:description"]', "content", meta.description);
+    setMeta('meta[name="twitter:title"]', "content", meta.ogTitle ?? meta.title);
+    setMeta('meta[name="twitter:description"]', "content", meta.description);
+  }, [pathname]);
+  return null;
+}
+
+export function Shell() {
   const [showSplash, setShowSplash] = useState(true);
 
   return (
@@ -33,8 +56,8 @@ export default function App() {
       {showSplash && <SplashScreen onDone={() => setShowSplash(false)} />}
 
       <div style={{ position: "relative", zIndex: 1 }}>
-        <BrowserRouter basename="/">
           <ScrollToTop />
+          <PageMeta />
           <Navbar />
 
           <a
@@ -45,6 +68,7 @@ export default function App() {
           </a>
 
           <main id="main" tabIndex={-1}>
+            <Suspense fallback={null}>
             <Routes>
               <Route path="" element={<HomePage />} />
               <Route path="/tutorial" element={<TutorialLanding />} />
@@ -64,9 +88,17 @@ export default function App() {
               <Route path="/notfound" element={<NotFound variant="construction" />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
+            </Suspense>
           </main>
-        </BrowserRouter>
       </div>
     </>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter basename="/">
+      <Shell />
+    </BrowserRouter>
   );
 }

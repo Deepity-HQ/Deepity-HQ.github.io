@@ -10,7 +10,7 @@
   <link rel="canonical" href="https://deepity.dev/" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#000000" />
-  <meta name="description" content="Deepity: a high-performance implementation of Predictive Coding Networks for C++ and Python, fast on the CPU with an optional CUDA backend." />
+  <meta name="description" content="Deepity is an open-source predictive coding engine for C++ and Python. Each neuron learns from its own local error, and training runs on CPUs and NVIDIA GPUs." />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Deepity" />
   <meta property="og:url" content="https://deepity.dev/" />
@@ -35,7 +35,19 @@
       "sameAs": ["https://github.com/Deepity-HQ/Deepity"]
     }
   </script>
-  <title>Deepity</title>
+  <script>
+    // Show the splash only on the home page, once per browser session.
+    try {
+      var skip =
+        location.pathname !== "/" ||
+        sessionStorage.getItem("splash-seen") ||
+        matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (skip) document.documentElement.dataset.splash = "off";
+    } catch (e) {
+      if (location.pathname !== "/") document.documentElement.dataset.splash = "off";
+    }
+  </script>
+  <title>Deepity: open-source predictive coding engine</title>
 </head>
 
 <body style="background:#000">

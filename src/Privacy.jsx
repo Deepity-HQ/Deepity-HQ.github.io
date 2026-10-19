@@ -1,6 +1,5 @@
 import MainFooter from "./components/MainFooter";
 import PageHeader from "./components/PageHeader";
-import useDocumentTitle from "./lib/useDocumentTitle";
 import { CONTACT_EMAIL, GITHUB_URL, PLAUSIBLE_DOMAIN } from "./config";
 
 const UPDATED = "October 13, 2026";
@@ -17,7 +16,6 @@ function Block({ title, children }) {
 }
 
 export default function Privacy() {
-  useDocumentTitle("Privacy");
 
   return (
     <div>

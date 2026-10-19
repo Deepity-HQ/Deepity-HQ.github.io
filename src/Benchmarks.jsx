@@ -5,7 +5,6 @@ import PageHeader from "./components/PageHeader";
 import Reveal from "./components/Reveal";
 import ColumnBars from "./components/ColumnBars";
 import CountUp from "./components/CountUp";
-import useDocumentTitle from "./lib/useDocumentTitle";
 
 const BenchmarkChart = lazy(() => import("./components/BenchmarkChart"));
 
@@ -48,7 +47,6 @@ function Card({ title, text, children, className = "" }) {
 }
 
 export default function Benchmarks() {
-  useDocumentTitle("Benchmarks");
 
   return (
     <div>

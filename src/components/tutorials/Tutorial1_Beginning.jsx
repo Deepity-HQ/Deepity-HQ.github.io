@@ -1,5 +1,4 @@
 import React from "react";
-import useDocumentTitle from "../../lib/useDocumentTitle";
 import MainFooter from "../MainFooter";
 import Reveal from "../Reveal";
 import UtilButton from "../UtilButton";
@@ -30,7 +29,6 @@ model.fit(x_train, y_train, epochs=10, batch_size=64)
 predictions = model.predict(x_test, settling_steps=20)`;
 
 export default function Tutorial1_Beginning() {
-  useDocumentTitle("Tutorial 1: Understanding Deepity");
   return (
     <div className="min-h-screen px-3 pt-20 pb-6 md:px-4">
       <div className="min-h-screen max-w-7xl mx-auto pt-6 pb-12 rounded-2xl border border-line bg-bg/90">

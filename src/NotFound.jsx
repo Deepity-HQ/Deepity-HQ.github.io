@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
 import MainFooter from "./components/MainFooter";
-import useDocumentTitle from "./lib/useDocumentTitle";
 
 function NotFound({ variant = "missing" }) {
   const construction = variant === "construction";
-  useDocumentTitle(construction ? "Coming soon" : "Page not found");
 
   return (
     <div className="min-h-screen">

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import MainFooter from "./components/MainFooter";
 import PageHeader from "./components/PageHeader";
 import Reveal from "./components/Reveal";
-import useDocumentTitle from "./lib/useDocumentTitle";
 import { CONTACT_EMAIL, EARLY_ACCESS_ENDPOINT } from "./config";
 
 const USE_CASES = [
@@ -17,7 +16,6 @@ const fieldClass =
   "w-full rounded-2xl border border-line-strong bg-black/40 px-4 py-3 font-[inherit] text-[17px] text-fg placeholder:text-faint focus:border-accent focus:outline-none";
 
 export default function EarlyAccess() {
-  useDocumentTitle("Request early access");
   const [status, setStatus] = useState("idle");
   const [useCase, setUseCase] = useState(USE_CASES[0]);
 

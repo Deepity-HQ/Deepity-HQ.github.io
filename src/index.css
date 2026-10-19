@@ -248,6 +248,10 @@ pre {
   background: var(--glow-cool);
 }
 
+html[data-splash="off"] .splash {
+  display: none;
+}
+
 /* Light travelling down an architecture wire (components/ArchDiagram.jsx) */
 @keyframes wire-run {
   from { transform: translate(-50%, -100%); opacity: 0; }
