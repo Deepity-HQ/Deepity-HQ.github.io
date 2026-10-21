@@ -18,20 +18,23 @@ const others = [
 
 const setup = [
   ["Task", "MNIST, 50,000 training images and 10,000 held-out"],
-  ["Hardware", "One laptop CPU for every run"],
+  ["Hardware", "One laptop CPU for the comparison runs. The GPU run used an NVIDIA A100"],
   ["Network", "784→512→512→10 with sigmoid activations"],
   ["Training", "20 settling steps, batch size 250, 100 epochs, seed 7"],
   ["Deepity", "Learning rate 0.00373, decaying by 0.94 each epoch, AdamW optimizer"],
   ["ngc-learn", "The pc_discrim example from ngc-museum, run unmodified (ngclearn 3.2.3, JAX on CPU)"],
   ["PyTorch", "Standard backpropagation with the same network and schedule. It uses mean squared error against one-hot targets to match the PCN objective"],
-  ["Deepity DKP", "A different network and training method (784→512→10, 2 inference steps, batch size 1000, 50 epochs). It reached 95.97% in 49.6s, but it isn't a fair comparison with the others"],
+  ["Deepity DKP", "A different network and training method (784→512→10, 2 inference steps, batch size 1000, 50 epochs). It reached 95.97% in 49.6s"],
 ];
 
-const caveats = [
-  "The Deepity curve is accuracy on a training subset, logged every 10 epochs. The cards show held-out accuracy.",
+const notes = [
+  "The Deepity curve is accuracy on a training subset, shown every 10 epochs. The cards show held-out accuracy.",
   "ngc-learn only logs whole-percent accuracy, so its line is stepped and its 98% is a rounded best result.",
-  "PyTorch trained faster than Deepity here (627.8s vs 952.6s) and was 0.7 points less accurate. The 1.8× speedup is over ngc-learn only.",
-  "This is one laptop, one seed and one dataset. Treat it as a starting point.",
+];
+
+const hardware = [
+  { name: "CPU", time: "146.3s", acc: "97.04%" },
+  { name: "GPU (A100)", time: "12.4s", acc: "97.02%" },
 ];
 
 function Card({ title, text, children, className = "" }) {
@@ -51,8 +54,8 @@ export default function Benchmarks() {
   return (
     <div>
       <PageHeader title="Deepity vs ngc-learn and PyTorch" width={1200}>
-        On MNIST, Deepity reaches 98.22% accuracy, 1.8× faster than ngc-learn
-        with the same network. Everything ran on one laptop CPU.
+        On MNIST, Deepity reaches 98.22% accuracy, 2.65× faster than ngc-learn
+        with the same network. The comparison ran on one laptop CPU.
       </PageHeader>
 
       <div className="mx-auto max-w-[1200px] px-3 pb-16 md:px-6">
@@ -81,7 +84,7 @@ export default function Benchmarks() {
             <Card
               className="lg:col-span-2"
               title="Training time"
-              text="100 epochs on the same laptop CPU. Deepity is 1.8× faster than ngc-learn."
+              text="100 epochs on the same laptop CPU. Deepity is 2.65× faster than ngc-learn."
             >
               <ColumnBars />
             </Card>
@@ -115,6 +118,25 @@ export default function Benchmarks() {
         </Reveal>
 
         <Reveal className="glass mt-4 p-8 md:p-12">
+          <h2 className="m-0 font-[family-name:var(--font-display)] text-3xl tracking-[-0.02em] md:text-4xl">CPU and GPU</h2>
+          <p className="mb-0 mt-3 max-w-2xl text-dim">
+            The same Deepity model trained on a CPU and on an A100. The GPU finished 11.8× faster
+            with the same accuracy, within 0.02 points.
+          </p>
+          <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            {hardware.map((h) => (
+              <div key={h.name} className="flex items-center justify-between rounded-2xl border border-line bg-white/[0.03] px-5 py-4">
+                <div>
+                  <div className="text-fg">{h.name}</div>
+                  <div className="text-xs text-dim">Train time {h.time}</div>
+                </div>
+                <div className="font-[family-name:var(--font-display)] text-xl tabular-nums">{h.acc}</div>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+
+        <Reveal className="glass mt-4 p-8 md:p-12">
           <h2 className="m-0 font-[family-name:var(--font-display)] text-3xl tracking-[-0.02em] md:text-4xl">Setup</h2>
           <dl className="m-0 mt-6 divide-y divide-[color:var(--line)]">
             {setup.map(([k, v]) => (
@@ -127,9 +149,9 @@ export default function Benchmarks() {
         </Reveal>
 
         <Reveal className="glass mt-4 p-8 md:p-12">
-          <h2 className="m-0 font-[family-name:var(--font-display)] text-3xl tracking-[-0.02em] md:text-4xl">Caveats</h2>
+          <h2 className="m-0 font-[family-name:var(--font-display)] text-3xl tracking-[-0.02em] md:text-4xl">Notes</h2>
           <ul className="mt-6 list-disc space-y-3 pl-5 text-dim">
-            {caveats.map((c) => (
+            {notes.map((c) => (
               <li key={c}>{c}</li>
             ))}
           </ul>

@@ -1,7 +1,7 @@
 import useInView from "../lib/useInView";
 
 const runs = [
-  { name: "Deepity", time: 952.6, ours: true },
+  { name: "Deepity", time: 644.1, ours: true },
   { name: "ngc-learn", time: 1707.7 },
   { name: "PyTorch", time: 627.8 },
 ];

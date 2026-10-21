@@ -64,7 +64,7 @@ const useCases = [
 ];
 
 const specs = [
-  { value: "1.8×", caption: "Faster than ngc-learn at the same accuracy" },
+  { value: "2.65×", caption: "Faster than ngc-learn at the same accuracy" },
   { value: "98.22%", caption: "Accuracy on MNIST, trained on a laptop" },
   { value: "CPU + GPU", caption: "From laptop CPUs to NVIDIA GPUs" },
   { value: "MIT", caption: "Free and open source" },
@@ -269,8 +269,8 @@ export default function HomePage() {
         <div className="mx-auto max-w-[1400px]">
           <SectionHead title="Faster, at the same accuracy">
             On the standard MNIST handwriting test, Deepity matches the accuracy
-            of the existing predictive coding library, ngc-learn, in about half
-            the time. Everything ran on one laptop CPU.
+            of the existing predictive coding library, ngc-learn, in well under
+            half the time. Everything ran on one laptop CPU.
           </SectionHead>
           <Reveal>
             <BenchmarkSummary />

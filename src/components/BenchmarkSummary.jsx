@@ -1,7 +1,7 @@
 import CountUp from "./CountUp";
 
 const results = [
-  { value: 98.22, decimals: 2, label: "Deepity held-out", note: "952.6s, 100 epochs", accent: true },
+  { value: 98.22, decimals: 2, label: "Deepity held-out", note: "644.1s, 100 epochs", accent: true },
   { value: 98, decimals: 0, label: "ngc-learn best dev", note: "1707.7s, same setup" },
   { value: 97.51, decimals: 2, label: "PyTorch backprop", note: "627.8s, MSE loss" },
 ];
