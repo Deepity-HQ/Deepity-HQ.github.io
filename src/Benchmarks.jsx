@@ -13,6 +13,7 @@ const chips = ["784→512→512→10", "20 settling steps", "batch 250", "100 ep
 const others = [
   { name: "ngc-learn", acc: "98%", note: "1707.7s, best dev result" },
   { name: "PyTorch backprop", acc: "97.51%", note: "627.8s, MSE loss" },
+  { name: "jpc", acc: "97.55%", note: "545.3s, same network" },
   { name: "Deepity DKP", acc: "95.97%", note: "49.6s, different network" },
 ];
 
@@ -22,6 +23,7 @@ const setup = [
   ["Network", "784→512→512→10 with sigmoid activations"],
   ["Training", "20 settling steps, batch size 250, 100 epochs, seed 7"],
   ["Deepity", "Learning rate 0.00373, decaying by 0.94 each epoch, AdamW optimizer"],
+  ["jpc", "The jpc library (JAX), run with the same network, 20 settling steps, batch size, epochs and learning-rate schedule as Deepity. Accuracy is a feedforward readout"],
   ["ngc-learn", "The pc_discrim example from ngc-museum, run unmodified (ngclearn 3.2.3, JAX on CPU)"],
   ["PyTorch", "Standard backpropagation with the same network and schedule. It uses mean squared error against one-hot targets to match the PCN objective"],
   ["Deepity DKP", "A different network and training method (784→512→10, 2 inference steps, batch size 1000, 50 epochs). It reached 95.97% in 49.6s"],
@@ -54,7 +56,7 @@ export default function Benchmarks() {
   return (
     <div>
       <PageHeader title="Deepity vs ngc-learn and PyTorch" width={1200}>
-        On MNIST, Deepity reaches 98.22% accuracy, 2.65× faster than ngc-learn
+        On MNIST, Deepity reaches 98.22% accuracy, 3.16× faster than ngc-learn
         with the same network. The comparison ran on one laptop CPU.
       </PageHeader>
 
@@ -84,7 +86,7 @@ export default function Benchmarks() {
             <Card
               className="lg:col-span-2"
               title="Training time"
-              text="100 epochs on the same laptop CPU. Deepity is 2.65× faster than ngc-learn."
+              text="100 epochs on the same laptop CPU. Deepity is 3.16× faster than ngc-learn."
             >
               <ColumnBars />
             </Card>

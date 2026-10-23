@@ -27,9 +27,11 @@ const dkpAcc = [
 ];
 
 const simple = [
-  [6.8, 88.48], [63.0, 97.84], [124.9, 98.56], [186.8, 99.16], [251.0, 99.56],
-  [315.4, 99.64], [380.6, 99.68], [446.6, 99.64], [512.5, 99.8], [578.5, 99.68],
-  [644.1, 99.88],
+  [5.8, 93.96], [54.2, 98.0], [108.0, 99.76], [162.2, 99.96], [216.2, 100.0], [269.3, 100.0], [322.7, 100.0], [377.1, 100.0], [431.8, 99.96], [486.7, 100.0], [541.1, 100.0],
+];
+
+const jpc = [
+  [6.7, 86.88], [59.8, 96.44], [113.5, 97.84], [167.0, 98.12], [220.3, 98.64], [273.7, 98.8], [327.5, 98.2], [381.9, 98.36], [436.3, 98.36], [490.7, 98.6], [545.3, 98.28],
 ];
 
 const ngc = [[20.4, 85], [38.9, 90], [57.6, 92], [76.1, 94], [94.7, 94], [113.2, 94], [131.8, 95], [150.7, 95], [167.4, 95], [184.0, 95], [200.4, 96], [216.4, 96], [234.0, 96], [250.4, 96], [266.3, 96], [288.4, 96], [305.0, 96], [321.6, 97], [338.2, 97], [355.4, 97], [372.1, 97], [388.7, 97], [405.5, 97], [422.0, 97], [438.7, 97], [455.4, 97], [472.1, 97], [488.4, 98], [505.0, 98], [520.9, 98], [538.2, 98], [554.6, 98], [570.6, 98], [587.1, 98], [603.2, 98], [619.7, 98], [635.8, 98], [651.8, 98], [667.9, 98], [684.0, 98], [700.2, 98], [716.5, 98], [732.7, 98], [749.0, 98], [765.5, 98], [782.1, 98], [798.3, 98], [814.8, 98], [830.9, 98], [847.6, 98], [864.2, 98], [881.7, 98], [898.4, 98], [914.8, 99], [931.3, 99], [947.2, 99], [963.1, 99], [979.1, 99], [995.3, 99], [1011.5, 99], [1027.2, 99], [1043.2, 99], [1059.2, 99], [1075.4, 99], [1091.5, 99], [1108.2, 99], [1124.8, 99], [1141.2, 99], [1157.3, 99], [1173.7, 99], [1206.9, 99], [1230.7, 99], [1247.8, 99], [1265.1, 99], [1282.0, 99], [1299.0, 99], [1315.8, 99], [1332.6, 99], [1350.1, 99], [1366.6, 99], [1382.8, 99], [1398.9, 99], [1416.1, 99], [1433.2, 99], [1449.7, 99], [1465.6, 99], [1482.2, 99], [1498.3, 100], [1515.1, 100], [1531.2, 100], [1547.9, 100], [1564.8, 100], [1582.1, 100], [1598.7, 100], [1615.9, 100], [1633.4, 100], [1650.5, 100], [1667.8, 100], [1685.6, 100], [1703.1, 100]];
@@ -37,6 +39,7 @@ const ngc = [[20.4, 85], [38.9, 90], [57.6, 92], [76.1, 94], [94.7, 94], [113.2,
 const points = [
   ...dkpTime.map((t, i) => ({ t, dkp: dkpAcc[i] })),
   ...simple.map(([t, a]) => ({ t, simple: a })),
+  ...jpc.map(([t, a]) => ({ t, jpc: a })),
   ...ngc.map(([t, a]) => ({ t, ngc: a })),
 ].sort((a, b) => a.t - b.t);
 
@@ -51,6 +54,7 @@ function token(name, fallback) {
 const SERIES = [
   { key: "simple", label: "Deepity", dot: "var(--accent)" },
   { key: "dkp", label: "Deepity DKP", dot: "var(--glow-cool)" },
+  { key: "jpc", label: "jpc", dot: "#ffb340" },
   { key: "ngc", label: "ngc-learn", dot: "var(--fg-dim)" },
 ];
 
@@ -58,8 +62,8 @@ export default function BenchmarkChart() {
   const [off, setOff] = useState({});
   const toggle = (k) => setOff((o) => ({ ...o, [k]: !o[k] }));
   const accent = token("--accent", "#b229ff");
-  const accentText = token("--accent-text", "#cb7bff");
   const cool = token("--glow-cool", "#29cbfc");
+  const warm = "#ffb340";
   const grid = token("--line", "rgba(255,255,255,0.09)");
   const dim = token("--fg-dim", "#9a9a9a");
   const fg = token("--fg", "#e6e6e6");
@@ -96,7 +100,7 @@ export default function BenchmarkChart() {
         <ResponsiveContainer width="100%" height={380}>
           <ComposedChart
             data={points}
-            margin={{ top: 16, right: 96, left: 4, bottom: 12 }}
+            margin={{ top: 16, right: 20, left: 4, bottom: 12 }}
           >
             <CartesianGrid stroke={grid} strokeDasharray="2 4" />
 
@@ -120,7 +124,7 @@ export default function BenchmarkChart() {
             />
 
             <YAxis
-              domain={[80, 100]}
+              domain={[80, 102]}
               ticks={[80, 85, 90, 95, 100]}
               allowDataOverflow
               tick={tick}
@@ -156,14 +160,19 @@ export default function BenchmarkChart() {
               connectNulls
               isAnimationActive={false}
               label={(p) =>
-                p.value === 99.88 ? (
+                p.index === simpleLabelIndex ? (
                   <text
                     key="simple-label"
-                    x={p.x + 8}
-                    y={p.y}
-                    fill={accentText}
-                    fontSize={13}
+                    x={p.x + 10}
+                    y={p.y + 4}
+                    fill={accent}
+                    fontSize={12}
                     fontFamily={mono}
+                    fontWeight={600}
+                    stroke="#0c0c0d"
+                    strokeWidth={4}
+                    strokeLinejoin="round"
+                    paintOrder="stroke"
                   >
                     Deepity
                   </text>
@@ -182,17 +191,52 @@ export default function BenchmarkChart() {
               connectNulls
               isAnimationActive={false}
               label={(p) =>
-                p.value === 96.8 ? (
+                p.index === dkpLabelIndex ? (
                   <text
                     key="dkp-label"
-                    x={p.x - 24}
-                    y={p.y - 12}
-                    textAnchor="middle"
+                    x={p.x + 10}
+                    y={p.y + 4}
                     fill={cool}
-                    fontSize={13}
+                    fontSize={12}
                     fontFamily={mono}
+                    fontWeight={600}
+                    stroke="#0c0c0d"
+                    strokeWidth={4}
+                    strokeLinejoin="round"
+                    paintOrder="stroke"
                   >
                     Deepity DKP
+                  </text>
+                ) : null
+              }
+            />
+
+            <Line
+              type="monotone"
+              dataKey="jpc"
+              hide={off.jpc}
+              name="jpc"
+              stroke={warm}
+              strokeWidth={2}
+              dot={{ r: 2.5, fill: warm, strokeWidth: 0 }}
+              connectNulls
+              isAnimationActive={false}
+              label={(p) =>
+                p.index === jpcLabelIndex ? (
+                  <text
+                    key="jpc-label"
+                    x={p.x + 10}
+                    y={p.y + 14}
+                    fill={warm}
+                    fontSize={12}
+                    fontFamily={mono}
+                    fontWeight={600}
+                    stroke="#0c0c0d"
+                    strokeWidth={4}
+                    strokeLinejoin="round"
+                    paintOrder="stroke"
+                  >
+                    jpc
                   </text>
                 ) : null
               }
@@ -213,11 +257,17 @@ export default function BenchmarkChart() {
                 p.index === lastNgcIndex ? (
                   <text
                     key="ngc-label"
-                    x={p.x + 12}
-                    y={p.y + 30}
+                    x={p.x - 10}
+                    y={p.y + 16}
+                    textAnchor="end"
                     fill={dim}
-                    fontSize={13}
+                    fontSize={12}
                     fontFamily={mono}
+                    fontWeight={600}
+                    stroke="#0c0c0d"
+                    strokeWidth={4}
+                    strokeLinejoin="round"
+                    paintOrder="stroke"
                   >
                     ngc-learn
                   </text>
@@ -228,7 +278,7 @@ export default function BenchmarkChart() {
         </ResponsiveContainer>
         <p className="m-0 mt-3 text-xs text-dim">
           These curves show training accuracy as logged.
-          Deepity is shown every 10 epochs, and ngc-learn reports whole
+          Deepity and jpc are shown every 10 epochs, and ngc-learn reports whole
           percents. The held-out results are below.
         </p>
       </div>
@@ -237,4 +287,7 @@ export default function BenchmarkChart() {
   );
 }
 
+const simpleLabelIndex = points.findIndex((p) => p.t === simple.at(-1)[0]);
+const dkpLabelIndex = points.findIndex((p) => p.t === dkpTime.at(-1));
+const jpcLabelIndex = points.findIndex((p) => p.t === jpc.at(-1)[0]);
 const lastNgcIndex = points.findLastIndex((p) => p.ngc != null);

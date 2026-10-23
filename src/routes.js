@@ -18,7 +18,7 @@ export const routes = [
     path: "/benchmarks",
     title: "Benchmarks · Deepity",
     description:
-      "Deepity reaches 98.22% on MNIST, 2.65× faster than ngc-learn on one laptop CPU. Setup and results.",
+      "Deepity reaches 98.22% on MNIST, 3.16× faster than ngc-learn on one laptop CPU. Setup and results.",
   },
   {
     path: "/theory",

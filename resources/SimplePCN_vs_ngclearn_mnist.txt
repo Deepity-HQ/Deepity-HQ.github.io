@@ -5,133 +5,121 @@ identical epoch count (100). Classic PC settling (calculate_state/
 update_state), forward-projection init, AdamW, lr=0.00373 w/ 0.94 decay/epoch.
 
 Command: python examples/mnist.py 7 100 20
-(Re-run after the performance fixes; accuracy is identical to the earlier 952.6s run.)
 
-Building network (784->512->512->10), seed=7...
+(Per-epoch Acc below is measured on a training subset, not a held-out set.
+Only the final "Deepity Peak Test Accuracy" is the held-out number.)
 
-Training with FORWARD-PROJECTION init: 100 epochs, 20 steps, lr=0.00373, decay_rate=0.94...
-
-(per-epoch Acc below is measured on a 10-batch TRAINING subset, not a
-held-out set -- unlike ngc-learn's per-epoch "Dev: Acc", which IS held-out.
-Only the final "Deepity Peak Test Accuracy" below is the genuine held-out
-number, and that's the one to compare against ngc-learn's Dev accuracy.)
-
-Epoch 1/100 | Time: 6.8s | Acc: 88.48% | Avg energy: 604.1675
-Epoch 2/100 | Time: 13.3s | Acc: 92.64% | Avg energy: 36.4867
-Epoch 3/100 | Time: 19.5s | Acc: 94.28% | Avg energy: 31.5606
-Epoch 4/100 | Time: 25.7s | Acc: 94.24% | Avg energy: 27.7146
-Epoch 5/100 | Time: 31.9s | Acc: 95.64% | Avg energy: 26.1914
-Epoch 6/100 | Time: 38.2s | Acc: 96.36% | Avg energy: 22.9771
-Epoch 7/100 | Time: 44.3s | Acc: 96.60% | Avg energy: 22.6996
-Epoch 8/100 | Time: 50.6s | Acc: 96.64% | Avg energy: 20.5310
-Epoch 9/100 | Time: 56.8s | Acc: 97.16% | Avg energy: 19.4546
-Epoch 10/100 | Time: 63.0s | Acc: 97.84% | Avg energy: 19.5118
-Epoch 11/100 | Time: 69.2s | Acc: 97.72% | Avg energy: 18.2165
-Epoch 12/100 | Time: 75.4s | Acc: 97.32% | Avg energy: 18.2807
-Epoch 13/100 | Time: 81.6s | Acc: 97.40% | Avg energy: 16.2411
-Epoch 14/100 | Time: 87.8s | Acc: 97.76% | Avg energy: 16.0407
-Epoch 15/100 | Time: 94.0s | Acc: 98.24% | Avg energy: 15.3805
-Epoch 16/100 | Time: 100.1s | Acc: 97.92% | Avg energy: 14.0460
-Epoch 17/100 | Time: 106.3s | Acc: 98.36% | Avg energy: 14.4808
-Epoch 18/100 | Time: 112.5s | Acc: 98.36% | Avg energy: 14.6132
-Epoch 19/100 | Time: 118.7s | Acc: 98.12% | Avg energy: 13.5812
-Epoch 20/100 | Time: 124.9s | Acc: 98.56% | Avg energy: 12.6970
-Epoch 21/100 | Time: 131.0s | Acc: 98.92% | Avg energy: 12.9128
-Epoch 22/100 | Time: 137.2s | Acc: 98.28% | Avg energy: 12.4697
-Epoch 23/100 | Time: 143.5s | Acc: 98.96% | Avg energy: 11.7006
-Epoch 24/100 | Time: 149.7s | Acc: 98.68% | Avg energy: 11.3997
-Epoch 25/100 | Time: 155.9s | Acc: 98.64% | Avg energy: 10.8937
-Epoch 26/100 | Time: 162.1s | Acc: 98.88% | Avg energy: 11.2711
-Epoch 27/100 | Time: 168.2s | Acc: 98.52% | Avg energy: 10.4571
-Epoch 28/100 | Time: 174.5s | Acc: 99.20% | Avg energy: 10.1035
-Epoch 29/100 | Time: 180.7s | Acc: 98.96% | Avg energy: 9.3002
-Epoch 30/100 | Time: 186.8s | Acc: 99.16% | Avg energy: 8.7878
-Epoch 31/100 | Time: 193.0s | Acc: 99.24% | Avg energy: 9.0914
-Epoch 32/100 | Time: 199.2s | Acc: 99.44% | Avg energy: 8.7029
-Epoch 33/100 | Time: 205.5s | Acc: 99.24% | Avg energy: 8.3239
-Epoch 34/100 | Time: 212.2s | Acc: 99.48% | Avg energy: 7.9074
-Epoch 35/100 | Time: 218.8s | Acc: 99.20% | Avg energy: 7.9453
-Epoch 36/100 | Time: 225.2s | Acc: 99.48% | Avg energy: 7.1367
-Epoch 37/100 | Time: 231.7s | Acc: 99.52% | Avg energy: 6.8968
-Epoch 38/100 | Time: 238.1s | Acc: 99.24% | Avg energy: 6.7959
-Epoch 39/100 | Time: 244.5s | Acc: 99.68% | Avg energy: 6.4781
-Epoch 40/100 | Time: 251.0s | Acc: 99.56% | Avg energy: 6.3340
-Epoch 41/100 | Time: 257.4s | Acc: 99.04% | Avg energy: 6.1074
-Epoch 42/100 | Time: 263.8s | Acc: 99.52% | Avg energy: 5.7440
-Epoch 43/100 | Time: 270.2s | Acc: 99.32% | Avg energy: 5.4945
-Epoch 44/100 | Time: 276.7s | Acc: 99.44% | Avg energy: 5.2553
-Epoch 45/100 | Time: 283.1s | Acc: 99.52% | Avg energy: 4.8893
-Epoch 46/100 | Time: 289.6s | Acc: 99.68% | Avg energy: 4.9393
-Epoch 47/100 | Time: 296.0s | Acc: 99.40% | Avg energy: 4.9515
-Epoch 48/100 | Time: 302.5s | Acc: 99.44% | Avg energy: 4.5010
-Epoch 49/100 | Time: 309.0s | Acc: 99.60% | Avg energy: 4.3610
-Epoch 50/100 | Time: 315.4s | Acc: 99.64% | Avg energy: 4.2190
-Epoch 51/100 | Time: 321.8s | Acc: 99.48% | Avg energy: 4.0646
-Epoch 52/100 | Time: 328.3s | Acc: 99.60% | Avg energy: 3.8552
-Epoch 53/100 | Time: 334.7s | Acc: 99.64% | Avg energy: 3.8221
-Epoch 54/100 | Time: 341.2s | Acc: 99.48% | Avg energy: 3.6021
-Epoch 55/100 | Time: 347.6s | Acc: 99.56% | Avg energy: 3.5817
-Epoch 56/100 | Time: 354.1s | Acc: 99.68% | Avg energy: 3.4149
-Epoch 57/100 | Time: 360.6s | Acc: 99.48% | Avg energy: 3.2914
-Epoch 58/100 | Time: 367.7s | Acc: 99.76% | Avg energy: 3.2237
-Epoch 59/100 | Time: 374.1s | Acc: 99.52% | Avg energy: 3.1291
-Epoch 60/100 | Time: 380.6s | Acc: 99.68% | Avg energy: 3.0525
-Epoch 61/100 | Time: 387.0s | Acc: 99.68% | Avg energy: 2.9412
-Epoch 62/100 | Time: 393.4s | Acc: 99.56% | Avg energy: 2.8984
-Epoch 63/100 | Time: 399.8s | Acc: 99.52% | Avg energy: 2.8306
-Epoch 64/100 | Time: 406.7s | Acc: 99.76% | Avg energy: 2.7604
-Epoch 65/100 | Time: 413.3s | Acc: 99.80% | Avg energy: 2.7061
-Epoch 66/100 | Time: 419.6s | Acc: 99.56% | Avg energy: 2.6447
-Epoch 67/100 | Time: 426.0s | Acc: 99.76% | Avg energy: 2.6280
-Epoch 68/100 | Time: 432.4s | Acc: 99.72% | Avg energy: 2.5551
-Epoch 69/100 | Time: 440.0s | Acc: 99.84% | Avg energy: 2.5260
-Epoch 70/100 | Time: 446.6s | Acc: 99.64% | Avg energy: 2.4962
-Epoch 71/100 | Time: 453.0s | Acc: 99.76% | Avg energy: 2.4410
-Epoch 72/100 | Time: 459.3s | Acc: 99.88% | Avg energy: 2.4147
-Epoch 73/100 | Time: 465.7s | Acc: 99.76% | Avg energy: 2.3847
-Epoch 74/100 | Time: 472.1s | Acc: 99.88% | Avg energy: 2.3542
-Epoch 75/100 | Time: 479.0s | Acc: 99.60% | Avg energy: 2.3283
-Epoch 76/100 | Time: 485.4s | Acc: 99.76% | Avg energy: 2.3082
-Epoch 77/100 | Time: 491.9s | Acc: 99.68% | Avg energy: 2.2880
-Epoch 78/100 | Time: 499.5s | Acc: 99.72% | Avg energy: 2.2694
-Epoch 79/100 | Time: 506.1s | Acc: 99.80% | Avg energy: 2.2531
-Epoch 80/100 | Time: 512.5s | Acc: 99.80% | Avg energy: 2.2368
-Epoch 81/100 | Time: 518.9s | Acc: 99.84% | Avg energy: 2.2232
-Epoch 82/100 | Time: 525.4s | Acc: 99.84% | Avg energy: 2.2093
-Epoch 83/100 | Time: 531.8s | Acc: 99.92% | Avg energy: 2.1927
-Epoch 84/100 | Time: 538.3s | Acc: 99.60% | Avg energy: 2.1806
-Epoch 85/100 | Time: 544.9s | Acc: 99.64% | Avg energy: 2.1733
-Epoch 86/100 | Time: 551.9s | Acc: 99.68% | Avg energy: 2.1630
-Epoch 87/100 | Time: 558.4s | Acc: 99.48% | Avg energy: 2.1544
-Epoch 88/100 | Time: 564.8s | Acc: 99.72% | Avg energy: 2.1452
-Epoch 89/100 | Time: 571.3s | Acc: 99.60% | Avg energy: 2.1377
-Epoch 90/100 | Time: 578.5s | Acc: 99.68% | Avg energy: 2.1323
-Epoch 91/100 | Time: 585.0s | Acc: 99.84% | Avg energy: 2.1256
-Epoch 92/100 | Time: 591.4s | Acc: 99.64% | Avg energy: 2.1175
-Epoch 93/100 | Time: 597.9s | Acc: 99.88% | Avg energy: 2.1121
-Epoch 94/100 | Time: 604.4s | Acc: 99.76% | Avg energy: 2.1073
-Epoch 95/100 | Time: 610.8s | Acc: 99.88% | Avg energy: 2.1027
-Epoch 96/100 | Time: 618.1s | Acc: 99.76% | Avg energy: 2.0989
-Epoch 97/100 | Time: 624.6s | Acc: 99.72% | Avg energy: 2.0940
-Epoch 98/100 | Time: 631.1s | Acc: 99.76% | Avg energy: 2.0897
-Epoch 99/100 | Time: 637.5s | Acc: 99.76% | Avg energy: 2.0868
-Epoch 100/100 | Time: 644.1s | Acc: 99.88% | Avg energy: 2.0841
-
-Training complete in 644.1s.
-
-Running final test evaluation (with forward-projection init)...
-
+Epoch 1/100 | Time: 5.8s | Acc: 93.96% | Avg energy: 742.3733
+Epoch 2/100 | Time: 11.3s | Acc: 96.28% | Avg energy: 141.7125
+Epoch 3/100 | Time: 16.9s | Acc: 92.28% | Avg energy: 146.4959
+Epoch 4/100 | Time: 22.6s | Acc: 95.80% | Avg energy: 142.1158
+Epoch 5/100 | Time: 27.9s | Acc: 93.48% | Avg energy: 107.3979
+Epoch 6/100 | Time: 33.2s | Acc: 88.84% | Avg energy: 93.2617
+Epoch 7/100 | Time: 38.4s | Acc: 96.04% | Avg energy: 87.8423
+Epoch 8/100 | Time: 43.7s | Acc: 97.36% | Avg energy: 80.6829
+Epoch 9/100 | Time: 48.9s | Acc: 93.28% | Avg energy: 78.0833
+Epoch 10/100 | Time: 54.2s | Acc: 98.00% | Avg energy: 69.2777
+Epoch 11/100 | Time: 59.5s | Acc: 98.64% | Avg energy: 58.2004
+Epoch 12/100 | Time: 64.9s | Acc: 96.56% | Avg energy: 51.5152
+Epoch 13/100 | Time: 70.3s | Acc: 99.16% | Avg energy: 49.5142
+Epoch 14/100 | Time: 75.7s | Acc: 98.84% | Avg energy: 44.1789
+Epoch 15/100 | Time: 81.1s | Acc: 99.24% | Avg energy: 41.4241
+Epoch 16/100 | Time: 86.5s | Acc: 98.08% | Avg energy: 37.7546
+Epoch 17/100 | Time: 91.8s | Acc: 99.12% | Avg energy: 36.8684
+Epoch 18/100 | Time: 97.2s | Acc: 98.24% | Avg energy: 35.0159
+Epoch 19/100 | Time: 102.7s | Acc: 99.24% | Avg energy: 34.3036
+Epoch 20/100 | Time: 108.0s | Acc: 99.76% | Avg energy: 31.6370
+Epoch 21/100 | Time: 113.2s | Acc: 99.32% | Avg energy: 31.0139
+Epoch 22/100 | Time: 118.5s | Acc: 99.76% | Avg energy: 27.8740
+Epoch 23/100 | Time: 123.9s | Acc: 99.96% | Avg energy: 27.5163
+Epoch 24/100 | Time: 129.3s | Acc: 99.88% | Avg energy: 27.2853
+Epoch 25/100 | Time: 134.7s | Acc: 99.96% | Avg energy: 26.5588
+Epoch 26/100 | Time: 140.3s | Acc: 99.96% | Avg energy: 26.0486
+Epoch 27/100 | Time: 145.8s | Acc: 99.96% | Avg energy: 25.8949
+Epoch 28/100 | Time: 151.3s | Acc: 100.00% | Avg energy: 23.9844
+Epoch 29/100 | Time: 156.7s | Acc: 99.88% | Avg energy: 24.6001
+Epoch 30/100 | Time: 162.2s | Acc: 99.96% | Avg energy: 22.8470
+Epoch 31/100 | Time: 167.5s | Acc: 100.00% | Avg energy: 23.0347
+Epoch 32/100 | Time: 173.0s | Acc: 99.92% | Avg energy: 22.3640
+Epoch 33/100 | Time: 178.4s | Acc: 99.96% | Avg energy: 21.6271
+Epoch 34/100 | Time: 183.8s | Acc: 99.96% | Avg energy: 21.4875
+Epoch 35/100 | Time: 189.1s | Acc: 99.96% | Avg energy: 21.0968
+Epoch 36/100 | Time: 194.6s | Acc: 100.00% | Avg energy: 20.6795
+Epoch 37/100 | Time: 200.0s | Acc: 99.96% | Avg energy: 20.6367
+Epoch 38/100 | Time: 205.4s | Acc: 100.00% | Avg energy: 20.3629
+Epoch 39/100 | Time: 210.8s | Acc: 100.00% | Avg energy: 20.3526
+Epoch 40/100 | Time: 216.2s | Acc: 100.00% | Avg energy: 20.2210
+Epoch 41/100 | Time: 221.6s | Acc: 100.00% | Avg energy: 19.9935
+Epoch 42/100 | Time: 226.9s | Acc: 100.00% | Avg energy: 20.0824
+Epoch 43/100 | Time: 232.2s | Acc: 100.00% | Avg energy: 19.8225
+Epoch 44/100 | Time: 237.5s | Acc: 100.00% | Avg energy: 19.7116
+Epoch 45/100 | Time: 242.8s | Acc: 100.00% | Avg energy: 19.6403
+Epoch 46/100 | Time: 248.1s | Acc: 100.00% | Avg energy: 19.6181
+Epoch 47/100 | Time: 253.3s | Acc: 100.00% | Avg energy: 19.4569
+Epoch 48/100 | Time: 258.6s | Acc: 99.96% | Avg energy: 19.5154
+Epoch 49/100 | Time: 264.0s | Acc: 100.00% | Avg energy: 19.4582
+Epoch 50/100 | Time: 269.3s | Acc: 100.00% | Avg energy: 19.3947
+Epoch 51/100 | Time: 274.7s | Acc: 100.00% | Avg energy: 19.3720
+Epoch 52/100 | Time: 280.0s | Acc: 100.00% | Avg energy: 19.3401
+Epoch 53/100 | Time: 285.4s | Acc: 100.00% | Avg energy: 19.3278
+Epoch 54/100 | Time: 290.7s | Acc: 100.00% | Avg energy: 19.3165
+Epoch 55/100 | Time: 296.0s | Acc: 100.00% | Avg energy: 19.4433
+Epoch 56/100 | Time: 301.4s | Acc: 100.00% | Avg energy: 19.4782
+Epoch 57/100 | Time: 306.7s | Acc: 99.96% | Avg energy: 19.5176
+Epoch 58/100 | Time: 312.0s | Acc: 100.00% | Avg energy: 19.7781
+Epoch 59/100 | Time: 317.3s | Acc: 100.00% | Avg energy: 19.9301
+Epoch 60/100 | Time: 322.7s | Acc: 100.00% | Avg energy: 20.1836
+Epoch 61/100 | Time: 328.2s | Acc: 100.00% | Avg energy: 20.5008
+Epoch 62/100 | Time: 333.6s | Acc: 100.00% | Avg energy: 20.9396
+Epoch 63/100 | Time: 339.0s | Acc: 100.00% | Avg energy: 21.4331
+Epoch 64/100 | Time: 344.4s | Acc: 100.00% | Avg energy: 22.0946
+Epoch 65/100 | Time: 349.9s | Acc: 100.00% | Avg energy: 22.7416
+Epoch 66/100 | Time: 355.4s | Acc: 100.00% | Avg energy: 23.6206
+Epoch 67/100 | Time: 360.8s | Acc: 100.00% | Avg energy: 24.6990
+Epoch 68/100 | Time: 366.3s | Acc: 100.00% | Avg energy: 25.9721
+Epoch 69/100 | Time: 371.7s | Acc: 99.96% | Avg energy: 27.4947
+Epoch 70/100 | Time: 377.1s | Acc: 100.00% | Avg energy: 29.2633
+Epoch 71/100 | Time: 382.6s | Acc: 100.00% | Avg energy: 31.2845
+Epoch 72/100 | Time: 388.0s | Acc: 100.00% | Avg energy: 33.6517
+Epoch 73/100 | Time: 393.5s | Acc: 100.00% | Avg energy: 36.3204
+Epoch 74/100 | Time: 399.0s | Acc: 100.00% | Avg energy: 39.3858
+Epoch 75/100 | Time: 404.5s | Acc: 100.00% | Avg energy: 42.8461
+Epoch 76/100 | Time: 410.0s | Acc: 100.00% | Avg energy: 46.4577
+Epoch 77/100 | Time: 415.4s | Acc: 100.00% | Avg energy: 50.5363
+Epoch 78/100 | Time: 420.8s | Acc: 100.00% | Avg energy: 55.1957
+Epoch 79/100 | Time: 426.3s | Acc: 100.00% | Avg energy: 60.2905
+Epoch 80/100 | Time: 431.8s | Acc: 99.96% | Avg energy: 65.6409
+Epoch 81/100 | Time: 437.3s | Acc: 100.00% | Avg energy: 71.3957
+Epoch 82/100 | Time: 443.2s | Acc: 99.96% | Avg energy: 77.7347
+Epoch 83/100 | Time: 448.6s | Acc: 100.00% | Avg energy: 84.4061
+Epoch 84/100 | Time: 454.0s | Acc: 100.00% | Avg energy: 91.2225
+Epoch 85/100 | Time: 459.4s | Acc: 100.00% | Avg energy: 98.2527
+Epoch 86/100 | Time: 464.8s | Acc: 100.00% | Avg energy: 106.0111
+Epoch 87/100 | Time: 470.3s | Acc: 100.00% | Avg energy: 114.2434
+Epoch 88/100 | Time: 475.8s | Acc: 100.00% | Avg energy: 122.8912
+Epoch 89/100 | Time: 481.3s | Acc: 99.96% | Avg energy: 131.8819
+Epoch 90/100 | Time: 486.7s | Acc: 100.00% | Avg energy: 141.1709
+Epoch 91/100 | Time: 492.2s | Acc: 99.96% | Avg energy: 150.6304
+Epoch 92/100 | Time: 497.7s | Acc: 100.00% | Avg energy: 160.3207
+Epoch 93/100 | Time: 503.1s | Acc: 100.00% | Avg energy: 170.2791
+Epoch 94/100 | Time: 508.5s | Acc: 100.00% | Avg energy: 180.4337
+Epoch 95/100 | Time: 513.9s | Acc: 100.00% | Avg energy: 190.7289
+Epoch 96/100 | Time: 519.3s | Acc: 99.96% | Avg energy: 201.1383
+Epoch 97/100 | Time: 524.9s | Acc: 100.00% | Avg energy: 211.5993
+Epoch 98/100 | Time: 530.3s | Acc: 100.00% | Avg energy: 222.0819
+Epoch 99/100 | Time: 535.7s | Acc: 100.00% | Avg energy: 232.5311
+Epoch 100/100 | Time: 541.1s | Acc: 100.00% | Avg energy: 242.9140
+Training complete in 541.1s.
 === Result ===
-Deepity Peak Test Accuracy: 98.22%   (ngc-learn: 95.09% -- see note below)
-Train time: 644.1s
+Deepity Peak Test Accuracy: 98.22%   (ngc-learn: 95.09%)
+Train time: 541.1s
 
 === Matched comparison (same arch, same T, same mb_size, same epochs) ===
                  Deepity SimplePCN     ngc-learn pc_discrim
-Total time       644.1s                1707.7s
+Total time       541.1s                1707.7s
 Held-out acc     98.22%                98% (best dev acc)
-=> Deepity is ~2.65x faster at effectively the same accuracy, on an
-   identical architecture/settling-step/batch-size/epoch-count config.
+=> Deepity is ~3.16x faster at the same accuracy.
 
 (The "95.09%" printed by the script itself is a STALE reference from an
-older 15-epoch/T=30 run predating this session -- logs/ngclearn_pc_discrim_mnist.txt
-has the real, freshly-run ngc-learn number for this exact T=20/100-epoch config.)
+older 15-epoch/T=30 run; logs/ngclearn_pc_discrim_mnist.txt has the real,
+freshly-run ngc-learn number for this T=20/100-epoch config.)
