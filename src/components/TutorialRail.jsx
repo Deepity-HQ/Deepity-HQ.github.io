@@ -44,22 +44,39 @@ export default function TutorialRail({ current }) {
   return (
     <>
       <ReadingProgress />
-      <nav aria-label="Tutorials" className="flex flex-wrap items-center gap-2 px-8 pt-2">
-        <span className="label mr-2">Tutorial</span>
-        {STEPS.map((s) => (
+      <nav
+        aria-label="Tutorials"
+        className="flex flex-wrap items-center justify-between gap-3 border-b border-line bg-panel2/30 px-6 py-3.5 md:px-10"
+      >
+        <div className="flex items-center gap-2 text-xs font-[family-name:var(--font-display)] text-dim">
           <Link
-            key={s.n}
-            to={s.to}
-            aria-current={s.n === current ? "page" : undefined}
-            className={`flex h-8 w-8 items-center justify-center rounded-full border text-sm no-underline transition-colors ${
-              s.n === current
-                ? "border-transparent bg-white text-black"
-                : "border-line bg-white/[0.04] text-dim hover:text-fg"
-            }`}
+            to="/tutorial"
+            className="hover:text-fg transition-colors no-underline"
           >
-            {s.n}
+            Tutorials
           </Link>
-        ))}
+          <span className="text-faint">/</span>
+          <span className="text-accent-text font-medium">Part {current}</span>
+        </div>
+
+        <div className="flex items-center gap-1.5">
+          <span className="label mr-1 text-[11px] text-faint hidden sm:inline">Parts:</span>
+          {STEPS.map((s) => (
+            <Link
+              key={s.n}
+              to={s.to}
+              aria-current={s.n === current ? "page" : undefined}
+              title={`Tutorial ${s.n}`}
+              className={`flex h-7 w-7 items-center justify-center rounded-lg border text-xs font-[family-name:var(--font-display)] no-underline transition-all ${
+                s.n === current
+                  ? "border-accent bg-accent text-accent-ink font-semibold shadow-[0_0_12px_rgba(178,41,255,0.4)]"
+                  : "border-line bg-fg/[0.04] text-dim hover:border-line-strong hover:text-fg hover:bg-fg/[0.08]"
+              }`}
+            >
+              {s.n}
+            </Link>
+          ))}
+        </div>
       </nav>
     </>
   );

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import MainFooter from "./components/MainFooter";
+import PageHeader from "./components/PageHeader";
 import TutorialCard from "./components/TutorialCard";
 import Reveal from "./components/Reveal";
 
@@ -63,29 +64,33 @@ export default function TutorialLanding() {
   const filteredTutorials = tutorialsData
     .filter((tutorial) => level === "All" || tutorial.subtitle === level)
     .filter(
-    (tutorial) =>
-      tutorial.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      tutorial.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      tutorial.subtitle.toLowerCase().includes(searchQuery.toLowerCase()),
+      (tutorial) =>
+        tutorial.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        tutorial.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        tutorial.subtitle.toLowerCase().includes(searchQuery.toLowerCase()),
     );
 
   return (
-    <div className="min-h-screen pt-14">
-      <div className="mx-auto min-h-screen max-w-[1280px]">
-        <div className="px-5 pb-6 pt-16 text-center md:px-8">
-          <div className="label mb-4">Tutorials</div>
-          <h1 className="m-0 font-[family-name:var(--font-display)] text-4xl tracking-[-0.02em] md:text-6xl">
-            Learn Deepity
-          </h1>
-        </div>
-        <div className="px-5 pt-6 md:px-8">
+    <div className="min-h-screen">
+      <PageHeader
+        title="Learn Deepity"
+        eyebrow="Interactive Guides"
+        width={1280}
+      >
+        From first principles to practical networks: step-by-step guides for
+        training predictive coding models in C++ and Python.
+      </PageHeader>
+
+      <div className="mx-auto max-w-[1280px] px-5 pb-16 md:px-8">
+        <div className="mx-auto max-w-xl pb-10">
           <div className="relative">
-            <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4.5">
               <svg
-                className="w-4 h-4 text-dim"
+                className="h-4 w-4 text-dim"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 20 20"
+                aria-hidden="true"
               >
                 <path
                   stroke="currentColor"
@@ -98,10 +103,10 @@ export default function TutorialLanding() {
             </div>
             <input
               type="text"
-              placeholder="Search tutorials..."
+              placeholder="Search guides, concepts, keywords..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-full border border-line-strong bg-panel p-4 pl-12 font-[inherit] text-[16px] text-fg placeholder:text-faint focus:border-accent focus:outline-none"
+              className="w-full rounded-xl border border-line-strong bg-panel/90 py-3.5 pl-11 pr-5 font-[inherit] text-sm text-fg placeholder:text-faint focus:border-accent focus:shadow-[0_0_24px_rgba(178,41,255,0.18)] focus:outline-none transition-all"
             />
           </div>
           <div className="mt-4 flex flex-wrap justify-center gap-2">
@@ -111,8 +116,10 @@ export default function TutorialLanding() {
                 type="button"
                 aria-pressed={level === l}
                 onClick={() => setLevel(l)}
-                className={`cursor-pointer rounded-full border px-4 py-1.5 text-sm transition-colors ${
-                  level === l ? "border-transparent bg-white text-black" : "border-line bg-white/[0.04] text-dim hover:text-fg"
+                className={`cursor-pointer rounded-lg border px-4 py-1.5 text-xs font-[family-name:var(--font-display)] uppercase tracking-wider transition-colors ${
+                  level === l
+                    ? "border-transparent bg-fg text-bg font-semibold"
+                    : "border-line bg-fg/[0.04] text-dim hover:text-fg hover:border-line-strong"
                 }`}
               >
                 {l}
@@ -121,10 +128,14 @@ export default function TutorialLanding() {
           </div>
         </div>
 
-        <div className="grid w-full grid-cols-1 gap-6 px-5 py-6 pb-16 md:grid-cols-2 md:px-8 lg:grid-cols-3">
+        <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filteredTutorials.length > 0 ? (
             filteredTutorials.map((tutorial, index) => (
-              <Reveal key={tutorial.title} delay={(index % 3) * 90} className="h-full">
+              <Reveal
+                key={tutorial.title}
+                delay={(index % 3) * 90}
+                className="h-full"
+              >
                 <TutorialCard
                   title={tutorial.title}
                   subtitle={tutorial.subtitle}
@@ -135,8 +146,18 @@ export default function TutorialLanding() {
               </Reveal>
             ))
           ) : (
-            <div className="col-span-full text-center py-10 text-dim">
-              No tutorials found matching "{searchQuery}"
+            <div className="col-span-full py-16 text-center text-dim">
+              <p className="text-lg">No tutorials found matching "{searchQuery}"</p>
+              <button
+                type="button"
+                onClick={() => {
+                  setSearchQuery("");
+                  setLevel("All");
+                }}
+                className="btn mt-4 text-sm"
+              >
+                Reset filters
+              </button>
             </div>
           )}
         </div>

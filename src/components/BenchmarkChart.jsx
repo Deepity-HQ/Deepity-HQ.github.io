@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ComposedChart,
   Line,
@@ -60,6 +60,23 @@ const SERIES = [
 
 export default function BenchmarkChart() {
   const [off, setOff] = useState({});
+  const [, setThemeTick] = useState(0);
+
+  useEffect(() => {
+    const onTheme = () => setThemeTick((t) => t + 1);
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    mq.addEventListener("change", onTheme);
+    const obs = new MutationObserver(() => onTheme());
+    obs.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+    return () => {
+      mq.removeEventListener("change", onTheme);
+      obs.disconnect();
+    };
+  }, []);
+
   const toggle = (k) => setOff((o) => ({ ...o, [k]: !o[k] }));
   const accent = token("--accent", "#b229ff");
   const cool = token("--glow-cool", "#29cbfc");
@@ -67,8 +84,8 @@ export default function BenchmarkChart() {
   const grid = token("--line", "rgba(255,255,255,0.09)");
   const dim = token("--fg-dim", "#9a9a9a");
   const fg = token("--fg", "#e6e6e6");
-  const mono = token("--font-display", "sans-serif");
-  const tick = { fill: dim, fontSize: 12, fontFamily: mono };
+  const displayFont = token("--font-display", "sans-serif");
+  const tick = { fill: dim, fontSize: 12, fontFamily: displayFont };
 
   return (
     <div className="w-full">
@@ -82,14 +99,14 @@ export default function BenchmarkChart() {
                 type="button"
                 aria-pressed={!off[x.key]}
                 onClick={() => toggle(x.key)}
-                className={`inline-flex cursor-pointer items-center gap-2 rounded-full border px-3 py-1 text-sm transition-colors ${
+                className={`inline-flex cursor-pointer items-center gap-2 rounded-lg border px-3 py-1 text-sm font-[family-name:var(--font-display)] transition-colors ${
                   off[x.key]
                     ? "border-line bg-transparent text-dim"
-                    : "border-transparent bg-white text-black"
+                    : "border-transparent bg-fg text-bg"
                 }`}
               >
                 <span
-                  className="inline-block h-2 w-2 rounded-full"
+                  className="inline-block h-1.5 w-3 rounded-[2px]"
                   style={{ background: off[x.key] ? "var(--fg-faint)" : x.dot }}
                 />
                 {x.label}
@@ -136,11 +153,12 @@ export default function BenchmarkChart() {
 
             <Tooltip
               contentStyle={{
-                background: "#0c0c0d",
+                background: "var(--panel)",
                 border: `1px solid ${grid}`,
                 borderRadius: 12,
-                fontFamily: mono,
+                fontFamily: displayFont,
                 fontSize: 13,
+                boxShadow: "0 8px 24px rgba(0,0,0,0.18)",
               }}
               labelStyle={{ color: dim }}
               itemStyle={{ color: fg }}
@@ -156,7 +174,7 @@ export default function BenchmarkChart() {
               name="Deepity"
               stroke={accent}
               strokeWidth={2.5}
-              dot={{ r: 3, fill: accent, strokeWidth: 0 }}
+              dot={false}
               connectNulls
               isAnimationActive={false}
               label={(p) =>
@@ -167,9 +185,9 @@ export default function BenchmarkChart() {
                     y={p.y + 4}
                     fill={accent}
                     fontSize={12}
-                    fontFamily={mono}
+                    fontFamily={displayFont}
                     fontWeight={600}
-                    stroke="#0c0c0d"
+                    stroke="var(--panel)"
                     strokeWidth={4}
                     strokeLinejoin="round"
                     paintOrder="stroke"
@@ -198,9 +216,9 @@ export default function BenchmarkChart() {
                     y={p.y + 4}
                     fill={cool}
                     fontSize={12}
-                    fontFamily={mono}
+                    fontFamily={displayFont}
                     fontWeight={600}
-                    stroke="#0c0c0d"
+                    stroke="var(--panel)"
                     strokeWidth={4}
                     strokeLinejoin="round"
                     paintOrder="stroke"
@@ -218,7 +236,7 @@ export default function BenchmarkChart() {
               name="jpc"
               stroke={warm}
               strokeWidth={2}
-              dot={{ r: 2.5, fill: warm, strokeWidth: 0 }}
+              dot={false}
               connectNulls
               isAnimationActive={false}
               label={(p) =>
@@ -229,9 +247,9 @@ export default function BenchmarkChart() {
                     y={p.y + 14}
                     fill={warm}
                     fontSize={12}
-                    fontFamily={mono}
+                    fontFamily={displayFont}
                     fontWeight={600}
-                    stroke="#0c0c0d"
+                    stroke="var(--panel)"
                     strokeWidth={4}
                     strokeLinejoin="round"
                     paintOrder="stroke"
@@ -262,9 +280,9 @@ export default function BenchmarkChart() {
                     textAnchor="end"
                     fill={dim}
                     fontSize={12}
-                    fontFamily={mono}
+                    fontFamily={displayFont}
                     fontWeight={600}
-                    stroke="#0c0c0d"
+                    stroke="var(--panel)"
                     strokeWidth={4}
                     strokeLinejoin="round"
                     paintOrder="stroke"

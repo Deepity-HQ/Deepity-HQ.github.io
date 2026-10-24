@@ -39,23 +39,27 @@ const hardware = [
   { name: "GPU (A100)", time: "12.4s", acc: "97.02%" },
 ];
 
-function Card({ title, text, children, className = "" }) {
+function Card({ title, text, eyebrow, children, className = "" }) {
   return (
-    <div className={`card-dark flex flex-col p-6 md:p-8 ${className}`}>
-      <div className="flex flex-1 flex-col justify-center">{children}</div>
-      <div className="mt-6 text-center">
+    <div className={`card-dark card-interactive flex flex-col p-6 md:p-8 ${className}`}>
+      <div className="mb-6">
+        {eyebrow && <div className="label mb-2 text-xs text-dim">{eyebrow}</div>}
         <h3 className="m-0 font-[family-name:var(--font-display)] text-xl tracking-[-0.01em] md:text-2xl">{title}</h3>
-        <p className="mx-auto mb-0 mt-2 max-w-sm text-sm text-dim">{text}</p>
+        {text && <p className="mb-0 mt-2 text-sm leading-relaxed text-dim">{text}</p>}
       </div>
+      <div className="flex flex-1 flex-col justify-center">{children}</div>
     </div>
   );
 }
 
 export default function Benchmarks() {
-
   return (
     <div>
-      <PageHeader title="Deepity vs ngc-learn and PyTorch" width={1200}>
+      <PageHeader
+        title="Deepity vs ngc-learn and PyTorch"
+        eyebrow="Benchmarks & Results"
+        width={1200}
+      >
         On MNIST, Deepity reaches 98.22% accuracy, 3.16× faster than ngc-learn
         with the same network. The comparison ran on one laptop CPU.
       </PageHeader>
@@ -65,18 +69,24 @@ export default function Benchmarks() {
           <div className="grid gap-3 md:gap-4 lg:grid-cols-5">
             <Card
               className="lg:col-span-3"
+              eyebrow="Accuracy Metric"
               title="Accuracy on MNIST"
               text="Held-out test images. Deepity matches ngc-learn and beats the PyTorch baseline."
             >
-              <div className="text-center">
-                <div className="font-[family-name:var(--font-display)] font-light text-7xl tracking-[-0.04em] text-accent-text md:text-8xl">
+              <div className="text-center py-4">
+                <div className="font-[family-name:var(--font-display)] font-light text-7xl tracking-[-0.04em] text-accent-text md:text-8xl drop-shadow-[0_0_24px_rgba(203,123,255,0.25)]">
                   <CountUp value={98.22} decimals={2} suffix="%" />
                 </div>
-                <div className="label mt-3">Deepity, held-out</div>
+                <div className="label mt-3 text-xs tracking-widest text-dim">
+                  Deepity, held-out
+                </div>
               </div>
-              <div className="mt-8 flex flex-wrap justify-center gap-2">
+              <div className="mt-6 flex flex-wrap justify-center gap-2">
                 {chips.map((c) => (
-                  <span key={c} className="rounded-full border border-line bg-white/[0.04] px-3 py-1 text-xs text-dim">
+                  <span
+                    key={c}
+                    className="rounded-lg border border-line bg-fg/[0.04] px-3 py-1 font-[family-name:var(--font-display)] text-xs text-dim hover:border-line-strong transition-colors"
+                  >
                     {c}
                   </span>
                 ))}
@@ -85,6 +95,7 @@ export default function Benchmarks() {
 
             <Card
               className="lg:col-span-2"
+              eyebrow="Speed Comparison"
               title="Training time"
               text="100 epochs on the same laptop CPU. Deepity is 3.16× faster than ngc-learn."
             >
@@ -101,17 +112,23 @@ export default function Benchmarks() {
 
             <Card
               className="lg:col-span-2"
+              eyebrow="Comparison Data"
               title="The other runs"
               text="Held-out accuracy and total training time."
             >
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-2.5">
                 {others.map((o) => (
-                  <div key={o.name} className="flex items-center justify-between rounded-2xl border border-line bg-white/[0.03] px-4 py-3">
+                  <div
+                    key={o.name}
+                    className="flex items-center justify-between rounded-xl border border-line bg-fg/[0.03] px-4 py-3 transition-colors hover:border-line-strong hover:bg-fg/[0.05]"
+                  >
                     <div>
-                      <div className="text-fg">{o.name}</div>
-                      <div className="text-xs text-dim">{o.note}</div>
+                      <div className="text-fg font-medium text-sm">{o.name}</div>
+                      <div className="text-xs font-[family-name:var(--font-display)] text-dim">{o.note}</div>
                     </div>
-                    <div className="font-[family-name:var(--font-display)] text-xl tabular-nums">{o.acc}</div>
+                    <div className="font-[family-name:var(--font-display)] text-xl font-light tabular-nums text-fg">
+                      {o.acc}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -119,47 +136,78 @@ export default function Benchmarks() {
           </div>
         </Reveal>
 
-        <Reveal className="glass mt-4 p-8 md:p-12">
-          <h2 className="m-0 font-[family-name:var(--font-display)] text-3xl tracking-[-0.02em] md:text-4xl">CPU and GPU</h2>
-          <p className="mb-0 mt-3 max-w-2xl text-dim">
+        <Reveal className="glass mt-6 p-8 md:p-12 relative overflow-hidden">
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-3">
+            <div className="label">Hardware Scaling</div>
+            <span className="inline-flex items-center gap-1.5 rounded-lg border border-accent/40 bg-accent/10 px-3 py-1 font-[family-name:var(--font-display)] text-xs text-accent-text">
+              11.8× faster on GPU
+            </span>
+          </div>
+          <h2 className="m-0 font-[family-name:var(--font-display)] text-3xl tracking-[-0.02em] md:text-4xl">
+            CPU and GPU
+          </h2>
+          <p className="mb-0 mt-3 max-w-2xl text-base leading-relaxed text-dim">
             The same Deepity model trained on a CPU and on an A100. The GPU finished 11.8× faster
             with the same accuracy, within 0.02 points.
           </p>
-          <div className="mt-6 grid gap-3 sm:grid-cols-2">
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
             {hardware.map((h) => (
-              <div key={h.name} className="flex items-center justify-between rounded-2xl border border-line bg-white/[0.03] px-5 py-4">
+              <div
+                key={h.name}
+                className="card-dark card-interactive flex items-center justify-between rounded-2xl border border-line p-5"
+              >
                 <div>
-                  <div className="text-fg">{h.name}</div>
-                  <div className="text-xs text-dim">Train time {h.time}</div>
+                  <div className="text-fg font-medium">{h.name}</div>
+                  <div className="mt-1 font-[family-name:var(--font-display)] text-xs text-dim">
+                    Train time: <span className="text-fg">{h.time}</span>
+                  </div>
                 </div>
-                <div className="font-[family-name:var(--font-display)] text-xl tabular-nums">{h.acc}</div>
+                <div className="text-right">
+                  <div className="font-[family-name:var(--font-display)] text-2xl font-light text-accent-text tabular-nums">
+                    {h.acc}
+                  </div>
+                  <div className="text-[11px] font-[family-name:var(--font-display)] uppercase text-dim">Accuracy</div>
+                </div>
               </div>
             ))}
           </div>
         </Reveal>
 
-        <Reveal className="glass mt-4 p-8 md:p-12">
-          <h2 className="m-0 font-[family-name:var(--font-display)] text-3xl tracking-[-0.02em] md:text-4xl">Setup</h2>
-          <dl className="m-0 mt-6 divide-y divide-[color:var(--line)]">
+        <Reveal className="glass mt-6 p-8 md:p-12">
+          <div className="label mb-3">Methodology</div>
+          <h2 className="m-0 font-[family-name:var(--font-display)] text-3xl tracking-[-0.02em] md:text-4xl">
+            Setup
+          </h2>
+          <dl className="m-0 mt-6 divide-y divide-line rounded-xl border border-line bg-panel2/40 overflow-hidden">
             {setup.map(([k, v]) => (
-              <div key={k} className="grid gap-1 py-3 md:grid-cols-[220px_1fr] md:gap-6">
-                <dt className="label">{k}</dt>
-                <dd className="m-0 text-dim">{v}</dd>
+              <div
+                key={k}
+                className="grid gap-1 px-5 py-3.5 md:grid-cols-[200px_1fr] md:gap-6 hover:bg-fg/[0.02] transition-colors"
+              >
+                <dt className="label text-xs self-center">{k}</dt>
+                <dd className="m-0 text-sm leading-relaxed text-dim">{v}</dd>
               </div>
             ))}
           </dl>
         </Reveal>
 
-        <Reveal className="glass mt-4 p-8 md:p-12">
-          <h2 className="m-0 font-[family-name:var(--font-display)] text-3xl tracking-[-0.02em] md:text-4xl">Notes</h2>
-          <ul className="mt-6 list-disc space-y-3 pl-5 text-dim">
+        <Reveal className="glass mt-6 p-8 md:p-12">
+          <div className="label mb-3">Additional Details</div>
+          <h2 className="m-0 font-[family-name:var(--font-display)] text-3xl tracking-[-0.02em] md:text-4xl">
+            Notes
+          </h2>
+          <ul className="mt-6 list-disc space-y-3 pl-5 text-base leading-relaxed text-dim">
             {notes.map((c) => (
               <li key={c}>{c}</li>
             ))}
           </ul>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link to="/tutorial" className="btn btn--solid">Get started</Link>
-            <Link to="/theory" className="btn">How it works</Link>
+            <Link to="/tutorial" className="btn btn--solid">
+              Get started
+            </Link>
+            <Link to="/theory" className="btn">
+              How it works →
+            </Link>
           </div>
         </Reveal>
       </div>

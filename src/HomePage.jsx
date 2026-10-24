@@ -188,9 +188,9 @@ export default function HomePage() {
                   .getElementById("idea")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
-              className="absolute bottom-14 left-[5.5rem] z-10 hidden cursor-pointer items-center gap-3 rounded-full border border-line bg-[#131314] py-1.5 pl-1.5 pr-4 text-sm text-dim transition-colors hover:border-accent hover:text-fg xl:flex"
+              className="absolute bottom-14 left-[5.5rem] z-10 hidden cursor-pointer items-center gap-3 rounded-xl border border-line bg-[color:var(--btn-bg)] py-1.5 pl-1.5 pr-4 text-sm font-[family-name:var(--font-display)] text-dim transition-colors hover:border-accent hover:text-fg xl:flex"
             >
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-black">
+              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-fg text-bg">
                 <svg
                   width="14"
                   height="14"
@@ -209,7 +209,7 @@ export default function HomePage() {
             </button>
           </div>
 
-          <dl className="relative z-10 m-0 grid grid-cols-2 border-t border-line bg-black/50 lg:grid-cols-4">
+          <dl className="relative z-10 m-0 grid grid-cols-2 border-t border-line bg-panel/60 backdrop-blur-sm lg:grid-cols-4">
             {specs.map((s, i) => (
               <Reveal
                 key={s.caption}

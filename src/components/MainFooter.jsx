@@ -4,7 +4,7 @@ import { DiscordMark, GitHubMark } from "./icons";
 
 const linkClass = "text-dim no-underline transition-colors hover:text-accent-text";
 const iconClass =
-  "flex h-10 w-10 items-center justify-center rounded-full border border-line bg-[#131314] text-fg transition-colors hover:border-accent hover:bg-[#232325]";
+  "flex h-10 w-10 items-center justify-center rounded-xl border border-line bg-[color:var(--btn-bg)] text-fg transition-colors hover:border-accent hover:bg-[color:var(--btn-bg-hover)] hover:text-accent-text";
 
 export default function MainFooter() {
   return (
@@ -21,7 +21,7 @@ export default function MainFooter() {
         </nav>
 
         <p className="m-0 flex items-center gap-3 text-center text-[15px] text-faint">
-          <img src="/brand/mark-white.svg" width="20" height="20" alt="" className="h-5 w-5 opacity-70" />
+          <img src="/brand/mark-white.svg" width="20" height="20" alt="" className="logo-themed h-5 w-5 opacity-70" />
           © {new Date().getFullYear()} Deepity. MIT licensed.
         </p>
 

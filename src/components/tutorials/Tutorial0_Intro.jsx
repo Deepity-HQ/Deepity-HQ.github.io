@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import MainFooter from "../MainFooter";
 import Reveal from "../Reveal";
 import UtilButton from "../UtilButton";
@@ -36,51 +37,52 @@ print(output)`;
 
 export default function Tutorial0_Intro() {
   return (
-    <div className="min-h-screen px-3 pt-20 pb-6 md:px-4">
-      <div className="min-h-screen max-w-7xl mx-auto pt-6 pb-12 rounded-2xl border border-line bg-bg/90">
+    <div className="subpage-glow min-h-screen px-3 pt-20 pb-12 md:px-6">
+      <div className="mx-auto max-w-5xl overflow-hidden rounded-2xl border border-line bg-panel2/60 shadow-2xl">
         <UtilButton backLink="/tutorial" nextLink="/tutorial/1-beginning" />
         <TutorialRail current={0} />
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 px-8 my-5">
-          <div className="max-w-full md:max-w-[55%]">
-            <h1 className="ff-display text-4xl font-bold m-5">
-              Tutorial 0: Introduction
+
+        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 px-6 py-8 md:px-12 md:py-12">
+          <div className="max-w-full md:max-w-[58%]">
+            <div className="label mb-3 text-xs text-accent-text">Tutorial 0</div>
+            <h1 className="font-[family-name:var(--font-display)] text-3xl font-normal tracking-[-0.03em] md:text-5xl text-fg">
+              Introduction to Predictive Coding
             </h1>
-            <p className="text-lg m-5 ff-body">
+            <p className="mt-5 text-base md:text-lg leading-relaxed text-dim">
               In this tutorial, we will cover more about what predictive coding
               networks (PCNs, as we will refer to them) are, why they're useful,
               and what makes them different from classical neural networks.
               Then, we will go over the practical bottlenecks and implications
               of future work.
-              <br />
-              <br />
-              For additional resources, we recommend you read{" "}
+            </p>
+            <p className="mt-4 text-sm text-dim">
+              Recommended background reading:{" "}
               <a
                 href="https://arxiv.org/pdf/2506.06332"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="link text-accent-text"
               >
-                Introduction to Predictive Coding Networks for Machine Learning
-                (Stenlund 2025)
+                Stenlund (2025)
               </a>{" "}
-              and the{" "}
+              and{" "}
               <a
-                href="https://en.wikipedia.org/wiki/Predictive_coding"
+                href="https://arxiv.org/html/2602.15571v2"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="link text-accent-text"
               >
-                Wikipedia article
-              </a>{" "}
-              on the subject.
+                Accelerated Predictive Coding Networks via Direct Kolen–Pollack Feedback Alignment
+              </a>
+              .
             </p>
           </div>
-          <div className="mt-5 md:mt-10 px-5">
+          <div className="w-full md:w-[38%] shrink-0">
             <img
               src="/tutorials/doorway.webp"
-              alt="Intro Image"
+              alt="Doorway representing the gateway into predictive coding"
               width="550"
-              className="rounded-lg shadow-xl border border-line-strong"
+              className="w-full rounded-xl border border-line shadow-lg object-cover"
             />
           </div>
         </div>
@@ -251,12 +253,18 @@ export default function Tutorial0_Intro() {
               as it interacts with the world.
             </p>
           </Reveal>
-          <small>
-            <i>
-              You can click the buttons on the right to navigate through
-              tutorials!
-            </i>
-          </small>
+
+          <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-line pt-8">
+            <Link to="/tutorial" className="btn text-sm w-full sm:w-auto">
+              ← All Tutorials
+            </Link>
+            <Link
+              to="/tutorial/1-beginning"
+              className="btn btn--solid text-sm w-full sm:w-auto"
+            >
+              Part 1: Understanding Deepity →
+            </Link>
+          </div>
         </div>
       </div>
       <MainFooter />

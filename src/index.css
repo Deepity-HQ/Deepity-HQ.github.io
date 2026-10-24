@@ -15,11 +15,22 @@
   --bg: #050505;
   --panel: #0c0c0d;
   --panel-2: #141415;
+  --panel-flat-bg: #0a0a0b;
+  --card-dark-bg: #0e0e0f;
   --line: rgba(255, 255, 255, 0.09);
   --line-strong: rgba(255, 255, 255, 0.2);
   --fg: #f2f2f2;
   --fg-dim: #9b9da0;
   --fg-faint: #7d8084;
+
+  --btn-bg: #131314;
+  --btn-bg-hover: #232325;
+  --btn-solid-bg: #ffffff;
+  --btn-solid-fg: #050505;
+  --glass-pill-bg: rgba(22, 22, 23, 0.82);
+
+  --bar-baseline: linear-gradient(to bottom, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.06));
+  --bar-border: 1px solid rgba(255, 255, 255, 0.08);
 
   --radius: 0.875rem;
 
@@ -27,12 +38,72 @@
     Helvetica, Arial, sans-serif;
   --font-display: "Funnel Display Variable", "Hanken Grotesk Variable", system-ui, -apple-system, "Segoe UI",
     Roboto, Helvetica, Arial, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo,
-    Consolas, monospace;
 
   color-scheme: dark;
   background-color: var(--bg);
   overflow-x: hidden;
+}
+
+/* Light mode: automatically discovered by system (prefers-color-scheme: light)
+   or explicitly selected with data-theme="light" */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --accent: #8e1fd4;
+    --accent-text: #7010ad;
+    --accent-ink: #ffffff;
+    --glow-cool: #0284c7;
+
+    --bg: #fafafa;
+    --panel: #ffffff;
+    --panel-2: #f4f4f6;
+    --panel-flat-bg: #f4f4f6;
+    --card-dark-bg: #ffffff;
+    --line: rgba(0, 0, 0, 0.08);
+    --line-strong: rgba(0, 0, 0, 0.16);
+    --fg: #0f141c;
+    --fg-dim: #525866;
+    --fg-faint: #868c98;
+
+    --btn-bg: #ffffff;
+    --btn-bg-hover: #f0f1f3;
+    --btn-solid-bg: #0f141c;
+    --btn-solid-fg: #ffffff;
+    --glass-pill-bg: rgba(255, 255, 255, 0.88);
+
+    --bar-baseline: linear-gradient(to bottom, rgba(0, 0, 0, 0.16), rgba(0, 0, 0, 0.04));
+    --bar-border: 1px solid rgba(0, 0, 0, 0.08);
+
+    color-scheme: light;
+  }
+}
+
+:root[data-theme="light"] {
+  --accent: #8e1fd4;
+  --accent-text: #7010ad;
+  --accent-ink: #ffffff;
+  --glow-cool: #0284c7;
+
+  --bg: #fafafa;
+  --panel: #ffffff;
+  --panel-2: #f4f4f6;
+  --panel-flat-bg: #f4f4f6;
+  --card-dark-bg: #ffffff;
+  --line: rgba(0, 0, 0, 0.08);
+  --line-strong: rgba(0, 0, 0, 0.16);
+  --fg: #0f141c;
+  --fg-dim: #525866;
+  --fg-faint: #868c98;
+
+  --btn-bg: #ffffff;
+  --btn-bg-hover: #f0f1f3;
+  --btn-solid-bg: #0f141c;
+  --btn-solid-fg: #ffffff;
+  --glass-pill-bg: rgba(255, 255, 255, 0.88);
+
+  --bar-baseline: linear-gradient(to bottom, rgba(0, 0, 0, 0.16), rgba(0, 0, 0, 0.04));
+  --bar-border: 1px solid rgba(0, 0, 0, 0.08);
+
+  color-scheme: light;
 }
 
 /* Expose tokens to Tailwind: bg-accent, text-dim, border-line, ... */
@@ -49,7 +120,6 @@
   --color-fg: var(--fg);
   --color-dim: var(--fg-dim);
   --color-faint: var(--fg-faint);
-  --font-mono: var(--font-mono);
 }
 
 /* Class aliases used by the tutorial pages */
@@ -104,7 +174,7 @@ b, strong {
 
 code,
 pre {
-  font-family: var(--font-mono);
+  font-family: var(--font-display);
 }
 
 /* ------------------------------------------------------------------
@@ -130,9 +200,14 @@ pre {
 }
 
 .glass-pill {
-  background: rgba(22, 22, 23, 0.82);
-  border: 1px solid var(--line);
-  border-radius: 9999px;
+  background: var(--glass-pill-bg);
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow:
+    0 4px 20px -2px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
 }
 
 /* Pill buttons */
@@ -144,7 +219,7 @@ pre {
   padding: 0.75rem 1.4rem;
   border: 1px solid var(--line-strong);
   border-radius: 0.625rem;
-  background: #131314; /* opaque, so the grain behind never shows through */
+  background: var(--btn-bg);
   color: var(--fg);
   font-family: var(--font-display);
   font-size: 16px;
@@ -157,13 +232,13 @@ pre {
     transform 180ms ease;
 }
 .btn:hover {
-  background: #232325;
+  background: var(--btn-bg-hover);
   border-color: var(--accent);
 }
 .btn--solid {
-  background: #ffffff;
-  border-color: #ffffff;
-  color: #050505;
+  background: var(--btn-solid-bg);
+  border-color: var(--btn-solid-bg);
+  color: var(--btn-solid-fg);
 }
 .btn--solid:hover {
   background: var(--accent);
@@ -218,13 +293,111 @@ pre {
 
 /* Dark card that sits inside a panel. */
 .panel-flat {
-  background: #0a0a0b;
+  background: var(--panel-flat-bg);
   border: 1px solid var(--line);
 }
 .card-dark {
-  background: #0e0e0f;
+  background: var(--card-dark-bg);
   border: 1px solid var(--line);
   border-radius: var(--radius);
+}
+
+/* Subpage atmospheric glow: subtle top ambient light echoing the brand gradient */
+.subpage-glow {
+  position: relative;
+  isolation: isolate;
+}
+.subpage-glow::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(100%, 1200px);
+  height: 480px;
+  background:
+    radial-gradient(ellipse 65% 55% at 50% -10%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 70%),
+    radial-gradient(ellipse 50% 40% at 75% 15%, color-mix(in srgb, var(--glow-cool) 8%, transparent), transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Light mode overrides for glows and surfaces */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .hero-glow {
+    background:
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.7), transparent 45%, rgba(255, 255, 255, 0.95)),
+      radial-gradient(ellipse 75% 120% at 85% 0%, color-mix(in srgb, var(--accent) 15%, transparent), transparent 70%),
+      radial-gradient(ellipse 65% 90% at 5% 105%, color-mix(in srgb, var(--glow-cool) 13%, transparent), transparent 70%),
+      #ffffff;
+    box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.06);
+  }
+  :root:not([data-theme="dark"]) .hero-glow::before {
+    opacity: 0.03;
+  }
+  :root:not([data-theme="dark"]) .subpage-glow::before {
+    background:
+      radial-gradient(ellipse 65% 55% at 50% -10%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 70%),
+      radial-gradient(ellipse 50% 40% at 75% 15%, color-mix(in srgb, var(--glow-cool) 8%, transparent), transparent 70%);
+  }
+  :root:not([data-theme="dark"]) .glass {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.05);
+  }
+  :root:not([data-theme="dark"]) .glass-pill {
+    box-shadow:
+      0 4px 20px -2px rgba(0, 0, 0, 0.05),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.85);
+  }
+  :root:not([data-theme="dark"]) .logo-themed {
+    filter: invert(1);
+  }
+}
+
+:root[data-theme="light"] .hero-glow {
+  background:
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.7), transparent 45%, rgba(255, 255, 255, 0.95)),
+    radial-gradient(ellipse 75% 120% at 85% 0%, color-mix(in srgb, var(--accent) 15%, transparent), transparent 70%),
+    radial-gradient(ellipse 65% 90% at 5% 105%, color-mix(in srgb, var(--glow-cool) 13%, transparent), transparent 70%),
+    #ffffff;
+  box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.06);
+}
+:root[data-theme="light"] .hero-glow::before {
+  opacity: 0.03;
+}
+:root[data-theme="light"] .subpage-glow::before {
+  background:
+    radial-gradient(ellipse 65% 55% at 50% -10%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 70%),
+    radial-gradient(ellipse 50% 40% at 75% 15%, color-mix(in srgb, var(--glow-cool) 8%, transparent), transparent 70%);
+}
+:root[data-theme="light"] .glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.05);
+}
+:root[data-theme="light"] .glass-pill {
+  box-shadow:
+    0 4px 20px -2px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.85);
+}
+:root[data-theme="light"] .logo-themed {
+  filter: invert(1);
+}
+
+/* Interactive cards: solid drop-shadow pop-out from tutorials */
+.card-interactive {
+  transition:
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    transform 200ms ease;
+}
+.card-interactive:hover {
+  border-color: var(--accent);
+  box-shadow: 6px 6px 0 var(--accent);
+  transform: translate(-4px, -4px);
 }
 
 /* ------------------------------------------------------------------
@@ -323,7 +496,7 @@ html[data-splash="off"] .splash {
 ::-webkit-scrollbar-thumb {
   background: var(--line-strong);
   border: 2px solid var(--bg);
-  border-radius: 9999px;
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--fg-dim);

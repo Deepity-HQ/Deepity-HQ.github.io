@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import MainFooter from "../MainFooter";
 import Reveal from "../Reveal";
 import UtilButton from "../UtilButton";
@@ -30,19 +31,20 @@ predictions = model.predict(x_test, settling_steps=20)`;
 
 export default function Tutorial1_Beginning() {
   return (
-    <div className="min-h-screen px-3 pt-20 pb-6 md:px-4">
-      <div className="min-h-screen max-w-7xl mx-auto pt-6 pb-12 rounded-2xl border border-line bg-bg/90">
+    <div className="subpage-glow min-h-screen px-3 pt-20 pb-12 md:px-6">
+      <div className="mx-auto max-w-5xl overflow-hidden rounded-2xl border border-line bg-panel2/60 shadow-2xl">
         <UtilButton
           backLink="/tutorial/0-introduction"
           nextLink="/notfound"
         />
         <TutorialRail current={1} />
 
-        <div className="px-8 my-5">
-          <h1 className="ff-display text-4xl font-bold m-5">
-            Tutorial 1: Understanding the Deepity Library
+        <div className="px-6 py-8 md:px-12 md:py-12">
+          <div className="label mb-3 text-xs text-accent-text">Tutorial 1</div>
+          <h1 className="font-[family-name:var(--font-display)] text-3xl font-normal tracking-[-0.03em] md:text-5xl text-fg">
+            Understanding the Deepity Library
           </h1>
-          <p className="text-lg m-5 ff-body max-w-4xl text-fg">
+          <p className="mt-5 text-base md:text-lg leading-relaxed text-dim max-w-3xl">
             Now that you understand the theory behind Predictive Coding
             Networks, it is time to look at Deepity itself. We will cover the
             library's design, how to compile its C++ backend, and the core
@@ -213,6 +215,21 @@ export default function Tutorial1_Beginning() {
               </p>
             </div>
           </Reveal>
+
+          <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-line pt-8">
+            <Link
+              to="/tutorial/0-introduction"
+              className="btn text-sm w-full sm:w-auto"
+            >
+              ← Part 0: Introduction
+            </Link>
+            <Link
+              to="/tutorial"
+              className="btn btn--solid text-sm w-full sm:w-auto"
+            >
+              All Tutorials Overview →
+            </Link>
+          </div>
         </div>
       </div>
       <MainFooter />

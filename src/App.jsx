@@ -3,19 +3,19 @@ import HomePage from "./HomePage";
 import "./index.css";
 
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { lazy, Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { metaFor, canonicalFor, normalizePath } from "./routes";
 import SplashScreen from "./components/SplashScreen";
 
-const NotFound = lazy(() => import("./NotFound"));
-const About = lazy(() => import("./About"));
-const Benchmarks = lazy(() => import("./Benchmarks"));
-const Theory = lazy(() => import("./Theory"));
-const EarlyAccess = lazy(() => import("./EarlyAccess"));
-const Privacy = lazy(() => import("./Privacy"));
-const TutorialLanding = lazy(() => import("./TutorialLanding"));
-const Tutorial0_Intro = lazy(() => import("./components/tutorials/Tutorial0_Intro"));
-const Tutorial1_Beginning = lazy(() => import("./components/tutorials/Tutorial1_Beginning"));
+import NotFound from "./NotFound";
+import About from "./About";
+import Benchmarks from "./Benchmarks";
+import Theory from "./Theory";
+import EarlyAccess from "./EarlyAccess";
+import Privacy from "./Privacy";
+import TutorialLanding from "./TutorialLanding";
+import Tutorial0_Intro from "./components/tutorials/Tutorial0_Intro";
+import Tutorial1_Beginning from "./components/tutorials/Tutorial1_Beginning";
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -62,7 +62,7 @@ export function Shell() {
 
           <a
             href="#main"
-            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-black"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-xl focus:bg-fg focus:px-4 focus:py-2 focus:text-bg shadow-lg"
           >
             Skip to content
           </a>

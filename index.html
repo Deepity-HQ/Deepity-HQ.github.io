@@ -9,7 +9,17 @@
   <link rel="manifest" href="/site.webmanifest" />
   <link rel="canonical" href="https://deepity.dev/" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#000000" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#050505" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafafa" />
+  <script>
+    // Early theme initialization for instant matching without flash
+    try {
+      var t = localStorage.getItem("deepity-theme");
+      if (t === "light" || t === "dark") {
+        document.documentElement.dataset.theme = t;
+      }
+    } catch (e) {}
+  </script>
   <meta name="description" content="Deepity is an open-source predictive coding engine for C++ and Python. Each neuron learns from its own local error, and training runs on CPUs and NVIDIA GPUs." />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Deepity" />
@@ -50,7 +60,7 @@
   <title>Deepity: open-source predictive coding engine</title>
 </head>
 
-<body style="background:#000">
+<body>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
 </body>

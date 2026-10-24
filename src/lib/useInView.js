@@ -1,8 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 
-export default function useInView(threshold = 0.35) {
+export default function useInView(threshold = 0.15) {
   const ref = useRef(null);
-  const [seen, setSeen] = useState(false);
+  const [seen, setSeen] = useState(() => {
+    if (typeof window === "undefined") return true;
+    return Boolean(
+      window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches,
+    );
+  });
 
   useEffect(() => {
     const el = ref.current;

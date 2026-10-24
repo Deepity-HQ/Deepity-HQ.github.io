@@ -67,7 +67,7 @@ export default function SplashScreen({ onDone }) {
       <img
         src={`${import.meta.env.BASE_URL}brand/logo-white.svg`}
         alt="Deepity"
-        className={`h-auto w-64 transition-opacity duration-300 ${
+        className={`logo-themed h-auto w-64 transition-opacity duration-300 ${
           revealed ? "opacity-100" : "opacity-0"
         }`}
       />

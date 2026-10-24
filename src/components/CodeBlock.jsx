@@ -29,18 +29,18 @@ export function CopyButton({ code, label }) {
 }
 
 const CodeBlock = memo(({ language, code, icon, title }) => (
-  <div className="flex h-full w-full flex-col overflow-hidden rounded-2xl border border-line bg-panel">
-    <div className="flex items-center justify-between border-b border-line bg-panel2 px-4 py-2">
+  <div className="flex h-full w-full flex-col overflow-hidden rounded-2xl border border-line bg-[#0c0c0d]">
+    <div className="flex items-center justify-between border-b border-line bg-[#141415] px-4 py-2">
       <div className="flex items-center gap-2">
         {icon && <img src={icon} alt="" className="h-4 w-4 object-contain" />}
-        <span className="label text-fg">{title}</span>
+        <span className="label text-[#f2f2f2]">{title}</span>
       </div>
       <CopyButton code={code} label={title} />
     </div>
 
     <Suspense
       fallback={
-        <pre style={{ ...codeBoxStyle, color: "var(--fg)" }}>
+        <pre style={{ ...codeBoxStyle, color: "#f2f2f2" }}>
           <code {...codeTagProps}>{code}</code>
         </pre>
       }

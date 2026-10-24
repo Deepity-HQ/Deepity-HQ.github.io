@@ -3,15 +3,15 @@ import "katex/dist/katex.min.css";
 
 export default function PCNRepresentation() {
   return (
-    <div className="grid gap-px border border-line-strong bg-line-strong lg:grid-cols-2">
-      <div className="bg-panel p-6">
-        <div className="label mb-4">Message passing between layers</div>
+    <div className="overflow-hidden rounded-2xl border border-line bg-panel2/60 shadow-lg grid gap-px bg-line lg:grid-cols-2">
+      <div className="bg-panel p-6 md:p-8 flex flex-col justify-between">
+        <div className="label mb-4 text-xs">Message passing between layers</div>
         <svg
           viewBox="0 0 500 180"
           className="block h-auto w-full"
           role="img"
           aria-label="Layer 1 sends a prediction to layer 2; layer 2 returns a prediction error."
-          fontFamily="var(--font-mono)"
+          fontFamily="var(--font-display)"
           fontSize="12"
         >
           <defs>

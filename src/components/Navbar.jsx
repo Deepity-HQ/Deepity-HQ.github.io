@@ -8,15 +8,16 @@ import {
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./../index.css";
 import { GITHUB_URL } from "../config";
+import ThemeToggle from "./ThemeToggle";
 
 const DeepityLogo = `${import.meta.env.BASE_URL}brand/logo-white.svg`;
 
 const base =
-  "rounded-full px-4 py-2 text-[15px] font-[family-name:var(--font-display)] no-underline transition-colors";
-const idle = "text-dim hover:bg-white/10 hover:text-fg";
-const idleDesktop = "text-dim hover:bg-white/[0.04] hover:text-fg";
+  "rounded-xl px-4 py-2 text-[15px] font-[family-name:var(--font-display)] no-underline transition-colors";
+const idle = "text-dim hover:bg-fg/10 hover:text-fg";
+const idleDesktop = "text-dim hover:bg-fg/[0.05] hover:text-fg";
 const active = "text-accent-text";
-const activeBg = "bg-white/10 text-accent-text";
+const activeBg = "bg-fg/10 text-accent-text";
 
 function GitHubMark() {
   return (
@@ -132,7 +133,7 @@ export default function Navbar() {
           aria-label="Deepity home"
           className="glass-pill pointer-events-auto flex h-11 items-center justify-self-start px-5 no-underline lg:!border-transparent lg:!bg-transparent lg:pl-3"
         >
-          <img src={DeepityLogo} width="150" height="28" alt="" className="h-7 w-auto" />
+          <img src={DeepityLogo} width="150" height="28" alt="" className="logo-themed h-7 w-auto" />
         </Link>
 
         <nav
@@ -141,7 +142,7 @@ export default function Navbar() {
         >
           <span
             aria-hidden="true"
-            className={`absolute bottom-1.5 left-0 top-1.5 rounded-full bg-white/10 ${
+            className={`absolute bottom-1.5 left-0 top-1.5 rounded-xl bg-fg/10 ${
               slide.ready
                 ? "transition-[transform,width,opacity] duration-[250ms] ease-out"
                 : ""
@@ -156,12 +157,13 @@ export default function Navbar() {
         </nav>
 
         <div className="pointer-events-auto hidden items-center gap-2 justify-self-end lg:flex">
+          <ThemeToggle />
           <a
             href={GITHUB_URL}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Deepity on GitHub"
-            className="glass-pill flex h-11 w-11 items-center justify-center text-fg transition-colors hover:border-accent hover:text-accent-text"
+            className="glass-pill flex h-11 w-11 !rounded-full items-center justify-center text-fg transition-colors hover:border-accent hover:text-accent-text"
           >
             <GitHubMark />
           </a>
@@ -175,7 +177,7 @@ export default function Navbar() {
           onClick={() => setIsOpen(!isOpen)}
           aria-expanded={isOpen}
           aria-label="Toggle navigation menu"
-          className="glass-pill pointer-events-auto flex h-11 w-11 cursor-pointer flex-col items-center justify-center gap-[5px] lg:hidden"
+          className="glass-pill pointer-events-auto flex h-11 w-11 !rounded-full cursor-pointer flex-col items-center justify-center gap-[5px] lg:hidden"
         >
           <span
             className={`block h-px w-5 bg-fg transition-transform ${isOpen ? "translate-y-[6px] rotate-45" : ""}`}
@@ -194,19 +196,22 @@ export default function Navbar() {
           <div
             aria-hidden="true"
             onClick={closeMenu}
-            className="pointer-events-auto fixed inset-0 -z-10 bg-black/70 lg:hidden"
+            className="pointer-events-auto fixed inset-0 -z-10 bg-black/60 lg:hidden"
           />
-          <div className="pointer-events-auto mx-3 mt-1 flex flex-col gap-1 rounded-[var(--radius)] border border-line-strong bg-[#0c0c0d] p-3 shadow-[0_24px_60px_rgba(0,0,0,0.6)] lg:hidden">
+          <div className="pointer-events-auto mx-3 mt-1 flex flex-col gap-1 rounded-[var(--radius)] border border-line-strong bg-panel p-3 shadow-[0_24px_60px_rgba(0,0,0,0.4)] lg:hidden">
             {links.map((l) => renderLink(l))}
-            <a
-              href={GITHUB_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={closeMenu}
-              className={`${base} ${idle}`}
-            >
-              GitHub ↗
-            </a>
+            <div className="flex items-center justify-between pt-1">
+              <a
+                href={GITHUB_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={closeMenu}
+                className={`${base} ${idle} flex-1`}
+              >
+                GitHub ↗
+              </a>
+              <ThemeToggle className="ml-2" />
+            </div>
             <Link
               to="/early-access"
               onClick={closeMenu}

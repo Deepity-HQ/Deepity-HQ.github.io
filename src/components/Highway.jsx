@@ -49,15 +49,14 @@ function buildNodes(w, h) {
 function HighwayNode({ n, w }) {
   const side = n.dir === "right" ? { left: n.x - 15 } : { right: w - n.x - 15 };
   const cls =
-    "highway-node group pointer-events-auto absolute flex items-center rounded-full border border-transparent no-underline transition-colors duration-300 hover:border-line-strong hover:bg-[#131314] focus-visible:border-line-strong focus-visible:bg-[#131314] " +
+    "highway-node group pointer-events-auto absolute flex items-center rounded-xl border border-transparent no-underline transition-colors duration-300 hover:border-line-strong hover:bg-panel hover:shadow-md focus-visible:border-line-strong focus-visible:bg-panel " +
     (n.dir === "right" ? "flex-row" : "flex-row-reverse");
   const body = (
     <>
       <span className="relative flex h-7 w-7 shrink-0 items-center justify-center">
-        <span className="node-ring absolute h-2 w-2 rounded-full border border-white/50" />
-        <span className="h-2 w-2 rounded-full bg-white transition-all duration-300 group-hover:h-2.5 group-hover:w-2.5 group-hover:bg-accent group-focus-visible:h-2.5 group-focus-visible:w-2.5 group-focus-visible:bg-accent" />
+        <span className="h-2 w-2 rotate-45 rounded-[2px] bg-accent transition-all duration-300 group-hover:scale-125 group-focus-visible:scale-125 shadow-[0_0_8px_var(--accent)]" />
       </span>
-      <span className="max-w-0 overflow-hidden whitespace-nowrap text-[13px] text-fg opacity-0 transition-all duration-300 group-hover:max-w-[10rem] group-hover:px-3 group-hover:opacity-100 group-focus-visible:max-w-[10rem] group-focus-visible:px-3 group-focus-visible:opacity-100">
+      <span className="max-w-0 overflow-hidden whitespace-nowrap text-[13px] font-[family-name:var(--font-display)] text-fg opacity-0 transition-all duration-300 group-hover:max-w-[10rem] group-hover:px-3 group-hover:opacity-100 group-focus-visible:max-w-[10rem] group-focus-visible:px-3 group-focus-visible:opacity-100">
         {n.label} {n.hash || n.to ? "→" : "↗"}
       </span>
     </>
@@ -271,7 +270,7 @@ export default function Highway({ layout = "hero" }) {
               data-road={i}
               d={d}
               fill="none"
-              stroke="rgba(255,255,255,0.12)"
+              stroke="var(--line-strong)"
               strokeWidth="0.75"
             />
           ))}

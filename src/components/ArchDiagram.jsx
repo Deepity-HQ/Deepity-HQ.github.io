@@ -38,7 +38,7 @@ export default function ArchDiagram() {
     const on = sel === id;
     return (
       <div
-        className={`card-dark p-5 transition-colors duration-300 ${on ? "!border-[color:var(--accent)] bg-white/[0.05]" : ""} ${className}`}
+        className={`card-dark p-5 transition-colors duration-300 ${on ? "!border-[color:var(--accent)] bg-accent/10" : ""} ${className}`}
       >
         <div className={`font-[family-name:var(--font-display)] text-xl tracking-[-0.01em] ${on || id === "core" ? "text-accent-text" : ""}`}>
           {n.title}
@@ -86,8 +86,8 @@ export default function ArchDiagram() {
               type="button"
               aria-pressed={sel === id}
               onClick={() => setSel(sel === id ? null : id)}
-              className={`cursor-pointer rounded-full border px-4 py-1.5 text-sm transition-colors ${
-                sel === id ? "border-transparent bg-white text-black" : "border-line bg-white/[0.04] text-dim hover:text-fg"
+              className={`cursor-pointer rounded-lg border px-4 py-1.5 text-sm transition-colors ${
+                sel === id ? "border-transparent bg-fg text-bg" : "border-line bg-fg/[0.04] text-dim hover:text-fg"
               }`}
             >
               {label}
