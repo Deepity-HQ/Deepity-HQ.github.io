@@ -78,7 +78,7 @@ export default function Tutorial1_Beginning() {
               <img
  loading="lazy"
  decoding="async"
-                src="/tutorials/nanobind.webp"
+                src="/nanobind.webp"
                 alt="Feedforward neural networks visualized"
                 className="block w-full border border-line-strong"
               />
