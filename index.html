@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // Show the splash only on the home page, once per browser session.
+      try {
+        var skip =
+          location.pathname !== "/" ||
+          sessionStorage.getItem("splash-seen") ||
+          matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (skip) document.documentElement.dataset.splash = "off";
+      } catch (e) {
+        if (location.pathname !== "/") document.documentElement.dataset.splash = "off";
+      }
+    </script>
+    <link rel="preload" href="/fonts/Michroma-Regular.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="/fonts/Jura-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin />
+    <meta name="theme-color" content="#020205" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Deepity",
+        "url": "https://deepity.dev",
+        "logo": "https://deepity.dev/favicon.png",
+        "sameAs": ["https://github.com/Deepity-HQ/Deepity"]
+      }
+    </script>
+    <!--meta-->
+    <title>Deepity: open-source predictive coding engine</title>
+    <!--/meta-->
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

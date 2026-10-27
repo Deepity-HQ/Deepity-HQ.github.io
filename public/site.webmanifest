@@ -1,0 +1,13 @@
+{
+  "name": "Deepity",
+  "short_name": "Deepity",
+  "description": "An open-source engine for predictive coding.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#020205",
+  "theme_color": "#020205",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/favicon.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

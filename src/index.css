@@ -1,0 +1,15 @@
+/* Behind everything, so any page without its own backdrop is still dark */
+body {
+  margin: 0;
+  background: #020205;
+}
+
+html[data-splash="off"] .splash {
+  display: none;
+}
+
+/* Inline code in prose uses the same face as the code blocks */
+code {
+  font-family: "JetBrains Mono Variable", "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.88em;
+}

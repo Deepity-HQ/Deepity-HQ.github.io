@@ -1,0 +1,5 @@
+Contact: mailto:contact@deepity.dev
+Expires: 2027-10-13T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://deepity.dev/.well-known/security.txt
+Policy: https://github.com/Deepity-HQ/Deepity/security/policy
