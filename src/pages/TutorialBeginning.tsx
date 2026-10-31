@@ -5,6 +5,7 @@ import TutorialRail from "../Components/TutorialRail.tsx";
 import CodeBlock from "../Components/CodeBlock.tsx";
 const CmdLogo = "/tutorial-assets/cmd.png";
 const buildingImage = "/tutorial-assets/buildingdeepity.png";
+const trainingRunImage = "/tutorial-assets/mnist-training-run.png";
 
 const buildCode = `# Clone the Deepity repository
 git clone https://github.com/Deepity-HQ/Deepity.git
@@ -18,16 +19,17 @@ model.configure(
     learning_rate=0.001,
     inference_rate=0.05,
     optimizer="adam",
-    regularization=1e-4
+    lmbda=1e-4
 )`;
 
 const trainCode = `# Train the network automatically
-model.fit(x_train, y_train, epochs=10, batch_size=64)
+model.fit(x_train, y_train, epochs=10, steps=20)
 
 # Run inference steps for local energy minimization
-predictions = model.predict(x_test, settling_steps=20)`;
+predictions = model.predict(x_test, steps=20)`;
 
 import { btnClass, btnSolidClass } from "../Components/ui.ts";
+import { ArrowLeft, ArrowRight } from "../Components/ArrowIcons.tsx";
 
 export default function TutorialBeginning() {
   return (
@@ -35,7 +37,7 @@ export default function TutorialBeginning() {
       <div className="mx-auto max-w-5xl overflow-hidden rounded-2xl border border-white/10 bg-[#141415]/60 shadow-2xl">
         <UtilButton
           backLink="/tutorial/0-introduction"
-          nextLink="/notfound"
+          nextLink="/tutorial/2-xor"
         />
         <TutorialRail current={1} />
 
@@ -214,20 +216,38 @@ export default function TutorialBeginning() {
                 Fig. 5: Executing training and settled inference.
               </p>
             </div>
+
+            <div className="mx-auto flex w-full flex-col items-center md:max-w-[1000px] mt-8">
+              <img
+                loading="lazy"
+                decoding="async"
+                src={trainingRunImage}
+                alt="Deepity training a SimplePCN on MNIST, accuracy climbing each epoch"
+                className="block h-auto w-full border border-white/20"
+                height="1250"
+                width="2000"
+              />
+              <p className="mt-3 text-center text-sm text-white/70 Jura">
+                Fig. 6: A real training run on MNIST (784-512-512-10),
+                settling accuracy climbing toward 100% as weights converge.
+              </p>
+            </div>
           </Reveal>
 
-          <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pt-8">
+          <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pb-12 pt-8 md:pb-14">
             <Link
               to="/tutorial/0-introduction"
               className={`${btnClass} w-full sm:w-auto`}
             >
-              ← Part 0: Introduction
+              <ArrowLeft />
+              Part 0: Introduction
             </Link>
             <Link
-              to="/tutorial"
+              to="/tutorial/2-xor"
               className={`${btnSolidClass} w-full sm:w-auto`}
             >
-              All Tutorials Overview →
+              Part 2: Training on XOR
+              <ArrowRight />
             </Link>
           </div>
         </div>

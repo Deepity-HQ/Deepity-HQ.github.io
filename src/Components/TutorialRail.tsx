@@ -1,14 +1,13 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router";
 
-// Tutorials 2 to 5 are not written yet, so they point at the not-found page
 const STEPS = [
-  { n: 0, to: "/tutorial/0-introduction" },
-  { n: 1, to: "/tutorial/1-beginning" },
-  { n: 2, to: "/notfound" },
-  { n: 3, to: "/notfound" },
-  { n: 4, to: "/notfound" },
-  { n: 5, to: "/notfound" },
+  { n: 0, to: "/tutorial/0-introduction", written: true },
+  { n: 1, to: "/tutorial/1-beginning", written: true },
+  { n: 2, to: "/tutorial/2-xor", written: true },
+  { n: 3, to: "/tutorial/3-tweaked-xor", written: true },
+  { n: 4, to: "/tutorial/4-cnn", written: true },
+  { n: 5, to: "/tutorial/5-dkppcn", written: true },
 ];
 
 function ReadingProgress() {
@@ -44,7 +43,7 @@ function ReadingProgress() {
   );
 }
 
-export default function TutorialRail({ current }: { current: number }) {
+export default function TutorialRail({ current: current_ }: { current: number }) {
   return (
     <>
       <ReadingProgress />
@@ -57,28 +56,39 @@ export default function TutorialRail({ current }: { current: number }) {
             Tutorials
           </Link>
           <span className="text-white/40">/</span>
-          <span className="text-[#a99bff]">Part {current}</span>
+          <span className="text-[#a99bff]">Part {current_}</span>
         </div>
 
-        <div className="flex items-center gap-1.5">
-          <span className="Michroma mr-1 hidden text-[11px] text-white/50 sm:inline">
-            Parts:
+        <div className="flex items-center">
+          <span className="Michroma mr-3 hidden text-[11px] uppercase tracking-wider text-white/40 sm:inline">
+            Part
           </span>
-          {STEPS.map((s) => (
-            <Link
-              key={s.n}
-              to={s.to}
-              aria-current={s.n === current ? "page" : undefined}
-              title={`Tutorial ${s.n}`}
-              className={`Michroma flex h-7 w-7 items-center justify-center rounded-lg border text-xs no-underline transition-all ${
-                s.n === current
-                  ? "border-[#8b7cff] bg-[#8b7cff] text-black shadow-[0_0_12px_rgba(139,124,255,0.4)]"
-                  : "border-white/10 bg-white/[0.04] text-white/70 hover:border-white/25 hover:bg-white/[0.08] hover:text-white"
-              }`}
-            >
-              {s.n}
-            </Link>
-          ))}
+          {STEPS.map((s) => {
+            const current = s.n === current_;
+            return (
+              <Link
+                key={s.n}
+                to={s.to}
+                aria-current={current ? "page" : undefined}
+                title={s.written ? `Tutorial ${s.n}` : `Tutorial ${s.n} (coming soon)`}
+                className={`Michroma relative px-2.5 py-1.5 text-xs no-underline transition-colors ${
+                  current
+                    ? "text-white"
+                    : s.written
+                      ? "text-white/55 hover:text-white"
+                      : "text-white/25 hover:text-white/60"
+                }`}
+              >
+                {s.n}
+                <span
+                  aria-hidden="true"
+                  className={`absolute inset-x-2.5 -bottom-[15px] h-[2px] transition-colors ${
+                    current ? "bg-[#a99bff]" : "bg-transparent"
+                  }`}
+                />
+              </Link>
+            );
+          })}
         </div>
       </nav>
     </>

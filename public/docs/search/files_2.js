@@ -10,5 +10,7 @@ var searchData=
   ['cpubackendhighway_2eh_7',['CPUBackendHighway.h',['../CPUBackendHighway_8h.html',1,'']]],
   ['cpubackendlibxsmm_2ecpp_8',['CPUBackendLibxsmm.cpp',['../CPUBackendLibxsmm_8cpp.html',1,'']]],
   ['cpubackendlibxsmm_2eh_9',['CPUBackendLibxsmm.h',['../CPUBackendLibxsmm_8h.html',1,'']]],
-  ['cudabackend_2eh_10',['CUDABackend.h',['../CUDABackend_8h.html',1,'']]]
+  ['cpubackendt_2ecpp_10',['CPUBackendT.cpp',['../CPUBackendT_8cpp.html',1,'']]],
+  ['cpubackendt_2eh_11',['CPUBackendT.h',['../CPUBackendT_8h.html',1,'']]],
+  ['cudabackend_2eh_12',['CUDABackend.h',['../CUDABackend_8h.html',1,'']]]
 ];

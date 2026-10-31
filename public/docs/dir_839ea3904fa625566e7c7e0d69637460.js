@@ -5,6 +5,7 @@ var dir_839ea3904fa625566e7c7e0d69637460 =
     [ "DiscriminativePCNetwork.h", "DiscriminativePCNetwork_8h.html", "DiscriminativePCNetwork_8h" ],
     [ "FullConvPCNetwork.h", "FullConvPCNetwork_8h.html", "FullConvPCNetwork_8h" ],
     [ "FullPCNetwork.h", "FullPCNetwork_8h.html", "FullPCNetwork_8h" ],
+    [ "FullPCNetworkT.h", "FullPCNetworkT_8h.html", "FullPCNetworkT_8h" ],
     [ "GaussSeidelPCNetwork.h", "GaussSeidelPCNetwork_8h.html", "GaussSeidelPCNetwork_8h" ],
     [ "SimpleConvPCNetwork.h", "SimpleConvPCNetwork_8h.html", "SimpleConvPCNetwork_8h" ],
     [ "SimplePCNetwork.h", "SimplePCNetwork_8h.html", "SimplePCNetwork_8h" ]

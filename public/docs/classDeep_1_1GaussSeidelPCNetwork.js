@@ -1,6 +1,6 @@
 var classDeep_1_1GaussSeidelPCNetwork =
 [
-    [ "GaussSeidelPCNetwork", "classDeep_1_1GaussSeidelPCNetwork.html#ac1afb11f89f0bd85e7b7450fb6aabbf0", null ],
+    [ "GaussSeidelPCNetwork", "classDeep_1_1GaussSeidelPCNetwork.html#a3d3d025fe7ee8468df7574c4433304fe", null ],
     [ "~GaussSeidelPCNetwork", "classDeep_1_1GaussSeidelPCNetwork.html#a84bc5c512c6b7fa4452b872c5f501edc", null ],
     [ "GaussSeidelPCNetwork", "classDeep_1_1GaussSeidelPCNetwork.html#ad6d06431e8d5d7322692591ce312eb0b", null ],
     [ "AddLayer", "classDeep_1_1GaussSeidelPCNetwork.html#ae50ed17d5e1ddcef07c9c08cb663d0ad", null ],

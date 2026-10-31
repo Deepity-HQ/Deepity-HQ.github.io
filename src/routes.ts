@@ -55,6 +55,30 @@ export const routes: RouteMeta[] = [
     description: "What makes Deepity different, and how to load and use the library.",
   },
   {
+    path: "/tutorial/2-xor",
+    title: "Tutorial 2: Training a SimplePCN on XOR · Deepity",
+    description:
+      "Build and train a small Deepity network on XOR, and see why its settling dynamics converge on a problem no linear model can solve.",
+  },
+  {
+    path: "/tutorial/3-tweaked-xor",
+    title: "Tutorial 3: Adding Helpful Hyperparameters · Deepity",
+    description:
+      "Switch the XOR example from SimplePCN to SequentialPCN and tune weight decay and precision weighting by hand.",
+  },
+  {
+    path: "/tutorial/4-cnn",
+    title: "Tutorial 4: Running a Convolutional PCN · Deepity",
+    description:
+      "Train a ConvolutionalPCN on MNIST and see how spatial weight sharing changes network design.",
+  },
+  {
+    path: "/tutorial/5-dkppcn",
+    title: "Tutorial 5: Direct Kolen-Pollack Networks on MNIST · Deepity",
+    description:
+      "Train a DKPPCN on MNIST and see how direct feedback alignment lets settling converge in far fewer steps.",
+  },
+  {
     path: "/early-access",
     title: "Request early access · Deepity",
     description:

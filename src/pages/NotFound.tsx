@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import { ArrowLeft } from "../Components/ArrowIcons.tsx";
 
 // Shown for any address that has no page yet
 export default function NotFound() {
@@ -14,9 +15,10 @@ export default function NotFound() {
         </p>
         <Link
           to="/"
-          className="Michroma inline-flex rounded-lg bg-white px-6 py-3 text-sm text-black no-underline transition-colors hover:bg-fuchsia-400"
+          className="Michroma inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-sm text-black no-underline transition-colors hover:bg-fuchsia-400"
         >
-          ← Back to home
+          <ArrowLeft />
+          Back to home
         </Link>
       </div>
     </div>

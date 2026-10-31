@@ -97,67 +97,110 @@ $(function(){initNavTree('LayerBindHelpers_8h_source.html','',''); });
 <div class="contents">
 <a href="LayerBindHelpers_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;cstddef&gt;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;type_traits&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;<a class="code" href="IComputeBackend_8h.html">deepity/backend/IComputeBackend.h</a>&gt;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;<a class="code" href="MemoryArena_8h.html">deepity/utils/MemoryArena.h</a>&gt;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceDeep.html">Deep</a></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> ArenaT&gt;</div>
-<div class="foldopen" id="foldopen00020" data-start="{" data-end="}">
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="namespaceDeep.html#a13ab35b037aabad20fc5f558070f9a3f">   20</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespaceDeep.html#a13ab35b037aabad20fc5f558070f9a3f">BindAdamState</a>(ArenaT&amp; arena, <a class="code hl_class" href="classDeep_1_1IComputeBackend.html">IComputeBackend</a>* backend, <span class="keywordtype">size_t</span> paramSize,</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>                           <span class="keywordtype">float</span>*&amp; grad, <span class="keywordtype">float</span>*&amp; m, <span class="keywordtype">float</span>*&amp; v)</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>{</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  grad = arena.AllocateFloats(paramSize);</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  m = arena.AllocateFloats(paramSize);</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  v = arena.AllocateFloats(paramSize);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  backend-&gt;<a class="code hl_function" href="classDeep_1_1IComputeBackend.html#ab9abaa2a632281386ba225bbe0973922">Zero</a>(m, paramSize);</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  backend-&gt;<a class="code hl_function" href="classDeep_1_1IComputeBackend.html#ab9abaa2a632281386ba225bbe0973922">Zero</a>(v, paramSize);</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  backend-&gt;<a class="code hl_function" href="classDeep_1_1IComputeBackend.html#ab9abaa2a632281386ba225bbe0973922">Zero</a>(grad, paramSize);</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>}</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;cstring&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;type_traits&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;<a class="code" href="IComputeBackend_8h.html">deepity/backend/IComputeBackend.h</a>&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;<a class="code" href="MemoryArena_8h.html">deepity/utils/MemoryArena.h</a>&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceDeep.html">Deep</a></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>{</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> ArenaT&gt;</div>
+<div class="foldopen" id="foldopen00022" data-start="{" data-end="}">
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="namespaceDeep.html#a13ab35b037aabad20fc5f558070f9a3f">   22</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespaceDeep.html#a13ab35b037aabad20fc5f558070f9a3f">BindAdamState</a>(ArenaT&amp; arena, <a class="code hl_typedef" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a>* backend, <span class="keywordtype">size_t</span> paramSize,</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>                           <span class="keywordtype">float</span>*&amp; grad, <span class="keywordtype">float</span>*&amp; m, <span class="keywordtype">float</span>*&amp; v)</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>{</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  grad = arena.AllocateFloats(paramSize);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  m = arena.AllocateFloats(paramSize);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  v = arena.AllocateFloats(paramSize);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  backend-&gt;<a class="code hl_function" href="classDeep_1_1IComputeBackendT.html#ae75d1371f38e923c053c9238734b609e">Zero</a>(m, paramSize);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  backend-&gt;<a class="code hl_function" href="classDeep_1_1IComputeBackendT.html#ae75d1371f38e923c053c9238734b609e">Zero</a>(v, paramSize);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  backend-&gt;<a class="code hl_function" href="classDeep_1_1IComputeBackendT.html#ae75d1371f38e923c053c9238734b609e">Zero</a>(grad, paramSize);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>}</div>
 </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> ArenaT&gt;</div>
-<div class="foldopen" id="foldopen00035" data-start="{" data-end="}">
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="namespaceDeep.html#aa9d8aced12709e934f632e25782b91cd">   35</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespaceDeep.html#aa9d8aced12709e934f632e25782b91cd">BindLearningRateState</a>(ArenaT&amp; arena, <a class="code hl_class" href="classDeep_1_1IComputeBackend.html">IComputeBackend</a>* backend, <span class="keywordtype">int</span>*&amp; timestepDevice,</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>                                   <span class="keywordtype">float</span>*&amp; lrDevice, <span class="keywordtype">float</span> lr)</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>{</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  timestepDevice = <span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">int</span>*<span class="keyword">&gt;</span>(arena.AllocateFloats(1));</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  lrDevice = arena.AllocateFloats(1);</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="keywordtype">int</span> zero = 0;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  backend-&gt;<a class="code hl_function" href="classDeep_1_1IComputeBackend.html#a1416aa81242bf5d3058d9ea736701a73">CopyFromHost</a>(<span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">float</span>*<span class="keyword">&gt;</span>(timestepDevice),</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>                        <span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">float</span>*<span class="keyword">&gt;</span>(&amp;zero), 1);</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  backend-&gt;<a class="code hl_function" href="classDeep_1_1IComputeBackend.html#a1416aa81242bf5d3058d9ea736701a73">CopyFromHost</a>(lrDevice, &amp;lr, 1);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>}</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> ArenaT&gt;</div>
+<div class="foldopen" id="foldopen00037" data-start="{" data-end="}">
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="namespaceDeep.html#aa9d8aced12709e934f632e25782b91cd">   37</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespaceDeep.html#aa9d8aced12709e934f632e25782b91cd">BindLearningRateState</a>(ArenaT&amp; arena, <a class="code hl_typedef" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a>* backend, <span class="keywordtype">int</span>*&amp; timestepDevice,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>                                   <span class="keywordtype">float</span>*&amp; lrDevice, <span class="keywordtype">float</span> lr)</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>{</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  timestepDevice = <span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">int</span>*<span class="keyword">&gt;</span>(arena.AllocateFloats(1));</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  lrDevice = arena.AllocateFloats(1);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keywordtype">int</span> zero = 0;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  backend-&gt;<a class="code hl_function" href="classDeep_1_1IComputeBackendT.html#a00bee4e42ed5a952d6807885f9a5c7c1">CopyFromHost</a>(<span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">float</span>*<span class="keyword">&gt;</span>(timestepDevice),</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>                        <span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">float</span>*<span class="keyword">&gt;</span>(&amp;zero), 1);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  backend-&gt;<a class="code hl_function" href="classDeep_1_1IComputeBackendT.html#a00bee4e42ed5a952d6807885f9a5c7c1">CopyFromHost</a>(lrDevice, &amp;lr, 1);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>}</div>
 </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> ArenaT&gt;</div>
-<div class="foldopen" id="foldopen00051" data-start="{" data-end="}">
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="namespaceDeep.html#afb0cad73ef583040d5d643ef34e6bf34">   51</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespaceDeep.html#afb0cad73ef583040d5d643ef34e6bf34">ReleaseLocalArenaIfForeign</a>(std::unique_ptr&lt;MemoryArena&gt;&amp; localArena, ArenaT&amp; arena)</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>{</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (std::is_same_v&lt;ArenaT, MemoryArena&gt;)</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  {</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordflow">if</span> (localArena &amp;&amp; localArena.get() != &amp;arena)</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>      localArena.reset();</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  }</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  {</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    localArena.reset();</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  }</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>}</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> ArenaT&gt;</div>
+<div class="foldopen" id="foldopen00053" data-start="{" data-end="}">
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="namespaceDeep.html#afb0cad73ef583040d5d643ef34e6bf34">   53</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespaceDeep.html#afb0cad73ef583040d5d643ef34e6bf34">ReleaseLocalArenaIfForeign</a>(std::unique_ptr&lt;MemoryArena&gt;&amp; localArena, ArenaT&amp; arena)</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>{</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (std::is_same_v&lt;ArenaT, MemoryArena&gt;)</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordflow">if</span> (localArena &amp;&amp; localArena.get() != &amp;arena)</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>      localArena.reset();</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  }</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  {</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    localArena.reset();</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  }</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>}</div>
 </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>} <span class="comment">// namespace Deep</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> AccumT&gt;</div>
+<div class="foldopen" id="foldopen00080" data-start="{" data-end="}">
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="namespaceDeep.html#a6e35ff4ccd99794bdbdd021ed1b089a9">   80</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespaceDeep.html#a6e35ff4ccd99794bdbdd021ed1b089a9">BindAdamStateT</a>(<span class="keywordtype">size_t</span> paramSize, std::vector&lt;AccumT&gt;&amp; grad, std::vector&lt;AccumT&gt;&amp; m,</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>                           std::vector&lt;AccumT&gt;&amp; v)</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>{</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  grad.assign(paramSize, AccumT(0));</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  m.assign(paramSize, AccumT(0));</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  v.assign(paramSize, AccumT(0));</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>}</div>
+</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> AccumT&gt;</div>
+<div class="foldopen" id="foldopen00094" data-start="{" data-end="}">
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="namespaceDeep.html#a3c2dc1f2935a71f01496e63a366ef1ef">   94</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespaceDeep.html#a3c2dc1f2935a71f01496e63a366ef1ef">BindLearningRateStateT</a>(<span class="keywordtype">int</span>&amp; timestep, AccumT&amp; lrState, AccumT lr)</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>{</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  timestep = 0;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  lrState = lr;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>}</div>
+</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> ArenaT&gt;</div>
+<div class="foldopen" id="foldopen00103" data-start="{" data-end="}">
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="namespaceDeep.html#a07f39f08022a1cf1239c1c06228d2dd5">  103</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespaceDeep.html#a07f39f08022a1cf1239c1c06228d2dd5">ReleaseLocalArenaIfForeignT</a>(std::unique_ptr&lt;<a class="code hl_class" href="classDeep_1_1MemoryArenaT.html">MemoryArenaT&lt;T&gt;</a>&gt;&amp; localArena,</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>                                        ArenaT&amp; arena)</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>{</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (std::is_same_v&lt;ArenaT, MemoryArenaT&lt;T&gt;&gt;)</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>  {</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keywordflow">if</span> (localArena &amp;&amp; localArena.get() != &amp;arena)</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>      localArena.reset();</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  }</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>  {</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    localArena.reset();</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>  }</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>}</div>
+</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>} <span class="comment">// namespace Deep</span></div>
 <div class="ttc" id="aIComputeBackend_8h_html"><div class="ttname"><a href="IComputeBackend_8h.html">IComputeBackend.h</a></div></div>
 <div class="ttc" id="aMemoryArena_8h_html"><div class="ttname"><a href="MemoryArena_8h.html">MemoryArena.h</a></div><div class="ttdoc">A 64-byte-aligned bump-pointer allocator over a single heap-allocated block, used to pack every layer...</div></div>
-<div class="ttc" id="aclassDeep_1_1IComputeBackend_html"><div class="ttname"><a href="classDeep_1_1IComputeBackend.html">Deep::IComputeBackend</a></div><div class="ttdoc">Device-agnostic compute backend interface: every numerical primitive a layer/network needs,...</div><div class="ttdef"><b>Definition</b> IComputeBackend.h:14</div></div>
-<div class="ttc" id="aclassDeep_1_1IComputeBackend_html_a1416aa81242bf5d3058d9ea736701a73"><div class="ttname"><a href="classDeep_1_1IComputeBackend.html#a1416aa81242bf5d3058d9ea736701a73">Deep::IComputeBackend::CopyFromHost</a></div><div class="ttdeci">virtual void CopyFromHost(float *deviceDst, const float *hostSrc, size_t numFloats) noexcept=0</div><div class="ttdoc">Copies numFloats floats from a host buffer into a device buffer (a plain memcpy on CPUBackend).</div></div>
-<div class="ttc" id="aclassDeep_1_1IComputeBackend_html_ab9abaa2a632281386ba225bbe0973922"><div class="ttname"><a href="classDeep_1_1IComputeBackend.html#ab9abaa2a632281386ba225bbe0973922">Deep::IComputeBackend::Zero</a></div><div class="ttdeci">virtual void Zero(float *ptr, size_t numFloats) noexcept=0</div><div class="ttdoc">Zero-fills numFloats floats starting at ptr.</div></div>
+<div class="ttc" id="aclassDeep_1_1IComputeBackendT_html_a00bee4e42ed5a952d6807885f9a5c7c1"><div class="ttname"><a href="classDeep_1_1IComputeBackendT.html#a00bee4e42ed5a952d6807885f9a5c7c1">Deep::IComputeBackendT::CopyFromHost</a></div><div class="ttdeci">virtual void CopyFromHost(T *deviceDst, const T *hostSrc, size_t numElements) noexcept=0</div><div class="ttdoc">Copies numElements elements of T from a host buffer into a device buffer (a plain memcpy on CPUBacken...</div></div>
+<div class="ttc" id="aclassDeep_1_1IComputeBackendT_html_ae75d1371f38e923c053c9238734b609e"><div class="ttname"><a href="classDeep_1_1IComputeBackendT.html#ae75d1371f38e923c053c9238734b609e">Deep::IComputeBackendT::Zero</a></div><div class="ttdeci">virtual void Zero(T *ptr, size_t numElements) noexcept=0</div><div class="ttdoc">Zero-fills numElements elements of T starting at ptr.</div></div>
+<div class="ttc" id="aclassDeep_1_1MemoryArenaT_html"><div class="ttname"><a href="classDeep_1_1MemoryArenaT.html">Deep::MemoryArenaT</a></div><div class="ttdoc">A 64-byte-aligned bump-pointer allocator over a single contiguous block of host memory,...</div><div class="ttdef"><b>Definition</b> MemoryArena.h:148</div></div>
 <div class="ttc" id="anamespaceDeep_html"><div class="ttname"><a href="namespaceDeep.html">Deep</a></div><div class="ttdoc">This file exists to provide both Tensor.h and IComputeBackend.h with device types without introducing...</div><div class="ttdef"><b>Definition</b> Backend.cpp:10</div></div>
-<div class="ttc" id="anamespaceDeep_html_a13ab35b037aabad20fc5f558070f9a3f"><div class="ttname"><a href="namespaceDeep.html#a13ab35b037aabad20fc5f558070f9a3f">Deep::BindAdamState</a></div><div class="ttdeci">void BindAdamState(ArenaT &amp;arena, IComputeBackend *backend, size_t paramSize, float *&amp;grad, float *&amp;m, float *&amp;v)</div><div class="ttdoc">Allocates and zeros a parameter&#39;s Adam/AdamW optimizer state (gradient, first moment,...</div><div class="ttdef"><b>Definition</b> LayerBindHelpers.h:20</div></div>
-<div class="ttc" id="anamespaceDeep_html_aa9d8aced12709e934f632e25782b91cd"><div class="ttname"><a href="namespaceDeep.html#aa9d8aced12709e934f632e25782b91cd">Deep::BindLearningRateState</a></div><div class="ttdeci">void BindLearningRateState(ArenaT &amp;arena, IComputeBackend *backend, int *&amp;timestepDevice, float *&amp;lrDevice, float lr)</div><div class="ttdoc">Allocates a layer&#39;s device-resident Adam timestep/learning-rate mirrors and initializes them from the...</div><div class="ttdef"><b>Definition</b> LayerBindHelpers.h:35</div></div>
-<div class="ttc" id="anamespaceDeep_html_afb0cad73ef583040d5d643ef34e6bf34"><div class="ttname"><a href="namespaceDeep.html#afb0cad73ef583040d5d643ef34e6bf34">Deep::ReleaseLocalArenaIfForeign</a></div><div class="ttdeci">void ReleaseLocalArenaIfForeign(std::unique_ptr&lt; MemoryArena &gt; &amp;localArena, ArenaT &amp;arena)</div><div class="ttdoc">Releases a layer&#39;s private fallback arena once BindMemory() has run: dropped if it was bound into a n...</div><div class="ttdef"><b>Definition</b> LayerBindHelpers.h:51</div></div>
+<div class="ttc" id="anamespaceDeep_html_a07f39f08022a1cf1239c1c06228d2dd5"><div class="ttname"><a href="namespaceDeep.html#a07f39f08022a1cf1239c1c06228d2dd5">Deep::ReleaseLocalArenaIfForeignT</a></div><div class="ttdeci">void ReleaseLocalArenaIfForeignT(std::unique_ptr&lt; MemoryArenaT&lt; T &gt; &gt; &amp;localArena, ArenaT &amp;arena)</div><div class="ttdoc">Templated counterpart to ReleaseLocalArenaIfForeign(), for FullPCLayer&lt;T, AccumT&gt;&#39;s own MemoryArenaT&lt;...</div><div class="ttdef"><b>Definition</b> LayerBindHelpers.h:103</div></div>
+<div class="ttc" id="anamespaceDeep_html_a13ab35b037aabad20fc5f558070f9a3f"><div class="ttname"><a href="namespaceDeep.html#a13ab35b037aabad20fc5f558070f9a3f">Deep::BindAdamState</a></div><div class="ttdeci">void BindAdamState(ArenaT &amp;arena, IComputeBackend *backend, size_t paramSize, float *&amp;grad, float *&amp;m, float *&amp;v)</div><div class="ttdoc">Allocates and zeros a parameter&#39;s Adam/AdamW optimizer state (gradient, first moment,...</div><div class="ttdef"><b>Definition</b> LayerBindHelpers.h:22</div></div>
+<div class="ttc" id="anamespaceDeep_html_a24f44e5368f10174045be9658b125eb4"><div class="ttname"><a href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">Deep::IComputeBackend</a></div><div class="ttdeci">IComputeBackendT&lt; float, float &gt; IComputeBackend</div><div class="ttdoc">Non-templated alias preserving every existing caller&#39;s behavior exactly: IComputeBackend is IComputeB...</div><div class="ttdef"><b>Definition</b> IComputeBackend.h:767</div></div>
+<div class="ttc" id="anamespaceDeep_html_a3c2dc1f2935a71f01496e63a366ef1ef"><div class="ttname"><a href="namespaceDeep.html#a3c2dc1f2935a71f01496e63a366ef1ef">Deep::BindLearningRateStateT</a></div><div class="ttdeci">void BindLearningRateStateT(int &amp;timestep, AccumT &amp;lrState, AccumT lr)</div><div class="ttdoc">Templated counterpart to BindLearningRateState(), for FullPCLayer&lt;T, AccumT&gt;. Same host-only-AccumT-s...</div><div class="ttdef"><b>Definition</b> LayerBindHelpers.h:94</div></div>
+<div class="ttc" id="anamespaceDeep_html_a6e35ff4ccd99794bdbdd021ed1b089a9"><div class="ttname"><a href="namespaceDeep.html#a6e35ff4ccd99794bdbdd021ed1b089a9">Deep::BindAdamStateT</a></div><div class="ttdeci">void BindAdamStateT(size_t paramSize, std::vector&lt; AccumT &gt; &amp;grad, std::vector&lt; AccumT &gt; &amp;m, std::vector&lt; AccumT &gt; &amp;v)</div><div class="ttdoc">Templated counterpart to BindAdamState(), for FullPCLayer&lt;T, AccumT&gt;: grad/m/v are AccumT-typed (the ...</div><div class="ttdef"><b>Definition</b> LayerBindHelpers.h:80</div></div>
+<div class="ttc" id="anamespaceDeep_html_aa9d8aced12709e934f632e25782b91cd"><div class="ttname"><a href="namespaceDeep.html#aa9d8aced12709e934f632e25782b91cd">Deep::BindLearningRateState</a></div><div class="ttdeci">void BindLearningRateState(ArenaT &amp;arena, IComputeBackend *backend, int *&amp;timestepDevice, float *&amp;lrDevice, float lr)</div><div class="ttdoc">Allocates a layer&#39;s device-resident Adam timestep/learning-rate mirrors and initializes them from the...</div><div class="ttdef"><b>Definition</b> LayerBindHelpers.h:37</div></div>
+<div class="ttc" id="anamespaceDeep_html_afb0cad73ef583040d5d643ef34e6bf34"><div class="ttname"><a href="namespaceDeep.html#afb0cad73ef583040d5d643ef34e6bf34">Deep::ReleaseLocalArenaIfForeign</a></div><div class="ttdeci">void ReleaseLocalArenaIfForeign(std::unique_ptr&lt; MemoryArena &gt; &amp;localArena, ArenaT &amp;arena)</div><div class="ttdoc">Releases a layer&#39;s private fallback arena once BindMemory() has run: dropped if it was bound into a n...</div><div class="ttdef"><b>Definition</b> LayerBindHelpers.h:53</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

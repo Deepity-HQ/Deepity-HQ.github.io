@@ -9,5 +9,6 @@ var searchData=
   ['discriminativepclayer_2ecpp_6',['DiscriminativePCLayer.cpp',['../DiscriminativePCLayer_8cpp.html',1,'']]],
   ['discriminativepclayer_2eh_7',['DiscriminativePCLayer.h',['../DiscriminativePCLayer_8h.html',1,'']]],
   ['discriminativepcnetwork_2ecpp_8',['DiscriminativePCNetwork.cpp',['../DiscriminativePCNetwork_8cpp.html',1,'']]],
-  ['discriminativepcnetwork_2eh_9',['DiscriminativePCNetwork.h',['../DiscriminativePCNetwork_8h.html',1,'']]]
+  ['discriminativepcnetwork_2eh_9',['DiscriminativePCNetwork.h',['../DiscriminativePCNetwork_8h.html',1,'']]],
+  ['dtypetag_2eh_10',['DTypeTag.h',['../DTypeTag_8h.html',1,'']]]
 ];

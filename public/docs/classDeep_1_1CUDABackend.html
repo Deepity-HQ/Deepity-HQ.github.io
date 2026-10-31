@@ -103,7 +103,7 @@ $(function(){initNavTree('classDeep_1_1CUDABackend.html','','classDeep_1_1CUDABa
 </div><!--header-->
 <div class="contents">
 
-<p>CUDA implementation of <a class="el" href="classDeep_1_1IComputeBackend.html" title="Device-agnostic compute backend interface: every numerical primitive a layer/network needs,...">IComputeBackend</a>: device kernels for elementwise ops, cuBLAS for GEMM, CUTLASS for the fused forward path, CUDA graphs for capture/replay. See src/backend/cuda/ for the implementation, split by concern to mirror this interface's own section grouping.  
+<p>CUDA implementation of <a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: IComputeBackend is IComputeB...">IComputeBackend</a>: device kernels for elementwise ops, cuBLAS for GEMM, CUTLASS for the fused forward path, CUDA graphs for capture/replay. See src/backend/cuda/ for the implementation, split by concern to mirror this interface's own section grouping.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="CUDABackend_8h_source.html">CUDABackend.h</a>&gt;</code></p>
@@ -113,7 +113,7 @@ Inheritance diagram for Deep::CUDABackend:</div>
  <div class="center">
   <img src="classDeep_1_1CUDABackend.png" usemap="#Deep_3A_3ACUDABackend_map" alt=""/>
   <map id="Deep_3A_3ACUDABackend_map" name="Deep_3A_3ACUDABackend_map">
-<area href="classDeep_1_1IComputeBackend.html" title="Device-agnostic compute backend interface: every numerical primitive a layer/network needs,..." alt="Deep::IComputeBackend" shape="rect" coords="0,0,149,24"/>
+<area href="classDeep_1_1IComputeBackendT.html" alt="Deep::IComputeBackendT&lt; float, float &gt;" shape="rect" coords="0,0,237,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -130,35 +130,45 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac55d180e7bbec90637dc8275efb49cba" id="r_ac55d180e7bbec90637dc8275efb49cba"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac55d180e7bbec90637dc8275efb49cba">Synchronize</a> () noexcept override</td></tr>
 <tr class="memdesc:ac55d180e7bbec90637dc8275efb49cba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blocks until all previously enqueued work on this backend's stream has completed. A no-op on <a class="el" href="classDeep_1_1CPUBackend.html" title="CPU implementation of IComputeBackend: SIMD (via Activations.h) for elementwise ops,...">CPUBackend</a> (every CPU call is already synchronous).     <br /></td></tr>
 <tr class="memitem:ae4c69878c664bd0163e03d07b4f3fbe1" id="r_ae4c69878c664bd0163e03d07b4f3fbe1"><td class="memItemLeft">float *&#160;</td><td class="memItemRight"><a class="el" href="#ae4c69878c664bd0163e03d07b4f3fbe1">Allocate</a> (size_t numFloats) override</td></tr>
-<tr class="memdesc:ae4c69878c664bd0163e03d07b4f3fbe1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates <span class="tt">numFloats</span> floats on this backend's device.     <br /></td></tr>
+<tr class="memdesc:ae4c69878c664bd0163e03d07b4f3fbe1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates <span class="tt">numElements</span> elements of T on this backend's device.     <br /></td></tr>
 <tr class="memitem:ad6baa3b573d3f76c73e95659f3fe1395" id="r_ad6baa3b573d3f76c73e95659f3fe1395"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ad6baa3b573d3f76c73e95659f3fe1395">Free</a> (float *ptr) noexcept override</td></tr>
-<tr class="memdesc:ad6baa3b573d3f76c73e95659f3fe1395"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees a buffer previously returned by <a class="el" href="#ae4c69878c664bd0163e03d07b4f3fbe1" title="Allocates numFloats floats on this backend&#39;s device.">Allocate()</a>. No-op on nullptr.     <br /></td></tr>
+<tr class="memdesc:ad6baa3b573d3f76c73e95659f3fe1395"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees a buffer previously returned by <a class="el" href="#ae4c69878c664bd0163e03d07b4f3fbe1" title="Allocates numElements elements of T on this backend&#39;s device.">Allocate()</a>. No-op on nullptr.     <br /></td></tr>
 <tr class="memitem:a74cdbdfeb8bf17d5d1c17ebf751ec4c7" id="r_a74cdbdfeb8bf17d5d1c17ebf751ec4c7"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a74cdbdfeb8bf17d5d1c17ebf751ec4c7">Zero</a> (float *ptr, size_t numFloats) noexcept override</td></tr>
-<tr class="memdesc:a74cdbdfeb8bf17d5d1c17ebf751ec4c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zero-fills <span class="tt">numFloats</span> floats starting at <span class="tt">ptr</span>.     <br /></td></tr>
+<tr class="memdesc:a74cdbdfeb8bf17d5d1c17ebf751ec4c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zero-fills <span class="tt">numElements</span> elements of T starting at <span class="tt">ptr</span>.     <br /></td></tr>
 <tr class="memitem:a74ebeb761a9c066b978af591d2a085a2" id="r_a74ebeb761a9c066b978af591d2a085a2"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a74ebeb761a9c066b978af591d2a085a2">Copy</a> (float *dst, const float *src, size_t numFloats) noexcept override</td></tr>
-<tr class="memdesc:a74ebeb761a9c066b978af591d2a085a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies <span class="tt">numFloats</span> floats from <span class="tt">src</span> to <span class="tt">dst</span>, both on this backend's own device.     <br /></td></tr>
+<tr class="memdesc:a74ebeb761a9c066b978af591d2a085a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies <span class="tt">numElements</span> elements of T from <span class="tt">src</span> to <span class="tt">dst</span>, both on this backend's own device.     <br /></td></tr>
 <tr class="memitem:ad9127acb618eedee1195289d6de2c05d" id="r_ad9127acb618eedee1195289d6de2c05d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ad9127acb618eedee1195289d6de2c05d">CopyFromHost</a> (float *deviceDst, const float *hostSrc, size_t numFloats) noexcept override</td></tr>
-<tr class="memdesc:ad9127acb618eedee1195289d6de2c05d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies <span class="tt">numFloats</span> floats from a host buffer into a device buffer (a plain memcpy on <a class="el" href="classDeep_1_1CPUBackend.html" title="CPU implementation of IComputeBackend: SIMD (via Activations.h) for elementwise ops,...">CPUBackend</a>).     <br /></td></tr>
+<tr class="memdesc:ad9127acb618eedee1195289d6de2c05d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies <span class="tt">numElements</span> elements of T from a host buffer into a device buffer (a plain memcpy on <a class="el" href="classDeep_1_1CPUBackend.html" title="CPU implementation of IComputeBackend: SIMD (via Activations.h) for elementwise ops,...">CPUBackend</a>).     <br /></td></tr>
 <tr class="memitem:a7f30fce504453efc4ed12c8a83828b50" id="r_a7f30fce504453efc4ed12c8a83828b50"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7f30fce504453efc4ed12c8a83828b50">CopyToHost</a> (float *hostDst, const float *deviceSrc, size_t numFloats) noexcept override</td></tr>
-<tr class="memdesc:a7f30fce504453efc4ed12c8a83828b50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies <span class="tt">numFloats</span> floats from a device buffer into a host buffer (a plain memcpy on <a class="el" href="classDeep_1_1CPUBackend.html" title="CPU implementation of IComputeBackend: SIMD (via Activations.h) for elementwise ops,...">CPUBackend</a>).     <br /></td></tr>
+<tr class="memdesc:a7f30fce504453efc4ed12c8a83828b50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies <span class="tt">numElements</span> elements of T from a device buffer into a host buffer (a plain memcpy on <a class="el" href="classDeep_1_1CPUBackend.html" title="CPU implementation of IComputeBackend: SIMD (via Activations.h) for elementwise ops,...">CPUBackend</a>).     <br /></td></tr>
 <tr class="memitem:aeea3d9694b7042a6e808c406b484d587" id="r_aeea3d9694b7042a6e808c406b484d587"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aeea3d9694b7042a6e808c406b484d587">RandomizeNormal</a> (float *buf, size_t n, float mean, float stddev, uint32_t seed) noexcept override</td></tr>
-<tr class="memdesc:aeea3d9694b7042a6e808c406b484d587"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fills <span class="tt">n</span> floats with samples from a normal distribution.     <br /></td></tr>
+<tr class="memdesc:aeea3d9694b7042a6e808c406b484d587"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fills <span class="tt">n</span> elements with samples from a normal distribution.     <br /></td></tr>
 <tr class="memitem:ab8b5d1884f297e2fd37383ad3d6b2b06" id="r_ab8b5d1884f297e2fd37383ad3d6b2b06"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ab8b5d1884f297e2fd37383ad3d6b2b06">RandomizeUniform</a> (float *buf, size_t n, float min, float max, uint32_t seed) noexcept override</td></tr>
-<tr class="memdesc:ab8b5d1884f297e2fd37383ad3d6b2b06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fills <span class="tt">n</span> floats with samples from a uniform distribution over [min, max).     <br /></td></tr>
+<tr class="memdesc:ab8b5d1884f297e2fd37383ad3d6b2b06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fills <span class="tt">n</span> elements with samples from a uniform distribution over [min, max).     <br /></td></tr>
 <tr class="memitem:acff826d766d857f2ca5bca46d6a2f7bf" id="r_acff826d766d857f2ca5bca46d6a2f7bf"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#acff826d766d857f2ca5bca46d6a2f7bf">SumRows</a> (float *dst, const float *src, size_t batchSize, size_t width) noexcept override</td></tr>
 <tr class="memdesc:acff826d766d857f2ca5bca46d6a2f7bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">dst[j] = sum over b in [0,batchSize) of src[b*width + j], for all j in [0,width). Replaces a batchSize-iteration loop of individual AxpyInto calls, the reduction-direction counterpart to AddBiasBroadcast, still unfixed until now. On GPU this is one cublasSgemv call against a cached all-ones vector, reinterpreting src's row-major [batchSize,width] layout as column-major [width,batchSize] with no data movement (verified numerically).     <br /></td></tr>
+<tr class="memitem:a6172bbd213c187da63a722f0ff9cf46f" id="r_a6172bbd213c187da63a722f0ff9cf46f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a6172bbd213c187da63a722f0ff9cf46f">SumRowsAccum</a> (float *dst, const float *src, size_t batchSize, size_t width) noexcept override</td></tr>
+<tr class="memdesc:a6172bbd213c187da63a722f0ff9cf46f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same operation as <a class="el" href="#acff826d766d857f2ca5bca46d6a2f7bf" title="dst[j] = sum over b in [0,batchSize) of src[b*width + j], for all j in [0,width). Replaces a batchSiz...">SumRows()</a>, but writes into an AccumT* buffer instead of T* &ndash; see <a class="el" href="#ad2bafc5a680fab871878f41f5661fba8" title="Same operation as MatMul(), but writes into an AccumT* buffer instead of T* – for a layer&#39;s own Adam/...">MatMulAccum()</a>'s own doc comment for why this exists (a layer's bias gradient, grad_b, needs the same AccumT-accumulating treatment grad_W does).     <br /></td></tr>
 <tr class="memitem:ac83004d8863b40ff7eaa64b6672387e1" id="r_ac83004d8863b40ff7eaa64b6672387e1"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#ac83004d8863b40ff7eaa64b6672387e1">Sum</a> (const float *buf, size_t n) noexcept override</td></tr>
-<tr class="memdesc:ac83004d8863b40ff7eaa64b6672387e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the plain (signed) sum of every element in buf. Synchronous on <a class="el" href="classDeep_1_1CUDABackend.html" title="CUDA implementation of IComputeBackend: device kernels for elementwise ops, cuBLAS for GEMM,...">CUDABackend</a> (reads the reduction back to a host float before returning) &ndash; same constraint as ComputeErrorAndEnergy and friends: never call this from inside a captured CUDA graph region, only from code that runs outside any <a class="el" href="#afc9b85906457f281bbfcc415b2e0f876" title="Starts recording subsequent backend calls into a replayable graph, instead of executing them immediat...">BeginGraphCapture()</a>/EndGraphCapture() pair.     <br /></td></tr>
+<tr class="memdesc:ac83004d8863b40ff7eaa64b6672387e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the plain (signed) sum of every element in buf. Synchronous on <a class="el" href="classDeep_1_1CUDABackend.html" title="CUDA implementation of IComputeBackend: device kernels for elementwise ops, cuBLAS for GEMM,...">CUDABackend</a> (reads the reduction back to a host value before returning) &ndash; same constraint as ComputeErrorAndEnergy and friends: never call this from inside a captured CUDA graph region, only from code that runs outside any <a class="el" href="#afc9b85906457f281bbfcc415b2e0f876" title="Starts recording subsequent backend calls into a replayable graph, instead of executing them immediat...">BeginGraphCapture()</a>/EndGraphCapture() pair.     <br /></td></tr>
 <tr class="memitem:a80a51a52562bcdd63824973ed0be9525" id="r_a80a51a52562bcdd63824973ed0be9525"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a80a51a52562bcdd63824973ed0be9525">PrepareForBatchSize</a> (size_t batchSize) noexcept override</td></tr>
 <tr class="memdesc:a80a51a52562bcdd63824973ed0be9525"><td class="mdescLeft">&#160;</td><td class="mdescRight">Must be called once, before Compile()'s first <a class="el" href="#afc9b85906457f281bbfcc415b2e0f876" title="Starts recording subsequent backend calls into a replayable graph, instead of executing them immediat...">BeginGraphCapture()</a>, for any backend that needs to prepare batch-size-dependent state (e.g. <a class="el" href="classDeep_1_1CUDABackend.html" title="CUDA implementation of IComputeBackend: device kernels for elementwise ops, cuBLAS for GEMM,...">CUDABackend</a>'s cached all-ones vector for SumRows' GEMV). No-op on <a class="el" href="classDeep_1_1CPUBackend.html" title="CPU implementation of IComputeBackend: SIMD (via Activations.h) for elementwise ops,...">CPUBackend</a>.  <br /></td></tr>
 <tr class="memitem:ae792cbda32201e02d1c79049b1dcb63a" id="r_ae792cbda32201e02d1c79049b1dcb63a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ae792cbda32201e02d1c79049b1dcb63a">MatMul</a> (bool transA, bool transB, int M, int N, int K, float alpha, const float *A, int lda, const float *B, int ldb, float beta, float *C, int ldc) noexcept override</td></tr>
 <tr class="memdesc:ae792cbda32201e02d1c79049b1dcb63a"><td class="mdescLeft">&#160;</td><td class="mdescRight">C = alpha * op(A) * op(B) + beta * C, the standard BLAS SGEMM convention (op(X) = X^T if the matching transX is true).     <br /></td></tr>
+<tr class="memitem:ad2bafc5a680fab871878f41f5661fba8" id="r_ad2bafc5a680fab871878f41f5661fba8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ad2bafc5a680fab871878f41f5661fba8">MatMulAccum</a> (bool transA, bool transB, int M, int N, int K, float alpha, const float *A, int lda, const float *B, int ldb, float beta, float *C, int ldc) noexcept override</td></tr>
+<tr class="memdesc:ad2bafc5a680fab871878f41f5661fba8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same operation as <a class="el" href="#ae792cbda32201e02d1c79049b1dcb63a" title="C = alpha * op(A) * op(B) + beta * C, the standard BLAS SGEMM convention (op(X) = X^T if the matching...">MatMul()</a>, but writes into an AccumT* buffer instead of T* &ndash; for a layer's own Adam/AdamW gradient computation (grad_W, grad_Psi, ...), which must land in the wider AccumT accumulator, not get rounded down to storage precision T mid-computation (exactly the gap this method closes: <a class="el" href="#ae792cbda32201e02d1c79049b1dcb63a" title="C = alpha * op(A) * op(B) + beta * C, the standard BLAS SGEMM convention (op(X) = X^T if the matching...">MatMul()</a> itself can only ever write a T* C, so it alone can't produce a loss-free gradient when T is a lossy storage format with AccumT != T, e.g. <a class="el" href="structDeep_1_1Fp4E2M1Value.html" title="Storage type for the FP4 E2M1 format (see arXiv:2610.15933&#39;s W4A4E4 QAT setup). Converts to/from any ...">Fp4E2M1Value</a>). For T == AccumT (every float/ double instantiation) this is numerically identical to <a class="el" href="#ae792cbda32201e02d1c79049b1dcb63a" title="C = alpha * op(A) * op(B) + beta * C, the standard BLAS SGEMM convention (op(X) = X^T if the matching...">MatMul()</a> with that same buffer, just spelled through the AccumT-typed overload the optimizer path calls either way.     <br /></td></tr>
+<tr class="memitem:a56d3b266ed5b3a08aa6ab2351ce1e21c" id="r_a56d3b266ed5b3a08aa6ab2351ce1e21c"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a56d3b266ed5b3a08aa6ab2351ce1e21c">MatMulAccumMixed</a> (bool transA, bool transB, int M, int N, int K, float alpha, const float *A, int lda, const float *B, int ldb, float beta, float *C, int ldc) noexcept override</td></tr>
+<tr class="memdesc:a56d3b266ed5b3a08aa6ab2351ce1e21c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same operation as <a class="el" href="#ad2bafc5a680fab871878f41f5661fba8" title="Same operation as MatMul(), but writes into an AccumT* buffer instead of T* – for a layer&#39;s own Adam/...">MatMulAccum()</a>, but A is already AccumT* &ndash; for a layer's transient settling/gradient scratch (e.g. the activation-derivative-weighted error signal that feeds both UpdateState()'s feedback GEMM and UpdateWeights()'s gradient GEMM), which must never round-trip through storage precision T even transiently: for a lossy T (e.g. <a class="el" href="structDeep_1_1Fp4E2M1Value.html" title="Storage type for the FP4 E2M1 format (see arXiv:2610.15933&#39;s W4A4E4 QAT setup). Converts to/from any ...">Fp4E2M1Value</a>), an activation derivative's natural range commonly falls entirely below T's coarsest resolution (sigmoid's derivative maxes out at 0.25, below <a class="el" href="structDeep_1_1Fp4E2M1Value.html" title="Storage type for the FP4 E2M1 format (see arXiv:2610.15933&#39;s W4A4E4 QAT setup). Converts to/from any ...">Fp4E2M1Value</a>'s smallest nonzero magnitude of 0.5), so writing it into a T* buffer even once rounds it to exactly zero and kills the gradient outright &ndash; this is that fix. Only B (the real, stored parameter, e.g. W) decodes from T; A is used as-is.     <br /></td></tr>
 <tr class="memitem:a005f1c08f534e8eb9415c909d25211cc" id="r_a005f1c08f534e8eb9415c909d25211cc"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a005f1c08f534e8eb9415c909d25211cc">SetAllowTF32</a> (bool allow) noexcept override</td></tr>
 <tr class="memdesc:a005f1c08f534e8eb9415c909d25211cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether <a class="el" href="#ae792cbda32201e02d1c79049b1dcb63a" title="C = alpha * op(A) * op(B) + beta * C, the standard BLAS SGEMM convention (op(X) = X^T if the matching...">MatMul()</a> may use TF32 (10 mantissa bits, ~1e-3 relative error per GEMM) instead of full FP32 on tensor cores &ndash; <a class="el" href="classDeep_1_1CUDABackend.html" title="CUDA implementation of IComputeBackend: device kernels for elementwise ops, cuBLAS for GEMM,...">CUDABackend</a> only; a no-op on <a class="el" href="classDeep_1_1CPUBackend.html" title="CPU implementation of IComputeBackend: SIMD (via Activations.h) for elementwise ops,...">CPUBackend</a>, which has no such distinction. Defaults to allowed, matching PyTorch's own default, since every conv in this library lowers to im2col+MatMul and would otherwise run at a fraction of the GPU's peak throughput. Turn off before a finite-difference gradient check: TF32's error is large enough to either fail those checks for no real reason, or tempt loosening their tolerance until it stops catching real bugs.     <br /></td></tr>
 <tr class="memitem:ac94d46344397aa27b6c2c06264b9542b" id="r_ac94d46344397aa27b6c2c06264b9542b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac94d46344397aa27b6c2c06264b9542b">Scale</a> (float *buf, size_t n, float alpha) noexcept override</td></tr>
 <tr class="memdesc:ac94d46344397aa27b6c2c06264b9542b"><td class="mdescLeft">&#160;</td><td class="mdescRight">buf[i] *= alpha for all i in [0, n).     <br /></td></tr>
 <tr class="memitem:acb416b4ef4ad83577c46ed757b35cd6b" id="r_acb416b4ef4ad83577c46ed757b35cd6b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#acb416b4ef4ad83577c46ed757b35cd6b">AxpyInto</a> (float *y, const float *x, size_t n, float alpha) noexcept override</td></tr>
 <tr class="memdesc:acb416b4ef4ad83577c46ed757b35cd6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">y[i] += alpha * x[i] for all i in [0, n), the standard AXPY.     <br /></td></tr>
+<tr class="memitem:a0dd9acbd9782f141fa3d57a391936753" id="r_a0dd9acbd9782f141fa3d57a391936753"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a0dd9acbd9782f141fa3d57a391936753">AxpyIntoAccum</a> (float *y, const float *x, size_t n, float alpha) noexcept override</td></tr>
+<tr class="memdesc:a0dd9acbd9782f141fa3d57a391936753"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same operation as <a class="el" href="#acb416b4ef4ad83577c46ed757b35cd6b" title="y[i] += alpha * x[i] for all i in [0, n), the standard AXPY.">AxpyInto()</a>, but y is AccumT* and x stays T* &ndash; see <a class="el" href="#a56d3b266ed5b3a08aa6ab2351ce1e21c" title="Same operation as MatMulAccum(), but A is already AccumT* – for a layer&#39;s transient settling/gradient...">MatMulAccumMixed()</a>'s own doc comment for why a settling/ gradient scratch accumulator must never round-trip through T.     <br /></td></tr>
+<tr class="memitem:a404df89f645441b1a5961b8233f9ad9e" id="r_a404df89f645441b1a5961b8233f9ad9e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a404df89f645441b1a5961b8233f9ad9e">AxpyIntoFromAccum</a> (float *y, const float *x, size_t n, float alpha) noexcept override</td></tr>
+<tr class="memdesc:a404df89f645441b1a5961b8233f9ad9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same operation as <a class="el" href="#acb416b4ef4ad83577c46ed757b35cd6b" title="y[i] += alpha * x[i] for all i in [0, n), the standard AXPY.">AxpyInto()</a>, but x is AccumT* &ndash; for applying an AccumT-precision settling/gradient delta onto a real, stored T-typed buffer (z, W, b, ...), which is the one place this delta is <em>meant</em> to finally round-trip through storage precision.     <br /></td></tr>
 <tr class="memitem:a63e76be413a0dd05929625bbef005a4d" id="r_a63e76be413a0dd05929625bbef005a4d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a63e76be413a0dd05929625bbef005a4d">AddBiasBroadcast</a> (float *buf, const float *bias, size_t batchSize, size_t width) noexcept override</td></tr>
 <tr class="memdesc:a63e76be413a0dd05929625bbef005a4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">buf[row*width + col] += bias[col] for every row in [0,batchSize) and col in [0,width), broadcasts a per-column bias across every row (the dense-layer convention).     <br /></td></tr>
 <tr class="memitem:ab5e3cee4b6cbaa1c3910d180eaa95d57" id="r_ab5e3cee4b6cbaa1c3910d180eaa95d57"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ab5e3cee4b6cbaa1c3910d180eaa95d57">TryFusedMatMulBias</a> (bool transA, bool transB, int M, int N, int K, const float *A, int lda, const float *B, int ldb, const float *bias, float *C, int ldc) noexcept override</td></tr>
@@ -179,6 +189,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a782c95e433fe70f88de64d8893c438e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies <span class="tt">type</span>'s derivative to <span class="tt">buf</span> in place.     <br /></td></tr>
 <tr class="memitem:a218f41f57383f2df3195a5256ff6bc03" id="r_a218f41f57383f2df3195a5256ff6bc03"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a218f41f57383f2df3195a5256ff6bc03">ActivationDerivativeInto</a> (<a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> type, float *dst, const float *src, size_t n) noexcept override</td></tr>
 <tr class="memdesc:a218f41f57383f2df3195a5256ff6bc03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Two-buffer variant of <a class="el" href="#a782c95e433fe70f88de64d8893c438e0" title="Applies type&#39;s derivative to buf in place.">ActivationDerivative()</a>: reads src (the pre-activation value), writes the derivative into dst.     <br /></td></tr>
+<tr class="memitem:a9bebd23945b8ab1a409505cc463e1470" id="r_a9bebd23945b8ab1a409505cc463e1470"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9bebd23945b8ab1a409505cc463e1470">ActivationDerivativeIntoAccum</a> (<a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> type, float *dst, const float *src, size_t n) noexcept override</td></tr>
+<tr class="memdesc:a9bebd23945b8ab1a409505cc463e1470"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same operation as <a class="el" href="#a218f41f57383f2df3195a5256ff6bc03" title="Two-buffer variant of ActivationDerivative(): reads src (the pre-activation value),...">ActivationDerivativeInto()</a>, but writes into an AccumT* buffer instead of T* &ndash; see <a class="el" href="#a56d3b266ed5b3a08aa6ab2351ce1e21c" title="Same operation as MatMulAccum(), but A is already AccumT* – for a layer&#39;s transient settling/gradient...">MatMulAccumMixed()</a>'s own doc comment: an activation derivative's natural range commonly undershoots a lossy T's coarsest resolution entirely, so this must land in AccumT precision at the point of computation, never T, even transiently.     <br /></td></tr>
 <tr class="memitem:affed54b0ab566cfd9446c0bc966fd5d8" id="r_affed54b0ab566cfd9446c0bc966fd5d8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#affed54b0ab566cfd9446c0bc966fd5d8">FusedStateUpdate</a> (float *z, const float *feedback, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> dType, const float *e, size_t n, float ir) noexcept override</td></tr>
 <tr class="memdesc:affed54b0ab566cfd9446c0bc966fd5d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">One settling step's state update, fused into a single call: z += ir * ((feedback * deriv) - e) Non-momentum counterpart to <a class="el" href="#a831de1a78620685c77dec8c36ccd43fc" title="Same as FusedStateUpdate, but with momentum: the update direction (feedback*deriv - e) is EMA-smoothe...">FusedStateUpdateMomentum()</a> above.     <br /></td></tr>
 <tr class="memitem:a9c577a136124e67fba97413d7c3984dc" id="r_a9c577a136124e67fba97413d7c3984dc"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a9c577a136124e67fba97413d7c3984dc">ComputeErrorAndEnergy</a> (float *e, const float *z, const float *mu, size_t n) noexcept override</td></tr>
@@ -188,19 +200,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a36c54096b5fa0cd8481a0ec5973fa919" id="r_a36c54096b5fa0cd8481a0ec5973fa919"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a36c54096b5fa0cd8481a0ec5973fa919">TryComputeErrorAndActivation</a> (<a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> activationType, float *e, float *zF, const float *z, const float *mu, size_t n) noexcept override</td></tr>
 <tr class="memdesc:a36c54096b5fa0cd8481a0ec5973fa919"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fuses <a class="el" href="#a07573d938b54069ead4d2d8fd15f6dff" title="Same as ComputeErrorAndEnergy(), without computing (or returning) the energy, for callers that only n...">ComputeError()</a>'s e = z - mu with the forward activation zF = f(z) that <a class="el" href="classDeep_1_1SimplePCLayer.html#a6f7710c01d451ff6c2f6c0a1532bae59" title="Computes only mu (forward prediction), skipping error/energy entirely. Extracted from CalculateState(...">SimplePCLayer::ComputeMuOnly()</a> computes right afterward in the common (non-cross-entropy, no-energy-needed) settling step &ndash; both read the same z, so this halves that read and pays one OpenMP fork/join instead of two, see <a class="el" href="classDeep_1_1SimplePCLayer.html#a717e90d966a9de3e88d79e05a734aa27" title="Calculates the internal state of the layer.">SimplePCLayer::CalculateState()</a>'s call site for the exact condition under which this applies instead of the separate <a class="el" href="#a07573d938b54069ead4d2d8fd15f6dff" title="Same as ComputeErrorAndEnergy(), without computing (or returning) the energy, for callers that only n...">ComputeError()</a>/ <a class="el" href="#af6ac128419cb70de4e4bf7bee9a0fb1e" title="Two-buffer variant of Activation(): reads src, writes into dst.">ActivationInto()</a> pair. Unlike <a class="el" href="#a6b8be4eba556b3cc7b4136a3defc4360" title="Attempts C = alpha * (A @ B(^T)) via oneDNN&#39;s matmul primitive instead of MatMul()&#39;s cblas_sgemm (CPU...">TryFusedMatMul()</a> et al., this isn't a GEMM-adjacent fusion &ndash; oneDNN's post-ops only transform a primitive's <em>output</em>, and the activation here runs strictly before the mu GEMM reads zF, so there's no post-op slot to weld it onto; this is a plain elementwise loop fusion instead.     <br /></td></tr>
 <tr class="memitem:a525a5dbd951abc6650cd6b7ee4fffd66" id="r_a525a5dbd951abc6650cd6b7ee4fffd66"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a525a5dbd951abc6650cd6b7ee4fffd66">ComputeSoftmaxCrossEntropyErrorAndEnergy</a> (float *e, const float *z, const float *mu, size_t batchSize, size_t nextSize, float *rowEnergies) noexcept override</td></tr>
-<tr class="memdesc:a525a5dbd951abc6650cd6b7ee4fffd66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Softmax cross-entropy variant of ComputeErrorAndEnergy, for the terminal layer only. Unlike the Gaussian version, this needs batchSize/nextSize separately (not just a flat n) since softmax is a row-wise, not element-wise, operation. probs = softmax(mu), row-wise e = z - probs (z is the clamped target; matches the existing e := -dF/dmu convention exactly, since d(CE)/d(logits) = probs - y) energy = -sum(z * log(probs + eps)) (eps=1e-8, avoids log(0)) mu holds the RAW LOGITS (unchanged from the Gaussian case, still a*W@phi(z)+b), softmax is applied here, not baked into mu itself. <span class="tt">rowEnergies</span> is caller-provided scratch, &gt;= batchSize floats, NOT allocated internally (this runs inside CalculateState(), which runs inside TrainStep()'s CUDA-graph-captured region; dynamic allocation there is unsafe under capture, same reasoning as the CUTLASS workspace). <a class="el" href="classDeep_1_1CPUBackend.html" title="CPU implementation of IComputeBackend: SIMD (via Activations.h) for elementwise ops,...">CPUBackend</a>'s own override ignores this parameter entirely, kept in the shared interface so callers pass the same arguments to either backend.     <br /></td></tr>
+<tr class="memdesc:a525a5dbd951abc6650cd6b7ee4fffd66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Softmax cross-entropy variant of ComputeErrorAndEnergy, for the terminal layer only. Unlike the Gaussian version, this needs batchSize/nextSize separately (not just a flat n) since softmax is a row-wise, not element-wise, operation. probs = softmax(mu), row-wise e = z - probs (z is the clamped target; matches the existing e := -dF/dmu convention exactly, since d(CE)/d(logits) = probs - y) energy = -sum(z * log(probs + eps)) (eps=1e-8, avoids log(0)) mu holds the RAW LOGITS (unchanged from the Gaussian case, still a*W@phi(z)+b), softmax is applied here, not baked into mu itself. <span class="tt">rowEnergies</span> is caller-provided scratch, &gt;= batchSize elements, NOT allocated internally (this runs inside CalculateState(), which runs inside TrainStep()'s CUDA-graph-captured region; dynamic allocation there is unsafe under capture, same reasoning as the CUTLASS workspace). <a class="el" href="classDeep_1_1CPUBackend.html" title="CPU implementation of IComputeBackend: SIMD (via Activations.h) for elementwise ops,...">CPUBackend</a>'s own override ignores this parameter entirely, kept in the shared interface so callers pass the same arguments to either backend.     <br /></td></tr>
 <tr class="memitem:a7dc26de6955c522e6d0e7f96932d4573" id="r_a7dc26de6955c522e6d0e7f96932d4573"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7dc26de6955c522e6d0e7f96932d4573">ComputeSoftmaxCrossEntropyError</a> (float *e, const float *z, const float *mu, size_t batchSize, size_t nextSize) noexcept override</td></tr>
 <tr class="memdesc:a7dc26de6955c522e6d0e7f96932d4573"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as <a class="el" href="#a525a5dbd951abc6650cd6b7ee4fffd66" title="Softmax cross-entropy variant of ComputeErrorAndEnergy, for the terminal layer only....">ComputeSoftmaxCrossEntropyErrorAndEnergy()</a>, without computing (or requiring <span class="tt">rowEnergies</span> for) the energy, for callers that only need e.     <br /></td></tr>
 <tr class="memitem:a778c1552c789bc65751adf8313b90e28" id="r_a778c1552c789bc65751adf8313b90e28"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a778c1552c789bc65751adf8313b90e28">IncrementCounter</a> (int *ptr) noexcept override</td></tr>
 <tr class="memdesc:a778c1552c789bc65751adf8313b90e28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Atomically increments *counter by 1. Device-resident so it can be read/updated by the same kernel/graph across settling steps (e.g. Adam's step count <span class="tt">t</span>) without a host round-trip.     <br /></td></tr>
 <tr class="memitem:a23786bb3619d05504c932d4767799a69" id="r_a23786bb3619d05504c932d4767799a69"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a23786bb3619d05504c932d4767799a69">AdamStep</a> (float *param, const float *grad, float *m, float *v, size_t n, const int *t, const float *lr, float beta1=0.9f, float beta2=0.999f, float eps=1e-8f) noexcept override</td></tr>
-<tr class="memdesc:a23786bb3619d05504c932d4767799a69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adam update for <span class="tt">n</span> parameters in place.     <br /></td></tr>
+<tr class="memdesc:a23786bb3619d05504c932d4767799a69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adam update for <span class="tt">n</span> parameters in place. <span class="tt">param</span> stays in this backend's storage type T; the optimizer's own accumulator state (grad/m/v/lr) is always AccumT, regardless of T &ndash; a sub-8-bit T's weights are never Adam-stepped directly in their own low-precision representation, only through this wider shadow accumulator (see <a class="el" href="classDeep_1_1FullPCLayer.html" title="PC layer combining muPC scaling, optional residual connections, and DKP direct feedback,...">FullPCLayer&lt;T, AccumT&gt;</a>'s own doc comment).     <br /></td></tr>
 <tr class="memitem:af07597e087ebcba60e332ba0c36032d0" id="r_af07597e087ebcba60e332ba0c36032d0"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af07597e087ebcba60e332ba0c36032d0">AdamWStep</a> (float *param, const float *grad, float *m, float *v, size_t n, const int *t, const float *lr, float weightDecay, float beta1=0.9f, float beta2=0.999f, float eps=1e-8f) noexcept override</td></tr>
-<tr class="memdesc:af07597e087ebcba60e332ba0c36032d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as <a class="el" href="#a23786bb3619d05504c932d4767799a69" title="Adam update for n parameters in place.">AdamStep()</a>, plus decoupled weight decay (AdamW): param -= lr * weightDecay * param, applied before the Adam step itself.     <br /></td></tr>
+<tr class="memdesc:af07597e087ebcba60e332ba0c36032d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as <a class="el" href="#a23786bb3619d05504c932d4767799a69" title="Adam update for n parameters in place. param stays in this backend&#39;s storage type T; the optimizer&#39;s ...">AdamStep()</a>, plus decoupled weight decay (AdamW): param -= lr * weightDecay * param, applied before the Adam step itself.     <br /></td></tr>
 <tr class="memitem:ac653d63109f17d12281df3efc2bf8709" id="r_ac653d63109f17d12281df3efc2bf8709"><td class="memItemLeft"><a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a>&#160;</td><td class="memItemRight"><a class="el" href="#ac653d63109f17d12281df3efc2bf8709">GetDeviceType</a> () const noexcept override</td></tr>
 <tr class="memdesc:ac653d63109f17d12281df3efc2bf8709"><td class="mdescLeft">&#160;</td><td class="mdescRight">Which device this backend instance runs on.     <br /></td></tr>
 <tr class="memitem:a4a8b20c2dbb1eb28b7c826db375daa59" id="r_a4a8b20c2dbb1eb28b7c826db375daa59"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4a8b20c2dbb1eb28b7c826db375daa59">MultiplyInto</a> (float *dst, const float *a, const float *b, size_t n) noexcept override</td></tr>
 <tr class="memdesc:a4a8b20c2dbb1eb28b7c826db375daa59"><td class="mdescLeft">&#160;</td><td class="mdescRight">dst[i] = a[i] * b[i] for all i in [0, n), elementwise product.     <br /></td></tr>
+<tr class="memitem:a42614e92c90c4a7131f5a9f2bd2f9949" id="r_a42614e92c90c4a7131f5a9f2bd2f9949"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a42614e92c90c4a7131f5a9f2bd2f9949">MultiplyIntoAccum</a> (float *dst, const float *a, const float *b, size_t n) noexcept override</td></tr>
+<tr class="memdesc:a42614e92c90c4a7131f5a9f2bd2f9949"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same operation as <a class="el" href="#a4a8b20c2dbb1eb28b7c826db375daa59" title="dst[i] = a[i] * b[i] for all i in [0, n), elementwise product.">MultiplyInto()</a>, but dst and b are AccumT* (a stays T*) &ndash; see <a class="el" href="#a56d3b266ed5b3a08aa6ab2351ce1e21c" title="Same operation as MatMulAccum(), but A is already AccumT* – for a layer&#39;s transient settling/gradient...">MatMulAccumMixed()</a>'s own doc comment: b is typically an activation derivative already computed in AccumT precision via <a class="el" href="#a9bebd23945b8ab1a409505cc463e1470" title="Same operation as ActivationDerivativeInto(), but writes into an AccumT* buffer instead of T* – see M...">ActivationDerivativeIntoAccum()</a>, and the product with a (e.g. the layer-above error, still T*) must stay in that precision too rather than round-trip through storage type T.     <br /></td></tr>
 <tr class="memitem:a1f589bea994e0cb4fd7d255c0d1610a3" id="r_a1f589bea994e0cb4fd7d255c0d1610a3"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1f589bea994e0cb4fd7d255c0d1610a3">FusedActivationDerivativeMultiply</a> (float *dst, const float *a, float *activatedInOut, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> dType, size_t n) noexcept override</td></tr>
 <tr class="memdesc:a1f589bea994e0cb4fd7d255c0d1610a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fuses an in-place "derivative from activated value" step with the elementwise multiply that immediately follows it in every known caller: dst[i] = a[i] * f'(activatedInOut[i]), then activatedInOut[i] is overwritten with that same derivative, exactly matching (and replacing) the two separate calls ActivationDerivative(dType, activatedInOut, n, /*activated=*&zwj;/true) followed by MultiplyInto(dst, a, activatedInOut, n). The overwrite is not a discardable side effect: at least one caller (<a class="el" href="classDeep_1_1SimpleConvPCLayer.html#ac3e90a53d2e29e3e7512ffd194f0e88c" title="Updates the weights after state updates.">SimpleConvPCLayer::UpdateWeights()</a>) reads activatedInOut again afterward expecting it to hold the derivative from the last UpdateState() call, not the original activated value.     <br /></td></tr>
 <tr class="memitem:ab751ea349307be12de0d011e095a403b" id="r_ab751ea349307be12de0d011e095a403b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ab751ea349307be12de0d011e095a403b">FusedActivationDerivativeMultiplyFromPreact</a> (float *dst, const float *a, const float *preact, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> dType, size_t n) noexcept override</td></tr>
@@ -220,7 +234,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a913e1365ff9d8eefefa0c565029e7a5f" id="r_a913e1365ff9d8eefefa0c565029e7a5f"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a913e1365ff9d8eefefa0c565029e7a5f">TryFusedConvForward</a> (const float *input, const float *W, float *output, float alpha, int batchSize, int inChannels, int height, int width, int outChannels, int kernelH, int kernelW, int strideH, int strideW, int padH, int padW) noexcept override</td></tr>
 <tr class="memdesc:a913e1365ff9d8eefefa0c565029e7a5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts a single fused convolution forward pass, skipping <a class="el" href="#aa24b90afa71c6a42864d06d51e7607ad" title="Rearranges a whole batch of (channels, height, width) input images into (channels*kH*kW,...">Im2Col()</a>/RepackForBatchedGemm()/MatMul() entirely: <code class="param">output</code> = <code class="param">alpha</code> * conv(<code class="param">input</code>, <code class="param">W</code>), in the same [batchSize, outChannels, outH, outW] NCHW layout the <a class="el" href="#aa24b90afa71c6a42864d06d51e7607ad" title="Rearranges a whole batch of (channels, height, width) input images into (channels*kH*kW,...">Im2Col()</a>+<a class="el" href="#a8f83cf74e427f1b60b5f3e1fe407bb25" title="Repacks a [batchSize, rows, cols] tensor (batch-major) into [rows, batchSize, cols] (row-major,...">RepackForBatchedGemm()</a>+<a class="el" href="#ae792cbda32201e02d1c79049b1dcb63a" title="C = alpha * op(A) * op(B) + beta * C, the standard BLAS SGEMM convention (op(X) = X^T if the matching...">MatMul()</a> fallback's own un-repack produces. <a class="el" href="#a6997274c4f34e8764a405e7bd189ca6a" title="Applies type to buf in place.">Activation()</a> is layout-agnostic (elementwise), but the bias-add is NOT: use <a class="el" href="#ae1a3207b5a03e756ff3b8c7b90721b0f" title="Convolutional bias-add for the batch-MAJOR NCHW layout: buf[b*channels*spatialSize + c*spatialSize + ...">AddBiasPerChannelNCHW()</a>, not <a class="el" href="#a07bfeb219a4bec3b947416ae2bcacec2" title="Convolutional bias-add: buf[c*spatialSize + s] += bias[c] for all c in [0,channels),...">AddBiasPerChannel()</a> (which needs channel as the OUTERMOST dimension, wrong for this layout whenever batchSize &gt; 1 &ndash; see its own doc comment). Returns false (without touching <code class="param">output</code>) when this backend has no fused path &ndash; always on <a class="el" href="classDeep_1_1CPUBackend.html" title="CPU implementation of IComputeBackend: SIMD (via Activations.h) for elementwise ops,...">CPUBackend</a>, or <a class="el" href="classDeep_1_1CUDABackend.html" title="CUDA implementation of IComputeBackend: device kernels for elementwise ops, cuBLAS for GEMM,...">CUDABackend</a> built without cuDNN &ndash; letting the caller fall back to the manual <a class="el" href="#aa24b90afa71c6a42864d06d51e7607ad" title="Rearranges a whole batch of (channels, height, width) input images into (channels*kH*kW,...">Im2Col()</a>+<a class="el" href="#a8f83cf74e427f1b60b5f3e1fe407bb25" title="Repacks a [batchSize, rows, cols] tensor (batch-major) into [rows, batchSize, cols] (row-major,...">RepackForBatchedGemm()</a>+<a class="el" href="#ae792cbda32201e02d1c79049b1dcb63a" title="C = alpha * op(A) * op(B) + beta * C, the standard BLAS SGEMM convention (op(X) = X^T if the matching...">MatMul()</a> sequence it already has.     <br /></td></tr>
 <tr class="memitem:aa2e91bd46f8ae1594a9bfd5c7f184cbe" id="r_aa2e91bd46f8ae1594a9bfd5c7f184cbe"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aa2e91bd46f8ae1594a9bfd5c7f184cbe">TryFusedConvBackwardData</a> (const float *outputGrad, const float *W, float *inputGrad, float alpha, int batchSize, int inChannels, int height, int width, int outChannels, int kernelH, int kernelW, int strideH, int strideW, int padH, int padW) noexcept override</td></tr>
-<tr class="memdesc:aa2e91bd46f8ae1594a9bfd5c7f184cbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">The adjoint of <a class="el" href="#a913e1365ff9d8eefefa0c565029e7a5f" title="Attempts a single fused convolution forward pass, skipping Im2Col()/RepackForBatchedGemm()/MatMul() e...">TryFusedConvForward()</a> w.r.t. <code class="param">input</code>, skipping the transposed <a class="el" href="#ae792cbda32201e02d1c79049b1dcb63a" title="C = alpha * op(A) * op(B) + beta * C, the standard BLAS SGEMM convention (op(X) = X^T if the matching...">MatMul()</a>+<a class="el" href="#a8f83cf74e427f1b60b5f3e1fe407bb25" title="Repacks a [batchSize, rows, cols] tensor (batch-major) into [rows, batchSize, cols] (row-major,...">RepackForBatchedGemm()</a>+<a class="el" href="#a00b64e588474cb54ab61de35045a063c" title="The adjoint of Im2Col(): scatters a whole batch of (channels*kH*kW, outH*outW) column-gradient buffer...">Col2Im()</a> sequence. OVERWRITES <code class="param">inputGrad</code> = <code class="param">alpha</code> * convBackwardData(<code class="param">outputGrad</code>, <code class="param">W</code>) &ndash; unlike <a class="el" href="#a00b64e588474cb54ab61de35045a063c" title="The adjoint of Im2Col(): scatters a whole batch of (channels*kH*kW, outH*outW) column-gradient buffer...">Col2Im()</a>'s own accumulate contract, every known caller here <a class="el" href="#a74cdbdfeb8bf17d5d1c17ebf751ec4c7" title="Zero-fills numFloats floats starting at ptr.">Zero()</a>s its destination immediately beforehand anyway. Same false-means-unsupported contract as <a class="el" href="#a913e1365ff9d8eefefa0c565029e7a5f" title="Attempts a single fused convolution forward pass, skipping Im2Col()/RepackForBatchedGemm()/MatMul() e...">TryFusedConvForward()</a>.     <br /></td></tr>
+<tr class="memdesc:aa2e91bd46f8ae1594a9bfd5c7f184cbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">The adjoint of <a class="el" href="#a913e1365ff9d8eefefa0c565029e7a5f" title="Attempts a single fused convolution forward pass, skipping Im2Col()/RepackForBatchedGemm()/MatMul() e...">TryFusedConvForward()</a> w.r.t. <code class="param">input</code>, skipping the transposed <a class="el" href="#ae792cbda32201e02d1c79049b1dcb63a" title="C = alpha * op(A) * op(B) + beta * C, the standard BLAS SGEMM convention (op(X) = X^T if the matching...">MatMul()</a>+<a class="el" href="#a8f83cf74e427f1b60b5f3e1fe407bb25" title="Repacks a [batchSize, rows, cols] tensor (batch-major) into [rows, batchSize, cols] (row-major,...">RepackForBatchedGemm()</a>+<a class="el" href="#a00b64e588474cb54ab61de35045a063c" title="The adjoint of Im2Col(): scatters a whole batch of (channels*kH*kW, outH*outW) column-gradient buffer...">Col2Im()</a> sequence. OVERWRITES <code class="param">inputGrad</code> = <code class="param">alpha</code> * convBackwardData(<code class="param">outputGrad</code>, <code class="param">W</code>) &ndash; unlike <a class="el" href="#a00b64e588474cb54ab61de35045a063c" title="The adjoint of Im2Col(): scatters a whole batch of (channels*kH*kW, outH*outW) column-gradient buffer...">Col2Im()</a>'s own accumulate contract, every known caller here <a class="el" href="#a74cdbdfeb8bf17d5d1c17ebf751ec4c7" title="Zero-fills numElements elements of T starting at ptr.">Zero()</a>s its destination immediately beforehand anyway. Same false-means-unsupported contract as <a class="el" href="#a913e1365ff9d8eefefa0c565029e7a5f" title="Attempts a single fused convolution forward pass, skipping Im2Col()/RepackForBatchedGemm()/MatMul() e...">TryFusedConvForward()</a>.     <br /></td></tr>
 <tr class="memitem:a0ce72a90452afb48876afe03c55ec5a4" id="r_a0ce72a90452afb48876afe03c55ec5a4"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a0ce72a90452afb48876afe03c55ec5a4">TryFusedConvBackwardFilter</a> (const float *input, const float *outputGrad, float *dW, float alpha, float beta, int batchSize, int inChannels, int height, int width, int outChannels, int kernelH, int kernelW, int strideH, int strideW, int padH, int padW) noexcept override</td></tr>
 <tr class="memdesc:a0ce72a90452afb48876afe03c55ec5a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The adjoint of <a class="el" href="#a913e1365ff9d8eefefa0c565029e7a5f" title="Attempts a single fused convolution forward pass, skipping Im2Col()/RepackForBatchedGemm()/MatMul() e...">TryFusedConvForward()</a> w.r.t. <code class="param">W</code>, skipping <a class="el" href="#aa24b90afa71c6a42864d06d51e7607ad" title="Rearranges a whole batch of (channels, height, width) input images into (channels*kH*kW,...">Im2Col()</a>+<a class="el" href="#a8f83cf74e427f1b60b5f3e1fe407bb25" title="Repacks a [batchSize, rows, cols] tensor (batch-major) into [rows, batchSize, cols] (row-major,...">RepackForBatchedGemm()</a>+<a class="el" href="#ae792cbda32201e02d1c79049b1dcb63a" title="C = alpha * op(A) * op(B) + beta * C, the standard BLAS SGEMM convention (op(X) = X^T if the matching...">MatMul()</a>. <code class="param">dW</code> = <code class="param">alpha</code> * convBackwardFilter(<code class="param">input</code>, <code class="param">outputGrad</code>) + <code class="param">beta</code> * <code class="param">dW</code>, matching <a class="el" href="#ae792cbda32201e02d1c79049b1dcb63a" title="C = alpha * op(A) * op(B) + beta * C, the standard BLAS SGEMM convention (op(X) = X^T if the matching...">MatMul()</a>'s own alpha/beta convention &ndash; a caller that fuses its weight UPDATE directly into this GEMM (SGD: beta=1 into W itself) and one that wants a fresh gradient buffer (Adam: beta=0 into grad_W) both work unchanged. Same false-means-unsupported contract as <a class="el" href="#a913e1365ff9d8eefefa0c565029e7a5f" title="Attempts a single fused convolution forward pass, skipping Im2Col()/RepackForBatchedGemm()/MatMul() e...">TryFusedConvForward()</a>.     <br /></td></tr>
 <tr class="memitem:aedb9d8ea96c51067906dbf403a0d1fd5" id="r_aedb9d8ea96c51067906dbf403a0d1fd5"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aedb9d8ea96c51067906dbf403a0d1fd5">PrepareConvWorkspace</a> (int batchSize, int inChannels, int height, int width, int outChannels, int kernelH, int kernelW, int strideH, int strideW, int padH, int padW) noexcept override</td></tr>
@@ -232,18 +246,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7919f073e41c074ca37d8f88712dbb46" id="r_a7919f073e41c074ca37d8f88712dbb46"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a7919f073e41c074ca37d8f88712dbb46">ComputePrecisionWeightedErrorAndEnergy</a> (float *e, const float *z, const float *mu, const float *p, size_t batchSize, size_t width) noexcept override</td></tr>
 <tr class="memdesc:a7919f073e41c074ca37d8f88712dbb46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Precision-weighted counterpart to <a class="el" href="#a9c577a136124e67fba97413d7c3984dc" title="Computes e = z - mu, then returns 0.5 * sum(e^2), the Gaussian error/energy used by every layer excep...">ComputeErrorAndEnergy()</a>: e[b*width+i] = z[b*width+i] - mu[b*width+i] for every b in [0,batchSize), i in [0,width); returns sum_{b,i}(0.5*p'[i]*e^2 - 0.5*log(p'[i])), where p'[i] = max(p[i], 1e-8) (the same floor DiscriminativePCLayer/ConvPCLayer's existing CPU code already applies, guarding against log(0)). <span class="tt">p</span> has length <span class="tt">width</span>, one precision per own-position, broadcast across every batch item, NOT length batchSize*width like e/z/mu.     <br /></td></tr>
 <tr class="memitem:a3cb62c465ac2c28d834bdad632dd9d2c" id="r_a3cb62c465ac2c28d834bdad632dd9d2c"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a3cb62c465ac2c28d834bdad632dd9d2c">ComputePrecisionWeightedError</a> (float *e, const float *z, const float *mu, const float *p, size_t batchSize, size_t width) noexcept override</td></tr>
-<tr class="memdesc:a3cb62c465ac2c28d834bdad632dd9d2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as <a class="el" href="#a7919f073e41c074ca37d8f88712dbb46" title="Precision-weighted counterpart to ComputeErrorAndEnergy(): e[b*width+i] = z[b*width+i] - mu[b*width+i...">ComputePrecisionWeightedErrorAndEnergy()</a>, without computing (or returning) the energy, for callers that only need e. On <a class="el" href="classDeep_1_1CUDABackend.html" title="CUDA implementation of IComputeBackend: device kernels for elementwise ops, cuBLAS for GEMM,...">CUDABackend</a> this additionally means: no blocking cudaStreamSynchronize() &ndash; the ...AndEnergy() variant must synchronously read the energy reduction back to a host float, which is illegal while a CUDA graph is being captured, exactly why this counterpart exists (mirrors <a class="el" href="#a07573d938b54069ead4d2d8fd15f6dff" title="Same as ComputeErrorAndEnergy(), without computing (or returning) the energy, for callers that only n...">ComputeError()</a> alongside <a class="el" href="#a9c577a136124e67fba97413d7c3984dc" title="Computes e = z - mu, then returns 0.5 * sum(e^2), the Gaussian error/energy used by every layer excep...">ComputeErrorAndEnergy()</a> above).     <br /></td></tr>
+<tr class="memdesc:a3cb62c465ac2c28d834bdad632dd9d2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as <a class="el" href="#a7919f073e41c074ca37d8f88712dbb46" title="Precision-weighted counterpart to ComputeErrorAndEnergy(): e[b*width+i] = z[b*width+i] - mu[b*width+i...">ComputePrecisionWeightedErrorAndEnergy()</a>, without computing (or returning) the energy, for callers that only need e. On <a class="el" href="classDeep_1_1CUDABackend.html" title="CUDA implementation of IComputeBackend: device kernels for elementwise ops, cuBLAS for GEMM,...">CUDABackend</a> this additionally means: no blocking cudaStreamSynchronize() &ndash; the ...AndEnergy() variant must synchronously read the energy reduction back to a host value, which is illegal while a CUDA graph is being captured, exactly why this counterpart exists (mirrors <a class="el" href="#a07573d938b54069ead4d2d8fd15f6dff" title="Same as ComputeErrorAndEnergy(), without computing (or returning) the energy, for callers that only n...">ComputeError()</a> alongside <a class="el" href="#a9c577a136124e67fba97413d7c3984dc" title="Computes e = z - mu, then returns 0.5 * sum(e^2), the Gaussian error/energy used by every layer excep...">ComputeErrorAndEnergy()</a> above).     <br /></td></tr>
 <tr class="memitem:ad37409d06b92c2bccaf8220c1f930b63" id="r_ad37409d06b92c2bccaf8220c1f930b63"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ad37409d06b92c2bccaf8220c1f930b63">AxpyBroadcastInto</a> (float *y, const float *x, const float *factor, size_t batchSize, size_t width, float alpha) noexcept override</td></tr>
 <tr class="memdesc:ad37409d06b92c2bccaf8220c1f930b63"><td class="mdescLeft">&#160;</td><td class="mdescRight">y[b*width+i] += alpha * x[b*width+i] * factor[i], for every b in [0,batchSize), i in [0,width), AxpyInto with an added per-position factor broadcast across the batch dimension. Covers dz_dt[idx] -= p[i]*e[idx] (alpha=-1, factor=p) without a temporary buffer for the elementwise product.     <br /></td></tr>
 <tr class="memitem:a42d0c0050ffe2ca47a2c4818a948b207" id="r_a42d0c0050ffe2ca47a2c4818a948b207"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a42d0c0050ffe2ca47a2c4818a948b207">MultiplyBroadcastInto</a> (float *dst, const float *a, const float *factor, const float *b, size_t batchSize, size_t width) noexcept override</td></tr>
 <tr class="memdesc:a42d0c0050ffe2ca47a2c4818a948b207"><td class="mdescLeft">&#160;</td><td class="mdescRight">dst[b*width+i] = a[b*width+i] * factor[i] * b[b*width+i], for every batch item, a three-operand elementwise product with one operand (factor) broadcast across the batch dimension. Covers bottom_up_cols[idx] = e_above[idx] * p_above[i] * mu[idx], the same shape needed in both UpdateState() and UpdateWeights() for every precision-weighted layer.     <br /></td></tr>
 <tr class="memitem:a819b32984f1395396fc294176b733e42" id="r_a819b32984f1395396fc294176b733e42"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a819b32984f1395396fc294176b733e42">UpdatePrecisionFromError</a> (float *p, float *log_p, const float *e, size_t batchSize, size_t width, float pr) noexcept override</td></tr>
 <tr class="memdesc:a819b32984f1395396fc294176b733e42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Precision update from accumulated squared error, fused: for each i in [0,width), grad = mean_{b in [0,batchSize)} of 0.5*(p[i]*e[b*width+i]^2 - 1); log_p[i] -= pr*grad, clamped to [-5,5]; p[i] = exp(log_p[i]). Matches <a class="el" href="classDeep_1_1DiscriminativePCLayer.html#a93d1fa602e1f5e824f87c9882807d7a3" title="Updates this layer&#39;s precision weighting based on the current prediction error.">DiscriminativePCLayer::UpdatePrecision()</a>/ConvPCLayer::UpdatePrecision()'s existing CPU formula exactly, including the clamp bounds.     <br /></td></tr>
-<tr class="inherit_header pub_methods_classDeep_1_1IComputeBackend"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classDeep_1_1IComputeBackend')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classDeep_1_1IComputeBackend.html">Deep::IComputeBackend</a></td></tr>
-<tr class="memitem:a488c56e80c93183ffb89e14bfc8b1f4d inherit pub_methods_classDeep_1_1IComputeBackend" id="r_a488c56e80c93183ffb89e14bfc8b1f4d"><td class="memItemLeft">virtual&#160;</td><td class="memItemRight"><a class="el" href="classDeep_1_1IComputeBackend.html#a488c56e80c93183ffb89e14bfc8b1f4d">~IComputeBackend</a> ()=default</td></tr>
+<tr class="inherit_header pub_methods_classDeep_1_1IComputeBackendT"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classDeep_1_1IComputeBackendT')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classDeep_1_1IComputeBackendT.html">Deep::IComputeBackendT&lt; float, float &gt;</a></td></tr>
+<tr class="memitem:a59839b469fd6de99dbb476b3d53644c2 inherit pub_methods_classDeep_1_1IComputeBackendT" id="r_a59839b469fd6de99dbb476b3d53644c2"><td class="memItemLeft">virtual&#160;</td><td class="memItemRight"><a class="el" href="classDeep_1_1IComputeBackendT.html#a59839b469fd6de99dbb476b3d53644c2">~IComputeBackendT</a> ()=default</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>CUDA implementation of <a class="el" href="classDeep_1_1IComputeBackend.html" title="Device-agnostic compute backend interface: every numerical primitive a layer/network needs,...">IComputeBackend</a>: device kernels for elementwise ops, cuBLAS for GEMM, CUTLASS for the fused forward path, CUDA graphs for capture/replay. See src/backend/cuda/ for the implementation, split by concern to mirror this interface's own section grouping. </p>
+<div class="textblock"><p>CUDA implementation of <a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: IComputeBackend is IComputeB...">IComputeBackend</a>: device kernels for elementwise ops, cuBLAS for GEMM, CUTLASS for the fused forward path, CUDA graphs for capture/replay. See src/backend/cuda/ for the implementation, split by concern to mirror this interface's own section grouping. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aa5b772fa9b64362c6c48aacbf7daac65" name="aa5b772fa9b64362c6c48aacbf7daac65"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa5b772fa9b64362c6c48aacbf7daac65">&#9670;&#160;</a></span>CUDABackend()</h2>
@@ -322,7 +336,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Applies <span class="tt">type</span> to <span class="tt">buf</span> in place.    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a29cb7a91a8b392ec87c49a4ec8ed7d07">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#aa3d71c1876eef151debb7870df9c7fa0">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -374,7 +388,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a4f30f72ef1ea96bb46a9c99bd12c003a">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a3d18b39999623d17e3eb1f9c894ff61a">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -417,7 +431,51 @@ Public Member Functions</h2></td></tr>
 
 <p>Two-buffer variant of <a class="el" href="#a782c95e433fe70f88de64d8893c438e0" title="Applies type&#39;s derivative to buf in place.">ActivationDerivative()</a>: reads src (the pre-activation value), writes the derivative into dst.    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#af8012298f9b92fa77cd9ac79f620a08c">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a585563129732e38c22c98534f36f3a88">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a9bebd23945b8ab1a409505cc463e1470" name="a9bebd23945b8ab1a409505cc463e1470"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bebd23945b8ab1a409505cc463e1470">&#9670;&#160;</a></span>ActivationDerivativeIntoAccum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Deep::CUDABackend::ActivationDerivativeIntoAccum </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a></td>          <td class="paramname"><span class="paramname"><em>type</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>dst</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>src</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Same operation as <a class="el" href="#a218f41f57383f2df3195a5256ff6bc03" title="Two-buffer variant of ActivationDerivative(): reads src (the pre-activation value),...">ActivationDerivativeInto()</a>, but writes into an AccumT* buffer instead of T* &ndash; see <a class="el" href="#a56d3b266ed5b3a08aa6ab2351ce1e21c" title="Same operation as MatMulAccum(), but A is already AccumT* – for a layer&#39;s transient settling/gradient...">MatMulAccumMixed()</a>'s own doc comment: an activation derivative's natural range commonly undershoots a lossy T's coarsest resolution entirely, so this must land in AccumT precision at the point of computation, never T, even transiently.    </p>
+<p>Same "T==AccumT==float always" reasoning as <a class="el" href="#a6172bbd213c187da63a722f0ff9cf46f" title="Same operation as SumRows(), but writes into an AccumT* buffer instead of T* – see MatMulAccum()&#39;s ow...">SumRowsAccum()</a> above. </p>
+
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#adebe772ebcab6015c7fbc6c53d36dd4f">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -460,7 +518,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Two-buffer variant of <a class="el" href="#a6997274c4f34e8764a405e7bd189ca6a" title="Applies type to buf in place.">Activation()</a>: reads src, writes into dst.    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a774872fe61652f7c913e5d8fa2dc3977">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a11ce258b0c18f3537726eb58b1117f10">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -531,11 +589,11 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Adam update for <span class="tt">n</span> parameters in place.    </p>
+<p>Adam update for <span class="tt">n</span> parameters in place. <span class="tt">param</span> stays in this backend's storage type T; the optimizer's own accumulator state (grad/m/v/lr) is always AccumT, regardless of T &ndash; a sub-8-bit T's weights are never Adam-stepped directly in their own low-precision representation, only through this wider shadow accumulator (see <a class="el" href="classDeep_1_1FullPCLayer.html" title="PC layer combining muPC scaling, optional residual connections, and DKP direct feedback,...">FullPCLayer&lt;T, AccumT&gt;</a>'s own doc comment).    </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">param</td><td>Parameters to update. </td></tr>
-    <tr><td class="paramname">grad</td><td>Gradient w.r.t. param. </td></tr>
+    <tr><td class="paramname">param</td><td>Parameters to update, in storage type T. </td></tr>
+    <tr><td class="paramname">grad</td><td>Gradient w.r.t. param, in accumulator type AccumT. </td></tr>
     <tr><td class="paramname">m</td><td>Adam's first-moment (momentum) buffer, persistent across calls. </td></tr>
     <tr><td class="paramname">v</td><td>Adam's second-moment (variance) buffer, persistent across calls. </td></tr>
     <tr><td class="paramname">n</td><td>Number of parameters. </td></tr>
@@ -547,7 +605,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a1f804259574c81a92db3463af0bdbccb">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a0593b3ed318eee376d16f39ed3737316">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -623,9 +681,9 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Same as <a class="el" href="#a23786bb3619d05504c932d4767799a69" title="Adam update for n parameters in place.">AdamStep()</a>, plus decoupled weight decay (AdamW): param -= lr * weightDecay * param, applied before the Adam step itself.    </p>
+<p>Same as <a class="el" href="#a23786bb3619d05504c932d4767799a69" title="Adam update for n parameters in place. param stays in this backend&#39;s storage type T; the optimizer&#39;s ...">AdamStep()</a>, plus decoupled weight decay (AdamW): param -= lr * weightDecay * param, applied before the Adam step itself.    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a26fe845166c04d6c26a620442740bbdb">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a967a35582923f921f9d490ac5279c50a">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -668,7 +726,7 @@ Public Member Functions</h2></td></tr>
 
 <p>buf[row*width + col] += bias[col] for every row in [0,batchSize) and col in [0,width), broadcasts a per-column bias across every row (the dense-layer convention).    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#ae76f27f090b2d6360d77c7632695ef8d">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a08eb564472210d4cb2987f40611bf136">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -711,7 +769,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Convolutional bias-add: buf[c*spatialSize + s] += bias[c] for all c in [0,channels), s in [0,spatialSize). Per-CHANNEL broadcast across spatial positions, the transpose relationship to AddBiasBroadcast (which broadcasts a per-COLUMN bias across ROWS, the dense-layer convention). Batch-aware for the common case of one shared <code class="param">bias</code> (fold batchSize into <code class="param">spatialSize</code>, as <a class="el" href="classDeep_1_1ConvPCLayer.html" title="Convolutional Predictive Coding layer (im2col-based), precision-weighted, routed through IComputeBack...">ConvPCLayer</a>'s family already does for the ordinary per-conv-layer bias); NOT batch-aware when a call site instead needs a DIFFERENT bias per batch item (e.g. <a class="el" href="classDeep_1_1FullConvPCLayer.html#aed4af7565e14ab375d03bd9446e03a69">FullConvPCLayer::DirectFeedbackUpdate()</a>'s per-image projChannel), which still has to call this once per item with <code class="param">buf</code> offset to that item's slice.    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a632df9c65f995a2ac09c002be81679c6">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a8c381b10c336eee4f14d487801691427">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -759,7 +817,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Convolutional bias-add for the batch-MAJOR NCHW layout: buf[b*channels*spatialSize + c*spatialSize + s] += bias[c] for all b in [0,batchSize), c in [0,channels), s in [0,spatialSize). NOT the same contract as <a class="el" href="#a07bfeb219a4bec3b947416ae2bcacec2" title="Convolutional bias-add: buf[c*spatialSize + s] += bias[c] for all c in [0,channels),...">AddBiasPerChannel()</a> above (which needs channel as the OUTERMOST dimension, i.e. [channels, batchSize* spatialSize] &ndash; correct for lgRepacked's layout, wrong for mu's). This is what <a class="el" href="#a913e1365ff9d8eefefa0c565029e7a5f" title="Attempts a single fused convolution forward pass, skipping Im2Col()/RepackForBatchedGemm()/MatMul() e...">TryFusedConvForward()</a>'s own [batchSize, outChannels, outH, outW] output actually needs: that layout keeps batch outermost, so <a class="el" href="#a07bfeb219a4bec3b947416ae2bcacec2" title="Convolutional bias-add: buf[c*spatialSize + s] += bias[c] for all c in [0,channels),...">AddBiasPerChannel()</a> with spatialSize folded to batchSize*trueSpatialSize silently adds bias[c] to the wrong elements whenever batchSize &gt; 1 (confirmed: every gradient-check test in this codebase uses batchSize=1, which collapses the two layouts into the same thing and could never have caught this).    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#ad4c050f9ae1ac3b8c69ff1abe7b975f7">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a778e530230251f63cfc1c4693392e459">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -786,10 +844,10 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Allocates <span class="tt">numFloats</span> floats on this backend's device.    </p>
+<p>Allocates <span class="tt">numElements</span> elements of T on this backend's device.    </p>
 <dl class="section return"><dt>Returns</dt><dd>nullptr on allocation failure.    </dd></dl>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#aff9833fbdf7dd2c36391b3a9b2537b8e">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a16308966b3016611fecc44623f5719dc">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -842,7 +900,7 @@ Public Member Functions</h2></td></tr>
 
 <p>y[b*width+i] += alpha * x[b*width+i] * factor[i], for every b in [0,batchSize), i in [0,width), AxpyInto with an added per-position factor broadcast across the batch dimension. Covers dz_dt[idx] -= p[i]*e[idx] (alpha=-1, factor=p) without a temporary buffer for the elementwise product.    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a79e3a58a222898c2fb8e4ef54feda96a">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#ab07bb00f23fb809d3aca11d8f205c973">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -885,7 +943,94 @@ Public Member Functions</h2></td></tr>
 
 <p>y[i] += alpha * x[i] for all i in [0, n), the standard AXPY.    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a995f82de8528a875bff7ec86a795008c">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a7cc1bd484d8ef0d88f14a0cd2fba3ef8">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a0dd9acbd9782f141fa3d57a391936753" name="a0dd9acbd9782f141fa3d57a391936753"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0dd9acbd9782f141fa3d57a391936753">&#9670;&#160;</a></span>AxpyIntoAccum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Deep::CUDABackend::AxpyIntoAccum </td>
+          <td>(</td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>alpha</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Same operation as <a class="el" href="#acb416b4ef4ad83577c46ed757b35cd6b" title="y[i] += alpha * x[i] for all i in [0, n), the standard AXPY.">AxpyInto()</a>, but y is AccumT* and x stays T* &ndash; see <a class="el" href="#a56d3b266ed5b3a08aa6ab2351ce1e21c" title="Same operation as MatMulAccum(), but A is already AccumT* – for a layer&#39;s transient settling/gradient...">MatMulAccumMixed()</a>'s own doc comment for why a settling/ gradient scratch accumulator must never round-trip through T.    </p>
+<p>Same "T==AccumT==float always" reasoning as <a class="el" href="#a6172bbd213c187da63a722f0ff9cf46f" title="Same operation as SumRows(), but writes into an AccumT* buffer instead of T* – see MatMulAccum()&#39;s ow...">SumRowsAccum()</a> above. </p>
+
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#af08f8bcb48d5f51bc86c24725b956aa6">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a404df89f645441b1a5961b8233f9ad9e" name="a404df89f645441b1a5961b8233f9ad9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a404df89f645441b1a5961b8233f9ad9e">&#9670;&#160;</a></span>AxpyIntoFromAccum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Deep::CUDABackend::AxpyIntoFromAccum </td>
+          <td>(</td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>alpha</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Same operation as <a class="el" href="#acb416b4ef4ad83577c46ed757b35cd6b" title="y[i] += alpha * x[i] for all i in [0, n), the standard AXPY.">AxpyInto()</a>, but x is AccumT* &ndash; for applying an AccumT-precision settling/gradient delta onto a real, stored T-typed buffer (z, W, b, ...), which is the one place this delta is <em>meant</em> to finally round-trip through storage precision.    </p>
+
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a22f310a764249e20e32e2d20344554da">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -920,7 +1065,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#abea6f2468b3acb22de8df71558f691e4">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a1ffd07f8278cbdca5072f55cf2b7b9fb">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -1003,7 +1148,7 @@ Public Member Functions</h2></td></tr>
 
 <p>The adjoint of <a class="el" href="#aa24b90afa71c6a42864d06d51e7607ad" title="Rearranges a whole batch of (channels, height, width) input images into (channels*kH*kW,...">Im2Col()</a>: scatters a whole batch of (channels*kH*kW, outH*outW) column-gradient buffers back into (channels, height, width) images, in one call. Same [batchSize, ...] batch-major layout and one-launch-per-batch rationale as <a class="el" href="#aa24b90afa71c6a42864d06d51e7607ad" title="Rearranges a whole batch of (channels, height, width) input images into (channels*kH*kW,...">Im2Col()</a> above. ACCUMULATES into <code class="param">outputImage</code> (does not zero it first), caller must zero the destination if a fresh result is wanted, matching <a class="el" href="namespaceDeep.html#a4159753931479670feba6d8e6b227e74" title="The adjoint of Im2Col(): scatters a (channels*kH*kW, outH*outW) column-gradient buffer back into a (c...">Deep::Col2Im</a>'s own contract.    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a1823a35b60071699931c09f52176f8f6">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#ad8031e2c5af06eb71b304725c2a74178">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -1046,7 +1191,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Same as <a class="el" href="#a9c577a136124e67fba97413d7c3984dc" title="Computes e = z - mu, then returns 0.5 * sum(e^2), the Gaussian error/energy used by every layer excep...">ComputeErrorAndEnergy()</a>, without computing (or returning) the energy, for callers that only need e.    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a95f8b14efb06000c2e09d94bc31c1447">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#ac92f9c63c7739303f7a5553b6e4f6416">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -1089,7 +1234,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Computes e = z - mu, then returns 0.5 * sum(e^2), the Gaussian error/energy used by every layer except a cross-entropy terminal.    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a3a99faa089281b7e032722287767122d">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a42dd59bb60c1ca7f447205cdcbeee9bf">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -1140,9 +1285,9 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Same as <a class="el" href="#a7919f073e41c074ca37d8f88712dbb46" title="Precision-weighted counterpart to ComputeErrorAndEnergy(): e[b*width+i] = z[b*width+i] - mu[b*width+i...">ComputePrecisionWeightedErrorAndEnergy()</a>, without computing (or returning) the energy, for callers that only need e. On <a class="el" href="classDeep_1_1CUDABackend.html" title="CUDA implementation of IComputeBackend: device kernels for elementwise ops, cuBLAS for GEMM,...">CUDABackend</a> this additionally means: no blocking cudaStreamSynchronize() &ndash; the ...AndEnergy() variant must synchronously read the energy reduction back to a host float, which is illegal while a CUDA graph is being captured, exactly why this counterpart exists (mirrors <a class="el" href="#a07573d938b54069ead4d2d8fd15f6dff" title="Same as ComputeErrorAndEnergy(), without computing (or returning) the energy, for callers that only n...">ComputeError()</a> alongside <a class="el" href="#a9c577a136124e67fba97413d7c3984dc" title="Computes e = z - mu, then returns 0.5 * sum(e^2), the Gaussian error/energy used by every layer excep...">ComputeErrorAndEnergy()</a> above).    </p>
+<p>Same as <a class="el" href="#a7919f073e41c074ca37d8f88712dbb46" title="Precision-weighted counterpart to ComputeErrorAndEnergy(): e[b*width+i] = z[b*width+i] - mu[b*width+i...">ComputePrecisionWeightedErrorAndEnergy()</a>, without computing (or returning) the energy, for callers that only need e. On <a class="el" href="classDeep_1_1CUDABackend.html" title="CUDA implementation of IComputeBackend: device kernels for elementwise ops, cuBLAS for GEMM,...">CUDABackend</a> this additionally means: no blocking cudaStreamSynchronize() &ndash; the ...AndEnergy() variant must synchronously read the energy reduction back to a host value, which is illegal while a CUDA graph is being captured, exactly why this counterpart exists (mirrors <a class="el" href="#a07573d938b54069ead4d2d8fd15f6dff" title="Same as ComputeErrorAndEnergy(), without computing (or returning) the energy, for callers that only n...">ComputeError()</a> alongside <a class="el" href="#a9c577a136124e67fba97413d7c3984dc" title="Computes e = z - mu, then returns 0.5 * sum(e^2), the Gaussian error/energy used by every layer excep...">ComputeErrorAndEnergy()</a> above).    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a8ee16bed34721a31ebb1af3dcc879dc0">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a576bc5f230dfcb16dd39e1bee55c56ba">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -1195,7 +1340,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Precision-weighted counterpart to <a class="el" href="#a9c577a136124e67fba97413d7c3984dc" title="Computes e = z - mu, then returns 0.5 * sum(e^2), the Gaussian error/energy used by every layer excep...">ComputeErrorAndEnergy()</a>: e[b*width+i] = z[b*width+i] - mu[b*width+i] for every b in [0,batchSize), i in [0,width); returns sum_{b,i}(0.5*p'[i]*e^2 - 0.5*log(p'[i])), where p'[i] = max(p[i], 1e-8) (the same floor DiscriminativePCLayer/ConvPCLayer's existing CPU code already applies, guarding against log(0)). <span class="tt">p</span> has length <span class="tt">width</span>, one precision per own-position, broadcast across every batch item, NOT length batchSize*width like e/z/mu.    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#aa87e0f3477d23bfc8c211041863c411f">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a3aa6832bbac65bee037bf40d1b0d8650">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -1243,7 +1388,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Same as <a class="el" href="#a525a5dbd951abc6650cd6b7ee4fffd66" title="Softmax cross-entropy variant of ComputeErrorAndEnergy, for the terminal layer only....">ComputeSoftmaxCrossEntropyErrorAndEnergy()</a>, without computing (or requiring <span class="tt">rowEnergies</span> for) the energy, for callers that only need e.    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#aac21da20803a3ea3a44490e68f5fca15">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#adb9bfa2ed604dcdd23d1de7d84fc2363">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -1294,9 +1439,9 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Softmax cross-entropy variant of ComputeErrorAndEnergy, for the terminal layer only. Unlike the Gaussian version, this needs batchSize/nextSize separately (not just a flat n) since softmax is a row-wise, not element-wise, operation. probs = softmax(mu), row-wise e = z - probs (z is the clamped target; matches the existing e := -dF/dmu convention exactly, since d(CE)/d(logits) = probs - y) energy = -sum(z * log(probs + eps)) (eps=1e-8, avoids log(0)) mu holds the RAW LOGITS (unchanged from the Gaussian case, still a*W@phi(z)+b), softmax is applied here, not baked into mu itself. <span class="tt">rowEnergies</span> is caller-provided scratch, &gt;= batchSize floats, NOT allocated internally (this runs inside CalculateState(), which runs inside TrainStep()'s CUDA-graph-captured region; dynamic allocation there is unsafe under capture, same reasoning as the CUTLASS workspace). <a class="el" href="classDeep_1_1CPUBackend.html" title="CPU implementation of IComputeBackend: SIMD (via Activations.h) for elementwise ops,...">CPUBackend</a>'s own override ignores this parameter entirely, kept in the shared interface so callers pass the same arguments to either backend.    </p>
+<p>Softmax cross-entropy variant of ComputeErrorAndEnergy, for the terminal layer only. Unlike the Gaussian version, this needs batchSize/nextSize separately (not just a flat n) since softmax is a row-wise, not element-wise, operation. probs = softmax(mu), row-wise e = z - probs (z is the clamped target; matches the existing e := -dF/dmu convention exactly, since d(CE)/d(logits) = probs - y) energy = -sum(z * log(probs + eps)) (eps=1e-8, avoids log(0)) mu holds the RAW LOGITS (unchanged from the Gaussian case, still a*W@phi(z)+b), softmax is applied here, not baked into mu itself. <span class="tt">rowEnergies</span> is caller-provided scratch, &gt;= batchSize elements, NOT allocated internally (this runs inside CalculateState(), which runs inside TrainStep()'s CUDA-graph-captured region; dynamic allocation there is unsafe under capture, same reasoning as the CUTLASS workspace). <a class="el" href="classDeep_1_1CPUBackend.html" title="CPU implementation of IComputeBackend: SIMD (via Activations.h) for elementwise ops,...">CPUBackend</a>'s own override ignores this parameter entirely, kept in the shared interface so callers pass the same arguments to either backend.    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a1c4351a66397155317b8ea9317d3ec52">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a0f364ee82f99b7afe9ff5343e401dce3">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -1332,9 +1477,9 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Copies <span class="tt">numFloats</span> floats from <span class="tt">src</span> to <span class="tt">dst</span>, both on this backend's own device.    </p>
+<p>Copies <span class="tt">numElements</span> elements of T from <span class="tt">src</span> to <span class="tt">dst</span>, both on this backend's own device.    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a0f510f13744d4301110e33ad5b66ee61">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#aba1b71cb0713dc8760f747dcf73510b2">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -1370,9 +1515,9 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Copies <span class="tt">numFloats</span> floats from a host buffer into a device buffer (a plain memcpy on <a class="el" href="classDeep_1_1CPUBackend.html" title="CPU implementation of IComputeBackend: SIMD (via Activations.h) for elementwise ops,...">CPUBackend</a>).    </p>
+<p>Copies <span class="tt">numElements</span> elements of T from a host buffer into a device buffer (a plain memcpy on <a class="el" href="classDeep_1_1CPUBackend.html" title="CPU implementation of IComputeBackend: SIMD (via Activations.h) for elementwise ops,...">CPUBackend</a>).    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a1416aa81242bf5d3058d9ea736701a73">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a00bee4e42ed5a952d6807885f9a5c7c1">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -1408,9 +1553,9 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Copies <span class="tt">numFloats</span> floats from a device buffer into a host buffer (a plain memcpy on <a class="el" href="classDeep_1_1CPUBackend.html" title="CPU implementation of IComputeBackend: SIMD (via Activations.h) for elementwise ops,...">CPUBackend</a>).    </p>
+<p>Copies <span class="tt">numElements</span> elements of T from a device buffer into a host buffer (a plain memcpy on <a class="el" href="classDeep_1_1CPUBackend.html" title="CPU implementation of IComputeBackend: SIMD (via Activations.h) for elementwise ops,...">CPUBackend</a>).    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a686db6e3765920e1bbaed1fb8fb43d07">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a7bf2e88e2165fcb1fcf052ad23e2abad">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -1440,7 +1585,7 @@ Public Member Functions</h2></td></tr>
 <p>Ends capture and instantiates the captured graph into <code class="param">slot</code> (see <a class="el" href="#afc9b85906457f281bbfcc415b2e0f876" title="Starts recording subsequent backend calls into a replayable graph, instead of executing them immediat...">BeginGraphCapture()</a>'s own doc comment).    </p>
 <dl class="section return"><dt>Returns</dt><dd>true if capture and instantiation both succeeded and <a class="el" href="#a10ca4ae0207d08a49f5ac5100439c247" title="Launches the graph previously captured and instantiated into slot by BeginGraphCapture()/EndGraphCapt...">ReplayGraph()</a> is now safe to call; false otherwise. Callers MUST check this, silently assuming success here was the cause of a real bug: a failed capture left <a class="el" href="#a10ca4ae0207d08a49f5ac5100439c247" title="Launches the graph previously captured and instantiated into slot by BeginGraphCapture()/EndGraphCapt...">ReplayGraph()</a> permanently doing nothing on every subsequent call, since the caller had no way to know capture never actually happened.    </dd></dl>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#ae06c54748d3955a02339e8906e779c0b">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a4c928865d5527570e1f0f5a6bccb44fd">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -1478,7 +1623,7 @@ Public Member Functions</h2></td></tr>
 
 <p>buf[i] = value for all i in [0, n).    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#ac34678bbe2f6cd4695ddc87cd233a977">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#abe73e770537cf121982791cf13d9c8cb">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -1505,9 +1650,9 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Frees a buffer previously returned by <a class="el" href="#ae4c69878c664bd0163e03d07b4f3fbe1" title="Allocates numFloats floats on this backend&#39;s device.">Allocate()</a>. No-op on nullptr.    </p>
+<p>Frees a buffer previously returned by <a class="el" href="#ae4c69878c664bd0163e03d07b4f3fbe1" title="Allocates numElements elements of T on this backend&#39;s device.">Allocate()</a>. No-op on nullptr.    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#adfd06cafb7088314fed604b569b74f25">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a81d31d1954bba3c9c5c3fcfe2975ccb2">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -1562,7 +1707,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a7a0202e56a698b993dcf3af7e9d92d9c">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a63882457afec6a040ed0790a846d2914">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -1617,7 +1762,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a886f673a9ba39d0b7d4dc42788e8ca47">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#af3df44599b2547fcdad7d9512cfd647e">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -1676,7 +1821,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#aed82ac4f498af4d450ff084aa3d90ffd">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a8cb17ee85b7a49893579c5808bd40eae">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -1745,7 +1890,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#af9ba1bb32466bd5a8b3a2627455cc124">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a919c6d8b573edcc02ce8d90faf4308ca">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -1774,7 +1919,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Which device this backend instance runs on.    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#ad550064d746b0c98788ec1154a1044ce">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#ac9b5844207be6dc004203187be5b8b14">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -1857,7 +2002,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Rearranges a whole batch of (channels, height, width) input images into (channels*kH*kW, outH*outW) column matrices, the standard im2col transform, in one call. <code class="param">input</code> is [batchSize, channels, height, width] and <code class="param">columns</code> is [batchSize, channels*kH*kW, outH*outW], both contiguous and batch-major (the layout <a class="el" href="#a8f83cf74e427f1b60b5f3e1fe407bb25" title="Repacks a [batchSize, rows, cols] tensor (batch-major) into [rows, batchSize, cols] (row-major,...">RepackForBatchedGemm()</a> already expects). On <a class="el" href="classDeep_1_1CPUBackend.html" title="CPU implementation of IComputeBackend: SIMD (via Activations.h) for elementwise ops,...">CPUBackend</a> this is a thin loop over <a class="el" href="namespaceDeep.html#a0dbe430b93930a2b8d3c04be012d0017" title="Rearranges a single (channels, height, width) input image into a (channels*kH*kW, outH*outW) column m...">Deep::Im2Col()</a> (which genuinely only knows how to do one image at a time); on <a class="el" href="classDeep_1_1CUDABackend.html" title="CUDA implementation of IComputeBackend: device kernels for elementwise ops, cuBLAS for GEMM,...">CUDABackend</a> it's one kernel launch for the whole batch instead of <code class="param">batchSize</code> separate launches &ndash; the whole reason this takes a batch dimension at all rather than mirroring <a class="el" href="namespaceDeep.html#a0dbe430b93930a2b8d3c04be012d0017" title="Rearranges a single (channels, height, width) input image into a (channels*kH*kW, outH*outW) column m...">Deep::Im2Col()</a>'s single-image contract. Positions outside the input (due to padding) are written as zero. <code class="param">columns</code> is fully overwritten, not accumulated into.    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#acd7139aa8e8b6736aae8ad00a89791a2">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a4d1c02a9b8c54102cba1eb4590a98f21">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -1886,7 +2031,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Atomically increments *counter by 1. Device-resident so it can be read/updated by the same kernel/graph across settling steps (e.g. Adam's step count <span class="tt">t</span>) without a host round-trip.    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a85894c7edca6d810eda342fff4314759">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#ad33097c9f268b181bb67bb56ec11d45c">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -1990,7 +2135,185 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#ae5b6d7c42a15477376b008db0a05cd84">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a9f4449330235bf31cdc8ee0ea6d7e415">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
+
+</div>
+</div>
+<a id="ad2bafc5a680fab871878f41f5661fba8" name="ad2bafc5a680fab871878f41f5661fba8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2bafc5a680fab871878f41f5661fba8">&#9670;&#160;</a></span>MatMulAccum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Deep::CUDABackend::MatMulAccum </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>transA</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>transB</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>M</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>N</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>K</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>alpha</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>A</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lda</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>B</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ldb</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>beta</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>C</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ldc</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Same operation as <a class="el" href="#ae792cbda32201e02d1c79049b1dcb63a" title="C = alpha * op(A) * op(B) + beta * C, the standard BLAS SGEMM convention (op(X) = X^T if the matching...">MatMul()</a>, but writes into an AccumT* buffer instead of T* &ndash; for a layer's own Adam/AdamW gradient computation (grad_W, grad_Psi, ...), which must land in the wider AccumT accumulator, not get rounded down to storage precision T mid-computation (exactly the gap this method closes: <a class="el" href="#ae792cbda32201e02d1c79049b1dcb63a" title="C = alpha * op(A) * op(B) + beta * C, the standard BLAS SGEMM convention (op(X) = X^T if the matching...">MatMul()</a> itself can only ever write a T* C, so it alone can't produce a loss-free gradient when T is a lossy storage format with AccumT != T, e.g. <a class="el" href="structDeep_1_1Fp4E2M1Value.html" title="Storage type for the FP4 E2M1 format (see arXiv:2610.15933&#39;s W4A4E4 QAT setup). Converts to/from any ...">Fp4E2M1Value</a>). For T == AccumT (every float/ double instantiation) this is numerically identical to <a class="el" href="#ae792cbda32201e02d1c79049b1dcb63a" title="C = alpha * op(A) * op(B) + beta * C, the standard BLAS SGEMM convention (op(X) = X^T if the matching...">MatMul()</a> with that same buffer, just spelled through the AccumT-typed overload the optimizer path calls either way.    </p>
+<p>Same "T==AccumT==float always" reasoning as <a class="el" href="#a6172bbd213c187da63a722f0ff9cf46f" title="Same operation as SumRows(), but writes into an AccumT* buffer instead of T* – see MatMulAccum()&#39;s ow...">SumRowsAccum()</a> above. </p>
+
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a522ab500d2310581971471f6274be6c2">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a56d3b266ed5b3a08aa6ab2351ce1e21c" name="a56d3b266ed5b3a08aa6ab2351ce1e21c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56d3b266ed5b3a08aa6ab2351ce1e21c">&#9670;&#160;</a></span>MatMulAccumMixed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Deep::CUDABackend::MatMulAccumMixed </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>transA</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>transB</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>M</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>N</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>K</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>alpha</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>A</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lda</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>B</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ldb</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>beta</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>C</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>ldc</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Same operation as <a class="el" href="#ad2bafc5a680fab871878f41f5661fba8" title="Same operation as MatMul(), but writes into an AccumT* buffer instead of T* – for a layer&#39;s own Adam/...">MatMulAccum()</a>, but A is already AccumT* &ndash; for a layer's transient settling/gradient scratch (e.g. the activation-derivative-weighted error signal that feeds both UpdateState()'s feedback GEMM and UpdateWeights()'s gradient GEMM), which must never round-trip through storage precision T even transiently: for a lossy T (e.g. <a class="el" href="structDeep_1_1Fp4E2M1Value.html" title="Storage type for the FP4 E2M1 format (see arXiv:2610.15933&#39;s W4A4E4 QAT setup). Converts to/from any ...">Fp4E2M1Value</a>), an activation derivative's natural range commonly falls entirely below T's coarsest resolution (sigmoid's derivative maxes out at 0.25, below <a class="el" href="structDeep_1_1Fp4E2M1Value.html" title="Storage type for the FP4 E2M1 format (see arXiv:2610.15933&#39;s W4A4E4 QAT setup). Converts to/from any ...">Fp4E2M1Value</a>'s smallest nonzero magnitude of 0.5), so writing it into a T* buffer even once rounds it to exactly zero and kills the gradient outright &ndash; this is that fix. Only B (the real, stored parameter, e.g. W) decodes from T; A is used as-is.    </p>
+<p>Same "T==AccumT==float always" reasoning as <a class="el" href="#a6172bbd213c187da63a722f0ff9cf46f" title="Same operation as SumRows(), but writes into an AccumT* buffer instead of T* – see MatMulAccum()&#39;s ow...">SumRowsAccum()</a> above. </p>
+
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a1088d32a76576d1d47cb79a838fc2426">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -2058,7 +2381,7 @@ Public Member Functions</h2></td></tr>
 
 <p>The adjoint of <a class="el" href="#a486f072c1d4fbe60073270ba9371c90f" title="Batched 2D max pooling, no padding. input is [batchSize, channels, height, width],...">MaxPool2DForward()</a>: scatters a batch of [batchSize, channels, outH, outW] gradients back into [batchSize, channels, height, width] using the recorded <code class="param">argmax</code>. ACCUMULATES into <code class="param">inputGrad</code> (does not zero it first), matching <a class="el" href="namespaceDeep.html#a9ad0ce57808dbf5f12bd06f693b37165" title="The adjoint of MaxPool2DForward(): scatters a (channels, outH, outW) gradient back into a (channels,...">Deep::MaxPool2DBackward</a>'s own contract.    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a3c928f0d663b3e9a684ccf8e112119b8">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#af7112eaed440ad01660e2922fde0652e">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -2136,7 +2459,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Batched 2D max pooling, no padding. <code class="param">input</code> is [batchSize, channels, height, width], <code class="param">output</code> and <code class="param">argmax</code> are [batchSize, channels, outH, outW] where outH/outW = <a class="el" href="namespaceDeep.html#aef2e4e5ea6509ec4372d411f80661270" title="Computes a single pooling output dimension (height or width), no padding: (inDim - pool) / stride + 1...">Deep::PoolOutDim</a>(height/ width, poolH/poolW, strideH/strideW). <code class="param">argmax</code> records, per output position, the winning input position's flat (row*width+col) offset within its channel plane &ndash; <a class="el" href="#a935e793471bee964d147d59639bd3df3" title="The adjoint of MaxPool2DForward(): scatters a batch of [batchSize, channels, outH,...">MaxPool2DBackward()</a>'s only input besides the incoming gradient, no pre-activation buffer needed (a hard max's backward is exact from the argmax alone).    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a203aa2b804630f8b17ee83b0f9b26961">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a898467d8c1e037b1826cf6d499f518a7">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -2189,7 +2512,7 @@ Public Member Functions</h2></td></tr>
 
 <p>dst[b*width+i] = a[b*width+i] * factor[i] * b[b*width+i], for every batch item, a three-operand elementwise product with one operand (factor) broadcast across the batch dimension. Covers bottom_up_cols[idx] = e_above[idx] * p_above[i] * mu[idx], the same shape needed in both UpdateState() and UpdateWeights() for every precision-weighted layer.    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#afe3a53a2d9cb2e0f660e431b1d9558fc">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#aec16ebabc2de7c188ccf93ae6f90581f">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -2232,7 +2555,51 @@ Public Member Functions</h2></td></tr>
 
 <p>dst[i] = a[i] * b[i] for all i in [0, n), elementwise product.    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a69352ad8ca932a3d74920da02c808e33">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#add11c10e6df8a69ac9da345b2e96301a">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a42614e92c90c4a7131f5a9f2bd2f9949" name="a42614e92c90c4a7131f5a9f2bd2f9949"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42614e92c90c4a7131f5a9f2bd2f9949">&#9670;&#160;</a></span>MultiplyIntoAccum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Deep::CUDABackend::MultiplyIntoAccum </td>
+          <td>(</td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>dst</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>b</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Same operation as <a class="el" href="#a4a8b20c2dbb1eb28b7c826db375daa59" title="dst[i] = a[i] * b[i] for all i in [0, n), elementwise product.">MultiplyInto()</a>, but dst and b are AccumT* (a stays T*) &ndash; see <a class="el" href="#a56d3b266ed5b3a08aa6ab2351ce1e21c" title="Same operation as MatMulAccum(), but A is already AccumT* – for a layer&#39;s transient settling/gradient...">MatMulAccumMixed()</a>'s own doc comment: b is typically an activation derivative already computed in AccumT precision via <a class="el" href="#a9bebd23945b8ab1a409505cc463e1470" title="Same operation as ActivationDerivativeInto(), but writes into an AccumT* buffer instead of T* – see M...">ActivationDerivativeIntoAccum()</a>, and the product with a (e.g. the layer-above error, still T*) must stay in that precision too rather than round-trip through storage type T.    </p>
+<p>Same "T==AccumT==float always" reasoning as <a class="el" href="#a6172bbd213c187da63a722f0ff9cf46f" title="Same operation as SumRows(), but writes into an AccumT* buffer instead of T* – see MatMulAccum()&#39;s ow...">SumRowsAccum()</a> above. </p>
+
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#aa3d654181c34d30a0c3a4919326c6052">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -2310,7 +2677,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Pre-grows <a class="el" href="classDeep_1_1CUDABackend.html" title="CUDA implementation of IComputeBackend: device kernels for elementwise ops, cuBLAS for GEMM,...">CUDABackend</a>'s shared cuDNN conv workspace (see <a class="el" href="#a913e1365ff9d8eefefa0c565029e7a5f" title="Attempts a single fused convolution forward pass, skipping Im2Col()/RepackForBatchedGemm()/MatMul() e...">TryFusedConvForward()</a> and friends) to fit this shape's algorithm workspace requirement. MUST be called for every distinct conv shape BEFORE Compile()'s first <a class="el" href="#afc9b85906457f281bbfcc415b2e0f876" title="Starts recording subsequent backend calls into a replayable graph, instead of executing them immediat...">BeginGraphCapture()</a> &ndash; same timing constraint, and same reason, as <a class="el" href="#a80a51a52562bcdd63824973ed0be9525" title="Must be called once, before Compile()&#39;s first BeginGraphCapture(), for any backend that needs to prep...">PrepareForBatchSize()</a>: growing the workspace means cudaMalloc()/cudaFree(), which are illegal (not stream-ordered) inside an active graph capture and poison the whole captured region if <a class="el" href="#a913e1365ff9d8eefefa0c565029e7a5f" title="Attempts a single fused convolution forward pass, skipping Im2Col()/RepackForBatchedGemm()/MatMul() e...">TryFusedConvForward()</a> et al. are left to grow it lazily on first use instead. No-op on <a class="el" href="classDeep_1_1CPUBackend.html" title="CPU implementation of IComputeBackend: SIMD (via Activations.h) for elementwise ops,...">CPUBackend</a>, which has no such workspace.    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a0b8cc645b391c707bc9700718d330425">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a48ec49d90d0b437ab6f74d81431426c7">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -2339,7 +2706,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Must be called once, before Compile()'s first <a class="el" href="#afc9b85906457f281bbfcc415b2e0f876" title="Starts recording subsequent backend calls into a replayable graph, instead of executing them immediat...">BeginGraphCapture()</a>, for any backend that needs to prepare batch-size-dependent state (e.g. <a class="el" href="classDeep_1_1CUDABackend.html" title="CUDA implementation of IComputeBackend: device kernels for elementwise ops, cuBLAS for GEMM,...">CUDABackend</a>'s cached all-ones vector for SumRows' GEMV). No-op on <a class="el" href="classDeep_1_1CPUBackend.html" title="CPU implementation of IComputeBackend: SIMD (via Activations.h) for elementwise ops,...">CPUBackend</a>. </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a29543db0ce016d5d737151d87eab9332">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a71209e26c49d04539280ba56bdda9cef">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -2385,11 +2752,11 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Fills <span class="tt">n</span> floats with samples from a normal distribution.    </p>
+<p>Fills <span class="tt">n</span> elements with samples from a normal distribution.    </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">buf</td><td>Buffer to fill. </td></tr>
-    <tr><td class="paramname">n</td><td>Number of floats to fill. </td></tr>
+    <tr><td class="paramname">n</td><td>Number of elements to fill. </td></tr>
     <tr><td class="paramname">mean</td><td>Distribution mean. </td></tr>
     <tr><td class="paramname">stddev</td><td>Distribution standard deviation. </td></tr>
     <tr><td class="paramname">seed</td><td>RNG seed.    </td></tr>
@@ -2397,7 +2764,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a43b6ed69bad70f64956fae3f007dee80">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a39cb5e7c63bb696cc1cda7bec49cb096">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -2443,11 +2810,11 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Fills <span class="tt">n</span> floats with samples from a uniform distribution over [min, max).    </p>
+<p>Fills <span class="tt">n</span> elements with samples from a uniform distribution over [min, max).    </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">buf</td><td>Buffer to fill. </td></tr>
-    <tr><td class="paramname">n</td><td>Number of floats to fill. </td></tr>
+    <tr><td class="paramname">n</td><td>Number of elements to fill. </td></tr>
     <tr><td class="paramname">min</td><td>Distribution lower bound (inclusive). </td></tr>
     <tr><td class="paramname">max</td><td>Distribution upper bound (exclusive). </td></tr>
     <tr><td class="paramname">seed</td><td>RNG seed.    </td></tr>
@@ -2455,7 +2822,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#ae3961f763b4d79b1c0d59f333f45d42b">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a9aa2e8423d0e0cacae6249e62afe9984">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -2503,7 +2870,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Repacks a [batchSize, rows, cols] tensor (batch-major) into [rows, batchSize, cols] (row-major, batch second), i.e. dst[row][batch][col] = src[batch][row][col] for all row/batch/col, with the innermost <span class="tt">cols</span> dimension kept contiguous on both sides. Used by ConvPCLayer-family layers to reorganize per-batch im2col columns (and per-batch upstream-error columns) into the single flat layout a plain (non-batched) GEMM call needs, rather than one GEMM call per batch item. Same "port first, optimize" position as AddBiasBroadcast/SumRows: a future strided-batched-GEMM path could remove the need for this entirely, but this matches the existing, verified CPU repacking loops exactly for now.    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a0631c0f366b7d3cd09341f8ab6fdd555">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#ae64014dc0db6f56067d12f8258459cf4">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -2532,7 +2899,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Launches the graph previously captured and instantiated into <code class="param">slot</code> by <a class="el" href="#afc9b85906457f281bbfcc415b2e0f876" title="Starts recording subsequent backend calls into a replayable graph, instead of executing them immediat...">BeginGraphCapture()</a>/EndGraphCapture(). No-op if <a class="el" href="#ae1ba0c447453ee1d1f99f7404c5cf154" title="Ends capture and instantiates the captured graph into slot (see BeginGraphCapture()&#39;s own doc comment...">EndGraphCapture()</a> never returned true for that slot. cudaGraphLaunch() is asynchronous: this returns as soon as the launch is ENQUEUED, not once it completes. Ordinarily that's fine (CUDA guarantees same-stream ordering, so a later call that needs the result just needs to be queued on the same stream too) &ndash; but call <a class="el" href="#ac55d180e7bbec90637dc8275efb49cba" title="Blocks until all previously enqueued work on this backend&#39;s stream has completed. A no-op on CPUBacke...">Synchronize()</a> afterward if you need the replayed work to have definitely finished, e.g. before reading results back on the host through any path that ISN'T itself a synchronous backend call.    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#af08b059e05e533a19336fada8ba7d0c6">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a012f31c788d2aa494bbda4e0ac59f8bc">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -2570,7 +2937,7 @@ Public Member Functions</h2></td></tr>
 
 <p>buf[i] *= alpha for all i in [0, n).    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#aad32981799ac8f9563d0dbeb6f63eaed">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a51222d3678f1393e9d8bd75de5f2ea7a">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -2599,7 +2966,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Whether <a class="el" href="#ae792cbda32201e02d1c79049b1dcb63a" title="C = alpha * op(A) * op(B) + beta * C, the standard BLAS SGEMM convention (op(X) = X^T if the matching...">MatMul()</a> may use TF32 (10 mantissa bits, ~1e-3 relative error per GEMM) instead of full FP32 on tensor cores &ndash; <a class="el" href="classDeep_1_1CUDABackend.html" title="CUDA implementation of IComputeBackend: device kernels for elementwise ops, cuBLAS for GEMM,...">CUDABackend</a> only; a no-op on <a class="el" href="classDeep_1_1CPUBackend.html" title="CPU implementation of IComputeBackend: SIMD (via Activations.h) for elementwise ops,...">CPUBackend</a>, which has no such distinction. Defaults to allowed, matching PyTorch's own default, since every conv in this library lowers to im2col+MatMul and would otherwise run at a fraction of the GPU's peak throughput. Turn off before a finite-difference gradient check: TF32's error is large enough to either fail those checks for no real reason, or tempt loosening their tolerance until it stops catching real bugs.    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a69394f148c199d25da87d0565577de6a">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a1dbabde1ef857f36fa740d5b06833de4">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -2630,9 +2997,9 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Returns the plain (signed) sum of every element in buf. Synchronous on <a class="el" href="classDeep_1_1CUDABackend.html" title="CUDA implementation of IComputeBackend: device kernels for elementwise ops, cuBLAS for GEMM,...">CUDABackend</a> (reads the reduction back to a host float before returning) &ndash; same constraint as ComputeErrorAndEnergy and friends: never call this from inside a captured CUDA graph region, only from code that runs outside any <a class="el" href="#afc9b85906457f281bbfcc415b2e0f876" title="Starts recording subsequent backend calls into a replayable graph, instead of executing them immediat...">BeginGraphCapture()</a>/EndGraphCapture() pair.    </p>
+<p>Returns the plain (signed) sum of every element in buf. Synchronous on <a class="el" href="classDeep_1_1CUDABackend.html" title="CUDA implementation of IComputeBackend: device kernels for elementwise ops, cuBLAS for GEMM,...">CUDABackend</a> (reads the reduction back to a host value before returning) &ndash; same constraint as ComputeErrorAndEnergy and friends: never call this from inside a captured CUDA graph region, only from code that runs outside any <a class="el" href="#afc9b85906457f281bbfcc415b2e0f876" title="Starts recording subsequent backend calls into a replayable graph, instead of executing them immediat...">BeginGraphCapture()</a>/EndGraphCapture() pair.    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a3f8151e51e0a47f8d3ae82bdd356e86b">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a0f9824685ed74c1961f9a19e82964147">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -2675,7 +3042,51 @@ Public Member Functions</h2></td></tr>
 
 <p>dst[j] = sum over b in [0,batchSize) of src[b*width + j], for all j in [0,width). Replaces a batchSize-iteration loop of individual AxpyInto calls, the reduction-direction counterpart to AddBiasBroadcast, still unfixed until now. On GPU this is one cublasSgemv call against a cached all-ones vector, reinterpreting src's row-major [batchSize,width] layout as column-major [width,batchSize] with no data movement (verified numerically).    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a1b5ea6254dad4c7d64f00ad85e37136a">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a4f84101640b86ed893d1cc99b1643ce3">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a6172bbd213c187da63a722f0ff9cf46f" name="a6172bbd213c187da63a722f0ff9cf46f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6172bbd213c187da63a722f0ff9cf46f">&#9670;&#160;</a></span>SumRowsAccum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Deep::CUDABackend::SumRowsAccum </td>
+          <td>(</td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>dst</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>src</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>batchSize</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>width</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Same operation as <a class="el" href="#acff826d766d857f2ca5bca46d6a2f7bf" title="dst[j] = sum over b in [0,batchSize) of src[b*width + j], for all j in [0,width). Replaces a batchSiz...">SumRows()</a>, but writes into an AccumT* buffer instead of T* &ndash; see <a class="el" href="#ad2bafc5a680fab871878f41f5661fba8" title="Same operation as MatMul(), but writes into an AccumT* buffer instead of T* – for a layer&#39;s own Adam/...">MatMulAccum()</a>'s own doc comment for why this exists (a layer's bias gradient, grad_b, needs the same AccumT-accumulating treatment grad_W does).    </p>
+<p><a class="el" href="classDeep_1_1CUDABackend.html" title="CUDA implementation of IComputeBackend: device kernels for elementwise ops, cuBLAS for GEMM,...">CUDABackend</a>'s T and AccumT are always float, same as <a class="el" href="classDeep_1_1CPUBackend.html" title="CPU implementation of IComputeBackend: SIMD (via Activations.h) for elementwise ops,...">CPUBackend</a>'s own identical-override reasoning &ndash; see <a class="el" href="CPUBackend_8h.html">CPUBackend.h</a>'s own comment on MatMulAccum/SumRowsAccum for why these exist at all. </p>
+
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#af792f36341fb60b95b7ea159852074e6">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -2704,7 +3115,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Blocks until all previously enqueued work on this backend's stream has completed. A no-op on <a class="el" href="classDeep_1_1CPUBackend.html" title="CPU implementation of IComputeBackend: SIMD (via Activations.h) for elementwise ops,...">CPUBackend</a> (every CPU call is already synchronous).    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#ac120c3a1c8f58314ea781c2a362dda25">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a8d5f937c26ada9168b39840cd535072a">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -2769,7 +3180,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>false if this backend has no fused implementation, in which case the caller falls back to separate <a class="el" href="#a07573d938b54069ead4d2d8fd15f6dff" title="Same as ComputeErrorAndEnergy(), without computing (or returning) the energy, for callers that only n...">ComputeError()</a>/ <a class="el" href="#af6ac128419cb70de4e4bf7bee9a0fb1e" title="Two-buffer variant of Activation(): reads src, writes into dst.">ActivationInto()</a> calls, same convention as <a class="el" href="#a6b8be4eba556b3cc7b4136a3defc4360" title="Attempts C = alpha * (A @ B(^T)) via oneDNN&#39;s matmul primitive instead of MatMul()&#39;s cblas_sgemm (CPU...">TryFusedMatMul()</a> above.    </dd></dl>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#ae04485803ab1179c60c9870af6bd0365">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#ade70b9af54b8e4584bae176fbdedb9f0">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -2865,9 +3276,9 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The adjoint of <a class="el" href="#a913e1365ff9d8eefefa0c565029e7a5f" title="Attempts a single fused convolution forward pass, skipping Im2Col()/RepackForBatchedGemm()/MatMul() e...">TryFusedConvForward()</a> w.r.t. <code class="param">input</code>, skipping the transposed <a class="el" href="#ae792cbda32201e02d1c79049b1dcb63a" title="C = alpha * op(A) * op(B) + beta * C, the standard BLAS SGEMM convention (op(X) = X^T if the matching...">MatMul()</a>+<a class="el" href="#a8f83cf74e427f1b60b5f3e1fe407bb25" title="Repacks a [batchSize, rows, cols] tensor (batch-major) into [rows, batchSize, cols] (row-major,...">RepackForBatchedGemm()</a>+<a class="el" href="#a00b64e588474cb54ab61de35045a063c" title="The adjoint of Im2Col(): scatters a whole batch of (channels*kH*kW, outH*outW) column-gradient buffer...">Col2Im()</a> sequence. OVERWRITES <code class="param">inputGrad</code> = <code class="param">alpha</code> * convBackwardData(<code class="param">outputGrad</code>, <code class="param">W</code>) &ndash; unlike <a class="el" href="#a00b64e588474cb54ab61de35045a063c" title="The adjoint of Im2Col(): scatters a whole batch of (channels*kH*kW, outH*outW) column-gradient buffer...">Col2Im()</a>'s own accumulate contract, every known caller here <a class="el" href="#a74cdbdfeb8bf17d5d1c17ebf751ec4c7" title="Zero-fills numFloats floats starting at ptr.">Zero()</a>s its destination immediately beforehand anyway. Same false-means-unsupported contract as <a class="el" href="#a913e1365ff9d8eefefa0c565029e7a5f" title="Attempts a single fused convolution forward pass, skipping Im2Col()/RepackForBatchedGemm()/MatMul() e...">TryFusedConvForward()</a>.    </p>
+<p>The adjoint of <a class="el" href="#a913e1365ff9d8eefefa0c565029e7a5f" title="Attempts a single fused convolution forward pass, skipping Im2Col()/RepackForBatchedGemm()/MatMul() e...">TryFusedConvForward()</a> w.r.t. <code class="param">input</code>, skipping the transposed <a class="el" href="#ae792cbda32201e02d1c79049b1dcb63a" title="C = alpha * op(A) * op(B) + beta * C, the standard BLAS SGEMM convention (op(X) = X^T if the matching...">MatMul()</a>+<a class="el" href="#a8f83cf74e427f1b60b5f3e1fe407bb25" title="Repacks a [batchSize, rows, cols] tensor (batch-major) into [rows, batchSize, cols] (row-major,...">RepackForBatchedGemm()</a>+<a class="el" href="#a00b64e588474cb54ab61de35045a063c" title="The adjoint of Im2Col(): scatters a whole batch of (channels*kH*kW, outH*outW) column-gradient buffer...">Col2Im()</a> sequence. OVERWRITES <code class="param">inputGrad</code> = <code class="param">alpha</code> * convBackwardData(<code class="param">outputGrad</code>, <code class="param">W</code>) &ndash; unlike <a class="el" href="#a00b64e588474cb54ab61de35045a063c" title="The adjoint of Im2Col(): scatters a whole batch of (channels*kH*kW, outH*outW) column-gradient buffer...">Col2Im()</a>'s own accumulate contract, every known caller here <a class="el" href="#a74cdbdfeb8bf17d5d1c17ebf751ec4c7" title="Zero-fills numElements elements of T starting at ptr.">Zero()</a>s its destination immediately beforehand anyway. Same false-means-unsupported contract as <a class="el" href="#a913e1365ff9d8eefefa0c565029e7a5f" title="Attempts a single fused convolution forward pass, skipping Im2Col()/RepackForBatchedGemm()/MatMul() e...">TryFusedConvForward()</a>.    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a2f2eabe65db527ec2dd6c83bafcc5b06">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#ae735dc61b233cb826eaddb9f1882cd26">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -2970,7 +3381,7 @@ Public Member Functions</h2></td></tr>
 
 <p>The adjoint of <a class="el" href="#a913e1365ff9d8eefefa0c565029e7a5f" title="Attempts a single fused convolution forward pass, skipping Im2Col()/RepackForBatchedGemm()/MatMul() e...">TryFusedConvForward()</a> w.r.t. <code class="param">W</code>, skipping <a class="el" href="#aa24b90afa71c6a42864d06d51e7607ad" title="Rearranges a whole batch of (channels, height, width) input images into (channels*kH*kW,...">Im2Col()</a>+<a class="el" href="#a8f83cf74e427f1b60b5f3e1fe407bb25" title="Repacks a [batchSize, rows, cols] tensor (batch-major) into [rows, batchSize, cols] (row-major,...">RepackForBatchedGemm()</a>+<a class="el" href="#ae792cbda32201e02d1c79049b1dcb63a" title="C = alpha * op(A) * op(B) + beta * C, the standard BLAS SGEMM convention (op(X) = X^T if the matching...">MatMul()</a>. <code class="param">dW</code> = <code class="param">alpha</code> * convBackwardFilter(<code class="param">input</code>, <code class="param">outputGrad</code>) + <code class="param">beta</code> * <code class="param">dW</code>, matching <a class="el" href="#ae792cbda32201e02d1c79049b1dcb63a" title="C = alpha * op(A) * op(B) + beta * C, the standard BLAS SGEMM convention (op(X) = X^T if the matching...">MatMul()</a>'s own alpha/beta convention &ndash; a caller that fuses its weight UPDATE directly into this GEMM (SGD: beta=1 into W itself) and one that wants a fresh gradient buffer (Adam: beta=0 into grad_W) both work unchanged. Same false-means-unsupported contract as <a class="el" href="#a913e1365ff9d8eefefa0c565029e7a5f" title="Attempts a single fused convolution forward pass, skipping Im2Col()/RepackForBatchedGemm()/MatMul() e...">TryFusedConvForward()</a>.    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a80b32760eaf85c709accc3f06dbc054e">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a4e76b2f2637e9ec6bc204f0acb891b12">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -3074,7 +3485,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a98b1bd7e36bc9cf77522d1e4afe71862">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#aae90180c238b78c1fee1dbb9830105f0">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -3166,7 +3577,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#abcccbda8e3759816e5375aecf748770b">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a5bd4c6ebe4776256ddcc3e97b5e9947c">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -3243,7 +3654,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a7f2f2716e7a2659053f63ae4378de8d8">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#aaaf473af752db9d2f863ca192000d8ba">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -3333,7 +3744,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#ac9c7c2456bde42dc9107743fd5183359">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#abd5fb4d4dc9f77268991c5bc89e7f1f4">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -3425,7 +3836,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#aa83df9e8493e885cb5205ba40136fd00">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a53f99dfe38df2b321a0c7271ffe6eb86">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -3478,7 +3889,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Precision update from accumulated squared error, fused: for each i in [0,width), grad = mean_{b in [0,batchSize)} of 0.5*(p[i]*e[b*width+i]^2 - 1); log_p[i] -= pr*grad, clamped to [-5,5]; p[i] = exp(log_p[i]). Matches <a class="el" href="classDeep_1_1DiscriminativePCLayer.html#a93d1fa602e1f5e824f87c9882807d7a3" title="Updates this layer&#39;s precision weighting based on the current prediction error.">DiscriminativePCLayer::UpdatePrecision()</a>/ConvPCLayer::UpdatePrecision()'s existing CPU formula exactly, including the clamp bounds.    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#a60cb89d447c87075572896e1c3fb7d28">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#a3c9bd0fc9372e5ee07b64c6a84e4a7bc">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>
@@ -3509,9 +3920,9 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Zero-fills <span class="tt">numFloats</span> floats starting at <span class="tt">ptr</span>.    </p>
+<p>Zero-fills <span class="tt">numElements</span> elements of T starting at <span class="tt">ptr</span>.    </p>
 
-<p>Implements <a class="el" href="classDeep_1_1IComputeBackend.html#ab9abaa2a632281386ba225bbe0973922">Deep::IComputeBackend</a>.</p>
+<p>Implements <a class="el" href="classDeep_1_1IComputeBackendT.html#ae75d1371f38e923c053c9238734b609e">Deep::IComputeBackendT&lt; float, float &gt;</a>.</p>
 
 </div>
 </div>

@@ -299,7 +299,7 @@ function LaptopFallback() {
 
 // Small supporting numbers under the headline cards (see the Benchmarks page)
 const stats = [
-  { value: "11.8×", label: "Faster on an NVIDIA A100 than on a CPU, with the same accuracy" },
+  { value: "66.8s", label: "To train MNIST to 98.08% on one NVIDIA A100, 7.3× faster than the CPU run" },
   { value: "49.6s", label: "To train Direct Kolen-Pollack to 95.97% on MNIST" },
   { value: "<2MB", label: "Compiled extension, with no deep learning framework underneath" },
   { value: "MIT", label: "Licensed. Free to use, modify and ship" },
@@ -478,10 +478,9 @@ export default function App() {
             <div className="flex flex-col justify-center items-center w-full">
               <hr className="h-1 my-4 md:my-5 w-[50%] bg-gradient-to-r from-transparent via-white/20 to-transparent border-0" />
               <div className="grid grid-cols-1 md:grid-cols-4 gap-5 md:grid-rows-[170px_170px_120px] max-w-[1500px] w-full">
-                <article className="relative h-full w-full overflow-hidden rounded-2xl bg-white/[0.04] p-6 md:p-7 backdrop-blur-sm md:col-span-2 md:row-span-2">
-                  <div className="pointer-events-none absolute -inset-px transition-opacity duration-300" />
-                  <div className="relative z-10 flex h-full flex-col justify-center">
-                    <h3 className="Michroma mt-2 md:mt-4 text-5xl md:text-7xl text-fuchsia-400">
+                <article className="relative h-full w-full overflow-hidden border-t border-white/15 pt-5 md:col-span-2 md:row-span-2">
+                                    <div className="relative z-10 flex h-full flex-col justify-center">
+                    <h3 className="Michroma mt-2 md:mt-4 text-5xl md:text-7xl text-white">
                       3.50×
                     </h3>
                     <p className="Jura mt-3 md:mt-4 text-base md:text-2xl leading-relaxed text-white/75">
@@ -490,10 +489,9 @@ export default function App() {
                     </p>
                   </div>
                 </article>
-                <article className="relative h-full w-full overflow-hidden rounded-2xl bg-white/[0.04] p-6 md:p-7 backdrop-blur-sm md:col-span-1 md:row-span-2">
-                  <div className="pointer-events-none absolute -inset-px transition-opacity duration-300" />
-                  <div className="relative z-10 flex h-full flex-col justify-center">
-                    <h3 className="Michroma mt-2 md:mt-4 text-3xl md:text-5xl text-fuchsia-400">
+                <article className="relative h-full w-full overflow-hidden border-t border-white/15 pt-5 md:col-span-1 md:row-span-2">
+                                    <div className="relative z-10 flex h-full flex-col justify-center">
+                    <h3 className="Michroma mt-2 md:mt-4 text-3xl md:text-5xl text-white">
                       98.22<small className="text-lg">%</small>
                     </h3>
                     <p className="Jura mt-3 md:mt-4 text-base md:text-lg leading-relaxed text-white/75">
@@ -503,16 +501,16 @@ export default function App() {
                 </article>
                 <article
                   aria-hidden="true"
-                  className="meteor-card relative flex h-48 md:h-full w-full items-center justify-center overflow-hidden rounded-2xl bg-white/[0.04] backdrop-blur-sm md:col-span-1 md:row-span-2"
+                  className="meteor-card relative flex h-48 md:h-full w-full items-center justify-center overflow-hidden md:col-span-1 md:row-span-2"
                 >
                   <BurningMeteor />
                 </article>
                 {stats.map((stat) => (
                   <article
                     key={stat.label}
-                    className="relative flex flex-col justify-center overflow-hidden rounded-2xl bg-white/[0.04] p-5 backdrop-blur-sm md:col-span-1"
+                    className="relative flex flex-col justify-center border-t border-white/15 pt-4 md:col-span-1"
                   >
-                    <h3 className="Michroma m-0 text-2xl md:text-3xl text-fuchsia-400">
+                    <h3 className="Michroma m-0 text-2xl md:text-3xl text-white">
                       {stat.value}
                     </h3>
                     <p className="Jura mb-0 mt-2 text-sm md:text-base leading-snug text-white/75">
@@ -572,7 +570,7 @@ export default function App() {
             </div>
           </section>
           <section className="w-full px-6 pb-24 pt-0 md:px-16">
-            <div className="mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-8 rounded-2xl border border-white/10 bg-white/[0.04] p-8 text-center backdrop-blur-sm md:flex-row md:p-12 md:text-left">
+            <div className="mx-auto flex max-w-[1400px] flex-col items-start justify-between gap-8 border-t border-white/15 pt-10 md:flex-row md:items-center">
               <div>
                 <h2 className="Michroma m-0 text-2xl md:text-4xl text-white">
                   Building with predictive coding?

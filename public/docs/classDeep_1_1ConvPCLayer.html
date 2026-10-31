@@ -103,7 +103,7 @@ $(function(){initNavTree('classDeep_1_1ConvPCLayer.html','','classDeep_1_1ConvPC
 </div><!--header-->
 <div class="contents">
 
-<p>Convolutional Predictive Coding layer (im2col-based), precision-weighted, routed through <a class="el" href="classDeep_1_1IComputeBackend.html" title="Device-agnostic compute backend interface: every numerical primitive a layer/network needs,...">IComputeBackend</a> for GPU portability.  
+<p>Convolutional Predictive Coding layer (im2col-based), precision-weighted, routed through <a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: IComputeBackend is IComputeB...">IComputeBackend</a> for GPU portability.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="ConvPCLayer_8h_source.html">ConvPCLayer.h</a>&gt;</code></p>
@@ -119,7 +119,7 @@ Inheritance diagram for Deep::ConvPCLayer:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2ae4329405559336093f54f38fa752aa" id="r_a2ae4329405559336093f54f38fa752aa"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a2ae4329405559336093f54f38fa752aa">ConvPCLayer</a> (int inChannels, int outChannels, int inHeight, int inWidth, int kernelH, int kernelW, int strideH=1, int strideW=1, int padH=0, int padW=0, int batchSize=1, float learningRate=1e-6f, float inferenceRate=0.1f, float precisionRate=0.01f, float lmbda=1e-2f, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> aType=<a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ad346bb4679d29be241279f15d7795c1c">ActivationType::RELU</a>, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> dType=<a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ae3d97c20b976be09990b745185b14d75">ActivationType::dRELU</a>, <a class="el" href="classDeep_1_1IComputeBackend.html">IComputeBackend</a> *backend=nullptr)</td></tr>
+<tr class="memitem:a2ae4329405559336093f54f38fa752aa" id="r_a2ae4329405559336093f54f38fa752aa"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a2ae4329405559336093f54f38fa752aa">ConvPCLayer</a> (int inChannels, int outChannels, int inHeight, int inWidth, int kernelH, int kernelW, int strideH=1, int strideW=1, int padH=0, int padW=0, int batchSize=1, float learningRate=1e-6f, float inferenceRate=0.1f, float precisionRate=0.01f, float lmbda=1e-2f, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> aType=<a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ad346bb4679d29be241279f15d7795c1c">ActivationType::RELU</a>, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> dType=<a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ae3d97c20b976be09990b745185b14d75">ActivationType::dRELU</a>, <a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a> *backend=nullptr)</td></tr>
 <tr class="memdesc:a2ae4329405559336093f54f38fa752aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for a convolutional PC layer.  <br /></td></tr>
 <tr class="memitem:ab80ca88f8561690269d84bed7d71a574" id="r_ab80ca88f8561690269d84bed7d71a574"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#ab80ca88f8561690269d84bed7d71a574">CalculateState</a> () noexcept override</td></tr>
 <tr class="memdesc:ab80ca88f8561690269d84bed7d71a574"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate energy/prediction errors for this layer.  <br /></td></tr>
@@ -157,7 +157,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a91c346f8e60d00aedea080889657d3d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns this layer's bias buffer.  <br /></td></tr>
 <tr class="memitem:a083b8beb3f45ca2968f2bb5db2fa0f7a" id="r_a083b8beb3f45ca2968f2bb5db2fa0f7a"><td class="memItemLeft">float *&#160;</td><td class="memItemRight"><a class="el" href="#a083b8beb3f45ca2968f2bb5db2fa0f7a">GetBiases</a> () noexcept</td></tr>
 <tr class="memdesc:a083b8beb3f45ca2968f2bb5db2fa0f7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns this layer's bias buffer.  <br /></td></tr>
-<tr class="memitem:acd1d4c3ea482aff6f3c3606a5c40470b" id="r_acd1d4c3ea482aff6f3c3606a5c40470b"><td class="memItemLeft"><a class="el" href="classDeep_1_1IComputeBackend.html">IComputeBackend</a> *&#160;</td><td class="memItemRight"><a class="el" href="#acd1d4c3ea482aff6f3c3606a5c40470b">GetBackend</a> () const noexcept</td></tr>
+<tr class="memitem:acd1d4c3ea482aff6f3c3606a5c40470b" id="r_acd1d4c3ea482aff6f3c3606a5c40470b"><td class="memItemLeft"><a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a> *&#160;</td><td class="memItemRight"><a class="el" href="#acd1d4c3ea482aff6f3c3606a5c40470b">GetBackend</a> () const noexcept</td></tr>
 <tr class="memdesc:acd1d4c3ea482aff6f3c3606a5c40470b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the compute backend this layer routes all math through, so Python bindings can safely copy device-resident buffers to the host instead of exposing a raw device pointer as if it were host memory (see LayerBindings.cpp's ViewOwnedBy / CopyFromBackend).  <br /></td></tr>
 <tr class="memitem:a15fe3cf3782608a06fb28baf9263c61b" id="r_a15fe3cf3782608a06fb28baf9263c61b"><td class="memItemLeft">const float *&#160;</td><td class="memItemRight"><a class="el" href="#a15fe3cf3782608a06fb28baf9263c61b">GetPrecisions</a> () const noexcept</td></tr>
 <tr class="memdesc:a15fe3cf3782608a06fb28baf9263c61b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns this layer's precision buffer.  <br /></td></tr>
@@ -198,7 +198,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:afdf44d3bbd15219ca5eeae7299b2e8ff" id="r_afdf44d3bbd15219ca5eeae7299b2e8ff"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#afdf44d3bbd15219ca5eeae7299b2e8ff">ComputeMuOnly</a> () noexcept</td></tr>
 <tr class="memdesc:afdf44d3bbd15219ca5eeae7299b2e8ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast-path forward projection that skips state initialization.  <br /></td></tr>
 <tr class="memitem:a184a57edf6c8e99a4bcb326e90b3efaf" id="r_a184a57edf6c8e99a4bcb326e90b3efaf"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a184a57edf6c8e99a4bcb326e90b3efaf">PrepareConvWorkspace</a> () noexcept</td></tr>
-<tr class="memdesc:a184a57edf6c8e99a4bcb326e90b3efaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pre-sizes the CUDA backend's cuDNN workspace for this layer's convolution shape. Must run before the network's first CUDA graph capture &ndash; see <a class="el" href="classDeep_1_1IComputeBackend.html#a0b8cc645b391c707bc9700718d330425" title="Pre-grows CUDABackend&#39;s shared cuDNN conv workspace (see TryFusedConvForward() and friends) to fit th...">IComputeBackend::PrepareConvWorkspace()</a>'s own doc comment for why growing it lazily, on first use inside a captured settling step, corrupts the whole capture. No-op on CPU.  <br /></td></tr>
+<tr class="memdesc:a184a57edf6c8e99a4bcb326e90b3efaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pre-sizes the CUDA backend's cuDNN workspace for this layer's convolution shape. Must run before the network's first CUDA graph capture &ndash; see <a class="el" href="classDeep_1_1IComputeBackendT.html#a48ec49d90d0b437ab6f74d81431426c7">IComputeBackend::PrepareConvWorkspace()</a>'s own doc comment for why growing it lazily, on first use inside a captured settling step, corrupts the whole capture. No-op on CPU.  <br /></td></tr>
 <tr class="memitem:a61005e118bbeca8d557e1a64d49aa63e" id="r_a61005e118bbeca8d557e1a64d49aa63e"><td class="memItemLeft"><a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a>&#160;</td><td class="memItemRight"><a class="el" href="#a61005e118bbeca8d557e1a64d49aa63e">GetActivationType</a> () const noexcept</td></tr>
 <tr class="memdesc:a61005e118bbeca8d557e1a64d49aa63e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns this layer's configured activation type.  <br /></td></tr>
 <tr class="memitem:abaa2803a71aaa21af9eae1147b0be136" id="r_abaa2803a71aaa21af9eae1147b0be136"><td class="memItemLeft"><a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a>&#160;</td><td class="memItemRight"><a class="el" href="#abaa2803a71aaa21af9eae1147b0be136">GetDerivativeType</a> () const noexcept</td></tr>
@@ -220,7 +220,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af44180a5e49c2165d387377039ef2cd1" id="r_af44180a5e49c2165d387377039ef2cd1"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#af44180a5e49c2165d387377039ef2cd1">GetKernelW</a> () const noexcept</td></tr>
 <tr class="memdesc:af44180a5e49c2165d387377039ef2cd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the convolution kernel width.  <br /></td></tr>
 <tr class="memitem:ae5594a34020f1400c0cf89dc5f02bdc3" id="r_ae5594a34020f1400c0cf89dc5f02bdc3"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#ae5594a34020f1400c0cf89dc5f02bdc3">GetRequiredFloats</a> () const noexcept</td></tr>
-<tr class="memdesc:ae5594a34020f1400c0cf89dc5f02bdc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the total number of floats this layer requires from a <a class="el" href="classDeep_1_1MemoryArena.html" title="A 64-byte-aligned bump-pointer allocator over a single contiguous block of host memory....">MemoryArena</a> (weights, biases, beliefs, errors, and every scratch buffer combined).  <br /></td></tr>
+<tr class="memdesc:ae5594a34020f1400c0cf89dc5f02bdc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the total number of floats this layer requires from a <a class="el" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: MemoryArena is MemoryArenaT&lt;...">MemoryArena</a> (weights, biases, beliefs, errors, and every scratch buffer combined).  <br /></td></tr>
 <tr class="memitem:af087b6786f1a6d7ab69d2c21b399b7e0" id="r_af087b6786f1a6d7ab69d2c21b399b7e0"><td class="memTemplParams" colspan="2">template&lt;typename ArenaT&gt; </td></tr>
 <tr class="memitem:af087b6786f1a6d7ab69d2c21b399b7e0 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af087b6786f1a6d7ab69d2c21b399b7e0">BindMemory</a> (ArenaT &amp;arena)</td></tr>
 <tr class="memdesc:af087b6786f1a6d7ab69d2c21b399b7e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds this layer's weight/state/scratch buffers into the supplied arena. Must be called before any other operation.  <br /></td></tr>
@@ -240,7 +240,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memdesc:a5a538a25f3064996bbe651e6d48918d0 inherit pro_attribs_classDeep_1_1Layer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of output.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Convolutional Predictive Coding layer (im2col-based), precision-weighted, routed through <a class="el" href="classDeep_1_1IComputeBackend.html" title="Device-agnostic compute backend interface: every numerical primitive a layer/network needs,...">IComputeBackend</a> for GPU portability. </p>
+<div class="textblock"><p>Convolutional Predictive Coding layer (im2col-based), precision-weighted, routed through <a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: IComputeBackend is IComputeB...">IComputeBackend</a> for GPU portability. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2ae4329405559336093f54f38fa752aa" name="a2ae4329405559336093f54f38fa752aa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2ae4329405559336093f54f38fa752aa">&#9670;&#160;</a></span>ConvPCLayer()</h2>
@@ -336,7 +336,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classDeep_1_1IComputeBackend.html">IComputeBackend</a> *</td>          <td class="paramname"><span class="paramname"><em>backend</em></span><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a> *</td>          <td class="paramname"><span class="paramname"><em>backend</em></span><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -378,7 +378,7 @@ Additional Inherited Members</h2></td></tr>
 template&lt;typename ArenaT&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">template void Deep::ConvPCLayer::BindMemory&lt; <a class="el" href="classDeep_1_1DeviceMemoryArena.html">DeviceMemoryArena</a> &gt; </td>
+          <td class="memname">template void Deep::ConvPCLayer::BindMemory&lt; <a class="el" href="namespaceDeep.html#a1389c0520260789b0d62d62237a71d0c">DeviceMemoryArena</a> &gt; </td>
           <td>(</td>
           <td class="paramtype">ArenaT &amp;</td>          <td class="paramname"><span class="paramname"><em>arena</em></span></td><td>)</td>
           <td></td>
@@ -389,7 +389,7 @@ template&lt;typename ArenaT&gt; </div>
 <p>Binds this layer's weight/state/scratch buffers into the supplied arena. Must be called before any other operation. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">ArenaT</td><td>Either <a class="el" href="classDeep_1_1MemoryArena.html" title="A 64-byte-aligned bump-pointer allocator over a single contiguous block of host memory....">MemoryArena</a> or <a class="el" href="classDeep_1_1DeviceMemoryArena.html" title="A 64-byte-aligned bump-pointer allocator over a single contiguous block of device memory,...">DeviceMemoryArena</a>. </td></tr>
+    <tr><td class="paramname">ArenaT</td><td>Either <a class="el" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: MemoryArena is MemoryArenaT&lt;...">MemoryArena</a> or <a class="el" href="namespaceDeep.html#a1389c0520260789b0d62d62237a71d0c" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: DeviceMemoryArena is DeviceM...">DeviceMemoryArena</a>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -591,7 +591,7 @@ template&lt;typename ArenaT&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classDeep_1_1IComputeBackend.html">IComputeBackend</a> * Deep::ConvPCLayer::GetBackend </td>
+          <td class="memname"><a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a> * Deep::ConvPCLayer::GetBackend </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -1245,7 +1245,7 @@ template&lt;typename ArenaT&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Computes the total number of floats this layer requires from a <a class="el" href="classDeep_1_1MemoryArena.html" title="A 64-byte-aligned bump-pointer allocator over a single contiguous block of host memory....">MemoryArena</a> (weights, biases, beliefs, errors, and every scratch buffer combined). </p>
+<p>Computes the total number of floats this layer requires from a <a class="el" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: MemoryArena is MemoryArenaT&lt;...">MemoryArena</a> (weights, biases, beliefs, errors, and every scratch buffer combined). </p>
 <dl class="section return"><dt>Returns</dt><dd>The required float count. </dd></dl>
 
 </div>
@@ -1414,7 +1414,7 @@ template&lt;typename ArenaT&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Pre-sizes the CUDA backend's cuDNN workspace for this layer's convolution shape. Must run before the network's first CUDA graph capture &ndash; see <a class="el" href="classDeep_1_1IComputeBackend.html#a0b8cc645b391c707bc9700718d330425" title="Pre-grows CUDABackend&#39;s shared cuDNN conv workspace (see TryFusedConvForward() and friends) to fit th...">IComputeBackend::PrepareConvWorkspace()</a>'s own doc comment for why growing it lazily, on first use inside a captured settling step, corrupts the whole capture. No-op on CPU. </p>
+<p>Pre-sizes the CUDA backend's cuDNN workspace for this layer's convolution shape. Must run before the network's first CUDA graph capture &ndash; see <a class="el" href="classDeep_1_1IComputeBackendT.html#a48ec49d90d0b437ab6f74d81431426c7">IComputeBackend::PrepareConvWorkspace()</a>'s own doc comment for why growing it lazily, on first use inside a captured settling step, corrupts the whole capture. No-op on CPU. </p>
 
 </div>
 </div>

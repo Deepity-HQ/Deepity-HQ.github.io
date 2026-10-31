@@ -103,7 +103,7 @@ $(function(){initNavTree('classDeep_1_1DiscriminativePCLayer.html','','classDeep
 </div><!--header-->
 <div class="contents">
 
-<p>Precision-weighted dense Predictive Coding layer, routed through <a class="el" href="classDeep_1_1IComputeBackend.html" title="Device-agnostic compute backend interface: every numerical primitive a layer/network needs,...">IComputeBackend</a> for GPU portability.  
+<p>Precision-weighted dense Predictive Coding layer, routed through <a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: IComputeBackend is IComputeB...">IComputeBackend</a> for GPU portability.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="DiscriminativePCLayer_8h_source.html">DiscriminativePCLayer.h</a>&gt;</code></p>
@@ -119,7 +119,7 @@ Inheritance diagram for Deep::DiscriminativePCLayer:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3cba865a2c2de4548fe468c64ad4a6a5" id="r_a3cba865a2c2de4548fe468c64ad4a6a5"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a3cba865a2c2de4548fe468c64ad4a6a5">DiscriminativePCLayer</a> (int <a class="el" href="classDeep_1_1Layer.html#a7480249662a3bd8ad458dcdcde68a37d">size</a>, int <a class="el" href="classDeep_1_1Layer.html#a5a538a25f3064996bbe651e6d48918d0">nextSize</a>, int batchSize=1, float learningRate=1e-6f, float inferenceRate=0.1f, float precisionRate=0.01f, float lmbda=1e-2f, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> aType=<a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ad346bb4679d29be241279f15d7795c1c">ActivationType::RELU</a>, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> dType=<a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ae3d97c20b976be09990b745185b14d75">ActivationType::dRELU</a>, <a class="el" href="classDeep_1_1IComputeBackend.html">IComputeBackend</a> *backend=nullptr)</td></tr>
+<tr class="memitem:a3cba865a2c2de4548fe468c64ad4a6a5" id="r_a3cba865a2c2de4548fe468c64ad4a6a5"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a3cba865a2c2de4548fe468c64ad4a6a5">DiscriminativePCLayer</a> (int <a class="el" href="classDeep_1_1Layer.html#a7480249662a3bd8ad458dcdcde68a37d">size</a>, int <a class="el" href="classDeep_1_1Layer.html#a5a538a25f3064996bbe651e6d48918d0">nextSize</a>, int batchSize=1, float learningRate=1e-6f, float inferenceRate=0.1f, float precisionRate=0.01f, float lmbda=1e-2f, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> aType=<a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ad346bb4679d29be241279f15d7795c1c">ActivationType::RELU</a>, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> dType=<a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ae3d97c20b976be09990b745185b14d75">ActivationType::dRELU</a>, <a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a> *backend=nullptr)</td></tr>
 <tr class="memdesc:a3cba865a2c2de4548fe468c64ad4a6a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for a Deepity <a class="el" href="classDeep_1_1Layer.html" title="A deepity layer virtual class.">Layer</a>.  <br /></td></tr>
 <tr class="memitem:a4d50660fe8014f93db31e3478f98ee07" id="r_a4d50660fe8014f93db31e3478f98ee07"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a4d50660fe8014f93db31e3478f98ee07">CalculateState</a> () noexcept override</td></tr>
 <tr class="memdesc:a4d50660fe8014f93db31e3478f98ee07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the total network energy state.  <br /></td></tr>
@@ -163,7 +163,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:af2a3a028661dd0f93a31a8da34aeeedf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a read-only version of the stored biases.  <br /></td></tr>
 <tr class="memitem:a75f6be3a401be268422e5faebcb20f97" id="r_a75f6be3a401be268422e5faebcb20f97"><td class="memItemLeft">float *&#160;</td><td class="memItemRight"><a class="el" href="#a75f6be3a401be268422e5faebcb20f97">GetBiases</a> () noexcept</td></tr>
 <tr class="memdesc:a75f6be3a401be268422e5faebcb20f97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a mutable version of the stored biases.  <br /></td></tr>
-<tr class="memitem:a21f0a6272890cf91eda8615ae1c81381" id="r_a21f0a6272890cf91eda8615ae1c81381"><td class="memItemLeft"><a class="el" href="classDeep_1_1IComputeBackend.html">IComputeBackend</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a21f0a6272890cf91eda8615ae1c81381">GetBackend</a> () const noexcept</td></tr>
+<tr class="memitem:a21f0a6272890cf91eda8615ae1c81381" id="r_a21f0a6272890cf91eda8615ae1c81381"><td class="memItemLeft"><a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a21f0a6272890cf91eda8615ae1c81381">GetBackend</a> () const noexcept</td></tr>
 <tr class="memdesc:a21f0a6272890cf91eda8615ae1c81381"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the compute backend this layer routes all math through, so Python bindings can safely copy device-resident buffers to the host instead of exposing a raw device pointer as if it were host memory (see LayerBindings.cpp's ViewOwnedBy / CopyFromBackend).  <br /></td></tr>
 <tr class="memitem:a499b18c38852fcd091969c6e9d062265" id="r_a499b18c38852fcd091969c6e9d062265"><td class="memItemLeft">const float *&#160;</td><td class="memItemRight"><a class="el" href="#a499b18c38852fcd091969c6e9d062265">GetPrecisions</a> () const noexcept</td></tr>
 <tr class="memdesc:a499b18c38852fcd091969c6e9d062265"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a read-only version of the stored precisions.  <br /></td></tr>
@@ -230,7 +230,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memdesc:a5a538a25f3064996bbe651e6d48918d0 inherit pro_attribs_classDeep_1_1Layer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of output.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Precision-weighted dense Predictive Coding layer, routed through <a class="el" href="classDeep_1_1IComputeBackend.html" title="Device-agnostic compute backend interface: every numerical primitive a layer/network needs,...">IComputeBackend</a> for GPU portability. </p>
+<div class="textblock"><p>Precision-weighted dense Predictive Coding layer, routed through <a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: IComputeBackend is IComputeB...">IComputeBackend</a> for GPU portability. </p>
 <p>To perform inference (prediction):</p><ol type="1">
 <li>Clamp the input data to the bottom layer's latent state (z).</li>
 <li>Enter a continuous loop across all layers, calling <a class="el" href="#a4d50660fe8014f93db31e3478f98ee07" title="Calculates the total network energy state.">CalculateState()</a> to compute the local prediction errors (e).</li>
@@ -294,7 +294,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classDeep_1_1IComputeBackend.html">IComputeBackend</a> *</td>          <td class="paramname"><span class="paramname"><em>backend</em></span><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a> *</td>          <td class="paramname"><span class="paramname"><em>backend</em></span><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -328,7 +328,7 @@ Additional Inherited Members</h2></td></tr>
 template&lt;typename ArenaT&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">template void Deep::DiscriminativePCLayer::BindMemory&lt; <a class="el" href="classDeep_1_1DeviceMemoryArena.html">DeviceMemoryArena</a> &gt; </td>
+          <td class="memname">template void Deep::DiscriminativePCLayer::BindMemory&lt; <a class="el" href="namespaceDeep.html#a1389c0520260789b0d62d62237a71d0c">DeviceMemoryArena</a> &gt; </td>
           <td>(</td>
           <td class="paramtype">ArenaT &amp;</td>          <td class="paramname"><span class="paramname"><em>arena</em></span></td><td>)</td>
           <td></td>
@@ -339,7 +339,7 @@ template&lt;typename ArenaT&gt; </div>
 <p>Binds all tensor pointers to the contiguous memory block. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">ArenaT</td><td>Either <a class="el" href="classDeep_1_1MemoryArena.html" title="A 64-byte-aligned bump-pointer allocator over a single contiguous block of host memory....">MemoryArena</a> or <a class="el" href="classDeep_1_1DeviceMemoryArena.html" title="A 64-byte-aligned bump-pointer allocator over a single contiguous block of device memory,...">DeviceMemoryArena</a>. </td></tr>
+    <tr><td class="paramname">ArenaT</td><td>Either <a class="el" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: MemoryArena is MemoryArenaT&lt;...">MemoryArena</a> or <a class="el" href="namespaceDeep.html#a1389c0520260789b0d62d62237a71d0c" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: DeviceMemoryArena is DeviceM...">DeviceMemoryArena</a>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -546,7 +546,7 @@ template&lt;typename ArenaT&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classDeep_1_1IComputeBackend.html">IComputeBackend</a> * Deep::DiscriminativePCLayer::GetBackend </td>
+          <td class="memname"><a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a> * Deep::DiscriminativePCLayer::GetBackend </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>

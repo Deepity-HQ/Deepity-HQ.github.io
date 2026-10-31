@@ -110,10 +110,10 @@ $(function(){initNavTree('classDeep_1_1FullConvPCNetwork.html','','classDeep_1_1
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9b47821966a8c8acbc997fe58717478a" id="r_a9b47821966a8c8acbc997fe58717478a"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a9b47821966a8c8acbc997fe58717478a">FullConvPCNetwork</a> (int batchSize, <a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a> device=<a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3a2b51e711df2cded71f92128f2f8f34dd">DeviceType::DEVICE_CPU</a>) noexcept</td></tr>
+<tr class="memitem:af4c6bc92b0fba268d09d313a68f4211b" id="r_af4c6bc92b0fba268d09d313a68f4211b"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#af4c6bc92b0fba268d09d313a68f4211b">FullConvPCNetwork</a> (int batchSize, <a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a> device=<a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3a2b51e711df2cded71f92128f2f8f34dd">DeviceType::DEVICE_CPU</a>)</td></tr>
 <tr class="memitem:a7a1d1272a94b40beb1ab251bb41d89e5" id="r_a7a1d1272a94b40beb1ab251bb41d89e5"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a7a1d1272a94b40beb1ab251bb41d89e5">~FullConvPCNetwork</a> ()=default</td></tr>
 <tr class="memitem:a875bce9ab06b85211f75011df91fadb4" id="r_a875bce9ab06b85211f75011df91fadb4"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a875bce9ab06b85211f75011df91fadb4">FullConvPCNetwork</a> (const FullConvPCNetwork &amp;)=delete</td></tr>
-<tr class="memitem:afcde5b917a414535833554d1cbe10801" id="r_afcde5b917a414535833554d1cbe10801"><td class="memItemLeft"><a class="el" href="#a9b47821966a8c8acbc997fe58717478a">FullConvPCNetwork</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#afcde5b917a414535833554d1cbe10801">operator=</a> (const <a class="el" href="#a9b47821966a8c8acbc997fe58717478a">FullConvPCNetwork</a> &amp;)=delete</td></tr>
+<tr class="memitem:afcde5b917a414535833554d1cbe10801" id="r_afcde5b917a414535833554d1cbe10801"><td class="memItemLeft"><a class="el" href="#af4c6bc92b0fba268d09d313a68f4211b">FullConvPCNetwork</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#afcde5b917a414535833554d1cbe10801">operator=</a> (const <a class="el" href="#af4c6bc92b0fba268d09d313a68f4211b">FullConvPCNetwork</a> &amp;)=delete</td></tr>
 <tr class="memitem:a5daaae09f8313d087b01ae84c65d18d3" id="r_a5daaae09f8313d087b01ae84c65d18d3"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a5daaae09f8313d087b01ae84c65d18d3">AddLayer</a> (int inChannels, int outChannels, int inHeight, int inWidth, int kernelH, int kernelW, int strideH, int strideW, int padH, int padW, int terminalSize, float lr, float ir, float fl, float lmbda, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> aType, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> dType, int poolH=1, int poolW=1, int poolStrideH=1, int poolStrideW=1)</td></tr>
 <tr class="memitem:a6d1167fd5ae62ea2b4b392bdf805d2c2" id="r_a6d1167fd5ae62ea2b4b392bdf805d2c2"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a6d1167fd5ae62ea2b4b392bdf805d2c2">SetUseMuPCScaling</a> (bool enabled) noexcept</td></tr>
 <tr class="memitem:a74957001cf8c178a014896beccbc0712" id="r_a74957001cf8c178a014896beccbc0712"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a74957001cf8c178a014896beccbc0712">SetUseResidualConnections</a> (bool enabled) noexcept</td></tr>
@@ -158,8 +158,8 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Convolutional Predictive Coding network combining every PC variant <a class="el" href="classDeep_1_1FullPCNetwork.html" title="Predictive Coding network combining muPC scaling, optional residual connections, and DKP direct feedb...">FullPCNetwork</a> has, adapted for conv layers. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a9b47821966a8c8acbc997fe58717478a" name="a9b47821966a8c8acbc997fe58717478a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b47821966a8c8acbc997fe58717478a">&#9670;&#160;</a></span>FullConvPCNetwork() <span class="overload">[1/2]</span></h2>
+<a id="af4c6bc92b0fba268d09d313a68f4211b" name="af4c6bc92b0fba268d09d313a68f4211b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4c6bc92b0fba268d09d313a68f4211b">&#9670;&#160;</a></span>FullConvPCNetwork() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -180,7 +180,7 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel explicit">explicit</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -662,9 +662,9 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a9b47821966a8c8acbc997fe58717478a">FullConvPCNetwork</a> &amp; Deep::FullConvPCNetwork::operator= </td>
+          <td class="memname"><a class="el" href="#af4c6bc92b0fba268d09d313a68f4211b">FullConvPCNetwork</a> &amp; Deep::FullConvPCNetwork::operator= </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="#a9b47821966a8c8acbc997fe58717478a">FullConvPCNetwork</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="#af4c6bc92b0fba268d09d313a68f4211b">FullConvPCNetwork</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>

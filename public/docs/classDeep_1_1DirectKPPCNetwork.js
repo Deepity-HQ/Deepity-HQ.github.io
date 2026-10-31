@@ -1,6 +1,6 @@
 var classDeep_1_1DirectKPPCNetwork =
 [
-    [ "DirectKPPCNetwork", "classDeep_1_1DirectKPPCNetwork.html#a296d53339c2a559b1225337f337ba69e", null ],
+    [ "DirectKPPCNetwork", "classDeep_1_1DirectKPPCNetwork.html#a9337146265d99009bde7a551d9812536", null ],
     [ "~DirectKPPCNetwork", "classDeep_1_1DirectKPPCNetwork.html#acbb2c14b0f7242a610cbfb509b80b722", null ],
     [ "DirectKPPCNetwork", "classDeep_1_1DirectKPPCNetwork.html#aec5a1fdf891b7b40c9a2ce941eb8c6fd", null ],
     [ "AddLayer", "classDeep_1_1DirectKPPCNetwork.html#a99b32dcda2d2def5577cde00b992fef0", null ],

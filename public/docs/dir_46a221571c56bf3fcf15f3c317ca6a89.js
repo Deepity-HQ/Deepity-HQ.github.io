@@ -5,6 +5,7 @@ var dir_46a221571c56bf3fcf15f3c317ca6a89 =
     [ "DiscriminativePCLayer.cpp", "DiscriminativePCLayer_8cpp.html", null ],
     [ "FullConvPCLayer.cpp", "FullConvPCLayer_8cpp.html", null ],
     [ "FullPCLayer.cpp", "FullPCLayer_8cpp.html", null ],
+    [ "FullPCLayerT.cpp", "FullPCLayerT_8cpp.html", null ],
     [ "GaussSeidelPCLayer.cpp", "GaussSeidelPCLayer_8cpp.html", null ],
     [ "SimpleConvPCLayer.cpp", "SimpleConvPCLayer_8cpp.html", null ],
     [ "SimplePCLayer.cpp", "SimplePCLayer_8cpp.html", "SimplePCLayer_8cpp" ]

@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['networks_0',['Networks',['../index.html#architecture_networks',1,'']]],
-  ['nextsize_1',['nextSize',['../classDeep_1_1DirectKPPCLayer.html#aa6de86d19c3c2f09fb31f7b091cc6962',1,'Deep::DirectKPPCLayer::nextSize'],['../classDeep_1_1FullPCLayer.html#a1187789627ae91c22857f24dbd58033c',1,'Deep::FullPCLayer::nextSize'],['../classDeep_1_1Layer.html#a5a538a25f3064996bbe651e6d48918d0',1,'Deep::Layer::nextSize']]],
-  ['none_2',['NONE',['../namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ab50339a10e1de285ac99d4c3990b8693',1,'Deep']]],
-  ['notes_3',['Design Notes',['../ConvPCLayer_math.html#design_notes',1,'']]],
-  ['numbatchesperepoch_4',['NumBatchesPerEpoch',['../classDeep_1_1StreamAlignedBatcher.html#aa14e92ec71dec9635bbdbef9faebb06b',1,'Deep::StreamAlignedBatcher']]]
+  ['name_0',['Name',['../structDeep_1_1DTypeTag_3_01float_01_4.html#ac7be3071e85ad36cf011a02bb7b468c0',1,'Deep::DTypeTag&lt; float &gt;::Name()'],['../structDeep_1_1DTypeTag_3_01double_01_4.html#a75a697dc95206b7dc5d47fcb0be48511',1,'Deep::DTypeTag&lt; double &gt;::Name()'],['../structDeep_1_1DTypeTag_3_01Fp4E2M1Value_01_4.html#a15e52de9595f3e297ddda9a4ddb3d425',1,'Deep::DTypeTag&lt; Fp4E2M1Value &gt;::Name()'],['../structDeep_1_1DTypeTag_3_01hwy_1_1float16__t_01_4.html#ab1fe775853e507bd229c8fec27d5bb88',1,'Deep::DTypeTag&lt; hwy::float16_t &gt;::Name()'],['../structDeep_1_1DTypeTag_3_01Posit4__0Value_01_4.html#a1ef6e33622a85c8fe03978dc21fd0939',1,'Deep::DTypeTag&lt; Posit4_0Value &gt;::Name()'],['../structDeep_1_1DTypeTag_3_01Posit4__1Value_01_4.html#af59ef3beb3c782714d0e59598a5d3331',1,'Deep::DTypeTag&lt; Posit4_1Value &gt;::Name()'],['../structDeep_1_1DTypeTag_3_01Posit4__2Value_01_4.html#aeb6fd002c4e8aabdd2d0fb90619689a7',1,'Deep::DTypeTag&lt; Posit4_2Value &gt;::Name()']]],
+  ['networks_1',['Networks',['../index.html#architecture_networks',1,'']]],
+  ['nextsize_2',['nextSize',['../classDeep_1_1DirectKPPCLayer.html#aa6de86d19c3c2f09fb31f7b091cc6962',1,'Deep::DirectKPPCLayer::nextSize'],['../classDeep_1_1FullPCLayer.html#a1187789627ae91c22857f24dbd58033c',1,'Deep::FullPCLayer::nextSize'],['../classDeep_1_1FullPCLayerT.html#af0885867885c4cb02ea933ff8f5ab8fc',1,'Deep::FullPCLayerT::nextSize'],['../classDeep_1_1Layer.html#a5a538a25f3064996bbe651e6d48918d0',1,'Deep::Layer::nextSize']]],
+  ['none_3',['NONE',['../namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ab50339a10e1de285ac99d4c3990b8693',1,'Deep']]],
+  ['notes_4',['Design Notes',['../ConvPCLayer_math.html#design_notes',1,'']]],
+  ['numbatchesperepoch_5',['NumBatchesPerEpoch',['../classDeep_1_1StreamAlignedBatcher.html#aa14e92ec71dec9635bbdbef9faebb06b',1,'Deep::StreamAlignedBatcher']]]
 ];

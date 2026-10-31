@@ -110,11 +110,11 @@ $(function(){initNavTree('classDeep_1_1ConvPCNetwork.html','','classDeep_1_1Conv
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2e14956710e6d942ba241e1bf2b3df68" id="r_a2e14956710e6d942ba241e1bf2b3df68"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a2e14956710e6d942ba241e1bf2b3df68">ConvPCNetwork</a> (int batchSize, <a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a> device=<a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3a2b51e711df2cded71f92128f2f8f34dd">DeviceType::DEVICE_CPU</a>) noexcept</td></tr>
-<tr class="memdesc:a2e14956710e6d942ba241e1bf2b3df68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an empty network; add layers via <a class="el" href="#aaf55133efb673e06f500b581cfe4f909" title="Adds a convolutional layer. Pass outChannels=0 to mark a terminal layer (no outgoing prediction).">AddLayer()</a>, then <a class="el" href="#a95506ba6450152075862e5bb76df883c" title="Sums every layer&#39;s required float count into a single contiguous arena and binds each layer into it....">Compile()</a> before use.  <br /></td></tr>
+<tr class="memitem:a855432f1d2927b23d449a7238c93860f" id="r_a855432f1d2927b23d449a7238c93860f"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a855432f1d2927b23d449a7238c93860f">ConvPCNetwork</a> (int batchSize, <a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a> device=<a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3a2b51e711df2cded71f92128f2f8f34dd">DeviceType::DEVICE_CPU</a>)</td></tr>
+<tr class="memdesc:a855432f1d2927b23d449a7238c93860f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an empty network; add layers via <a class="el" href="#aaf55133efb673e06f500b581cfe4f909" title="Adds a convolutional layer. Pass outChannels=0 to mark a terminal layer (no outgoing prediction).">AddLayer()</a>, then <a class="el" href="#a95506ba6450152075862e5bb76df883c" title="Sums every layer&#39;s required float count into a single contiguous arena and binds each layer into it....">Compile()</a> before use.  <br /></td></tr>
 <tr class="memitem:a8473a0415d06c743d77a0eb79417cecf" id="r_a8473a0415d06c743d77a0eb79417cecf"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a8473a0415d06c743d77a0eb79417cecf">~ConvPCNetwork</a> ()=default</td></tr>
 <tr class="memitem:adc5f4792666bdacfabea87325afb0f9d" id="r_adc5f4792666bdacfabea87325afb0f9d"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#adc5f4792666bdacfabea87325afb0f9d">ConvPCNetwork</a> (const ConvPCNetwork &amp;)=delete</td></tr>
-<tr class="memitem:a622e6a7baea151de32b1b507a16372b1" id="r_a622e6a7baea151de32b1b507a16372b1"><td class="memItemLeft"><a class="el" href="#a2e14956710e6d942ba241e1bf2b3df68">ConvPCNetwork</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a622e6a7baea151de32b1b507a16372b1">operator=</a> (const <a class="el" href="#a2e14956710e6d942ba241e1bf2b3df68">ConvPCNetwork</a> &amp;)=delete</td></tr>
+<tr class="memitem:a622e6a7baea151de32b1b507a16372b1" id="r_a622e6a7baea151de32b1b507a16372b1"><td class="memItemLeft"><a class="el" href="#a855432f1d2927b23d449a7238c93860f">ConvPCNetwork</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a622e6a7baea151de32b1b507a16372b1">operator=</a> (const <a class="el" href="#a855432f1d2927b23d449a7238c93860f">ConvPCNetwork</a> &amp;)=delete</td></tr>
 <tr class="memitem:aaf55133efb673e06f500b581cfe4f909" id="r_aaf55133efb673e06f500b581cfe4f909"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aaf55133efb673e06f500b581cfe4f909">AddLayer</a> (int inChannels, int outChannels, int inHeight, int inWidth, int kernelH, int kernelW, int strideH=1, int strideW=1, int padH=0, int padW=0, float lr=1e-6f, float ir=0.1f, float pr=0.01f, float lmbda=1e-2f, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> aType=<a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ad346bb4679d29be241279f15d7795c1c">ActivationType::RELU</a>, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> dType=<a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ae3d97c20b976be09990b745185b14d75">ActivationType::dRELU</a>)</td></tr>
 <tr class="memdesc:aaf55133efb673e06f500b581cfe4f909"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a convolutional layer. Pass outChannels=0 to mark a terminal layer (no outgoing prediction).  <br /></td></tr>
 <tr class="memitem:a8cdce9a22cade5f37c8afb8377fb4e3c" id="r_a8cdce9a22cade5f37c8afb8377fb4e3c"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a8cdce9a22cade5f37c8afb8377fb4e3c">SetOptimizer</a> (<a class="el" href="namespaceDeep.html#a76c7b5d078cce2bed29f6f592560bf02">OptimizerType</a> opt) noexcept</td></tr>
@@ -155,8 +155,8 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Convolutional Predictive Coding Network built from <a class="el" href="classDeep_1_1ConvPCLayer.html" title="Convolutional Predictive Coding layer (im2col-based), precision-weighted, routed through IComputeBack...">ConvPCLayer</a>, precision-weighted, device-aware. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a2e14956710e6d942ba241e1bf2b3df68" name="a2e14956710e6d942ba241e1bf2b3df68"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2e14956710e6d942ba241e1bf2b3df68">&#9670;&#160;</a></span>ConvPCNetwork() <span class="overload">[1/2]</span></h2>
+<a id="a855432f1d2927b23d449a7238c93860f" name="a855432f1d2927b23d449a7238c93860f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a855432f1d2927b23d449a7238c93860f">&#9670;&#160;</a></span>ConvPCNetwork() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -177,7 +177,7 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel explicit">explicit</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -507,9 +507,9 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a2e14956710e6d942ba241e1bf2b3df68">ConvPCNetwork</a> &amp; Deep::ConvPCNetwork::operator= </td>
+          <td class="memname"><a class="el" href="#a855432f1d2927b23d449a7238c93860f">ConvPCNetwork</a> &amp; Deep::ConvPCNetwork::operator= </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="#a2e14956710e6d942ba241e1bf2b3df68">ConvPCNetwork</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="#a855432f1d2927b23d449a7238c93860f">ConvPCNetwork</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>

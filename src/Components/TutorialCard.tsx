@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import { ArrowRight } from "./ArrowIcons.tsx";
 
 type TutorialCardProps = {
   title: string;
@@ -27,8 +28,9 @@ export default function TutorialCard({
           <span className="Michroma text-[11px] uppercase tracking-wider text-[#a99bff]">
             {subtitle}
           </span>
-          <span className="Michroma text-xs text-white/60 transition-all group-hover:translate-x-0.5 group-hover:text-[#a99bff]">
-            Read →
+          <span className="Michroma inline-flex items-center gap-1.5 text-xs text-white/60 transition-all group-hover:text-[#a99bff]">
+            Read
+            <ArrowRight className="transition-transform group-hover:translate-x-0.5" />
           </span>
         </div>
 

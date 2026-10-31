@@ -110,13 +110,13 @@ $(function(){initNavTree('classDeep_1_1DirectKPPCNetwork.html','','classDeep_1_1
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a296d53339c2a559b1225337f337ba69e" id="r_a296d53339c2a559b1225337f337ba69e"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a296d53339c2a559b1225337f337ba69e">DirectKPPCNetwork</a> (int batchSize, <a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a> device=<a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3a2b51e711df2cded71f92128f2f8f34dd">DeviceType::DEVICE_CPU</a>) noexcept</td></tr>
-<tr class="memdesc:a296d53339c2a559b1225337f337ba69e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an empty network with a predetermined batch size.  <br /></td></tr>
+<tr class="memitem:a9337146265d99009bde7a551d9812536" id="r_a9337146265d99009bde7a551d9812536"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a9337146265d99009bde7a551d9812536">DirectKPPCNetwork</a> (int batchSize, <a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a> device=<a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3a2b51e711df2cded71f92128f2f8f34dd">DeviceType::DEVICE_CPU</a>)</td></tr>
+<tr class="memdesc:a9337146265d99009bde7a551d9812536"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an empty network with a predetermined batch size.  <br /></td></tr>
 <tr class="memitem:acbb2c14b0f7242a610cbfb509b80b722" id="r_acbb2c14b0f7242a610cbfb509b80b722"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#acbb2c14b0f7242a610cbfb509b80b722">~DirectKPPCNetwork</a> ()=default</td></tr>
 <tr class="memdesc:acbb2c14b0f7242a610cbfb509b80b722"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default destructor.  <br /></td></tr>
 <tr class="memitem:aec5a1fdf891b7b40c9a2ce941eb8c6fd" id="r_aec5a1fdf891b7b40c9a2ce941eb8c6fd"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aec5a1fdf891b7b40c9a2ce941eb8c6fd">DirectKPPCNetwork</a> (const DirectKPPCNetwork &amp;)=delete</td></tr>
 <tr class="memdesc:aec5a1fdf891b7b40c9a2ce941eb8c6fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy construction is disabled; a network owns its layers' memory arena and is not meant to be duplicated.  <br /></td></tr>
-<tr class="memitem:ac1591ee0f39f3dae4e2f36421d5d97d2" id="r_ac1591ee0f39f3dae4e2f36421d5d97d2"><td class="memItemLeft"><a class="el" href="#a296d53339c2a559b1225337f337ba69e">DirectKPPCNetwork</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ac1591ee0f39f3dae4e2f36421d5d97d2">operator=</a> (const <a class="el" href="#a296d53339c2a559b1225337f337ba69e">DirectKPPCNetwork</a> &amp;)=delete</td></tr>
+<tr class="memitem:ac1591ee0f39f3dae4e2f36421d5d97d2" id="r_ac1591ee0f39f3dae4e2f36421d5d97d2"><td class="memItemLeft"><a class="el" href="#a9337146265d99009bde7a551d9812536">DirectKPPCNetwork</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ac1591ee0f39f3dae4e2f36421d5d97d2">operator=</a> (const <a class="el" href="#a9337146265d99009bde7a551d9812536">DirectKPPCNetwork</a> &amp;)=delete</td></tr>
 <tr class="memdesc:ac1591ee0f39f3dae4e2f36421d5d97d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy assignment is disabled; see the copy constructor.  <br /></td></tr>
 <tr class="memitem:a99b32dcda2d2def5577cde00b992fef0" id="r_a99b32dcda2d2def5577cde00b992fef0"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a99b32dcda2d2def5577cde00b992fef0">AddLayer</a> (size_t size, size_t nextSize, size_t terminalSize, float lr, float ir, float fl, float lmbda, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> aType, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> dType)</td></tr>
 <tr class="memdesc:a99b32dcda2d2def5577cde00b992fef0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a layer to the network.  <br /></td></tr>
@@ -159,13 +159,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a93bd21e2ee2fed358957f5d0ea2f3a7c" id="r_a93bd21e2ee2fed358957f5d0ea2f3a7c"><td class="memItemLeft">std::vector&lt; float &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a93bd21e2ee2fed358957f5d0ea2f3a7c">Predict</a> (const std::vector&lt; float &gt; &amp;x, int inferenceSteps)</td></tr>
 <tr class="memdesc:a93bd21e2ee2fed358957f5d0ea2f3a7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forward prediction: clamp input, settle with no DFA perturbation and no target clamped, read the terminal's beliefs.  <br /></td></tr>
 <tr class="memitem:aff57aa43cc48c78f3753c945cfbacb3f" id="r_aff57aa43cc48c78f3753c945cfbacb3f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aff57aa43cc48c78f3753c945cfbacb3f">Compile</a> ()</td></tr>
-<tr class="memdesc:aff57aa43cc48c78f3753c945cfbacb3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads all layers into one contiguous block of memory (<a class="el" href="classDeep_1_1MemoryArena.html" title="A 64-byte-aligned bump-pointer allocator over a single contiguous block of host memory....">MemoryArena</a> for DEVICE_CPU, <a class="el" href="classDeep_1_1DeviceMemoryArena.html" title="A 64-byte-aligned bump-pointer allocator over a single contiguous block of device memory,...">DeviceMemoryArena</a> for DEVICE_GPU), and wires layerAbove/layerBelow/terminalLayer across every layer.  <br /></td></tr>
+<tr class="memdesc:aff57aa43cc48c78f3753c945cfbacb3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads all layers into one contiguous block of memory (<a class="el" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: MemoryArena is MemoryArenaT&lt;...">MemoryArena</a> for DEVICE_CPU, <a class="el" href="namespaceDeep.html#a1389c0520260789b0d62d62237a71d0c" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: DeviceMemoryArena is DeviceM...">DeviceMemoryArena</a> for DEVICE_GPU), and wires layerAbove/layerBelow/terminalLayer across every layer.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Predictive Coding network built from <a class="el" href="classDeep_1_1DirectKPPCLayer.html" title="Predictive Coding layer using Direct Kolen-Pollack feedback alignment (DFA): a per-layer feedback mat...">DirectKPPCLayer</a>, using Direct Kolen-Pollack feedback alignment (DFA) instead of symmetric weight transport. See the file-level warning above on its current verification status. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a296d53339c2a559b1225337f337ba69e" name="a296d53339c2a559b1225337f337ba69e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a296d53339c2a559b1225337f337ba69e">&#9670;&#160;</a></span>DirectKPPCNetwork() <span class="overload">[1/2]</span></h2>
+<a id="a9337146265d99009bde7a551d9812536" name="a9337146265d99009bde7a551d9812536"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9337146265d99009bde7a551d9812536">&#9670;&#160;</a></span>DirectKPPCNetwork() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -186,7 +186,7 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel explicit">explicit</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -397,7 +397,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Loads all layers into one contiguous block of memory (<a class="el" href="classDeep_1_1MemoryArena.html" title="A 64-byte-aligned bump-pointer allocator over a single contiguous block of host memory....">MemoryArena</a> for DEVICE_CPU, <a class="el" href="classDeep_1_1DeviceMemoryArena.html" title="A 64-byte-aligned bump-pointer allocator over a single contiguous block of device memory,...">DeviceMemoryArena</a> for DEVICE_GPU), and wires layerAbove/layerBelow/terminalLayer across every layer. </p>
+<p>Loads all layers into one contiguous block of memory (<a class="el" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: MemoryArena is MemoryArenaT&lt;...">MemoryArena</a> for DEVICE_CPU, <a class="el" href="namespaceDeep.html#a1389c0520260789b0d62d62237a71d0c" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: DeviceMemoryArena is DeviceM...">DeviceMemoryArena</a> for DEVICE_GPU), and wires layerAbove/layerBelow/terminalLayer across every layer. </p>
 
 </div>
 </div>
@@ -573,9 +573,9 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a296d53339c2a559b1225337f337ba69e">DirectKPPCNetwork</a> &amp; Deep::DirectKPPCNetwork::operator= </td>
+          <td class="memname"><a class="el" href="#a9337146265d99009bde7a551d9812536">DirectKPPCNetwork</a> &amp; Deep::DirectKPPCNetwork::operator= </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="#a296d53339c2a559b1225337f337ba69e">DirectKPPCNetwork</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="#a9337146265d99009bde7a551d9812536">DirectKPPCNetwork</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>

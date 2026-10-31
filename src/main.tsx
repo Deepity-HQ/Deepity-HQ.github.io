@@ -13,6 +13,10 @@ const About = lazy(() => import('./pages/About.tsx'))
 const TutorialLanding = lazy(() => import('./pages/TutorialLanding.tsx'))
 const TutorialIntro = lazy(() => import('./pages/TutorialIntro.tsx'))
 const TutorialBeginning = lazy(() => import('./pages/TutorialBeginning.tsx'))
+const TutorialTrainingXOR = lazy(() => import('./pages/TutorialTrainingXOR.tsx'))
+const TutorialTweakedXOR = lazy(() => import('./pages/TutorialTweakedXOR.tsx'))
+const TutorialCNN = lazy(() => import('./pages/TutorialCNN.tsx'))
+const TutorialDKPPCN = lazy(() => import('./pages/TutorialDKPPCN.tsx'))
 const Benchmarks = lazy(() => import('./pages/Benchmarks.tsx'))
 const Theory = lazy(() => import('./pages/Theory.tsx'))
 const Privacy = lazy(() => import('./pages/Privacy.tsx'))
@@ -30,6 +34,10 @@ createRoot(document.getElementById('root')!).render(
           <Route path="/tutorial" element={<TutorialLanding />} />
           <Route path="/tutorial/0-introduction" element={<TutorialIntro />} />
           <Route path="/tutorial/1-beginning" element={<TutorialBeginning />} />
+          <Route path="/tutorial/2-xor" element={<TutorialTrainingXOR />} />
+          <Route path="/tutorial/3-tweaked-xor" element={<TutorialTweakedXOR />} />
+          <Route path="/tutorial/4-cnn" element={<TutorialCNN />} />
+          <Route path="/tutorial/5-dkppcn" element={<TutorialDKPPCN />} />
           <Route path="/benchmarks" element={<Benchmarks />} />
           <Route path="/theory" element={<Theory />} />
           <Route path="/privacy" element={<Privacy />} />

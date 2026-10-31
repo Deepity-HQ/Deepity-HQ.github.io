@@ -110,11 +110,11 @@ $(function(){initNavTree('classDeep_1_1Tensor.html','','classDeep_1_1Tensor-memb
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:adcb7499419bbe1dad768c9a326009510" id="r_adcb7499419bbe1dad768c9a326009510"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#adcb7499419bbe1dad768c9a326009510">Tensor</a> (<a class="el" href="classDeep_1_1IComputeBackend.html">IComputeBackend</a> *backend, <a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a> device, size_t numFloats)</td></tr>
+<tr class="memitem:adcb7499419bbe1dad768c9a326009510" id="r_adcb7499419bbe1dad768c9a326009510"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#adcb7499419bbe1dad768c9a326009510">Tensor</a> (<a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a> *backend, <a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a> device, size_t numFloats)</td></tr>
 <tr class="memdesc:adcb7499419bbe1dad768c9a326009510"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates numFloats on the given backend/device, zero-initialized.  <br /></td></tr>
-<tr class="memitem:a6d17f30e7f16406769ed4ae92d02ca24" id="r_a6d17f30e7f16406769ed4ae92d02ca24"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a6d17f30e7f16406769ed4ae92d02ca24">Tensor</a> (<a class="el" href="classDeep_1_1IComputeBackend.html">IComputeBackend</a> *backend, <a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a> device, const float *hostData, size_t numFloats)</td></tr>
+<tr class="memitem:a6d17f30e7f16406769ed4ae92d02ca24" id="r_a6d17f30e7f16406769ed4ae92d02ca24"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a6d17f30e7f16406769ed4ae92d02ca24">Tensor</a> (<a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a> *backend, <a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a> device, const float *hostData, size_t numFloats)</td></tr>
 <tr class="memdesc:a6d17f30e7f16406769ed4ae92d02ca24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates numFloats on the given backend/device, then copies hostData in via backend-&gt;CopyFromHost(). This is the "load weights saved on CPU, run on GPU" pattern, works identically for device=DEVICE_CPU too, where CopyFromHost() is just a memcpy.  <br /></td></tr>
-<tr class="memitem:a6e9b23dd15201ba7de968e81ad03930b" id="r_a6e9b23dd15201ba7de968e81ad03930b"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a6e9b23dd15201ba7de968e81ad03930b">Tensor</a> (<a class="el" href="classDeep_1_1IComputeBackend.html">IComputeBackend</a> *backend, <a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a> device, const std::vector&lt; float &gt; &amp;hostData)</td></tr>
+<tr class="memitem:a6e9b23dd15201ba7de968e81ad03930b" id="r_a6e9b23dd15201ba7de968e81ad03930b"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a6e9b23dd15201ba7de968e81ad03930b">Tensor</a> (<a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a> *backend, <a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a> device, const std::vector&lt; float &gt; &amp;hostData)</td></tr>
 <tr class="memdesc:a6e9b23dd15201ba7de968e81ad03930b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as above, taking a std::vector directly, the expected common case (read a saved model's weights into a std::vector, then hand it straight to this constructor).  <br /></td></tr>
 <tr class="memitem:a3c4624c2ea76d88572577cb556deb776" id="r_a3c4624c2ea76d88572577cb556deb776"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a3c4624c2ea76d88572577cb556deb776">~Tensor</a> ()</td></tr>
 <tr class="memdesc:a3c4624c2ea76d88572577cb556deb776"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the underlying device allocation, if any (not called on a moved-from <a class="el" href="classDeep_1_1Tensor.html" title="A device-aware, RAII-managed, move-only buffer, see the file-level note above for the full ownership/...">Tensor</a>, see the move constructor).  <br /></td></tr>
@@ -132,7 +132,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a081cc875e7f2585886115e619977e6a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of floats this <a class="el" href="classDeep_1_1Tensor.html" title="A device-aware, RAII-managed, move-only buffer, see the file-level note above for the full ownership/...">Tensor</a> holds.  <br /></td></tr>
 <tr class="memitem:ad03195d571117b11ad6900a89a094c5f" id="r_ad03195d571117b11ad6900a89a094c5f"><td class="memItemLeft"><a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a>&#160;</td><td class="memItemRight"><a class="el" href="#ad03195d571117b11ad6900a89a094c5f">Device</a> () const noexcept</td></tr>
 <tr class="memdesc:ad03195d571117b11ad6900a89a094c5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Which device this <a class="el" href="classDeep_1_1Tensor.html" title="A device-aware, RAII-managed, move-only buffer, see the file-level note above for the full ownership/...">Tensor</a> lives on.  <br /></td></tr>
-<tr class="memitem:a8f770a15a929c2d8e66fc31e43ce608e" id="r_a8f770a15a929c2d8e66fc31e43ce608e"><td class="memItemLeft"><a class="el" href="classDeep_1_1IComputeBackend.html">IComputeBackend</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a8f770a15a929c2d8e66fc31e43ce608e">Backend</a> () const noexcept</td></tr>
+<tr class="memitem:a8f770a15a929c2d8e66fc31e43ce608e" id="r_a8f770a15a929c2d8e66fc31e43ce608e"><td class="memItemLeft"><a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a8f770a15a929c2d8e66fc31e43ce608e">Backend</a> () const noexcept</td></tr>
 <tr class="memdesc:a8f770a15a929c2d8e66fc31e43ce608e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The backend this <a class="el" href="classDeep_1_1Tensor.html" title="A device-aware, RAII-managed, move-only buffer, see the file-level note above for the full ownership/...">Tensor</a> was allocated through.  <br /></td></tr>
 <tr class="memitem:a490634e488a2df1ea7259b696a2bc345" id="r_a490634e488a2df1ea7259b696a2bc345"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a490634e488a2df1ea7259b696a2bc345">CopyToHost</a> (float *hostDst) const noexcept</td></tr>
 <tr class="memdesc:a490634e488a2df1ea7259b696a2bc345"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies this <a class="el" href="classDeep_1_1Tensor.html" title="A device-aware, RAII-managed, move-only buffer, see the file-level note above for the full ownership/...">Tensor</a>'s data out to a host buffer, e.g. for Save()/inspection. A no-op memcpy if this <a class="el" href="classDeep_1_1Tensor.html" title="A device-aware, RAII-managed, move-only buffer, see the file-level note above for the full ownership/...">Tensor</a> is already DEVICE_CPU.  <br /></td></tr>
@@ -154,7 +154,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">Deep::Tensor::Tensor </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classDeep_1_1IComputeBackend.html">IComputeBackend</a> *</td>          <td class="paramname"><span class="paramname"><em>backend</em></span>, </td>
+          <td class="paramtype"><a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a> *</td>          <td class="paramname"><span class="paramname"><em>backend</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -198,7 +198,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">Deep::Tensor::Tensor </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classDeep_1_1IComputeBackend.html">IComputeBackend</a> *</td>          <td class="paramname"><span class="paramname"><em>backend</em></span>, </td>
+          <td class="paramtype"><a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a> *</td>          <td class="paramname"><span class="paramname"><em>backend</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -239,7 +239,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">Deep::Tensor::Tensor </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classDeep_1_1IComputeBackend.html">IComputeBackend</a> *</td>          <td class="paramname"><span class="paramname"><em>backend</em></span>, </td>
+          <td class="paramtype"><a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a> *</td>          <td class="paramname"><span class="paramname"><em>backend</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -353,7 +353,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classDeep_1_1IComputeBackend.html">IComputeBackend</a> * Deep::Tensor::Backend </td>
+          <td class="memname"><a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a> * Deep::Tensor::Backend </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>

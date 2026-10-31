@@ -110,13 +110,13 @@ $(function(){initNavTree('classDeep_1_1GaussSeidelPCNetwork.html','','classDeep_
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac1afb11f89f0bd85e7b7450fb6aabbf0" id="r_ac1afb11f89f0bd85e7b7450fb6aabbf0"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ac1afb11f89f0bd85e7b7450fb6aabbf0">GaussSeidelPCNetwork</a> (int batchSize, <a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a> device=<a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3a2b51e711df2cded71f92128f2f8f34dd">DeviceType::DEVICE_CPU</a>) noexcept</td></tr>
-<tr class="memdesc:ac1afb11f89f0bd85e7b7450fb6aabbf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an empty network with a predetermined batch size.  <br /></td></tr>
+<tr class="memitem:a3d3d025fe7ee8468df7574c4433304fe" id="r_a3d3d025fe7ee8468df7574c4433304fe"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a3d3d025fe7ee8468df7574c4433304fe">GaussSeidelPCNetwork</a> (int batchSize, <a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a> device=<a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3a2b51e711df2cded71f92128f2f8f34dd">DeviceType::DEVICE_CPU</a>)</td></tr>
+<tr class="memdesc:a3d3d025fe7ee8468df7574c4433304fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an empty network with a predetermined batch size.  <br /></td></tr>
 <tr class="memitem:a84bc5c512c6b7fa4452b872c5f501edc" id="r_a84bc5c512c6b7fa4452b872c5f501edc"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a84bc5c512c6b7fa4452b872c5f501edc">~GaussSeidelPCNetwork</a> ()=default</td></tr>
 <tr class="memdesc:a84bc5c512c6b7fa4452b872c5f501edc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default destructor.  <br /></td></tr>
 <tr class="memitem:ad6d06431e8d5d7322692591ce312eb0b" id="r_ad6d06431e8d5d7322692591ce312eb0b"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ad6d06431e8d5d7322692591ce312eb0b">GaussSeidelPCNetwork</a> (const GaussSeidelPCNetwork &amp;)=delete</td></tr>
 <tr class="memdesc:ad6d06431e8d5d7322692591ce312eb0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy construction is disabled; a network owns its layers' memory arena and is not meant to be duplicated.  <br /></td></tr>
-<tr class="memitem:aba28860eab6b2339e7e31aaef5e8a718" id="r_aba28860eab6b2339e7e31aaef5e8a718"><td class="memItemLeft"><a class="el" href="#ac1afb11f89f0bd85e7b7450fb6aabbf0">GaussSeidelPCNetwork</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#aba28860eab6b2339e7e31aaef5e8a718">operator=</a> (const <a class="el" href="#ac1afb11f89f0bd85e7b7450fb6aabbf0">GaussSeidelPCNetwork</a> &amp;)=delete</td></tr>
+<tr class="memitem:aba28860eab6b2339e7e31aaef5e8a718" id="r_aba28860eab6b2339e7e31aaef5e8a718"><td class="memItemLeft"><a class="el" href="#a3d3d025fe7ee8468df7574c4433304fe">GaussSeidelPCNetwork</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#aba28860eab6b2339e7e31aaef5e8a718">operator=</a> (const <a class="el" href="#a3d3d025fe7ee8468df7574c4433304fe">GaussSeidelPCNetwork</a> &amp;)=delete</td></tr>
 <tr class="memdesc:aba28860eab6b2339e7e31aaef5e8a718"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy assignment is disabled; see the copy constructor.  <br /></td></tr>
 <tr class="memitem:a299dc1cc90255743c74cf9b0f2ad5085" id="r_a299dc1cc90255743c74cf9b0f2ad5085"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a299dc1cc90255743c74cf9b0f2ad5085">AddLayer</a> (int size, int nextSize, float lr, float ir, float lmbda, void(*act)(float *, size_t), void(*dAct)(float *, size_t, bool))</td></tr>
 <tr class="memdesc:a299dc1cc90255743c74cf9b0f2ad5085"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a layer to the network, using raw activation function pointers, converted to their equivalent <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61" title="Identifies an activation function or its derivative, for dispatch tables and layer/backend APIs that ...">ActivationType</a> via <a class="el" href="namespaceDeep.html#a1440f62878b8f9304329ac8d86ce17cc" title="Reverse lookup of To_Fn(): maps a function pointer back to its ActivationType, by identity comparison...">To_AType()</a> and forwarded to the <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61" title="Identifies an activation function or its derivative, for dispatch tables and layer/backend APIs that ...">ActivationType</a> overload below (<a class="el" href="classDeep_1_1GaussSeidelPCLayer.html" title="PC layer with Gauss-Seidel (sequential-sweep) settling dynamics, in place of the usual simultaneous u...">GaussSeidelPCLayer</a> itself only accepts <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61" title="Identifies an activation function or its derivative, for dispatch tables and layer/backend APIs that ...">ActivationType</a>).  <br /></td></tr>
@@ -158,8 +158,8 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Predictive Coding network built from <a class="el" href="classDeep_1_1GaussSeidelPCLayer.html" title="PC layer with Gauss-Seidel (sequential-sweep) settling dynamics, in place of the usual simultaneous u...">GaussSeidelPCLayer</a>, sweeping layers sequentially rather than updating them simultaneously, now device-aware. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ac1afb11f89f0bd85e7b7450fb6aabbf0" name="ac1afb11f89f0bd85e7b7450fb6aabbf0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac1afb11f89f0bd85e7b7450fb6aabbf0">&#9670;&#160;</a></span>GaussSeidelPCNetwork() <span class="overload">[1/2]</span></h2>
+<a id="a3d3d025fe7ee8468df7574c4433304fe" name="a3d3d025fe7ee8468df7574c4433304fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d3d025fe7ee8468df7574c4433304fe">&#9670;&#160;</a></span>GaussSeidelPCNetwork() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -180,7 +180,7 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel explicit">explicit</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -537,9 +537,9 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#ac1afb11f89f0bd85e7b7450fb6aabbf0">GaussSeidelPCNetwork</a> &amp; Deep::GaussSeidelPCNetwork::operator= </td>
+          <td class="memname"><a class="el" href="#a3d3d025fe7ee8468df7574c4433304fe">GaussSeidelPCNetwork</a> &amp; Deep::GaussSeidelPCNetwork::operator= </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="#ac1afb11f89f0bd85e7b7450fb6aabbf0">GaussSeidelPCNetwork</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="#a3d3d025fe7ee8468df7574c4433304fe">GaussSeidelPCNetwork</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>

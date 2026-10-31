@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['numbatchesperepoch_0',['NumBatchesPerEpoch',['../classDeep_1_1StreamAlignedBatcher.html#aa14e92ec71dec9635bbdbef9faebb06b',1,'Deep::StreamAlignedBatcher']]]
+  ['name_0',['Name',['../structDeep_1_1DTypeTag_3_01float_01_4.html#ac7be3071e85ad36cf011a02bb7b468c0',1,'Deep::DTypeTag&lt; float &gt;::Name()'],['../structDeep_1_1DTypeTag_3_01double_01_4.html#a75a697dc95206b7dc5d47fcb0be48511',1,'Deep::DTypeTag&lt; double &gt;::Name()'],['../structDeep_1_1DTypeTag_3_01Fp4E2M1Value_01_4.html#a15e52de9595f3e297ddda9a4ddb3d425',1,'Deep::DTypeTag&lt; Fp4E2M1Value &gt;::Name()'],['../structDeep_1_1DTypeTag_3_01hwy_1_1float16__t_01_4.html#ab1fe775853e507bd229c8fec27d5bb88',1,'Deep::DTypeTag&lt; hwy::float16_t &gt;::Name()'],['../structDeep_1_1DTypeTag_3_01Posit4__0Value_01_4.html#a1ef6e33622a85c8fe03978dc21fd0939',1,'Deep::DTypeTag&lt; Posit4_0Value &gt;::Name()'],['../structDeep_1_1DTypeTag_3_01Posit4__1Value_01_4.html#af59ef3beb3c782714d0e59598a5d3331',1,'Deep::DTypeTag&lt; Posit4_1Value &gt;::Name()'],['../structDeep_1_1DTypeTag_3_01Posit4__2Value_01_4.html#aeb6fd002c4e8aabdd2d0fb90619689a7',1,'Deep::DTypeTag&lt; Posit4_2Value &gt;::Name()']]],
+  ['numbatchesperepoch_1',['NumBatchesPerEpoch',['../classDeep_1_1StreamAlignedBatcher.html#aa14e92ec71dec9635bbdbef9faebb06b',1,'Deep::StreamAlignedBatcher']]]
 ];

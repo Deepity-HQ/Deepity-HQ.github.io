@@ -3,6 +3,7 @@ import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import python from "react-syntax-highlighter/dist/esm/languages/prism/python";
 import cpp from "react-syntax-highlighter/dist/esm/languages/prism/cpp";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import CopyButton from "./CopyButton.tsx";
 
 SyntaxHighlighter.registerLanguage("python", python);
 SyntaxHighlighter.registerLanguage("cpp", cpp);
@@ -15,33 +16,6 @@ export type CodeFile = {
 
 const MONO =
   '"JetBrains Mono Variable", "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
-
-function CopyButton({ code, label }: { code: string; label: string }) {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(code);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
-    } catch {
-      /* clipboard unavailable; ignore */
-    }
-  };
-
-  return (
-    <button
-      type="button"
-      onClick={handleCopy}
-      aria-label={`Copy ${label} code`}
-      className={`Michroma cursor-pointer border-0 bg-transparent px-1 text-xs uppercase tracking-[0.05em] transition-colors ${
-        copied ? "text-fuchsia-400" : "text-white/70 hover:text-white"
-      }`}
-    >
-      {copied ? "Copied" : "Copy"}
-    </button>
-  );
-}
 
 export default function CodeTabs({ files }: { files: CodeFile[] }) {
   const [active, setActive] = useState(0);

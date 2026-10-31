@@ -2,7 +2,7 @@ import useInView from "./useInView.ts";
 
 const runs = [
   { name: "Deepity", time: 487.5, ours: true },
-  { name: "jpc", time: 545.3, ours: false },
+  { name: "jpc", time: 531.4, ours: false },
   { name: "ngc-learn", time: 1707.7, ours: false },
   { name: "PyTorch", time: 627.8, ours: false },
 ];

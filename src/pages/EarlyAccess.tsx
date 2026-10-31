@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import PageHeader from "../Components/PageHeader.tsx";
 import Reveal from "../Components/Reveal.tsx";
 import { CONTACT_EMAIL, EARLY_ACCESS_ENDPOINT } from "../config.ts";
+import { ArrowRight } from "../Components/ArrowIcons.tsx";
 
 const USE_CASES = [
   "High-performance computing",
@@ -72,7 +73,6 @@ export default function EarlyAccess() {
     <div>
       <PageHeader
         title="Request early access"
-        eyebrow="Developer Preview"
         width={768}
       >
         Tell us what you are building with Deepity and we will get in touch.
@@ -214,8 +214,9 @@ export default function EarlyAccess() {
                 <p className="Jura m-0 text-center text-xs text-white/70">
                   We only use this to reply about Deepity. No spam, ever.
                 </p>
-                <Link to="/privacy" className={`Jura text-xs ${linkClass}`}>
-                  Read our privacy policy →
+                <Link to="/privacy" className={`Jura inline-flex items-center gap-1 text-xs ${linkClass}`}>
+                  Read our privacy policy
+                  <ArrowRight />
                 </Link>
               </div>
             </form>

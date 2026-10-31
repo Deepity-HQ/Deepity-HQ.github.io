@@ -1,7 +1,9 @@
 var dir_39444c87a9dcf791620ce2558d399fc1 =
 [
     [ "Backend.h", "Backend_8h.html", "Backend_8h" ],
+    [ "BackendT.h", "BackendT_8h.html", "BackendT_8h" ],
     [ "CPUBackend.h", "CPUBackend_8h.html", "CPUBackend_8h" ],
+    [ "CPUBackendT.h", "CPUBackendT_8h.html", "CPUBackendT_8h" ],
     [ "CUDABackend.h", "CUDABackend_8h.html", "CUDABackend_8h" ],
     [ "DeviceType.h", "DeviceType_8h.html", "DeviceType_8h" ],
     [ "IComputeBackend.h", "IComputeBackend_8h.html", "IComputeBackend_8h" ],

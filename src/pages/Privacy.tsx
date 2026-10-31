@@ -1,7 +1,8 @@
 import type { ReactNode } from "react";
 import PageHeader from "../Components/PageHeader.tsx";
 import { CONTACT_EMAIL, GITHUB_URL } from "../config.ts";
-import { btnClass, glassClass, linkClass } from "../Components/ui.ts";
+import { btnClass, linkClass } from "../Components/ui.ts";
+import { ArrowUpRight } from "../Components/ArrowIcons.tsx";
 
 // Set to a Plausible domain if analytics are ever enabled
 const PLAUSIBLE_DOMAIN = "";
@@ -23,7 +24,7 @@ function Block({ title, eyebrow, children }: { title: string; eyebrow?: string; 
 export default function Privacy() {
   return (
     <div>
-      <PageHeader title="Privacy Policy" eyebrow="Data & Privacy">
+      <PageHeader title="Privacy Policy">
         What this website collects, in plain terms. Last updated {UPDATED}.
       </PageHeader>
 
@@ -77,8 +78,8 @@ export default function Privacy() {
           </span>
         </div>
 
-        <div className={`${glassClass} divide-y divide-white/10`}>
-          <Block title="What we collect" eyebrow="Information Submission">
+        <div className="divide-y divide-white/10 border-y border-white/10">
+          <Block title="What we collect">
             <p className="m-0">
               Only what you send us. If you use the early access form, we receive
               your email address and whatever else you type into it (name, what
@@ -87,7 +88,7 @@ export default function Privacy() {
             </p>
           </Block>
 
-          <Block title="Analytics and cookies" eyebrow="Usage & Storage">
+          <Block title="Analytics and cookies">
             {PLAUSIBLE_DOMAIN ? (
               <p className="m-0">
                 This site uses Plausible Analytics to count visits. It does not
@@ -102,7 +103,7 @@ export default function Privacy() {
             )}
           </Block>
 
-          <Block title="Third parties" eyebrow="Infrastructure">
+          <Block title="Third parties">
             <p className="m-0">
               The site is hosted on GitHub Pages, and GitHub may log visitors&apos;
               IP addresses as part of serving it. The early access form is
@@ -112,7 +113,7 @@ export default function Privacy() {
             </p>
           </Block>
 
-          <Block title="Your data rights" eyebrow="Access & Deletion">
+          <Block title="Your data rights">
             <p className="m-0">
               To ask what we hold about you, or to have it deleted immediately, email{" "}
               <a href={`mailto:${CONTACT_EMAIL}`} className={`${linkClass} font-medium`}>
@@ -122,7 +123,7 @@ export default function Privacy() {
             </p>
           </Block>
 
-          <Block title="Open source auditability" eyebrow="Transparency">
+          <Block title="Open source auditability">
             <p className="m-0">
               The source code of this site and of Deepity is public at{" "}
               <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className={`${linkClass} font-medium`}>
@@ -133,13 +134,14 @@ export default function Privacy() {
           </Block>
         </div>
 
-        <div className={`${glassClass} mt-8 flex flex-col items-center justify-between gap-4 p-6 text-center sm:flex-row sm:text-left md:p-8`}>
+        <div className={`mt-8 border-t border-white/10 flex flex-col items-center justify-between gap-4 p-6 text-center sm:flex-row sm:text-left md:p-8`}>
           <div>
             <div className="Michroma text-sm text-white">Questions about privacy?</div>
             <div className="Jura mt-1 text-sm text-white/70">Get in touch directly with the developer.</div>
           </div>
           <a href={`mailto:${CONTACT_EMAIL}`} className={`${btnClass} shrink-0`}>
-            Contact developer ↗
+            Contact developer
+            <ArrowUpRight />
           </a>
         </div>
       </div>

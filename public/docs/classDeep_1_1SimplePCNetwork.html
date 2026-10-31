@@ -110,10 +110,10 @@ $(function(){initNavTree('classDeep_1_1SimplePCNetwork.html','','classDeep_1_1Si
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab79cd87591059a022fdbce3f12f1bfc1" id="r_ab79cd87591059a022fdbce3f12f1bfc1"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ab79cd87591059a022fdbce3f12f1bfc1">SimplePCNetwork</a> (int batchSize, <a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a> device=<a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3a2b51e711df2cded71f92128f2f8f34dd">DeviceType::DEVICE_CPU</a>) noexcept</td></tr>
-<tr class="memdesc:ab79cd87591059a022fdbce3f12f1bfc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an empty network with a predetermined batch size.  <br /></td></tr>
+<tr class="memitem:a37bf02f73beb186ba0cdc5c94b09f453" id="r_a37bf02f73beb186ba0cdc5c94b09f453"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a37bf02f73beb186ba0cdc5c94b09f453">SimplePCNetwork</a> (int batchSize, <a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a> device=<a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3a2b51e711df2cded71f92128f2f8f34dd">DeviceType::DEVICE_CPU</a>)</td></tr>
+<tr class="memdesc:a37bf02f73beb186ba0cdc5c94b09f453"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an empty network with a predetermined batch size.  <br /></td></tr>
 <tr class="memitem:a8fd6812b4f86ad0727ed870a723b1d8d" id="r_a8fd6812b4f86ad0727ed870a723b1d8d"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a8fd6812b4f86ad0727ed870a723b1d8d">SimplePCNetwork</a> (const SimplePCNetwork &amp;)=delete</td></tr>
-<tr class="memitem:a045dbcb6ded7afa0bf3d54bb90851b2f" id="r_a045dbcb6ded7afa0bf3d54bb90851b2f"><td class="memItemLeft"><a class="el" href="#ab79cd87591059a022fdbce3f12f1bfc1">SimplePCNetwork</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a045dbcb6ded7afa0bf3d54bb90851b2f">operator=</a> (const <a class="el" href="#ab79cd87591059a022fdbce3f12f1bfc1">SimplePCNetwork</a> &amp;)=delete</td></tr>
+<tr class="memitem:a045dbcb6ded7afa0bf3d54bb90851b2f" id="r_a045dbcb6ded7afa0bf3d54bb90851b2f"><td class="memItemLeft"><a class="el" href="#a37bf02f73beb186ba0cdc5c94b09f453">SimplePCNetwork</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a045dbcb6ded7afa0bf3d54bb90851b2f">operator=</a> (const <a class="el" href="#a37bf02f73beb186ba0cdc5c94b09f453">SimplePCNetwork</a> &amp;)=delete</td></tr>
 <tr class="memitem:adf1a0c39d6f5306e4014340d6f87334f" id="r_adf1a0c39d6f5306e4014340d6f87334f"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#adf1a0c39d6f5306e4014340d6f87334f">~SimplePCNetwork</a> ()=default</td></tr>
 <tr class="memitem:aa384bc2e4c8680e546fa30fadbe26097" id="r_aa384bc2e4c8680e546fa30fadbe26097"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aa384bc2e4c8680e546fa30fadbe26097">AddLayer</a> (int size, int nextSize, float lr, float ir, float lmbda, void(*act)(float *, size_t), void(*dAct)(float *, size_t, bool))</td></tr>
 <tr class="memdesc:aa384bc2e4c8680e546fa30fadbe26097"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a layer to the network.  <br /></td></tr>
@@ -156,13 +156,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac44b3799242fc07fdb55a5b075cc0872" id="r_ac44b3799242fc07fdb55a5b075cc0872"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac44b3799242fc07fdb55a5b075cc0872">SetMuCacheThreshold</a> (float threshold) noexcept</td></tr>
 <tr class="memdesc:ac44b3799242fc07fdb55a5b075cc0872"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets mu-cache threshold on every layer, see <a class="el" href="classDeep_1_1SimplePCLayer.html#abcc9462a7aa38ec8cab0e6e707bb1176" title="Sets the mu-cache staleness threshold: mu is recomputed only when ||z - z_at_last_recompute|| / (||z_...">SimplePCLayer::SetMuCacheThreshold()</a> for semantics. Safe to call any time after <a class="el" href="#ab002be580e5752b5861d2dfa77072ede" title="Loads all layers into one contiguous block of memory (MemoryArena for DEVICE_CPU, DeviceMemoryArena f...">Compile()</a>.  <br /></td></tr>
 <tr class="memitem:ab002be580e5752b5861d2dfa77072ede" id="r_ab002be580e5752b5861d2dfa77072ede"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ab002be580e5752b5861d2dfa77072ede">Compile</a> ()</td></tr>
-<tr class="memdesc:ab002be580e5752b5861d2dfa77072ede"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads all layers into one contiguous block of memory (<a class="el" href="classDeep_1_1MemoryArena.html" title="A 64-byte-aligned bump-pointer allocator over a single contiguous block of host memory....">MemoryArena</a> for DEVICE_CPU, <a class="el" href="classDeep_1_1DeviceMemoryArena.html" title="A 64-byte-aligned bump-pointer allocator over a single contiguous block of device memory,...">DeviceMemoryArena</a> for DEVICE_GPU).  <br /></td></tr>
+<tr class="memdesc:ab002be580e5752b5861d2dfa77072ede"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads all layers into one contiguous block of memory (<a class="el" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: MemoryArena is MemoryArenaT&lt;...">MemoryArena</a> for DEVICE_CPU, <a class="el" href="namespaceDeep.html#a1389c0520260789b0d62d62237a71d0c" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: DeviceMemoryArena is DeviceM...">DeviceMemoryArena</a> for DEVICE_GPU).  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An abstracted class for an array of <span class="tt"><a class="el" href="classDeep_1_1SimplePCLayer.html" title="Predictive Coding layer without precision weighting: the simpler, unweighted-energy counterpart to Di...">SimplePCLayer</a></span>. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ab79cd87591059a022fdbce3f12f1bfc1" name="ab79cd87591059a022fdbce3f12f1bfc1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab79cd87591059a022fdbce3f12f1bfc1">&#9670;&#160;</a></span>SimplePCNetwork() <span class="overload">[1/2]</span></h2>
+<a id="a37bf02f73beb186ba0cdc5c94b09f453" name="a37bf02f73beb186ba0cdc5c94b09f453"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37bf02f73beb186ba0cdc5c94b09f453">&#9670;&#160;</a></span>SimplePCNetwork() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -183,7 +183,7 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel explicit">explicit</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -436,7 +436,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Loads all layers into one contiguous block of memory (<a class="el" href="classDeep_1_1MemoryArena.html" title="A 64-byte-aligned bump-pointer allocator over a single contiguous block of host memory....">MemoryArena</a> for DEVICE_CPU, <a class="el" href="classDeep_1_1DeviceMemoryArena.html" title="A 64-byte-aligned bump-pointer allocator over a single contiguous block of device memory,...">DeviceMemoryArena</a> for DEVICE_GPU). </p>
+<p>Loads all layers into one contiguous block of memory (<a class="el" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: MemoryArena is MemoryArenaT&lt;...">MemoryArena</a> for DEVICE_CPU, <a class="el" href="namespaceDeep.html#a1389c0520260789b0d62d62237a71d0c" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: DeviceMemoryArena is DeviceM...">DeviceMemoryArena</a> for DEVICE_GPU). </p>
 
 </div>
 </div>
@@ -589,9 +589,9 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#ab79cd87591059a022fdbce3f12f1bfc1">SimplePCNetwork</a> &amp; Deep::SimplePCNetwork::operator= </td>
+          <td class="memname"><a class="el" href="#a37bf02f73beb186ba0cdc5c94b09f453">SimplePCNetwork</a> &amp; Deep::SimplePCNetwork::operator= </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="#ab79cd87591059a022fdbce3f12f1bfc1">SimplePCNetwork</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="#a37bf02f73beb186ba0cdc5c94b09f453">SimplePCNetwork</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>

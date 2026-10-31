@@ -27,7 +27,7 @@ const tutorialsData = [
     description:
       "Get your first experience training the canonical PCN on a simple function.",
     img: "/tutorials/ripple.webp",
-    link: "/notfound",
+    link: "/tutorial/2-xor",
   },
   {
     title: "3. Adding Helpful Hyperparameters",
@@ -35,7 +35,7 @@ const tutorialsData = [
     description:
       "Now that you know how to use a SimplePCN, try converting to a SequentialPCN and tweaking parameters like precision and lambda.",
     img: "/tutorials/dartboard.webp",
-    link: "/notfound",
+    link: "/tutorial/3-tweaked-xor",
   },
   {
     title: "4. Running a Convolutional PCN",
@@ -43,7 +43,7 @@ const tutorialsData = [
     description:
       "Attempt to convolve the output over an image in 2D, capturing higher accuracy.",
     img: "/tutorials/dimension.webp",
-    link: "/notfound",
+    link: "/tutorial/4-cnn",
   },
   {
     title: "5. Direct Kolen-Pollack Networks on MNIST",
@@ -51,7 +51,7 @@ const tutorialsData = [
     description:
       "Research how propagating feedback can make convergence hyperfast.",
     img: "/tutorials/wired.webp",
-    link: "/notfound",
+    link: "/tutorial/5-dkppcn",
   },
 ];
 
@@ -73,7 +73,7 @@ export default function TutorialLanding() {
 
   return (
     <div className="min-h-screen">
-      <PageHeader title="Learn Deepity" eyebrow="Interactive Guides" width={1280}>
+      <PageHeader title="Learn Deepity" width={1280}>
         From first principles to practical networks: step-by-step guides for
         training predictive coding models in C++ and Python.
       </PageHeader>

@@ -113,6 +113,21 @@ Functions</h2></td></tr>
 <tr class="memdesc:a55740bbe02647542c1903efc83b81834"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to allocate <code class="param">size</code> bytes backed by huge pages. This is genuinely opt-in and best-effort: on Linux, requests Transparent Huge Pages via madvise(MADV_HUGEPAGE) on a normal anonymous mmap, this is a HINT to the kernel, not a guarantee, and requires zero system-level configuration (unlike explicit hugetlbfs, which needs pages pre-reserved via /proc/sys/vm/nr_hugepages). On Windows, requests MEM_LARGE_PAGES via VirtualAlloc, which requires the process to hold SeLockMemoryPrivilege, NOT granted by default, so this will typically fail unless explicitly configured by an administrator.  <br /></td></tr>
 <tr class="memitem:a5edbd615eb36b6ac5e0946d1b999d67d" id="r_a5edbd615eb36b6ac5e0946d1b999d67d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a5edbd615eb36b6ac5e0946d1b999d67d">HugePageFreePortable</a> (void *ptr, size_t size)</td></tr>
 <tr class="memdesc:a5edbd615eb36b6ac5e0946d1b999d67d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees a block previously returned by <a class="el" href="#a55740bbe02647542c1903efc83b81834" title="Attempts to allocate size bytes backed by huge pages. This is genuinely opt-in and best-effort: on Li...">HugePageAllocPortable()</a> with succeeded=true.  <br /></td></tr>
+<tr class="memitem:a933a3b5c4e292bd473c586aeddf9693a" id="r_a933a3b5c4e292bd473c586aeddf9693a"><td class="memTemplParams" colspan="2">template&lt;typename LayerPtr&gt; </td></tr>
+<tr class="memitem:a933a3b5c4e292bd473c586aeddf9693a template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a933a3b5c4e292bd473c586aeddf9693a">SyncFromDeviceIfSupported</a> (LayerPtr &amp;layerPtr)</td></tr>
+<tr class="memitem:a7c5cf6bc95c11f74b44ee386a7bfbd87" id="r_a7c5cf6bc95c11f74b44ee386a7bfbd87"><td class="memTemplParams" colspan="2">template&lt;typename LayerPtr&gt; </td></tr>
+<tr class="memitem:a7c5cf6bc95c11f74b44ee386a7bfbd87 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7c5cf6bc95c11f74b44ee386a7bfbd87">SyncToDeviceIfSupported</a> (LayerPtr &amp;layerPtr)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ab6ef939eea4af694745bb386471d3fde" id="r_ab6ef939eea4af694745bb386471d3fde"><td class="memItemLeft">constexpr float&#160;</td><td class="memItemRight"><a class="el" href="#ab6ef939eea4af694745bb386471d3fde">kFp4E2M1Magnitudes</a> [8] = {0.0f, 0.5f, 1.0f, 1.5f, 2.0f, 3.0f, 4.0f, 6.0f}</td></tr>
+<tr class="memdesc:ab6ef939eea4af694745bb386471d3fde"><td class="mdescLeft">&#160;</td><td class="mdescRight">FP4 E2M1's 8 non-negative magnitude levels (1 sign bit + 2 exponent bits + 1 mantissa bit, exponent bias 1): index 0 is the denormal/zero row (0, 0.5), indices 1-3 are exponent 01 (1, 1.5), indices 4-5 are exponent 10 (2, 3), indices 6-7 are exponent 11 (4, 6) &ndash; i.e. the magnitude bits read directly as a 0-7 table index.  <br /></td></tr>
+<tr class="memitem:ab6d1af6f7255523b553a92007712f983" id="r_ab6d1af6f7255523b553a92007712f983"><td class="memItemLeft">constexpr float&#160;</td><td class="memItemRight"><a class="el" href="#ab6d1af6f7255523b553a92007712f983">kPosit4_0Magnitudes</a> [8] = {0.0f, 0.25f, 0.5f, 0.75f, 1.0f, 1.5f, 2.0f, 4.0f}</td></tr>
+<tr class="memdesc:ab6d1af6f7255523b553a92007712f983"><td class="mdescLeft">&#160;</td><td class="mdescRight">Posit&lt;4,0&gt;'s 8 non-negative magnitude levels (es=0: no exponent bits, so all 3 remaining bits go to the mantissa &ndash; the most uniform spacing near 1.0 of the three posit variants, at the cost of the narrowest dynamic range).  <br /></td></tr>
+<tr class="memitem:a7aa49ef8a7370bd9228d74aeb4037fdc" id="r_a7aa49ef8a7370bd9228d74aeb4037fdc"><td class="memItemLeft">constexpr float&#160;</td><td class="memItemRight"><a class="el" href="#a7aa49ef8a7370bd9228d74aeb4037fdc">kPosit4_1Magnitudes</a> [8]</td></tr>
+<tr class="memdesc:a7aa49ef8a7370bd9228d74aeb4037fdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Posit&lt;4,1&gt;'s 8 non-negative magnitude levels (es=1: one exponent bit traded away from the mantissa for range &ndash; every level here is a power of two, unlike Posit4_0's).  <br /></td></tr>
+<tr class="memitem:a3fddbe2c1badb3473bc7f4c65eb8deb3" id="r_a3fddbe2c1badb3473bc7f4c65eb8deb3"><td class="memItemLeft">constexpr float&#160;</td><td class="memItemRight"><a class="el" href="#a3fddbe2c1badb3473bc7f4c65eb8deb3">kPosit4_2Magnitudes</a> [8]</td></tr>
+<tr class="memdesc:a3fddbe2c1badb3473bc7f4c65eb8deb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Posit&lt;4,2&gt;'s 8 non-negative magnitude levels (es=2: the widest dynamic range of the three, at the cost of almost no resolution near 1.0 &ndash; only {1, 2} fall between its two widest gaps).  <br /></td></tr>
 </table>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
 <a id="af3da503898a70b79185386c34fc3812c" name="af3da503898a70b79185386c34fc3812c"></a>
@@ -263,6 +278,145 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a933a3b5c4e292bd473c586aeddf9693a" name="a933a3b5c4e292bd473c586aeddf9693a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a933a3b5c4e292bd473c586aeddf9693a">&#9670;&#160;</a></span>SyncFromDeviceIfSupported()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename LayerPtr&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void Deep::detail::SyncFromDeviceIfSupported </td>
+          <td>(</td>
+          <td class="paramtype">LayerPtr &amp;</td>          <td class="paramname"><span class="paramname"><em>layerPtr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7c5cf6bc95c11f74b44ee386a7bfbd87" name="a7c5cf6bc95c11f74b44ee386a7bfbd87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c5cf6bc95c11f74b44ee386a7bfbd87">&#9670;&#160;</a></span>SyncToDeviceIfSupported()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename LayerPtr&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void Deep::detail::SyncToDeviceIfSupported </td>
+          <td>(</td>
+          <td class="paramtype">LayerPtr &amp;</td>          <td class="paramname"><span class="paramname"><em>layerPtr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Variable Documentation</h2>
+<a id="ab6ef939eea4af694745bb386471d3fde" name="ab6ef939eea4af694745bb386471d3fde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6ef939eea4af694745bb386471d3fde">&#9670;&#160;</a></span>kFp4E2M1Magnitudes</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Deep::detail::kFp4E2M1Magnitudes[8] = {0.0f, 0.5f, 1.0f, 1.5f, 2.0f, 3.0f, 4.0f, 6.0f}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>FP4 E2M1's 8 non-negative magnitude levels (1 sign bit + 2 exponent bits + 1 mantissa bit, exponent bias 1): index 0 is the denormal/zero row (0, 0.5), indices 1-3 are exponent 01 (1, 1.5), indices 4-5 are exponent 10 (2, 3), indices 6-7 are exponent 11 (4, 6) &ndash; i.e. the magnitude bits read directly as a 0-7 table index. </p>
+
+</div>
+</div>
+<a id="ab6d1af6f7255523b553a92007712f983" name="ab6d1af6f7255523b553a92007712f983"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6d1af6f7255523b553a92007712f983">&#9670;&#160;</a></span>kPosit4_0Magnitudes</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Deep::detail::kPosit4_0Magnitudes[8] = {0.0f, 0.25f, 0.5f, 0.75f, 1.0f, 1.5f, 2.0f, 4.0f}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Posit&lt;4,0&gt;'s 8 non-negative magnitude levels (es=0: no exponent bits, so all 3 remaining bits go to the mantissa &ndash; the most uniform spacing near 1.0 of the three posit variants, at the cost of the narrowest dynamic range). </p>
+
+</div>
+</div>
+<a id="a7aa49ef8a7370bd9228d74aeb4037fdc" name="a7aa49ef8a7370bd9228d74aeb4037fdc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7aa49ef8a7370bd9228d74aeb4037fdc">&#9670;&#160;</a></span>kPosit4_1Magnitudes</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Deep::detail::kPosit4_1Magnitudes[8]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {0.0f, 0.0625f, 0.25f, 0.5f, 1.0f, 2.0f, 4.0f,</div>
+<div class="line">      16.0f}</div>
+</div><!-- fragment -->
+<p>Posit&lt;4,1&gt;'s 8 non-negative magnitude levels (es=1: one exponent bit traded away from the mantissa for range &ndash; every level here is a power of two, unlike Posit4_0's). </p>
+
+</div>
+</div>
+<a id="a3fddbe2c1badb3473bc7f4c65eb8deb3" name="a3fddbe2c1badb3473bc7f4c65eb8deb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fddbe2c1badb3473bc7f4c65eb8deb3">&#9670;&#160;</a></span>kPosit4_2Magnitudes</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Deep::detail::kPosit4_2Magnitudes[8]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {0.0f, 1.0f / 256.0f, 0.0625f, 0.125f, 1.0f, 2.0f,</div>
+<div class="line">      16.0f, 256.0f}</div>
+</div><!-- fragment -->
+<p>Posit&lt;4,2&gt;'s 8 non-negative magnitude levels (es=2: the widest dynamic range of the three, at the cost of almost no resolution near 1.0 &ndash; only {1, 2} fall between its two widest gaps). </p>
 
 </div>
 </div>

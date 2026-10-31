@@ -80,16 +80,18 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "ActivationDispatch_8h.html",
-"classDeep_1_1CPUBackend.html#af5efa145a71c4426544e1e94cf8d3721",
-"classDeep_1_1ConvPCNetwork.html#a69c0f3cec4ecb379c3deb08fe22354e2",
-"classDeep_1_1DirectKPPCNetwork.html#a8880487d2e34f1dc02d60fb3e83a0af0",
-"classDeep_1_1FullConvPCLayer.html#a2dc00686df08d191b8d1ab229520e82a",
-"classDeep_1_1FullConvPCLayer.html#ae954335c942b3381f8a756d408f79978",
-"classDeep_1_1FullPCLayer.html#aa78dd19fc7d7cf3b6256c35c32a3d63d",
-"classDeep_1_1GaussSeidelPCNetwork.html#a3e1d586c4e563e3e7fb6259c2d7adc24",
-"classDeep_1_1SimpleConvPCLayer.html#a52fa72e28bccc8d5b985dec372c80a94",
-"classDeep_1_1SimplePCNetwork.html#ae3d61db38519b08544a5efa1fc9b4744",
-"namespaceDeep.html#ab5bfd8eb846e5e0f73fa2aac00e54dea"
+"classDeep_1_1CPUBackend.html#ab90ddf40b36884ec112f74a890bac958",
+"classDeep_1_1CUDABackend.html#a935e793471bee964d147d59639bd3df3",
+"classDeep_1_1DirectKPPCLayer.html#a195802202f4f828bdc9364df7783c300",
+"classDeep_1_1DiscriminativePCLayer.html#a5a3a3db06625ed80f52a8239d8779d09",
+"classDeep_1_1FullConvPCLayer.html#a5feffec5218d67d6e65382387b1d2e55",
+"classDeep_1_1FullConvPCNetwork.html#a72adcde0fef6d2171b8db739f69d7b6d",
+"classDeep_1_1FullPCLayer.html#ae68ac0381c77bc37af7c9e682bcc8aa3",
+"classDeep_1_1FullPCNetwork.html#a09657f89a295839c4a6e160d30104e08",
+"classDeep_1_1GaussSeidelPCNetwork.html#aba28860eab6b2339e7e31aaef5e8a718",
+"classDeep_1_1SimpleConvPCLayer.html#a760bbc0e738fb068d8f5f6238a839d13",
+"classDeep_1_1StreamAlignedBatcher.html#aa14e92ec71dec9635bbdbef9faebb06b",
+"namespaceDeep.html#aabc8c41cc216d6a993635ca02f61dde1"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

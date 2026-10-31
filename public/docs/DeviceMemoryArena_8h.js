@@ -1,4 +1,5 @@
 var DeviceMemoryArena_8h =
 [
-    [ "Deep::DeviceMemoryArena", "classDeep_1_1DeviceMemoryArena.html", "classDeep_1_1DeviceMemoryArena" ]
+    [ "Deep::DeviceMemoryArenaT&lt; T, AccumT &gt;", "classDeep_1_1DeviceMemoryArenaT.html", "classDeep_1_1DeviceMemoryArenaT" ],
+    [ "Deep::DeviceMemoryArena", "namespaceDeep.html#a1389c0520260789b0d62d62237a71d0c", null ]
 ];

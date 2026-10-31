@@ -110,11 +110,11 @@ $(function(){initNavTree('classDeep_1_1FullPCNetwork.html','','classDeep_1_1Full
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae5d83f92141537b1756468ec954bac59" id="r_ae5d83f92141537b1756468ec954bac59"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ae5d83f92141537b1756468ec954bac59">FullPCNetwork</a> (int batchSize, <a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a> device=<a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3a2b51e711df2cded71f92128f2f8f34dd">DeviceType::DEVICE_CPU</a>) noexcept</td></tr>
-<tr class="memdesc:ae5d83f92141537b1756468ec954bac59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an empty network; add layers via <a class="el" href="#a842f4fb89d294e1833e788e35694a37b" title="Adds a layer to the network.">AddLayer()</a>, then <a class="el" href="#a35697a64777588e996b46c0367d1f1fc" title="Loads all layers into one contiguous block of memory, wires layerAbove/layerBelow/terminalLayer acros...">Compile()</a> before use.  <br /></td></tr>
+<tr class="memitem:a4240531e15b15891d7d8f89d10ed5273" id="r_a4240531e15b15891d7d8f89d10ed5273"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a4240531e15b15891d7d8f89d10ed5273">FullPCNetwork</a> (int batchSize, <a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a> device=<a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3a2b51e711df2cded71f92128f2f8f34dd">DeviceType::DEVICE_CPU</a>)</td></tr>
+<tr class="memdesc:a4240531e15b15891d7d8f89d10ed5273"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an empty network; add layers via <a class="el" href="#a842f4fb89d294e1833e788e35694a37b" title="Adds a layer to the network.">AddLayer()</a>, then <a class="el" href="#a35697a64777588e996b46c0367d1f1fc" title="Loads all layers into one contiguous block of memory, wires layerAbove/layerBelow/terminalLayer acros...">Compile()</a> before use.  <br /></td></tr>
 <tr class="memitem:aa0456ecade550941727689e3fdd4c843" id="r_aa0456ecade550941727689e3fdd4c843"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aa0456ecade550941727689e3fdd4c843">~FullPCNetwork</a> ()=default</td></tr>
 <tr class="memitem:a09657f89a295839c4a6e160d30104e08" id="r_a09657f89a295839c4a6e160d30104e08"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a09657f89a295839c4a6e160d30104e08">FullPCNetwork</a> (const FullPCNetwork &amp;)=delete</td></tr>
-<tr class="memitem:afca8898bdf5e4236942848bdd8df3f29" id="r_afca8898bdf5e4236942848bdd8df3f29"><td class="memItemLeft"><a class="el" href="#ae5d83f92141537b1756468ec954bac59">FullPCNetwork</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#afca8898bdf5e4236942848bdd8df3f29">operator=</a> (const <a class="el" href="#ae5d83f92141537b1756468ec954bac59">FullPCNetwork</a> &amp;)=delete</td></tr>
+<tr class="memitem:afca8898bdf5e4236942848bdd8df3f29" id="r_afca8898bdf5e4236942848bdd8df3f29"><td class="memItemLeft"><a class="el" href="#a4240531e15b15891d7d8f89d10ed5273">FullPCNetwork</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#afca8898bdf5e4236942848bdd8df3f29">operator=</a> (const <a class="el" href="#a4240531e15b15891d7d8f89d10ed5273">FullPCNetwork</a> &amp;)=delete</td></tr>
 <tr class="memitem:a842f4fb89d294e1833e788e35694a37b" id="r_a842f4fb89d294e1833e788e35694a37b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a842f4fb89d294e1833e788e35694a37b">AddLayer</a> (size_t size, size_t nextSize, size_t terminalSize, float lr, float ir, float fl, float lmbda, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> aType, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> dType)</td></tr>
 <tr class="memdesc:a842f4fb89d294e1833e788e35694a37b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a layer to the network.  <br /></td></tr>
 <tr class="memitem:a8dfb214dba8e2de70d10124d21bfdf5c" id="r_a8dfb214dba8e2de70d10124d21bfdf5c"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a8dfb214dba8e2de70d10124d21bfdf5c">SetUseMuPCScaling</a> (bool enabled) noexcept</td></tr>
@@ -175,8 +175,8 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Predictive Coding network combining muPC scaling, optional residual connections, and DKP direct feedback. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ae5d83f92141537b1756468ec954bac59" name="ae5d83f92141537b1756468ec954bac59"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae5d83f92141537b1756468ec954bac59">&#9670;&#160;</a></span>FullPCNetwork() <span class="overload">[1/2]</span></h2>
+<a id="a4240531e15b15891d7d8f89d10ed5273" name="a4240531e15b15891d7d8f89d10ed5273"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4240531e15b15891d7d8f89d10ed5273">&#9670;&#160;</a></span>FullPCNetwork() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -197,7 +197,7 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel explicit">explicit</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -607,9 +607,9 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#ae5d83f92141537b1756468ec954bac59">FullPCNetwork</a> &amp; Deep::FullPCNetwork::operator= </td>
+          <td class="memname"><a class="el" href="#a4240531e15b15891d7d8f89d10ed5273">FullPCNetwork</a> &amp; Deep::FullPCNetwork::operator= </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="#ae5d83f92141537b1756468ec954bac59">FullPCNetwork</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="#a4240531e15b15891d7d8f89d10ed5273">FullPCNetwork</a> &amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>

@@ -119,7 +119,7 @@ Inheritance diagram for Deep::GaussSeidelPCLayer:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab86ac222dab63640877ea622ecb0dcb4" id="r_ab86ac222dab63640877ea622ecb0dcb4"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ab86ac222dab63640877ea622ecb0dcb4">GaussSeidelPCLayer</a> (int <a class="el" href="classDeep_1_1Layer.html#a7480249662a3bd8ad458dcdcde68a37d">size</a>, int <a class="el" href="classDeep_1_1Layer.html#a5a538a25f3064996bbe651e6d48918d0">nextSize</a>, int batchSize=1, float learningRate=1e-6f, float inferenceRate=0.1f, float lmbda=1e-2f, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> aType=<a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ad346bb4679d29be241279f15d7795c1c">ActivationType::RELU</a>, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> dType=<a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ae3d97c20b976be09990b745185b14d75">ActivationType::dRELU</a>, <a class="el" href="classDeep_1_1IComputeBackend.html">IComputeBackend</a> *backend=nullptr)</td></tr>
+<tr class="memitem:ab86ac222dab63640877ea622ecb0dcb4" id="r_ab86ac222dab63640877ea622ecb0dcb4"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ab86ac222dab63640877ea622ecb0dcb4">GaussSeidelPCLayer</a> (int <a class="el" href="classDeep_1_1Layer.html#a7480249662a3bd8ad458dcdcde68a37d">size</a>, int <a class="el" href="classDeep_1_1Layer.html#a5a538a25f3064996bbe651e6d48918d0">nextSize</a>, int batchSize=1, float learningRate=1e-6f, float inferenceRate=0.1f, float lmbda=1e-2f, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> aType=<a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ad346bb4679d29be241279f15d7795c1c">ActivationType::RELU</a>, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> dType=<a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ae3d97c20b976be09990b745185b14d75">ActivationType::dRELU</a>, <a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a> *backend=nullptr)</td></tr>
 <tr class="memdesc:ab86ac222dab63640877ea622ecb0dcb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for a <a class="el" href="classDeep_1_1GaussSeidelPCLayer.html" title="PC layer with Gauss-Seidel (sequential-sweep) settling dynamics, in place of the usual simultaneous u...">GaussSeidelPCLayer</a>.  <br /></td></tr>
 <tr class="memitem:a4ac63225106c6fb4b541bd938579a0ab" id="r_a4ac63225106c6fb4b541bd938579a0ab"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a4ac63225106c6fb4b541bd938579a0ab">CalculateState</a> () noexcept override</td></tr>
 <tr class="memdesc:a4ac63225106c6fb4b541bd938579a0ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Step 1 of a Gauss-Seidel timestep: updates z using mu/e_above HELD OVER from the end of the previous timestep. Does NOT mutate mu.  <br /></td></tr>
@@ -159,7 +159,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a44011aa0b884409873656c4c3f5891bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a read-only version of the stored biases.  <br /></td></tr>
 <tr class="memitem:a05abe3f73c55c88856613ffda8e32ec7" id="r_a05abe3f73c55c88856613ffda8e32ec7"><td class="memItemLeft">float *&#160;</td><td class="memItemRight"><a class="el" href="#a05abe3f73c55c88856613ffda8e32ec7">GetBiases</a> () noexcept</td></tr>
 <tr class="memdesc:a05abe3f73c55c88856613ffda8e32ec7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a mutable version of the stored biases.  <br /></td></tr>
-<tr class="memitem:a163c5ef9fcbc8236519c5e82df61f6d0" id="r_a163c5ef9fcbc8236519c5e82df61f6d0"><td class="memItemLeft"><a class="el" href="classDeep_1_1IComputeBackend.html">IComputeBackend</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a163c5ef9fcbc8236519c5e82df61f6d0">GetBackend</a> () const noexcept</td></tr>
+<tr class="memitem:a163c5ef9fcbc8236519c5e82df61f6d0" id="r_a163c5ef9fcbc8236519c5e82df61f6d0"><td class="memItemLeft"><a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a163c5ef9fcbc8236519c5e82df61f6d0">GetBackend</a> () const noexcept</td></tr>
 <tr class="memdesc:a163c5ef9fcbc8236519c5e82df61f6d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the compute backend this layer routes all math through, so Python bindings can safely copy device-resident buffers to the host instead of exposing a raw device pointer as if it were host memory (see LayerBindings.cpp's ViewOwnedBy / CopyFromBackend).  <br /></td></tr>
 <tr class="memitem:af5d0afd0b992b92e5584db9adc29ddbc" id="r_af5d0afd0b992b92e5584db9adc29ddbc"><td class="memItemLeft">const float *&#160;</td><td class="memItemRight"><a class="el" href="#af5d0afd0b992b92e5584db9adc29ddbc">GetFeedbackWeights</a> () const noexcept</td></tr>
 <tr class="memdesc:af5d0afd0b992b92e5584db9adc29ddbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the feedback-alignment matrix used by <a class="el" href="#ad8a166dd2069cd5244bea6e3fa940727" title="Step 1: the actual z-update. See class-level docs for the required three-sweep calling order.">UpdateState()</a> in place of W.  <br /></td></tr>
@@ -194,7 +194,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a65fa75ad1832bb06c259ca3a02528622" id="r_a65fa75ad1832bb06c259ca3a02528622"><td class="memItemLeft"><a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a>&#160;</td><td class="memItemRight"><a class="el" href="#a65fa75ad1832bb06c259ca3a02528622">GetDerivativeType</a> () const noexcept</td></tr>
 <tr class="memdesc:a65fa75ad1832bb06c259ca3a02528622"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns this layer's configured activation-derivative type.  <br /></td></tr>
 <tr class="memitem:ac8baa90414d136dbaf1e1e61e9e9a1ba" id="r_ac8baa90414d136dbaf1e1e61e9e9a1ba"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#ac8baa90414d136dbaf1e1e61e9e9a1ba">GetRequiredFloats</a> () const noexcept</td></tr>
-<tr class="memdesc:ac8baa90414d136dbaf1e1e61e9e9a1ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the total number of floats this layer requires from a <a class="el" href="classDeep_1_1MemoryArena.html" title="A 64-byte-aligned bump-pointer allocator over a single contiguous block of host memory....">MemoryArena</a>.  <br /></td></tr>
+<tr class="memdesc:ac8baa90414d136dbaf1e1e61e9e9a1ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the total number of floats this layer requires from a <a class="el" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: MemoryArena is MemoryArenaT&lt;...">MemoryArena</a>.  <br /></td></tr>
 <tr class="memitem:ab40490de74d9c1b8a0564b70dd08e419" id="r_ab40490de74d9c1b8a0564b70dd08e419"><td class="memTemplParams" colspan="2">template&lt;typename ArenaT&gt; </td></tr>
 <tr class="memitem:ab40490de74d9c1b8a0564b70dd08e419 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ab40490de74d9c1b8a0564b70dd08e419">BindMemory</a> (ArenaT &amp;arena)</td></tr>
 <tr class="memdesc:ab40490de74d9c1b8a0564b70dd08e419"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds this layer's weight/state/scratch buffers into the supplied arena. Must be called before any other operation.  <br /></td></tr>
@@ -271,7 +271,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classDeep_1_1IComputeBackend.html">IComputeBackend</a> *</td>          <td class="paramname"><span class="paramname"><em>backend</em></span><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a> *</td>          <td class="paramname"><span class="paramname"><em>backend</em></span><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -304,7 +304,7 @@ Additional Inherited Members</h2></td></tr>
 template&lt;typename ArenaT&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">template void Deep::GaussSeidelPCLayer::BindMemory&lt; <a class="el" href="classDeep_1_1DeviceMemoryArena.html">DeviceMemoryArena</a> &gt; </td>
+          <td class="memname">template void Deep::GaussSeidelPCLayer::BindMemory&lt; <a class="el" href="namespaceDeep.html#a1389c0520260789b0d62d62237a71d0c">DeviceMemoryArena</a> &gt; </td>
           <td>(</td>
           <td class="paramtype">ArenaT &amp;</td>          <td class="paramname"><span class="paramname"><em>arena</em></span></td><td>)</td>
           <td></td>
@@ -315,7 +315,7 @@ template&lt;typename ArenaT&gt; </div>
 <p>Binds this layer's weight/state/scratch buffers into the supplied arena. Must be called before any other operation. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">ArenaT</td><td>Either <a class="el" href="classDeep_1_1MemoryArena.html" title="A 64-byte-aligned bump-pointer allocator over a single contiguous block of host memory....">MemoryArena</a> or <a class="el" href="classDeep_1_1DeviceMemoryArena.html" title="A 64-byte-aligned bump-pointer allocator over a single contiguous block of device memory,...">DeviceMemoryArena</a>. </td></tr>
+    <tr><td class="paramname">ArenaT</td><td>Either <a class="el" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: MemoryArena is MemoryArenaT&lt;...">MemoryArena</a> or <a class="el" href="namespaceDeep.html#a1389c0520260789b0d62d62237a71d0c" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: DeviceMemoryArena is DeviceM...">DeviceMemoryArena</a>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -519,7 +519,7 @@ template&lt;typename ArenaT&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classDeep_1_1IComputeBackend.html">IComputeBackend</a> * Deep::GaussSeidelPCLayer::GetBackend </td>
+          <td class="memname"><a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a> * Deep::GaussSeidelPCLayer::GetBackend </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -989,7 +989,7 @@ template&lt;typename ArenaT&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Computes the total number of floats this layer requires from a <a class="el" href="classDeep_1_1MemoryArena.html" title="A 64-byte-aligned bump-pointer allocator over a single contiguous block of host memory....">MemoryArena</a>. </p>
+<p>Computes the total number of floats this layer requires from a <a class="el" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: MemoryArena is MemoryArenaT&lt;...">MemoryArena</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>The required float count. </dd></dl>
 
 </div>

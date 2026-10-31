@@ -119,13 +119,13 @@ Inheritance diagram for Deep::DirectKPPCLayer:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7e3d695605eb6bef26872f5c17516898" id="r_a7e3d695605eb6bef26872f5c17516898"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a7e3d695605eb6bef26872f5c17516898">DirectKPPCLayer</a> (size_t <a class="el" href="#a54ec0eb8b1a8de1747f8ba28fc6c9964">size</a>, size_t <a class="el" href="#aa6de86d19c3c2f09fb31f7b091cc6962">nextSize</a>, size_t <a class="el" href="#a6f19775a972d1fdb9805afe52f840910">terminalSize</a>, size_t <a class="el" href="#a3ea9e3fdfac3c5e08a70d241fbbdb48f">batchSize</a>, float learningRate, float inferenceRate, float feedback, float <a class="el" href="#a0188efb69e043ecf6d8022a02661b7f4">lmbda</a>, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> aType, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> dType, <a class="el" href="classDeep_1_1IComputeBackend.html">IComputeBackend</a> *<a class="el" href="#a4ed21b985438e2ae87e9b6f86e0cf9a5">backend</a>=nullptr)</td></tr>
+<tr class="memitem:a7e3d695605eb6bef26872f5c17516898" id="r_a7e3d695605eb6bef26872f5c17516898"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a7e3d695605eb6bef26872f5c17516898">DirectKPPCLayer</a> (size_t <a class="el" href="#a54ec0eb8b1a8de1747f8ba28fc6c9964">size</a>, size_t <a class="el" href="#aa6de86d19c3c2f09fb31f7b091cc6962">nextSize</a>, size_t <a class="el" href="#a6f19775a972d1fdb9805afe52f840910">terminalSize</a>, size_t <a class="el" href="#a3ea9e3fdfac3c5e08a70d241fbbdb48f">batchSize</a>, float learningRate, float inferenceRate, float feedback, float <a class="el" href="#a0188efb69e043ecf6d8022a02661b7f4">lmbda</a>, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> aType, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> dType, <a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a> *<a class="el" href="#a4ed21b985438e2ae87e9b6f86e0cf9a5">backend</a>=nullptr)</td></tr>
 <tr class="memitem:a418458f602e8eb259ded05cb5e66a16d" id="r_a418458f602e8eb259ded05cb5e66a16d"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a418458f602e8eb259ded05cb5e66a16d">~DirectKPPCLayer</a> () override=default</td></tr>
 <tr class="memitem:a04424f788b12d02dfddf9d457add195b" id="r_a04424f788b12d02dfddf9d457add195b"><td class="memTemplParams" colspan="2">template&lt;typename ArenaT&gt; </td></tr>
 <tr class="memitem:a04424f788b12d02dfddf9d457add195b template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a04424f788b12d02dfddf9d457add195b">BindMemory</a> (ArenaT &amp;arena)</td></tr>
-<tr class="memdesc:a04424f788b12d02dfddf9d457add195b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds this layer's buffers into a pre-allocated arena (<a class="el" href="classDeep_1_1MemoryArena.html" title="A 64-byte-aligned bump-pointer allocator over a single contiguous block of host memory....">MemoryArena</a> for CPU, <a class="el" href="classDeep_1_1DeviceMemoryArena.html" title="A 64-byte-aligned bump-pointer allocator over a single contiguous block of device memory,...">DeviceMemoryArena</a> for GPU).  <br /></td></tr>
+<tr class="memdesc:a04424f788b12d02dfddf9d457add195b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds this layer's buffers into a pre-allocated arena (<a class="el" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: MemoryArena is MemoryArenaT&lt;...">MemoryArena</a> for CPU, <a class="el" href="namespaceDeep.html#a1389c0520260789b0d62d62237a71d0c" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: DeviceMemoryArena is DeviceM...">DeviceMemoryArena</a> for GPU).  <br /></td></tr>
 <tr class="memitem:a97c440b5ad893f5f1099446ea88d332b" id="r_a97c440b5ad893f5f1099446ea88d332b"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a97c440b5ad893f5f1099446ea88d332b">GetRequiredFloats</a> () const noexcept</td></tr>
-<tr class="memdesc:a97c440b5ad893f5f1099446ea88d332b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total floats this layer needs from its <a class="el" href="classDeep_1_1MemoryArena.html" title="A 64-byte-aligned bump-pointer allocator over a single contiguous block of host memory....">MemoryArena</a>.  <br /></td></tr>
+<tr class="memdesc:a97c440b5ad893f5f1099446ea88d332b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total floats this layer needs from its <a class="el" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: MemoryArena is MemoryArenaT&lt;...">MemoryArena</a>.  <br /></td></tr>
 <tr class="memitem:aa6ff2823cf7d1765087ff98825be97ed" id="r_aa6ff2823cf7d1765087ff98825be97ed"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aa6ff2823cf7d1765087ff98825be97ed">RandomizeWeights</a> (std::mt19937 &amp;seedGenerator, const char *distribution=&quot;normal&quot;) noexcept</td></tr>
 <tr class="memdesc:aa6ff2823cf7d1765087ff98825be97ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Randomizes W and Psi.  <br /></td></tr>
 <tr class="memitem:a3cbf85dca2c2d487b5f1a7bfa598dffb" id="r_a3cbf85dca2c2d487b5f1a7bfa598dffb"><td class="memItemLeft">std::map&lt; std::string, <a class="el" href="structDeep_1_1TensorDescriptor.html">TensorDescriptor</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a3cbf85dca2c2d487b5f1a7bfa598dffb">GetStateDict</a> () const override</td></tr>
@@ -186,7 +186,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ab7dd46be2179d075c3fdde185de2486d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the bias vector, length nextSize.  <br /></td></tr>
 <tr class="memitem:ae8d5cafd7cfa13c84df6a3f779d44bce" id="r_ae8d5cafd7cfa13c84df6a3f779d44bce"><td class="memItemLeft">float *&#160;</td><td class="memItemRight"><a class="el" href="#ae8d5cafd7cfa13c84df6a3f779d44bce">GetBiases</a> () noexcept</td></tr>
 <tr class="memdesc:ae8d5cafd7cfa13c84df6a3f779d44bce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mutable overload of <a class="el" href="#ae8d5cafd7cfa13c84df6a3f779d44bce" title="Mutable overload of GetBiases() above, needed so backend copies (e.g. CopyFromHost in set_biases bind...">GetBiases()</a> above, needed so backend copies (e.g. CopyFromHost in set_biases bindings) can write into b.  <br /></td></tr>
-<tr class="memitem:ac667dd57a4fd7873bbb5097780c7d488" id="r_ac667dd57a4fd7873bbb5097780c7d488"><td class="memItemLeft"><a class="el" href="classDeep_1_1IComputeBackend.html">IComputeBackend</a> *&#160;</td><td class="memItemRight"><a class="el" href="#ac667dd57a4fd7873bbb5097780c7d488">GetBackend</a> () const noexcept</td></tr>
+<tr class="memitem:ac667dd57a4fd7873bbb5097780c7d488" id="r_ac667dd57a4fd7873bbb5097780c7d488"><td class="memItemLeft"><a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a> *&#160;</td><td class="memItemRight"><a class="el" href="#ac667dd57a4fd7873bbb5097780c7d488">GetBackend</a> () const noexcept</td></tr>
 <tr class="memdesc:ac667dd57a4fd7873bbb5097780c7d488"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the compute backend this layer routes all math through, so Python bindings can safely copy device-resident buffers to the host instead of exposing a raw device pointer as if it were host memory (see LayerBindings.cpp's ViewOwnedBy / CopyFromBackend).  <br /></td></tr>
 <tr class="memitem:a05bd475df2cdb16b07a648dc332eccc2" id="r_a05bd475df2cdb16b07a648dc332eccc2"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a05bd475df2cdb16b07a648dc332eccc2">GetBatchSize</a> () const noexcept override</td></tr>
 <tr class="memdesc:a05bd475df2cdb16b07a648dc332eccc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns this layer's batch size.  <br /></td></tr>
@@ -207,8 +207,8 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-types" class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected Types</h2></td></tr>
-<tr class="memitem:a339a349e2d7d31b68791b7e3efed7fb5" id="r_a339a349e2d7d31b68791b7e3efed7fb5"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a339a349e2d7d31b68791b7e3efed7fb5">BackendDeleter</a> = void (*)(<a class="el" href="classDeep_1_1IComputeBackend.html">IComputeBackend</a>*)</td></tr>
-<tr class="memdesc:a339a349e2d7d31b68791b7e3efed7fb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Custom deleter type for <span class="tt"><a class="el" href="#a4ed21b985438e2ae87e9b6f86e0cf9a5" title="This layer&#39;s compute backend.">backend</a></span>, needed since <a class="el" href="classDeep_1_1IComputeBackend.html" title="Device-agnostic compute backend interface: every numerical primitive a layer/network needs,...">IComputeBackend</a> is an abstract base, see the member below.  <br /></td></tr>
+<tr class="memitem:a339a349e2d7d31b68791b7e3efed7fb5" id="r_a339a349e2d7d31b68791b7e3efed7fb5"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a339a349e2d7d31b68791b7e3efed7fb5">BackendDeleter</a> = void (*)(<a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a>*)</td></tr>
+<tr class="memdesc:a339a349e2d7d31b68791b7e3efed7fb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Custom deleter type for <span class="tt"><a class="el" href="#a4ed21b985438e2ae87e9b6f86e0cf9a5" title="This layer&#39;s compute backend.">backend</a></span>, needed since <a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: IComputeBackend is IComputeB...">IComputeBackend</a> is an abstract base, see the member below.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -250,7 +250,7 @@ Protected Attributes</h2></td></tr>
 <tr class="memdesc:aebe1e3ae0780dbf28cfb98baaa89bb9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimizer for W/b.  <br /></td></tr>
 <tr class="memitem:ae15165b0371d1d0a9728e3decb24ad58" id="r_ae15165b0371d1d0a9728e3decb24ad58"><td class="memItemLeft"><a class="el" href="namespaceDeep.html#a76c7b5d078cce2bed29f6f592560bf02">OptimizerType</a>&#160;</td><td class="memItemRight"><a class="el" href="#ae15165b0371d1d0a9728e3decb24ad58">optPsi</a> = <a class="el" href="namespaceDeep.html#a76c7b5d078cce2bed29f6f592560bf02a50ecf75f1077e1d250a781764b89cbc2">OptimizerType::SGD</a></td></tr>
 <tr class="memdesc:ae15165b0371d1d0a9728e3decb24ad58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimizer for Psi.  <br /></td></tr>
-<tr class="memitem:a4ed21b985438e2ae87e9b6f86e0cf9a5" id="r_a4ed21b985438e2ae87e9b6f86e0cf9a5"><td class="memItemLeft">std::unique_ptr&lt; <a class="el" href="classDeep_1_1IComputeBackend.html">IComputeBackend</a>, <a class="el" href="#a339a349e2d7d31b68791b7e3efed7fb5">BackendDeleter</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a4ed21b985438e2ae87e9b6f86e0cf9a5">backend</a></td></tr>
+<tr class="memitem:a4ed21b985438e2ae87e9b6f86e0cf9a5" id="r_a4ed21b985438e2ae87e9b6f86e0cf9a5"><td class="memItemLeft">std::unique_ptr&lt; <a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a>, <a class="el" href="#a339a349e2d7d31b68791b7e3efed7fb5">BackendDeleter</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a4ed21b985438e2ae87e9b6f86e0cf9a5">backend</a></td></tr>
 <tr class="memdesc:a4ed21b985438e2ae87e9b6f86e0cf9a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">This layer's compute backend.  <br /></td></tr>
 <tr class="memitem:a53328b57f04371975a92840cb0166b25" id="r_a53328b57f04371975a92840cb0166b25"><td class="memItemLeft">float *&#160;</td><td class="memItemRight"><a class="el" href="#a53328b57f04371975a92840cb0166b25">z</a> = nullptr</td></tr>
 <tr class="memdesc:a53328b57f04371975a92840cb0166b25"><td class="mdescLeft">&#160;</td><td class="mdescRight">This layer's belief buffer, shape [batchSize, size].  <br /></td></tr>
@@ -305,7 +305,7 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:aecd9a72422417ba029376b0976a67902" id="r_aecd9a72422417ba029376b0976a67902"><td class="memItemLeft">float *&#160;</td><td class="memItemRight"><a class="el" href="#aecd9a72422417ba029376b0976a67902">biasGradScratch</a> = nullptr</td></tr>
 <tr class="memdesc:aecd9a72422417ba029376b0976a67902"><td class="mdescLeft">&#160;</td><td class="mdescRight">nextSize-length scratch buffer for SumRows' output in <a class="el" href="#a52d86fbf3aeb1c87a5c413a792914f08" title="Updates the weights after state updates.">UpdateWeights()</a>'s SGD branch, SGD needs <span class="tt"><a class="el" href="#a8975819ec530db13e1dfc71627b16a40" title="Bias vector, length nextSize.">b</a> += lr_batch *
  sum(local_grad)</span>, an accumulate, which SumRows alone can't express (it only overwrites). Allocated unconditionally (regardless of which optimizer is selected) since it's cheap , at most <span class="tt"><a class="el" href="#aa6de86d19c3c2f09fb31f7b091cc6962" title="Size of the layer above (0 marks a terminal layer).">nextSize</a></span> floats, and simpler than branching allocation on optimizer choice for this one small buffer.  <br /></td></tr>
-<tr class="memitem:a4f07876ef12805c3089c97d99181b1bf" id="r_a4f07876ef12805c3089c97d99181b1bf"><td class="memItemLeft">std::unique_ptr&lt; <a class="el" href="classDeep_1_1MemoryArena.html">MemoryArena</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a4f07876ef12805c3089c97d99181b1bf">localArena</a></td></tr>
+<tr class="memitem:a4f07876ef12805c3089c97d99181b1bf" id="r_a4f07876ef12805c3089c97d99181b1bf"><td class="memItemLeft">std::unique_ptr&lt; <a class="el" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4">MemoryArena</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a4f07876ef12805c3089c97d99181b1bf">localArena</a></td></tr>
 <tr class="memdesc:a4f07876ef12805c3089c97d99181b1bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">This layer's own arena, used when it isn't bound into a network-wide one.  <br /></td></tr>
 <tr class="inherit_header pro_attribs_classDeep_1_1Layer"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classDeep_1_1Layer')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Attributes inherited from <a class="el" href="classDeep_1_1Layer.html">Deep::Layer</a></td></tr>
 <tr class="memitem:a7480249662a3bd8ad458dcdcde68a37d inherit pro_attribs_classDeep_1_1Layer" id="r_a7480249662a3bd8ad458dcdcde68a37d"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="classDeep_1_1Layer.html#a7480249662a3bd8ad458dcdcde68a37d">size</a></td></tr>
@@ -326,7 +326,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="#a339a349e2d7d31b68791b7e3efed7fb5">Deep::DirectKPPCLayer::BackendDeleter</a> = void (*)(<a class="el" href="classDeep_1_1IComputeBackend.html">IComputeBackend</a>*)</td>
+          <td class="memname">using <a class="el" href="#a339a349e2d7d31b68791b7e3efed7fb5">Deep::DirectKPPCLayer::BackendDeleter</a> = void (*)(<a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a>*)</td>
         </tr>
       </table>
   </td>
@@ -336,7 +336,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Custom deleter type for <span class="tt"><a class="el" href="#a4ed21b985438e2ae87e9b6f86e0cf9a5" title="This layer&#39;s compute backend.">backend</a></span>, needed since <a class="el" href="classDeep_1_1IComputeBackend.html" title="Device-agnostic compute backend interface: every numerical primitive a layer/network needs,...">IComputeBackend</a> is an abstract base, see the member below. </p>
+<p>Custom deleter type for <span class="tt"><a class="el" href="#a4ed21b985438e2ae87e9b6f86e0cf9a5" title="This layer&#39;s compute backend.">backend</a></span>, needed since <a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: IComputeBackend is IComputeB...">IComputeBackend</a> is an abstract base, see the member below. </p>
 
 </div>
 </div>
@@ -400,7 +400,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classDeep_1_1IComputeBackend.html">IComputeBackend</a> *</td>          <td class="paramname"><span class="paramname"><em>backend</em></span><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a> *</td>          <td class="paramname"><span class="paramname"><em>backend</em></span><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -458,7 +458,7 @@ Protected Attributes</h2></td></tr>
 template&lt;typename ArenaT&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">template void Deep::DirectKPPCLayer::BindMemory&lt; <a class="el" href="classDeep_1_1DeviceMemoryArena.html">DeviceMemoryArena</a> &gt; </td>
+          <td class="memname">template void Deep::DirectKPPCLayer::BindMemory&lt; <a class="el" href="namespaceDeep.html#a1389c0520260789b0d62d62237a71d0c">DeviceMemoryArena</a> &gt; </td>
           <td>(</td>
           <td class="paramtype">ArenaT &amp;</td>          <td class="paramname"><span class="paramname"><em>arena</em></span></td><td>)</td>
           <td></td>
@@ -466,10 +466,10 @@ template&lt;typename ArenaT&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Binds this layer's buffers into a pre-allocated arena (<a class="el" href="classDeep_1_1MemoryArena.html" title="A 64-byte-aligned bump-pointer allocator over a single contiguous block of host memory....">MemoryArena</a> for CPU, <a class="el" href="classDeep_1_1DeviceMemoryArena.html" title="A 64-byte-aligned bump-pointer allocator over a single contiguous block of device memory,...">DeviceMemoryArena</a> for GPU). </p>
+<p>Binds this layer's buffers into a pre-allocated arena (<a class="el" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: MemoryArena is MemoryArenaT&lt;...">MemoryArena</a> for CPU, <a class="el" href="namespaceDeep.html#a1389c0520260789b0d62d62237a71d0c" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: DeviceMemoryArena is DeviceM...">DeviceMemoryArena</a> for GPU). </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">ArenaT</td><td>Either <a class="el" href="classDeep_1_1MemoryArena.html" title="A 64-byte-aligned bump-pointer allocator over a single contiguous block of host memory....">MemoryArena</a> or <a class="el" href="classDeep_1_1DeviceMemoryArena.html" title="A 64-byte-aligned bump-pointer allocator over a single contiguous block of device memory,...">DeviceMemoryArena</a>. </td></tr>
+    <tr><td class="paramname">ArenaT</td><td>Either <a class="el" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: MemoryArena is MemoryArenaT&lt;...">MemoryArena</a> or <a class="el" href="namespaceDeep.html#a1389c0520260789b0d62d62237a71d0c" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: DeviceMemoryArena is DeviceM...">DeviceMemoryArena</a>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -623,7 +623,7 @@ template&lt;typename ArenaT&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classDeep_1_1IComputeBackend.html">IComputeBackend</a> * Deep::DirectKPPCLayer::GetBackend </td>
+          <td class="memname"><a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a> * Deep::DirectKPPCLayer::GetBackend </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -916,7 +916,7 @@ template&lt;typename ArenaT&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Total floats this layer needs from its <a class="el" href="classDeep_1_1MemoryArena.html" title="A 64-byte-aligned bump-pointer allocator over a single contiguous block of host memory....">MemoryArena</a>. </p>
+<p>Total floats this layer needs from its <a class="el" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: MemoryArena is MemoryArenaT&lt;...">MemoryArena</a>. </p>
 
 </div>
 </div>
@@ -1608,7 +1608,7 @@ template&lt;typename ArenaT&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::unique_ptr&lt;<a class="el" href="classDeep_1_1IComputeBackend.html">IComputeBackend</a>, <a class="el" href="#a339a349e2d7d31b68791b7e3efed7fb5">BackendDeleter</a>&gt; Deep::DirectKPPCLayer::backend</td>
+          <td class="memname">std::unique_ptr&lt;<a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a>, <a class="el" href="#a339a349e2d7d31b68791b7e3efed7fb5">BackendDeleter</a>&gt; Deep::DirectKPPCLayer::backend</td>
         </tr>
       </table>
   </td>
@@ -2066,7 +2066,7 @@ template&lt;typename ArenaT&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::unique_ptr&lt;<a class="el" href="classDeep_1_1MemoryArena.html">MemoryArena</a>&gt; Deep::DirectKPPCLayer::localArena</td>
+          <td class="memname">std::unique_ptr&lt;<a class="el" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4">MemoryArena</a>&gt; Deep::DirectKPPCLayer::localArena</td>
         </tr>
       </table>
   </td>

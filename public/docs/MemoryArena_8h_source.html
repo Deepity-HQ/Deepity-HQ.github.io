@@ -179,121 +179,134 @@ $(function(){initNavTree('MemoryArena_8h_source.html','',''); });
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>} <span class="comment">// namespace detail</span></div>
 </div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span></div>
-<div class="foldopen" id="foldopen00140" data-start="{" data-end="};">
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno"><a class="line" href="classDeep_1_1MemoryArena.html">  140</a></span><span class="keyword">class </span><a class="code hl_function" href="classDeep_1_1MemoryArena.html#a521a6d216b2fea173e91ad75e583b422">MemoryArena</a></div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>{</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>  <span class="keywordtype">float</span>* base_ptr;</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>  <span class="keywordtype">size_t</span> capacity_bytes;</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>  <span class="keywordtype">size_t</span> offset_bytes;</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>  <span class="keywordtype">bool</span> used_huge_pages;</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00175" data-start="{" data-end="}">
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="classDeep_1_1MemoryArena.html#a521a6d216b2fea173e91ad75e583b422">  175</a></span>  <span class="keyword">explicit</span> <a class="code hl_function" href="classDeep_1_1MemoryArena.html#a521a6d216b2fea173e91ad75e583b422">MemoryArena</a>(<span class="keywordtype">size_t</span> total_floats, <span class="keywordtype">bool</span> use_huge_pages = <span class="keyword">false</span>)</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>      : used_huge_pages(false)</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>  {</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <span class="comment">// Guarantee total capacity is a multiple of 64 bytes</span></div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    capacity_bytes = (total_floats * <span class="keyword">sizeof</span>(float) + 63) &amp; ~63;</div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    <span class="keywordflow">if</span> (use_huge_pages)</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    {</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>      <span class="keywordtype">bool</span> succeeded = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>      base_ptr = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span>*<span class="keyword">&gt;</span>(<a class="code hl_function" href="namespaceDeep_1_1detail.html#a55740bbe02647542c1903efc83b81834">detail::HugePageAllocPortable</a>(capacity_bytes, succeeded));</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>      used_huge_pages = succeeded;</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    }</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00147" data-start="{" data-end="};">
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="classDeep_1_1MemoryArenaT.html">  147</a></span><span class="keyword">class </span><a class="code hl_function" href="classDeep_1_1MemoryArenaT.html#a8e50a175e799bf74ed3d653f97a1af35">MemoryArenaT</a></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>{</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>  T* base_ptr;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>  <span class="keywordtype">size_t</span> capacity_bytes;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>  <span class="keywordtype">size_t</span> offset_bytes;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>  <span class="keywordtype">bool</span> used_huge_pages;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00182" data-start="{" data-end="}">
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="classDeep_1_1MemoryArenaT.html#a8e50a175e799bf74ed3d653f97a1af35">  182</a></span>  <span class="keyword">explicit</span> <a class="code hl_function" href="classDeep_1_1MemoryArenaT.html#a8e50a175e799bf74ed3d653f97a1af35">MemoryArenaT</a>(<span class="keywordtype">size_t</span> total_elements, <span class="keywordtype">bool</span> use_huge_pages = <span class="keyword">false</span>)</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>      : used_huge_pages(false)</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>  {</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="comment">// Guarantee total capacity is a multiple of 64 bytes</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    capacity_bytes = (total_elements * <span class="keyword">sizeof</span>(T) + 63) &amp; ~size_t(63);</div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="keywordflow">if</span> (!used_huge_pages)</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="keywordflow">if</span> (use_huge_pages)</div>
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    {</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>      <span class="comment">// Either huge pages weren&#39;t requested, or the request</span></div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>      <span class="comment">// wasn&#39;t honored (mmap/VirtualAlloc failed, or the</span></div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>      <span class="comment">// system lacks the required configuration/privilege),</span></div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>      <span class="comment">// fall back to the standard aligned allocator rather</span></div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>      <span class="comment">// than treating this as a hard failure.</span></div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>      base_ptr = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span>*<span class="keyword">&gt;</span>(<a class="code hl_function" href="namespaceDeep_1_1detail.html#af3da503898a70b79185386c34fc3812c">detail::AlignedAllocPortable</a>(64, capacity_bytes));</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    }</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <span class="keywordflow">if</span> (!base_ptr)</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    {</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>      <span class="keywordflow">throw</span> std::bad_alloc();</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    }</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    offset_bytes = 0;</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>  }</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>      <span class="keywordtype">bool</span> succeeded = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>      base_ptr = <span class="keyword">static_cast&lt;</span>T*<span class="keyword">&gt;</span>(<a class="code hl_function" href="namespaceDeep_1_1detail.html#a55740bbe02647542c1903efc83b81834">detail::HugePageAllocPortable</a>(capacity_bytes, succeeded));</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>      used_huge_pages = succeeded;</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    }</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="keywordflow">if</span> (!used_huge_pages)</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    {</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>      <span class="comment">// Either huge pages weren&#39;t requested, or the request</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>      <span class="comment">// wasn&#39;t honored (mmap/VirtualAlloc failed, or the</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>      <span class="comment">// system lacks the required configuration/privilege),</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>      <span class="comment">// fall back to the standard aligned allocator rather</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>      <span class="comment">// than treating this as a hard failure.</span></div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>      base_ptr = <span class="keyword">static_cast&lt;</span>T*<span class="keyword">&gt;</span>(<a class="code hl_function" href="namespaceDeep_1_1detail.html#af3da503898a70b79185386c34fc3812c">detail::AlignedAllocPortable</a>(64, capacity_bytes));</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    }</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="keywordflow">if</span> (!base_ptr)</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    {</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>      <span class="keywordflow">throw</span> std::bad_alloc();</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    }</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    offset_bytes = 0;</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>  }</div>
 </div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span></div>
-<div class="foldopen" id="foldopen00208" data-start="{" data-end="}">
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno"><a class="line" href="classDeep_1_1MemoryArena.html#a49fb270b07d4ae887bb0f084bf09d024">  208</a></span>  <a class="code hl_function" href="classDeep_1_1MemoryArena.html#a49fb270b07d4ae887bb0f084bf09d024">~MemoryArena</a>()</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>  {</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="keywordflow">if</span> (base_ptr)</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    {</div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>      <span class="keywordflow">if</span> (used_huge_pages)</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>        <a class="code hl_function" href="namespaceDeep_1_1detail.html#a5edbd615eb36b6ac5e0946d1b999d67d">detail::HugePageFreePortable</a>(base_ptr, capacity_bytes);</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>      <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>        <a class="code hl_function" href="namespaceDeep_1_1detail.html#aa81d102ebb96772f976ed83e00ae12ca">detail::AlignedFreePortable</a>(base_ptr);</div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    }</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>  }</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span></div>
+<div class="foldopen" id="foldopen00215" data-start="{" data-end="}">
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno"><a class="line" href="classDeep_1_1MemoryArenaT.html#a9d9fa49e27e26f587a2311b44b894180">  215</a></span>  <a class="code hl_function" href="classDeep_1_1MemoryArenaT.html#a9d9fa49e27e26f587a2311b44b894180">~MemoryArenaT</a>()</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>  {</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="keywordflow">if</span> (base_ptr)</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    {</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>      <span class="keywordflow">if</span> (used_huge_pages)</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>        <a class="code hl_function" href="namespaceDeep_1_1detail.html#a5edbd615eb36b6ac5e0946d1b999d67d">detail::HugePageFreePortable</a>(base_ptr, capacity_bytes);</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>      <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>        <a class="code hl_function" href="namespaceDeep_1_1detail.html#aa81d102ebb96772f976ed83e00ae12ca">detail::AlignedFreePortable</a>(base_ptr);</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    }</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>  }</div>
 </div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>  <span class="comment">// Delete copy/move constructors to prevent double-free corruption</span></div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span></div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno"><a class="line" href="classDeep_1_1MemoryArena.html#a35deffffadd8b70bee90c55d0eb0eacd">  223</a></span>  <a class="code hl_function" href="classDeep_1_1MemoryArena.html#a35deffffadd8b70bee90c55d0eb0eacd">MemoryArena</a>(<span class="keyword">const</span> <a class="code hl_function" href="classDeep_1_1MemoryArena.html#a521a6d216b2fea173e91ad75e583b422">MemoryArena</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno"><a class="line" href="classDeep_1_1MemoryArena.html#adcb6d3fab7ac84d0c427b70381afabca">  226</a></span>  <a class="code hl_function" href="classDeep_1_1MemoryArena.html#a521a6d216b2fea173e91ad75e583b422">MemoryArena</a>&amp; <a class="code hl_function" href="classDeep_1_1MemoryArena.html#adcb6d3fab7ac84d0c427b70381afabca">operator=</a>(<span class="keyword">const</span> <a class="code hl_function" href="classDeep_1_1MemoryArena.html#a521a6d216b2fea173e91ad75e583b422">MemoryArena</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>  <span class="comment">// Delete copy/move constructors to prevent double-free corruption</span></div>
 <div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span></div>
-<div class="foldopen" id="foldopen00239" data-start="{" data-end="}">
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno"><a class="line" href="classDeep_1_1MemoryArena.html#af78e70321c76b968facf3b65ec30c338">  239</a></span>  <span class="keywordtype">float</span>* <a class="code hl_function" href="classDeep_1_1MemoryArena.html#af78e70321c76b968facf3b65ec30c338">AllocateFloats</a>(<span class="keywordtype">size_t</span> num_floats)</div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>  {</div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    <span class="comment">// Calculate how many bytes we need, padded to the nearest 64-byte boundary</span></div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    <span class="keywordtype">size_t</span> allocation_size = (num_floats * <span class="keyword">sizeof</span>(float) + 63) &amp; ~63;</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span> </div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    <span class="keywordflow">if</span> (offset_bytes + allocation_size &gt; capacity_bytes)</div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    {</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>      <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Fatal: MemoryArena capacity exceeded during allocation.&quot;</span>);</div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    }</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span> </div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    <span class="keywordtype">float</span>* chunk = <span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">float</span>*<span class="keyword">&gt;</span>(<span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(base_ptr) + offset_bytes);</div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    offset_bytes += allocation_size;</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="keywordflow">return</span> chunk;</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>  }</div>
-</div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span></div>
-<div class="foldopen" id="foldopen00258" data-start="{" data-end="}">
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno"><a class="line" href="classDeep_1_1MemoryArena.html#a18292466507e177d192cde18d5d4eb69">  258</a></span>  <span class="keywordtype">size_t</span> <a class="code hl_function" href="classDeep_1_1MemoryArena.html#a18292466507e177d192cde18d5d4eb69">GetUsedBytes</a>()<span class="keyword"> const</span></div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span><span class="keyword">  </span>{</div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <span class="keywordflow">return</span> offset_bytes;</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno"><a class="line" href="classDeep_1_1MemoryArenaT.html#a7d5777a4efda8526188068eb84a568e5">  230</a></span>  <a class="code hl_function" href="classDeep_1_1MemoryArenaT.html#a7d5777a4efda8526188068eb84a568e5">MemoryArenaT</a>(<span class="keyword">const</span> <a class="code hl_function" href="classDeep_1_1MemoryArenaT.html#a8e50a175e799bf74ed3d653f97a1af35">MemoryArenaT</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno"><a class="line" href="classDeep_1_1MemoryArenaT.html#a1f75047735d83edb63322ad76c064c83">  233</a></span>  <a class="code hl_function" href="classDeep_1_1MemoryArenaT.html#a8e50a175e799bf74ed3d653f97a1af35">MemoryArenaT</a>&amp; <a class="code hl_function" href="classDeep_1_1MemoryArenaT.html#a1f75047735d83edb63322ad76c064c83">operator=</a>(<span class="keyword">const</span> <a class="code hl_function" href="classDeep_1_1MemoryArenaT.html#a8e50a175e799bf74ed3d653f97a1af35">MemoryArenaT</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span></div>
+<div class="foldopen" id="foldopen00247" data-start="{" data-end="}">
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno"><a class="line" href="classDeep_1_1MemoryArenaT.html#a9e134ca03bcaddbdec42341582cac401">  247</a></span>  T* <a class="code hl_function" href="classDeep_1_1MemoryArenaT.html#a9e134ca03bcaddbdec42341582cac401">Allocate</a>(<span class="keywordtype">size_t</span> num_elements)</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>  {</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    <span class="comment">// Calculate how many bytes we need, padded to the nearest 64-byte boundary</span></div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <span class="keywordtype">size_t</span> allocation_size = (num_elements * <span class="keyword">sizeof</span>(T) + 63) &amp; ~<span class="keywordtype">size_t</span>(63);</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="keywordflow">if</span> (offset_bytes + allocation_size &gt; capacity_bytes)</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    {</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>      <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Fatal: MemoryArenaT capacity exceeded during allocation.&quot;</span>);</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    }</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span> </div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    T* chunk = <span class="keyword">reinterpret_cast&lt;</span>T*<span class="keyword">&gt;</span>(<span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(base_ptr) + offset_bytes);</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span> </div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    offset_bytes += allocation_size;</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <span class="keywordflow">return</span> chunk;</div>
 <div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>  }</div>
 </div>
 <div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span></div>
-<div class="foldopen" id="foldopen00264" data-start="{" data-end="}">
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno"><a class="line" href="classDeep_1_1MemoryArena.html#af5d7949e8c5767b3a83c6488b03b2704">  264</a></span>  <span class="keywordtype">size_t</span> <a class="code hl_function" href="classDeep_1_1MemoryArena.html#af5d7949e8c5767b3a83c6488b03b2704">GetCapacityBytes</a>()<span class="keyword"> const</span></div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span><span class="keyword">  </span>{</div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    <span class="keywordflow">return</span> capacity_bytes;</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>  }</div>
+<div class="foldopen" id="foldopen00267" data-start="{" data-end="}">
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno"><a class="line" href="classDeep_1_1MemoryArenaT.html#a97a5e9c5fa05a0bad656f4a56c57e78b">  267</a></span>  T* <a class="code hl_function" href="classDeep_1_1MemoryArenaT.html#a97a5e9c5fa05a0bad656f4a56c57e78b">AllocateFloats</a>(<span class="keywordtype">size_t</span> num_elements)</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>  {</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="classDeep_1_1MemoryArenaT.html#a9e134ca03bcaddbdec42341582cac401">Allocate</a>(num_elements);</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>  }</div>
 </div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span></div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span></div>
 <div class="foldopen" id="foldopen00275" data-start="{" data-end="}">
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno"><a class="line" href="classDeep_1_1MemoryArena.html#aaa1cf61c300593c963c32b280f47f2e4">  275</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classDeep_1_1MemoryArena.html#aaa1cf61c300593c963c32b280f47f2e4">UsedHugePages</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno"><a class="line" href="classDeep_1_1MemoryArenaT.html#ab2f97fde15418b221ea7b1b77c9b8e99">  275</a></span>  <span class="keywordtype">size_t</span> <a class="code hl_function" href="classDeep_1_1MemoryArenaT.html#ab2f97fde15418b221ea7b1b77c9b8e99">GetUsedBytes</a>()<span class="keyword"> const</span></div>
 <div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span><span class="keyword">  </span>{</div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    <span class="keywordflow">return</span> used_huge_pages;</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    <span class="keywordflow">return</span> offset_bytes;</div>
 <div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>  }</div>
 </div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>};</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span></div>
+<div class="foldopen" id="foldopen00281" data-start="{" data-end="}">
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno"><a class="line" href="classDeep_1_1MemoryArenaT.html#a5ad5d96f6042d10e0d03e73ca86aa509">  281</a></span>  <span class="keywordtype">size_t</span> <a class="code hl_function" href="classDeep_1_1MemoryArenaT.html#a5ad5d96f6042d10e0d03e73ca86aa509">GetCapacityBytes</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span><span class="keyword">  </span>{</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    <span class="keywordflow">return</span> capacity_bytes;</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>  }</div>
 </div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>} <span class="comment">// namespace Deep</span></div>
-<div class="ttc" id="aclassDeep_1_1MemoryArena_html_a18292466507e177d192cde18d5d4eb69"><div class="ttname"><a href="classDeep_1_1MemoryArena.html#a18292466507e177d192cde18d5d4eb69">Deep::MemoryArena::GetUsedBytes</a></div><div class="ttdeci">size_t GetUsedBytes() const</div><div class="ttdoc">Returns how many bytes have been allocated from the arena so far.</div><div class="ttdef"><b>Definition</b> MemoryArena.h:258</div></div>
-<div class="ttc" id="aclassDeep_1_1MemoryArena_html_a35deffffadd8b70bee90c55d0eb0eacd"><div class="ttname"><a href="classDeep_1_1MemoryArena.html#a35deffffadd8b70bee90c55d0eb0eacd">Deep::MemoryArena::MemoryArena</a></div><div class="ttdeci">MemoryArena(const MemoryArena &amp;)=delete</div><div class="ttdoc">Deleted: MemoryArena owns a single aligned allocation, so copying would risk a double-free.</div></div>
-<div class="ttc" id="aclassDeep_1_1MemoryArena_html_a49fb270b07d4ae887bb0f084bf09d024"><div class="ttname"><a href="classDeep_1_1MemoryArena.html#a49fb270b07d4ae887bb0f084bf09d024">Deep::MemoryArena::~MemoryArena</a></div><div class="ttdeci">~MemoryArena()</div><div class="ttdoc">Frees the underlying allocation, via whichever deallocator matches the allocator actually used (see u...</div><div class="ttdef"><b>Definition</b> MemoryArena.h:208</div></div>
-<div class="ttc" id="aclassDeep_1_1MemoryArena_html_a521a6d216b2fea173e91ad75e583b422"><div class="ttname"><a href="classDeep_1_1MemoryArena.html#a521a6d216b2fea173e91ad75e583b422">Deep::MemoryArena::MemoryArena</a></div><div class="ttdeci">MemoryArena(size_t total_floats, bool use_huge_pages=false)</div><div class="ttdoc">Allocates a single 64-byte-aligned buffer large enough to hold total_floats floats,...</div><div class="ttdef"><b>Definition</b> MemoryArena.h:175</div></div>
-<div class="ttc" id="aclassDeep_1_1MemoryArena_html_aaa1cf61c300593c963c32b280f47f2e4"><div class="ttname"><a href="classDeep_1_1MemoryArena.html#aaa1cf61c300593c963c32b280f47f2e4">Deep::MemoryArena::UsedHugePages</a></div><div class="ttdeci">bool UsedHugePages() const</div><div class="ttdoc">Returns whether this arena&#39;s memory is actually huge-page-backed. Since huge pages are requested on a...</div><div class="ttdef"><b>Definition</b> MemoryArena.h:275</div></div>
-<div class="ttc" id="aclassDeep_1_1MemoryArena_html_adcb6d3fab7ac84d0c427b70381afabca"><div class="ttname"><a href="classDeep_1_1MemoryArena.html#adcb6d3fab7ac84d0c427b70381afabca">Deep::MemoryArena::operator=</a></div><div class="ttdeci">MemoryArena &amp; operator=(const MemoryArena &amp;)=delete</div><div class="ttdoc">Deleted: MemoryArena owns a single aligned allocation, so copy-assignment would risk a double-free.</div></div>
-<div class="ttc" id="aclassDeep_1_1MemoryArena_html_af5d7949e8c5767b3a83c6488b03b2704"><div class="ttname"><a href="classDeep_1_1MemoryArena.html#af5d7949e8c5767b3a83c6488b03b2704">Deep::MemoryArena::GetCapacityBytes</a></div><div class="ttdeci">size_t GetCapacityBytes() const</div><div class="ttdoc">Returns the arena&#39;s total capacity.</div><div class="ttdef"><b>Definition</b> MemoryArena.h:264</div></div>
-<div class="ttc" id="aclassDeep_1_1MemoryArena_html_af78e70321c76b968facf3b65ec30c338"><div class="ttname"><a href="classDeep_1_1MemoryArena.html#af78e70321c76b968facf3b65ec30c338">Deep::MemoryArena::AllocateFloats</a></div><div class="ttdeci">float * AllocateFloats(size_t num_floats)</div><div class="ttdoc">Allocates a 64-byte aligned chunk of floats from the arena.</div><div class="ttdef"><b>Definition</b> MemoryArena.h:239</div></div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span></div>
+<div class="foldopen" id="foldopen00292" data-start="{" data-end="}">
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno"><a class="line" href="classDeep_1_1MemoryArenaT.html#af87a6a7d7ef50a20bc541a0f56c38b80">  292</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classDeep_1_1MemoryArenaT.html#af87a6a7d7ef50a20bc541a0f56c38b80">UsedHugePages</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span><span class="keyword">  </span>{</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    <span class="keywordflow">return</span> used_huge_pages;</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>  }</div>
+</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>};</div>
+</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span></div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno"><a class="line" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4">  301</a></span><span class="keyword">using </span><a class="code hl_typedef" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4">MemoryArena</a> = <a class="code hl_class" href="classDeep_1_1MemoryArenaT.html">MemoryArenaT&lt;float&gt;</a>;</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>} <span class="comment">// namespace Deep</span></div>
+<div class="ttc" id="aclassDeep_1_1MemoryArenaT_html"><div class="ttname"><a href="classDeep_1_1MemoryArenaT.html">Deep::MemoryArenaT</a></div><div class="ttdoc">A 64-byte-aligned bump-pointer allocator over a single contiguous block of host memory,...</div><div class="ttdef"><b>Definition</b> MemoryArena.h:148</div></div>
+<div class="ttc" id="aclassDeep_1_1MemoryArenaT_html_a1f75047735d83edb63322ad76c064c83"><div class="ttname"><a href="classDeep_1_1MemoryArenaT.html#a1f75047735d83edb63322ad76c064c83">Deep::MemoryArenaT::operator=</a></div><div class="ttdeci">MemoryArenaT &amp; operator=(const MemoryArenaT &amp;)=delete</div><div class="ttdoc">Deleted: MemoryArenaT owns a single aligned allocation, so copy-assignment would risk a double-free.</div></div>
+<div class="ttc" id="aclassDeep_1_1MemoryArenaT_html_a5ad5d96f6042d10e0d03e73ca86aa509"><div class="ttname"><a href="classDeep_1_1MemoryArenaT.html#a5ad5d96f6042d10e0d03e73ca86aa509">Deep::MemoryArenaT::GetCapacityBytes</a></div><div class="ttdeci">size_t GetCapacityBytes() const</div><div class="ttdoc">Returns the arena&#39;s total capacity.</div><div class="ttdef"><b>Definition</b> MemoryArena.h:281</div></div>
+<div class="ttc" id="aclassDeep_1_1MemoryArenaT_html_a7d5777a4efda8526188068eb84a568e5"><div class="ttname"><a href="classDeep_1_1MemoryArenaT.html#a7d5777a4efda8526188068eb84a568e5">Deep::MemoryArenaT::MemoryArenaT</a></div><div class="ttdeci">MemoryArenaT(const MemoryArenaT &amp;)=delete</div><div class="ttdoc">Deleted: MemoryArenaT owns a single aligned allocation, so copying would risk a double-free.</div></div>
+<div class="ttc" id="aclassDeep_1_1MemoryArenaT_html_a8e50a175e799bf74ed3d653f97a1af35"><div class="ttname"><a href="classDeep_1_1MemoryArenaT.html#a8e50a175e799bf74ed3d653f97a1af35">Deep::MemoryArenaT::MemoryArenaT</a></div><div class="ttdeci">MemoryArenaT(size_t total_elements, bool use_huge_pages=false)</div><div class="ttdoc">Allocates a single 64-byte-aligned buffer large enough to hold total_elements elements of type T,...</div><div class="ttdef"><b>Definition</b> MemoryArena.h:182</div></div>
+<div class="ttc" id="aclassDeep_1_1MemoryArenaT_html_a97a5e9c5fa05a0bad656f4a56c57e78b"><div class="ttname"><a href="classDeep_1_1MemoryArenaT.html#a97a5e9c5fa05a0bad656f4a56c57e78b">Deep::MemoryArenaT::AllocateFloats</a></div><div class="ttdeci">T * AllocateFloats(size_t num_elements)</div><div class="ttdoc">Back-compat alias for Allocate(), kept for every existing (non-templated) caller written against the ...</div><div class="ttdef"><b>Definition</b> MemoryArena.h:267</div></div>
+<div class="ttc" id="aclassDeep_1_1MemoryArenaT_html_a9d9fa49e27e26f587a2311b44b894180"><div class="ttname"><a href="classDeep_1_1MemoryArenaT.html#a9d9fa49e27e26f587a2311b44b894180">Deep::MemoryArenaT::~MemoryArenaT</a></div><div class="ttdeci">~MemoryArenaT()</div><div class="ttdoc">Frees the underlying allocation, via whichever deallocator matches the allocator actually used (see u...</div><div class="ttdef"><b>Definition</b> MemoryArena.h:215</div></div>
+<div class="ttc" id="aclassDeep_1_1MemoryArenaT_html_a9e134ca03bcaddbdec42341582cac401"><div class="ttname"><a href="classDeep_1_1MemoryArenaT.html#a9e134ca03bcaddbdec42341582cac401">Deep::MemoryArenaT::Allocate</a></div><div class="ttdeci">T * Allocate(size_t num_elements)</div><div class="ttdoc">Allocates a 64-byte aligned chunk of num_elements elements of type T from the arena.</div><div class="ttdef"><b>Definition</b> MemoryArena.h:247</div></div>
+<div class="ttc" id="aclassDeep_1_1MemoryArenaT_html_ab2f97fde15418b221ea7b1b77c9b8e99"><div class="ttname"><a href="classDeep_1_1MemoryArenaT.html#ab2f97fde15418b221ea7b1b77c9b8e99">Deep::MemoryArenaT::GetUsedBytes</a></div><div class="ttdeci">size_t GetUsedBytes() const</div><div class="ttdoc">Returns how many bytes have been allocated from the arena so far.</div><div class="ttdef"><b>Definition</b> MemoryArena.h:275</div></div>
+<div class="ttc" id="aclassDeep_1_1MemoryArenaT_html_af87a6a7d7ef50a20bc541a0f56c38b80"><div class="ttname"><a href="classDeep_1_1MemoryArenaT.html#af87a6a7d7ef50a20bc541a0f56c38b80">Deep::MemoryArenaT::UsedHugePages</a></div><div class="ttdeci">bool UsedHugePages() const</div><div class="ttdoc">Returns whether this arena&#39;s memory is actually huge-page-backed. Since huge pages are requested on a...</div><div class="ttdef"><b>Definition</b> MemoryArena.h:292</div></div>
 <div class="ttc" id="anamespaceDeep_1_1detail_html"><div class="ttname"><a href="namespaceDeep_1_1detail.html">Deep::detail</a></div><div class="ttdef"><b>Definition</b> MemoryArena.h:33</div></div>
 <div class="ttc" id="anamespaceDeep_1_1detail_html_a55740bbe02647542c1903efc83b81834"><div class="ttname"><a href="namespaceDeep_1_1detail.html#a55740bbe02647542c1903efc83b81834">Deep::detail::HugePageAllocPortable</a></div><div class="ttdeci">void * HugePageAllocPortable(size_t size, bool &amp;succeeded)</div><div class="ttdoc">Attempts to allocate size bytes backed by huge pages. This is genuinely opt-in and best-effort: on Li...</div><div class="ttdef"><b>Definition</b> MemoryArena.h:97</div></div>
 <div class="ttc" id="anamespaceDeep_1_1detail_html_a5edbd615eb36b6ac5e0946d1b999d67d"><div class="ttname"><a href="namespaceDeep_1_1detail.html#a5edbd615eb36b6ac5e0946d1b999d67d">Deep::detail::HugePageFreePortable</a></div><div class="ttdeci">void HugePageFreePortable(void *ptr, size_t size)</div><div class="ttdoc">Frees a block previously returned by HugePageAllocPortable() with succeeded=true.</div><div class="ttdef"><b>Definition</b> MemoryArena.h:126</div></div>
 <div class="ttc" id="anamespaceDeep_1_1detail_html_aa81d102ebb96772f976ed83e00ae12ca"><div class="ttname"><a href="namespaceDeep_1_1detail.html#aa81d102ebb96772f976ed83e00ae12ca">Deep::detail::AlignedFreePortable</a></div><div class="ttdeci">void AlignedFreePortable(void *ptr)</div><div class="ttdoc">Frees a block previously returned by AlignedAllocPortable().</div><div class="ttdef"><b>Definition</b> MemoryArena.h:66</div></div>
 <div class="ttc" id="anamespaceDeep_1_1detail_html_af3da503898a70b79185386c34fc3812c"><div class="ttname"><a href="namespaceDeep_1_1detail.html#af3da503898a70b79185386c34fc3812c">Deep::detail::AlignedAllocPortable</a></div><div class="ttdeci">void * AlignedAllocPortable(size_t alignment, size_t size)</div><div class="ttdoc">Allocates a block of memory aligned to alignment bytes, using whichever aligned-allocation API is act...</div><div class="ttdef"><b>Definition</b> MemoryArena.h:53</div></div>
 <div class="ttc" id="anamespaceDeep_html"><div class="ttname"><a href="namespaceDeep.html">Deep</a></div><div class="ttdoc">This file exists to provide both Tensor.h and IComputeBackend.h with device types without introducing...</div><div class="ttdef"><b>Definition</b> Backend.cpp:10</div></div>
+<div class="ttc" id="anamespaceDeep_html_a2b91a923456ba8bdffaf35f36d0988d4"><div class="ttname"><a href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4">Deep::MemoryArena</a></div><div class="ttdeci">MemoryArenaT&lt; float &gt; MemoryArena</div><div class="ttdoc">Non-templated alias preserving every existing caller&#39;s behavior exactly: MemoryArena is MemoryArenaT&lt;...</div><div class="ttdef"><b>Definition</b> MemoryArena.h:301</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

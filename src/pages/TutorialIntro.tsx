@@ -18,23 +18,24 @@ x = torch.randn(1, 784)
 output = model(x)
 print(output)`;
 
-const deepityCode = `import pydeepity
+const deepityCode = `from deepity import SimplePCN
+from deepity.layer import Linear, ReLU
 import numpy as np
 
-model = pydeepity.SimplePCN(batch_size=1)
-model.add_layer(784, 128, lr=0.001, ir=0.08, act='relu')
-model.add_layer(128, 10, lr=0.001, ir=0.08, act='linear')
-# Terminal layer:
-model.add_layer(10, 0, lr=0.001, ir=0.08, act='linear')
-
-model.compile()
-model.randomize_weights()
+model = SimplePCN(
+    Linear(784, 128),
+    ReLU(),
+    Linear(128, 10),
+    batch_size=1,
+)
+model.configure(learning_rate=0.001, inference_rate=0.08)
 
 x = np.random.randn(1, 784).astype(np.float32)
 output = model.predict(x, 150)
 print(output)`;
 
 import { btnClass, btnSolidClass } from "../Components/ui.ts";
+import { ArrowLeft, ArrowRight } from "../Components/ArrowIcons.tsx";
 
 export default function TutorialIntro() {
   return (
@@ -255,15 +256,17 @@ export default function TutorialIntro() {
             </p>
           </Reveal>
 
-          <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pt-8">
+          <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pb-12 pt-8 md:pb-14">
             <Link to="/tutorial" className={`${btnClass} w-full sm:w-auto`}>
-              ← All Tutorials
+              <ArrowLeft />
+              All Tutorials
             </Link>
             <Link
               to="/tutorial/1-beginning"
               className={`${btnSolidClass} w-full sm:w-auto`}
             >
-              Part 1: Understanding Deepity →
+              Part 1: Understanding Deepity
+              <ArrowRight />
             </Link>
           </div>
         </div>

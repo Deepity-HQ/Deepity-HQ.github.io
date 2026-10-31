@@ -1,4 +1,5 @@
-import { lazy, memo, Suspense, useState } from "react";
+import { lazy, memo, Suspense } from "react";
+import CopyButton from "./CopyButton.tsx";
 
 const HighlightedCode = lazy(() => import("./HighlightedCode.tsx"));
 
@@ -15,33 +16,6 @@ export const codeBoxStyle = {
   background: "#0c0c0d",
   borderRadius: 0,
 };
-
-function CopyButton({ code, label }: { code: string; label: string }) {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(code);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
-    } catch {
-      /* clipboard unavailable; ignore */
-    }
-  };
-
-  return (
-    <button
-      type="button"
-      onClick={handleCopy}
-      aria-label={`Copy ${label} code`}
-      className={`Michroma cursor-pointer border-0 bg-transparent px-1 text-xs uppercase tracking-[0.05em] transition-colors ${
-        copied ? "text-fuchsia-400" : "text-white/70 hover:text-white"
-      }`}
-    >
-      {copied ? "Copied" : "Copy"}
-    </button>
-  );
-}
 
 type CodeBlockProps = {
   language: "python" | "bash";

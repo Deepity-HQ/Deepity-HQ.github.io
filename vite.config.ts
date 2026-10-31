@@ -12,4 +12,8 @@ export default defineConfig({
     prerenderMeta(),
     babel({ presets: [reactCompilerPreset()] })
   ],
+  build: {
+    // The home page chunk is ~1 MB because it carries three.js for the wave
+    chunkSizeWarningLimit: 1100,
+  },
 })

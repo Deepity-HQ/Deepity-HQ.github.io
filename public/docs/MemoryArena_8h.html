@@ -115,14 +115,19 @@ $(function(){initNavTree('MemoryArena_8h.html','',''); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:Deep_3A_3AMemoryArena" id="r_Deep_3A_3AMemoryArena"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classDeep_1_1MemoryArena.html">Deep::MemoryArena</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 64-byte-aligned bump-pointer allocator over a single contiguous block of host memory. Every chunk handed out via <a class="el" href="classDeep_1_1MemoryArena.html#af78e70321c76b968facf3b65ec30c338" title="Allocates a 64-byte aligned chunk of floats from the arena.">AllocateFloats()</a> is itself 64-byte aligned, satisfying this codebase's strict alignment requirement for AVX2/AVX-512 loads.  <a href="classDeep_1_1MemoryArena.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Deep_3A_3AMemoryArenaT_3C_20T_20_3E" id="r_Deep_3A_3AMemoryArenaT_3C_20T_20_3E"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classDeep_1_1MemoryArenaT.html">Deep::MemoryArenaT&lt; T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 64-byte-aligned bump-pointer allocator over a single contiguous block of host memory, generic over the element type <span class="tt">T</span> it hands out. Every chunk handed out via <a class="el" href="classDeep_1_1MemoryArenaT.html#a9e134ca03bcaddbdec42341582cac401" title="Allocates a 64-byte aligned chunk of num_elements elements of type T from the arena.">Allocate()</a> is itself 64-byte aligned, satisfying this codebase's strict alignment requirement for AVX2/AVX-512 loads.  <a href="classDeep_1_1MemoryArenaT.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:Deep" id="r_Deep"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep.html">Deep</a></td></tr>
 <tr class="memdesc:namespaceDeep"><td class="mdescLeft">&#160;</td><td class="mdescRight">This file exists to provide both <a class="el" href="Tensor_8h.html" title="A device-aware, RAII-managed buffer. Device is fixed at construction, there is no support for moving ...">Tensor.h</a> and <a class="el" href="IComputeBackend_8h.html">IComputeBackend.h</a> with device types without introducing circular dependencies. <br /></td></tr>
 <tr class="memitem:Deep_3A_3Adetail" id="r_Deep_3A_3Adetail"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep_1_1detail.html">Deep::detail</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a2b91a923456ba8bdffaf35f36d0988d4" id="r_a2b91a923456ba8bdffaf35f36d0988d4"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4">Deep::MemoryArena</a> = <a class="el" href="classDeep_1_1MemoryArenaT.html">MemoryArenaT</a>&lt;float&gt;</td></tr>
+<tr class="memdesc:a2b91a923456ba8bdffaf35f36d0988d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Non-templated alias preserving every existing caller's behavior exactly: <span class="tt"><a class="el" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: MemoryArena is MemoryArenaT&lt;...">MemoryArena</a></span> is <span class="tt"><a class="el" href="classDeep_1_1MemoryArenaT.html" title="A 64-byte-aligned bump-pointer allocator over a single contiguous block of host memory,...">MemoryArenaT</a>&lt;float&gt;</span>, bit-for-bit identical to this class before it was templated.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -137,9 +142,9 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A 64-byte-aligned bump-pointer allocator over a single heap-allocated block, used to pack every layer's beliefs/errors/ weights/scratch buffers into one contiguous region for cache locality (see the "Contiguous Arena Allocator" design note in the project README). Host-side counterpart to <a class="el" href="DeviceMemoryArena_8h.html" title="A 64-byte-aligned bump-pointer allocator over a single device buffer, mirroring this codebase&#39;s host-...">DeviceMemoryArena.h</a>'s CUDA version. </p>
-<dl class="section note"><dt>Note</dt><dd>Individual chunks handed out by AllocateFloats() cannot be freed independently, the entire arena is released at once in the destructor, matching the bump-pointer/no-reclaim design used throughout this codebase's memory arenas. </dd></dl>
-<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>2026-06-30 </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Individual chunks handed out by Allocate() cannot be freed independently, the entire arena is released at once in the destructor, matching the bump-pointer/no-reclaim design used throughout this codebase's memory arenas. </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.1 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2026-10-26 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Jack Rose </dd></dl>
 </div></div><!-- contents -->
 </div><!-- doc-content -->

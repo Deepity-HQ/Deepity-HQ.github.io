@@ -1,7 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Link } from "react-router";
 import PageHeader from "../Components/PageHeader.tsx";
-import Reveal from "../Components/Reveal.tsx";
 import PCStepper from "../Components/PCStepper.tsx";
 import {
   bodyClass,
@@ -10,6 +9,7 @@ import {
   glassClass,
   labelClass,
 } from "../Components/ui.ts";
+import { ArrowRight, ArrowUpRight } from "../Components/ArrowIcons.tsx";
 
 const PCNRepresentation = lazy(() => import("../Components/PCNRepresentation.tsx"));
 
@@ -55,16 +55,14 @@ export default function Theory() {
     <div>
       <PageHeader
         title="How predictive coding works"
-        eyebrow="Core Concepts & Math"
       >
         The idea behind Deepity and the equations it implements. The tutorials
         cover the same ground in more detail.
       </PageHeader>
 
       <div className="mx-auto max-w-[1000px] px-5 pb-16 md:px-8">
-        <Reveal className={`${glassClass} p-8 md:p-12`}>
+        <div className={`pt-2`}>
           <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-[#8b7cff] to-[#7dd3fc]" />
-          <div className={`${labelClass} mb-3 !text-[#a99bff]`}>Architecture</div>
           <h2 className="Michroma m-0 text-2xl tracking-[-0.02em] md:text-3xl font-normal text-white">
             Learning from local errors
           </h2>
@@ -78,20 +76,19 @@ export default function Theory() {
             theory: the brain keeps generating predictions about incoming
             signals and corrects its internal model from the errors.
           </p>
-        </Reveal>
+        </div>
 
-        <Reveal className="mt-6">
+        <div className="mt-6">
           <PCStepper />
-        </Reveal>
+        </div>
 
-        <Reveal className="mt-6">
+        <div className="mt-6">
           <Suspense fallback={<div className="h-48 rounded-2xl border border-white/10 bg-[#0c0c0d]" />}>
             <PCNRepresentation />
           </Suspense>
-        </Reveal>
+        </div>
 
-        <Reveal className={`${glassClass} mt-6 p-8 md:p-12`}>
-          <div className={`${labelClass} mb-3`}>Complexity Analysis</div>
+        <div className={`mt-14 border-t border-white/10 pt-10`}>
           <h2 className="Michroma m-0 text-2xl tracking-[-0.02em] md:text-3xl font-normal text-white">
             Where the cost comes from
           </h2>
@@ -155,10 +152,9 @@ export default function Theory() {
             the constant factors with a C++ core, SIMD kernels on the CPU and a
             CUDA backend for NVIDIA GPUs.
           </p>
-        </Reveal>
+        </div>
 
-        <Reveal className="mt-12">
-          <div className={`${labelClass} mb-3`}>Key Advantages</div>
+        <div className="mt-12">
           <h2 className="Michroma m-0 text-2xl tracking-[-0.02em] md:text-3xl font-normal text-white">
             What it offers
           </h2>
@@ -212,10 +208,9 @@ export default function Theory() {
             These are arguments for the approach. Deepity&apos;s own results so
             far cover training speed and MNIST accuracy.
           </p>
-        </Reveal>
+        </div>
 
-        <Reveal className={`${glassClass} card-interactive mt-12 p-8 md:p-10`}>
-          <div className={`${labelClass} mb-3`}>Literature & Resources</div>
+        <div className={`mt-14 border-t border-white/10 pt-10`}>
           <h3 className="Michroma m-0 text-xl md:text-2xl font-normal text-white">
             Further reading
           </h3>
@@ -231,9 +226,7 @@ export default function Theory() {
                 <span className="Jura text-sm font-medium text-white group-hover:text-[#a99bff] transition-colors">
                   {r.title}
                 </span>
-                <span className="text-white/70 group-hover:text-[#a99bff] transition-colors text-base ml-2">
-                  ↗
-                </span>
+                <ArrowUpRight className="ml-2 text-white/70 transition-colors group-hover:text-[#a99bff]" />
               </a>
             ))}
           </div>
@@ -242,10 +235,11 @@ export default function Theory() {
               Start the tutorials
             </Link>
             <Link to="/about" className={btnClass}>
-              About Deepity →
+              About Deepity
+              <ArrowRight />
             </Link>
           </div>
-        </Reveal>
+        </div>
       </div>
     </div>
   );

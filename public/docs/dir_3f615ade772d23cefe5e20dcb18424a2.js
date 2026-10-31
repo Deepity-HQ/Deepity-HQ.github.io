@@ -7,5 +7,6 @@ var dir_3f615ade772d23cefe5e20dcb18424a2 =
     [ "CPUBackendHighway.h", "CPUBackendHighway_8h.html", "CPUBackendHighway_8h" ],
     [ "CPUBackendLibxsmm.cpp", "CPUBackendLibxsmm_8cpp.html", "CPUBackendLibxsmm_8cpp" ],
     [ "CPUBackendLibxsmm.h", "CPUBackendLibxsmm_8h.html", "CPUBackendLibxsmm_8h" ],
+    [ "CPUBackendT.cpp", "CPUBackendT_8cpp.html", null ],
     [ "Tensor.cpp", "Tensor_8cpp.html", null ]
 ];

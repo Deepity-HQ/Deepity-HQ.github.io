@@ -5,6 +5,7 @@ var dir_f1cdc27c756738241bd9f578c8408128 =
     [ "ActivationType.h", "ActivationType_8h.html", "ActivationType_8h" ],
     [ "AdamOptimizer.h", "AdamOptimizer_8h.html", "AdamOptimizer_8h" ],
     [ "DeviceMemoryArena.h", "DeviceMemoryArena_8h.html", "DeviceMemoryArena_8h" ],
+    [ "DTypeTag.h", "DTypeTag_8h.html", "DTypeTag_8h" ],
     [ "Im2Col.h", "Im2Col_8h.html", "Im2Col_8h" ],
     [ "LayerBindHelpers.h", "LayerBindHelpers_8h.html", "LayerBindHelpers_8h" ],
     [ "MaxPool2D.h", "MaxPool2D_8h.html", "MaxPool2D_8h" ],
@@ -12,6 +13,7 @@ var dir_f1cdc27c756738241bd9f578c8408128 =
     [ "ModelIO.h", "ModelIO_8h.html", "ModelIO_8h" ],
     [ "Optimize.h", "Optimize_8h.html", "Optimize_8h" ],
     [ "Profile.h", "Profile_8h.html", "Profile_8h" ],
+    [ "QuantFormat.h", "QuantFormat_8h.html", "QuantFormat_8h" ],
     [ "RandomizeDistribution.h", "RandomizeDistribution_8h.html", "RandomizeDistribution_8h" ],
     [ "StreamAlignedBatcher.h", "StreamAlignedBatcher_8h.html", "StreamAlignedBatcher_8h" ],
     [ "Timer.h", "Timer_8h.html", "Timer_8h" ]
