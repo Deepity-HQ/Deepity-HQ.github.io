@@ -121,7 +121,6 @@ const DottedWave = () => {
   const glowMaterialRef = useRef<THREE.PointsMaterial>(null);
   const glowTexture = useMemo(() => createGlowTexture(), []);
   const colorHelper = useMemo(() => new THREE.Color(), []);
-  const flightDirection = useMemo(() => new THREE.Vector3(), []);
   const cameraForward = useMemo(() => new THREE.Vector3(), []);
   const scrollProgress = useRef(0);
   const animatedProgress = useRef(0);
@@ -136,6 +135,7 @@ const DottedWave = () => {
     glowColors,
     haloIndex,
     standouts,
+    scatter,
     lineCrests,
     lineTerrain,
     zTerrainDynamic,
@@ -148,6 +148,14 @@ const DottedWave = () => {
     const col = new Float32Array(numParticles * 3);
     const glowCol = new Float32Array(numParticles * 3);
     const standoutFlags = new Float32Array(numParticles);
+    // per dot: random direction (x, y, z) for the scroll-out, and a 0-1 seed
+    const scatterValues = new Float32Array(numParticles * 4);
+    for (let n = 0; n < numParticles; n++) {
+      scatterValues[n * 4] = Math.random() * 2 - 1;
+      scatterValues[n * 4 + 1] = Math.random() * 2 - 1;
+      scatterValues[n * 4 + 2] = Math.random() * 2 - 1;
+      scatterValues[n * 4 + 3] = Math.random();
+    }
 
     let i = 0;
     for (let ix = 0; ix < gridX; ix++) {
@@ -192,6 +200,7 @@ const DottedWave = () => {
       glowColors: glowCol,
       haloIndex: new Uint32Array(halo),
       standouts: standoutFlags,
+      scatter: scatterValues,
       lineCrests: new Float32Array(gridX * crests.length * CREST_STRIDE),
       lineTerrain: new Float32Array(gridX * TERRAIN_STRIDE),
       zTerrainDynamic: new Float32Array(gridZ * 2),
@@ -240,7 +249,7 @@ const DottedWave = () => {
     );
     const dispersion = animatedProgress.current;
     const gone = dispersion >= 0.99;
-    const opacity = gone ? 0 : 1 - dispersion;
+    const opacity = gone ? 0 : 1 - smooth(0.1, 0.98, dispersion);
     if (materialRef.current) materialRef.current.opacity = opacity;
     if (glowMaterialRef.current) glowMaterialRef.current.opacity = opacity;
     points.visible = !gone;
@@ -351,20 +360,38 @@ const DottedWave = () => {
         const edgeFade = edgeLine * edgeZ[iz];
 
         if (dispersion > 0.002) {
-          const distanceFromCenter = Math.hypot(x, y + 1, z) || 1;
-          const flightDistance = dispersion * (18 + ((i * 37) % 13));
-          flightDirection.set(
-            x / distanceFromCenter,
-            (y + 1) / distanceFromCenter,
-            z / distanceFromCenter,
-          );
-          const towardScene = flightDirection.dot(cameraForward);
-          if (towardScene < 0.25) {
-            flightDirection.addScaledVector(cameraForward, 0.25 - towardScene);
+          // Every dot leaves on its own schedule, along its own path, so the
+          // wave's lines break apart and scatter instead of sliding out intact
+          const sx = scatter[i * 4];
+          const sy = scatter[i * 4 + 1];
+          const sz = scatter[i * 4 + 2];
+          const seed = scatter[i * 4 + 3];
+          const delay = 0.3 * seed;
+          const p = Math.min(Math.max((dispersion - delay) / (1 - delay), 0), 1);
+          if (p <= 0) {
+            posArray[i * 3] = x;
+            posArray[i * 3 + 1] = y;
+            posArray[i * 3 + 2] = z;
+          } else {
+            const eased = p * p * (3 - 2 * p);
+            const cy = y + 1;
+            const radial = Math.hypot(x, cy, z) || 1;
+            const planar = Math.hypot(x, cy) || 1;
+            // Outward from the middle, pushed on into the scene, with a random
+            // scatter and a gentle shared swirl around the view axis
+            let dx = x / radial + sx * 0.9 - (cy / planar) * 0.6;
+            let dy = cy / radial + sy * 0.9 + (x / planar) * 0.6;
+            let dz = z / radial + sz * 0.9;
+            dx += cameraForward.x * 0.8;
+            dy += cameraForward.y * 0.8;
+            dz += cameraForward.z * 0.8;
+            const dl = Math.hypot(dx, dy, dz) || 1;
+            const reach = 8 + 28 * ((seed * 91.7) % 1);
+            const d = (eased * reach) / dl;
+            posArray[i * 3] = x + dx * d;
+            posArray[i * 3 + 1] = y + dy * d;
+            posArray[i * 3 + 2] = z + dz * d;
           }
-          posArray[i * 3] = x + flightDirection.x * flightDistance;
-          posArray[i * 3 + 1] = y + flightDirection.y * flightDistance;
-          posArray[i * 3 + 2] = z + flightDirection.z * flightDistance;
         } else {
           posArray[i * 3] = x;
           posArray[i * 3 + 1] = y;
