@@ -18,7 +18,7 @@ export const codeBoxStyle = {
 };
 
 type CodeBlockProps = {
-  language: "python" | "bash";
+  language: "python" | "bash" | "cpp";
   code: string;
   icon?: string;
   title: string;

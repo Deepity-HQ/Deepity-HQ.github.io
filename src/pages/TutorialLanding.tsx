@@ -53,6 +53,22 @@ const tutorialsData = [
     img: "/tutorials/wired.webp",
     link: "/tutorial/5-dkppcn",
   },
+  {
+    title: "6. muPC, iPC, and ePC Explained",
+    subtitle: "Hard",
+    description:
+      "A tour of every independent toggle FullPCLayer carries, and what each one actually buys you.",
+    img: "/tutorials/toolset.webp",
+    link: "/tutorial/6-fullpcn",
+  },
+  {
+    title: "7. CIFAR-10 at Depth",
+    subtitle: "Hard",
+    description:
+      "A real debugging session: two genuine bugs, a wrong architecture, and an honest 28% on CIFAR-10.",
+    img: "/tutorials/dartboard.webp",
+    link: "/tutorial/7-cifar-depth",
+  },
 ];
 
 const LEVELS = ["All", "Beginner", "Intermediate", "Hard"];

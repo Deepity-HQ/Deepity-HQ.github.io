@@ -79,6 +79,12 @@ export const routes: RouteMeta[] = [
       "Train a DKPPCN on MNIST and see how direct feedback alignment lets settling converge in far fewer steps.",
   },
   {
+    path: "/tutorial/6-fullpcn",
+    title: "Tutorial 6: muPC, iPC, and ePC Explained · Deepity",
+    description:
+      "A tour of FullPCLayer's independent toggles -- muPC scaling, residual connections, iPC, ePC, momentum, and cross-entropy -- and what each one actually buys you.",
+  },
+  {
     path: "/early-access",
     title: "Request early access · Deepity",
     description:

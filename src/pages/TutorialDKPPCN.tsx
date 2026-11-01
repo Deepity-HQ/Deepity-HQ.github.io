@@ -40,7 +40,7 @@ export default function TutorialDKPPCN() {
   return (
     <div className="subpage-glow min-h-screen px-3 pt-32 pb-12 md:px-6">
       <div className="mx-auto max-w-5xl overflow-hidden rounded-2xl border border-white/10 bg-[#141415]/60 shadow-2xl">
-        <UtilButton backLink="/tutorial/4-cnn" nextLink="/tutorial" />
+        <UtilButton backLink="/tutorial/4-cnn" nextLink="/tutorial/6-fullpcn" />
         <TutorialRail current={5} />
 
         <div className="px-6 py-8 md:px-12 md:py-12">
@@ -215,10 +215,10 @@ export default function TutorialDKPPCN() {
               Part 4: Running a Convolutional PCN
             </Link>
             <Link
-              to="/tutorial"
+              to="/tutorial/6-fullpcn"
               className={`${btnSolidClass} w-full sm:w-auto`}
             >
-              All Tutorials Overview
+              Part 6: muPC, iPC, and ePC Explained
             </Link>
           </div>
         </div>
