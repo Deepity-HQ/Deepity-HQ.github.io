@@ -55,7 +55,7 @@ const tutorialsData = [
   },
   {
     title: "6. muPC, iPC, and ePC Explained",
-    subtitle: "Hard",
+    subtitle: "Intermediate",
     description:
       "A tour of every independent toggle FullPCLayer carries, and what each one actually buys you.",
     img: "/tutorials/toolset.webp",
@@ -66,7 +66,7 @@ const tutorialsData = [
     subtitle: "Hard",
     description:
       "A real debugging session: two genuine bugs, a wrong architecture, and an honest 28% on CIFAR-10.",
-    img: "/tutorials/dartboard.webp",
+    img: "/tutorials/cave.webp",
     link: "/tutorial/7-cifar-depth",
   },
 ];
