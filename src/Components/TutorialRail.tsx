@@ -8,6 +8,8 @@ const STEPS = [
   { n: 3, to: "/tutorial/3-tweaked-xor", written: true },
   { n: 4, to: "/tutorial/4-cnn", written: true },
   { n: 5, to: "/tutorial/5-dkppcn", written: true },
+  { n: 6, to: "/tutorial/6-fullpcn", written: true },
+  { n: 7, to: "/tutorial/7-cifar-depth", written: true },
 ];
 
 function ReadingProgress() {
