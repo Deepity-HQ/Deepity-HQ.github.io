@@ -126,13 +126,13 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('namespaceDeep_
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:af3da503898a70b79185386c34fc3812c" id="r_af3da503898a70b79185386c34fc3812c"><td class="memItemLeft">void *&#160;</td><td class="memItemRight"><a class="el" href="#af3da503898a70b79185386c34fc3812c">AlignedAllocPortable</a> (size_t alignment, size_t size)</td></tr>
-<tr class="memdesc:af3da503898a70b79185386c34fc3812c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates a block of memory aligned to <code class="param">alignment</code> bytes, using whichever aligned-allocation API is reliable on the current platform.  <br /></td></tr>
+<tr class="memdesc:af3da503898a70b79185386c34fc3812c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates a block of memory aligned to <code class="param">alignment</code> bytes, using whichever aligned-allocation API is actually reliable on the current platform (see the comment above for why this can't just be std::aligned_alloc everywhere).  <br /></td></tr>
 <tr class="memitem:aa81d102ebb96772f976ed83e00ae12ca" id="r_aa81d102ebb96772f976ed83e00ae12ca"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aa81d102ebb96772f976ed83e00ae12ca">AlignedFreePortable</a> (void *ptr)</td></tr>
-<tr class="memdesc:aa81d102ebb96772f976ed83e00ae12ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees a block previously returned by <a class="el" href="#af3da503898a70b79185386c34fc3812c" title="Allocates a block of memory aligned to alignment bytes, using whichever aligned-allocation API is rel...">AlignedAllocPortable()</a>.  <br /></td></tr>
+<tr class="memdesc:aa81d102ebb96772f976ed83e00ae12ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees a block previously returned by <a class="el" href="#af3da503898a70b79185386c34fc3812c" title="Allocates a block of memory aligned to alignment bytes, using whichever aligned-allocation API is act...">AlignedAllocPortable()</a>.  <br /></td></tr>
 <tr class="memitem:a55740bbe02647542c1903efc83b81834" id="r_a55740bbe02647542c1903efc83b81834"><td class="memItemLeft">void *&#160;</td><td class="memItemRight"><a class="el" href="#a55740bbe02647542c1903efc83b81834">HugePageAllocPortable</a> (size_t size, bool &amp;succeeded)</td></tr>
-<tr class="memdesc:a55740bbe02647542c1903efc83b81834"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to allocate <code class="param">size</code> bytes backed by huge pages. Opt-in and best-effort: on Linux, requests Transparent Huge Pages via madvise(MADV_HUGEPAGE) on a normal anonymous mmap, a hint to the kernel, not a guarantee. On Windows, requests MEM_LARGE_PAGES via VirtualAlloc, which requires the process to hold SeLockMemoryPrivilege (not granted by default).  <br /></td></tr>
+<tr class="memdesc:a55740bbe02647542c1903efc83b81834"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to allocate <code class="param">size</code> bytes backed by huge pages. This is genuinely opt-in and best-effort: on Linux, requests Transparent Huge Pages via madvise(MADV_HUGEPAGE) on a normal anonymous mmap, this is a HINT to the kernel, not a guarantee, and requires zero system-level configuration (unlike explicit hugetlbfs, which needs pages pre-reserved via /proc/sys/vm/nr_hugepages). On Windows, requests MEM_LARGE_PAGES via VirtualAlloc, which requires the process to hold SeLockMemoryPrivilege, NOT granted by default, so this will typically fail unless explicitly configured by an administrator.  <br /></td></tr>
 <tr class="memitem:a5edbd615eb36b6ac5e0946d1b999d67d" id="r_a5edbd615eb36b6ac5e0946d1b999d67d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a5edbd615eb36b6ac5e0946d1b999d67d">HugePageFreePortable</a> (void *ptr, size_t size)</td></tr>
-<tr class="memdesc:a5edbd615eb36b6ac5e0946d1b999d67d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees a block previously returned by <a class="el" href="#a55740bbe02647542c1903efc83b81834" title="Attempts to allocate size bytes backed by huge pages. Opt-in and best-effort: on Linux,...">HugePageAllocPortable()</a> with succeeded=true.  <br /></td></tr>
+<tr class="memdesc:a5edbd615eb36b6ac5e0946d1b999d67d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees a block previously returned by <a class="el" href="#a55740bbe02647542c1903efc83b81834" title="Attempts to allocate size bytes backed by huge pages. This is genuinely opt-in and best-effort: on Li...">HugePageAllocPortable()</a> with succeeded=true.  <br /></td></tr>
 <tr class="memitem:a933a3b5c4e292bd473c586aeddf9693a" id="r_a933a3b5c4e292bd473c586aeddf9693a"><td class="memTemplParams" colspan="2">template&lt;typename LayerPtr&gt; </td></tr>
 <tr class="memitem:a933a3b5c4e292bd473c586aeddf9693a template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a933a3b5c4e292bd473c586aeddf9693a">SyncFromDeviceIfSupported</a> (LayerPtr &amp;layerPtr)</td></tr>
 <tr class="memitem:a7c5cf6bc95c11f74b44ee386a7bfbd87" id="r_a7c5cf6bc95c11f74b44ee386a7bfbd87"><td class="memTemplParams" colspan="2">template&lt;typename LayerPtr&gt; </td></tr>
@@ -177,7 +177,7 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Allocates a block of memory aligned to <code class="param">alignment</code> bytes, using whichever aligned-allocation API is reliable on the current platform. </p>
+<p>Allocates a block of memory aligned to <code class="param">alignment</code> bytes, using whichever aligned-allocation API is actually reliable on the current platform (see the comment above for why this can't just be std::aligned_alloc everywhere). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">alignment</td><td>Required alignment, in bytes. Must be a valid alignment for the platform's underlying allocator (e.g. a power of two). </td></tr>
@@ -213,10 +213,10 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Frees a block previously returned by <a class="el" href="#af3da503898a70b79185386c34fc3812c" title="Allocates a block of memory aligned to alignment bytes, using whichever aligned-allocation API is rel...">AlignedAllocPortable()</a>. </p>
+<p>Frees a block previously returned by <a class="el" href="#af3da503898a70b79185386c34fc3812c" title="Allocates a block of memory aligned to alignment bytes, using whichever aligned-allocation API is act...">AlignedAllocPortable()</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ptr</td><td>Pointer to free; must have been returned by <a class="el" href="#af3da503898a70b79185386c34fc3812c" title="Allocates a block of memory aligned to alignment bytes, using whichever aligned-allocation API is rel...">AlignedAllocPortable()</a>, not by plain malloc()/new or any other allocator. </td></tr>
+    <tr><td class="paramname">ptr</td><td>Pointer to free; must have been returned by <a class="el" href="#af3da503898a70b79185386c34fc3812c" title="Allocates a block of memory aligned to alignment bytes, using whichever aligned-allocation API is act...">AlignedAllocPortable()</a>, not by plain malloc()/new or any other allocator. </td></tr>
   </table>
   </dd>
 </dl>
@@ -250,11 +250,11 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Attempts to allocate <code class="param">size</code> bytes backed by huge pages. Opt-in and best-effort: on Linux, requests Transparent Huge Pages via madvise(MADV_HUGEPAGE) on a normal anonymous mmap, a hint to the kernel, not a guarantee. On Windows, requests MEM_LARGE_PAGES via VirtualAlloc, which requires the process to hold SeLockMemoryPrivilege (not granted by default). </p>
+<p>Attempts to allocate <code class="param">size</code> bytes backed by huge pages. This is genuinely opt-in and best-effort: on Linux, requests Transparent Huge Pages via madvise(MADV_HUGEPAGE) on a normal anonymous mmap, this is a HINT to the kernel, not a guarantee, and requires zero system-level configuration (unlike explicit hugetlbfs, which needs pages pre-reserved via /proc/sys/vm/nr_hugepages). On Windows, requests MEM_LARGE_PAGES via VirtualAlloc, which requires the process to hold SeLockMemoryPrivilege, NOT granted by default, so this will typically fail unless explicitly configured by an administrator. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">size</td><td>Number of bytes to allocate. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">succeeded</td><td>Set to true if huge-page-backed memory was actually obtained, false otherwise. Never throws on failure, callers should fall back to <a class="el" href="#af3da503898a70b79185386c34fc3812c" title="Allocates a block of memory aligned to alignment bytes, using whichever aligned-allocation API is rel...">AlignedAllocPortable()</a> when this is false. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">succeeded</td><td>Set to true if huge-page-backed memory was actually obtained, false otherwise. Never throws on failure, callers should fall back to <a class="el" href="#af3da503898a70b79185386c34fc3812c" title="Allocates a block of memory aligned to alignment bytes, using whichever aligned-allocation API is act...">AlignedAllocPortable()</a> when this is false. </td></tr>
   </table>
   </dd>
 </dl>
@@ -290,11 +290,11 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Frees a block previously returned by <a class="el" href="#a55740bbe02647542c1903efc83b81834" title="Attempts to allocate size bytes backed by huge pages. Opt-in and best-effort: on Linux,...">HugePageAllocPortable()</a> with succeeded=true. </p>
+<p>Frees a block previously returned by <a class="el" href="#a55740bbe02647542c1903efc83b81834" title="Attempts to allocate size bytes backed by huge pages. This is genuinely opt-in and best-effort: on Li...">HugePageAllocPortable()</a> with succeeded=true. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ptr</td><td>Pointer to free. </td></tr>
-    <tr><td class="paramname">size</td><td>The exact size originally passed to <a class="el" href="#a55740bbe02647542c1903efc83b81834" title="Attempts to allocate size bytes backed by huge pages. Opt-in and best-effort: on Linux,...">HugePageAllocPortable()</a>, required on POSIX systems, where munmap() needs to know the mapping's length. </td></tr>
+    <tr><td class="paramname">size</td><td>The exact size originally passed to <a class="el" href="#a55740bbe02647542c1903efc83b81834" title="Attempts to allocate size bytes backed by huge pages. This is genuinely opt-in and best-effort: on Li...">HugePageAllocPortable()</a>, required on POSIX systems, where munmap() needs to know the mapping's length. </td></tr>
   </table>
   </dd>
 </dl>

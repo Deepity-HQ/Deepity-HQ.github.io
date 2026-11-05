@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('FullPCNetworkT
 </div><!--header-->
 <div class="contents">
 
-<p>Templated counterpart to FullPCNetwork, over the same <span class="tt">T</span> (storage) / <span class="tt">AccumT</span> (optimizer accumulator) pair as FullPCLayerT.  
+<p>Templated counterpart to FullPCNetwork, over the same <span class="tt">T</span> (storage) / <span class="tt">AccumT</span> (optimizer accumulator) pair as FullPCLayerT &ndash; see that class's own doc comment. Produced by mechanically retyping FullPCNetwork's own <span class="tt">float</span> members/parameters to <span class="tt">T</span>/<span class="tt">AccumT</span>, NOT a reimplementation: every method here must stay line-for-line equivalent to FullPCNetwork's own method bodies, so that FullPCNetworkT&lt;float, float&gt; reproduces FullPCNetwork bit-exactly.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
 <code>#include &lt;cmath&gt;</code><br />
@@ -145,14 +145,15 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('FullPCNetworkT
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:Deep_3A_3AFullPCNetworkT_3C_20T_2C_20AccumT_20_3E" id="r_Deep_3A_3AFullPCNetworkT_3C_20T_2C_20AccumT_20_3E"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classDeep_1_1FullPCNetworkT.html">Deep::FullPCNetworkT&lt; T, AccumT &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Templated counterpart to <a class="el" href="classDeep_1_1FullPCNetwork.html" title="Predictive Coding network combining muPC scaling, optional residual connections, and DKP direct feedb...">FullPCNetwork</a>.  <a href="classDeep_1_1FullPCNetworkT.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Templated counterpart to <a class="el" href="classDeep_1_1FullPCNetwork.html" title="Predictive Coding network combining muPC scaling, optional residual connections, and DKP direct feedb...">FullPCNetwork</a>, see this file's own comment for the full rationale.  <a href="classDeep_1_1FullPCNetworkT.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:Deep" id="r_Deep"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep.html">Deep</a></td></tr>
+<tr class="memdesc:namespaceDeep"><td class="mdescLeft">&#160;</td><td class="mdescRight">This file exists to provide both <a class="el" href="Tensor_8h.html" title="A device-aware, RAII-managed buffer. Device is fixed at construction, there is no support for moving ...">Tensor.h</a> and <a class="el" href="IComputeBackend_8h.html">IComputeBackend.h</a> with device types without introducing circular dependencies. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Templated counterpart to FullPCNetwork, over the same <span class="tt">T</span> (storage) / <span class="tt">AccumT</span> (optimizer accumulator) pair as FullPCLayerT. </p>
+<div class="textblock"><p>Templated counterpart to FullPCNetwork, over the same <span class="tt">T</span> (storage) / <span class="tt">AccumT</span> (optimizer accumulator) pair as FullPCLayerT &ndash; see that class's own doc comment. Produced by mechanically retyping FullPCNetwork's own <span class="tt">float</span> members/parameters to <span class="tt">T</span>/<span class="tt">AccumT</span>, NOT a reimplementation: every method here must stay line-for-line equivalent to FullPCNetwork's own method bodies, so that FullPCNetworkT&lt;float, float&gt; reproduces FullPCNetwork bit-exactly. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">

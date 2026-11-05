@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classDeep_1_1G
 </div><!--header-->
 <div class="contents">
 
-<p>Templated counterpart to <a class="el" href="classDeep_1_1GaussSeidelPCLayer.html" title="PC layer with Gauss-Seidel (sequential-sweep) settling dynamics, in place of the usual simultaneous u...">GaussSeidelPCLayer</a>.  
+<p>Templated counterpart to <a class="el" href="classDeep_1_1GaussSeidelPCLayer.html" title="PC layer with Gauss-Seidel (sequential-sweep) settling dynamics, in place of the usual simultaneous u...">GaussSeidelPCLayer</a>, see this file's own comment for the full rationale.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="GaussSeidelPCLayerT_8h_source.html">GaussSeidelPCLayerT.h</a>&gt;</code></p>
@@ -133,7 +133,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a22a7b1e69388bd0c33e2547ef20fb358" id="r_a22a7b1e69388bd0c33e2547ef20fb358"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a22a7b1e69388bd0c33e2547ef20fb358">GaussSeidelPCLayerT</a> (size_t size, size_t nextSize, size_t batchSize, AccumT learningRate, AccumT inferenceRate, AccumT lmbda, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> aType, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> dType, <a class="el" href="classDeep_1_1IComputeBackendT.html">IComputeBackendT</a>&lt; T, AccumT &gt; *backend=nullptr)</td></tr>
 <tr class="memitem:ae5c820fad0d5e9c03175ad218fb6e1c9" id="r_ae5c820fad0d5e9c03175ad218fb6e1c9"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ae5c820fad0d5e9c03175ad218fb6e1c9">~GaussSeidelPCLayerT</a> ()=default</td></tr>
 <tr class="memitem:ac9c4c25841f87211dd9498572d0f00b9" id="r_ac9c4c25841f87211dd9498572d0f00b9"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac9c4c25841f87211dd9498572d0f00b9">UpdateState</a> () noexcept</td></tr>
-<tr class="memdesc:ac9c4c25841f87211dd9498572d0f00b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Step 1 of a Gauss-Seidel timestep: updates z using mu/e_above held over from the end of the previous timestep. Does NOT mutate mu.  <br /></td></tr>
+<tr class="memdesc:ac9c4c25841f87211dd9498572d0f00b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Step 1 of a Gauss-Seidel timestep: updates z using mu/e_above held over from the end of the previous timestep. Does NOT mutate mu. See <a class="el" href="classDeep_1_1GaussSeidelPCLayer.html#ad8a166dd2069cd5244bea6e3fa940727" title="Step 1: the actual z-update. See class-level docs for the required three-sweep calling order.">GaussSeidelPCLayer::UpdateState()</a>'s own doc comment for the required calling order.  <br /></td></tr>
 <tr class="memitem:a67eb93ff3ede02060f4d56c88044740b" id="r_a67eb93ff3ede02060f4d56c88044740b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a67eb93ff3ede02060f4d56c88044740b">ComputePrediction</a> () noexcept</td></tr>
 <tr class="memdesc:a67eb93ff3ede02060f4d56c88044740b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Step 2: recomputes mu fresh from the z just updated by <a class="el" href="#ac9c4c25841f87211dd9498572d0f00b9" title="Step 1 of a Gauss-Seidel timestep: updates z using mu/e_above held over from the end of the previous ...">UpdateState()</a> in this same timestep.  <br /></td></tr>
 <tr class="memitem:ac44342052f8298483b51b41b3018c256" id="r_ac44342052f8298483b51b41b3018c256"><td class="memItemLeft">AccumT&#160;</td><td class="memItemRight"><a class="el" href="#ac44342052f8298483b51b41b3018c256">ComputeError</a> (bool needEnergy=true) noexcept</td></tr>
@@ -171,7 +171,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abdd215144e82df674d1cc4f073461eb3" id="r_abdd215144e82df674d1cc4f073461eb3"><td class="memItemLeft">const <a class="el" href="#a22a7b1e69388bd0c33e2547ef20fb358">GaussSeidelPCLayerT</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#abdd215144e82df674d1cc4f073461eb3">GetLayerAbove</a> () const noexcept</td></tr>
 <tr class="memitem:ac0a53edc3743f344e3a8e6cd156aed79" id="r_ac0a53edc3743f344e3a8e6cd156aed79"><td class="memItemLeft">const <a class="el" href="#a22a7b1e69388bd0c33e2547ef20fb358">GaussSeidelPCLayerT</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ac0a53edc3743f344e3a8e6cd156aed79">GetLayerBelow</a> () const noexcept</td></tr>
 <tr class="memitem:a3d493d22afa17b370fa5f6ce2588dc2d" id="r_a3d493d22afa17b370fa5f6ce2588dc2d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a3d493d22afa17b370fa5f6ce2588dc2d">RandomizeWeights</a> (std::mt19937 &amp;twister, const char *distribution=&quot;normal&quot;) noexcept</td></tr>
-<tr class="memdesc:a3d493d22afa17b370fa5f6ce2588dc2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Randomizes this layer's weights. <code class="param">distribution</code> applies to W only; E always uses its own fixed uniform(-0.3,0.3) init.  <br /></td></tr>
+<tr class="memdesc:a3d493d22afa17b370fa5f6ce2588dc2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Randomizes this layer's weights (and the E feedback-alignment matrix) in place. See <a class="el" href="classDeep_1_1GaussSeidelPCLayer.html#aa30a83187494064e2eb93c310c2168ae" title="Randomizes this layer&#39;s weights (and the E feedback-alignment matrix) in place.">GaussSeidelPCLayer::RandomizeWeights()</a>'s own doc comment: E keeps its own fixed uniform(-0.3,0.3) init regardless of <span class="tt">distribution</span>.  <br /></td></tr>
 <tr class="memitem:aefb022d6f446151e0ceb6a65602ba177" id="r_aefb022d6f446151e0ceb6a65602ba177"><td class="memItemLeft"><a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a>&#160;</td><td class="memItemRight"><a class="el" href="#aefb022d6f446151e0ceb6a65602ba177">GetActivationType</a> () const noexcept</td></tr>
 <tr class="memitem:a99abb2c078e1f3c6c461d5b50052e1d0" id="r_a99abb2c078e1f3c6c461d5b50052e1d0"><td class="memItemLeft"><a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a>&#160;</td><td class="memItemRight"><a class="el" href="#a99abb2c078e1f3c6c461d5b50052e1d0">GetDerivativeType</a> () const noexcept</td></tr>
 <tr class="memitem:a42ff7d15cc43a9c36a14b93cc56194e8" id="r_a42ff7d15cc43a9c36a14b93cc56194e8"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a42ff7d15cc43a9c36a14b93cc56194e8">GetRequiredElements</a> () const noexcept</td></tr>
@@ -220,7 +220,7 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a3fb5abe7185add299407b72c5089197f" id="r_a3fb5abe7185add299407b72c5089197f"><td class="memItemLeft">T *&#160;</td><td class="memItemRight"><a class="el" href="#a3fb5abe7185add299407b72c5089197f">z</a> = nullptr</td></tr>
 <tr class="memdesc:a3fb5abe7185add299407b72c5089197f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal state (belief).  <br /></td></tr>
 <tr class="memitem:a9b051fa397013c058a1657fa905c182c" id="r_a9b051fa397013c058a1657fa905c182c"><td class="memItemLeft">T *&#160;</td><td class="memItemRight"><a class="el" href="#a9b051fa397013c058a1657fa905c182c">mu</a> = nullptr</td></tr>
-<tr class="memdesc:a9b051fa397013c058a1657fa905c182c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This layer's own outgoing prediction. Stays clean and activated at all times, never mutated into a derivative.  <br /></td></tr>
+<tr class="memdesc:a9b051fa397013c058a1657fa905c182c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This layer's own outgoing prediction. Stays clean and activated at all times, never mutated into a derivative &ndash; see <a class="el" href="GaussSeidelPCLayer_8h.html" title="A PC layer whose settling dynamics follow a Gauss-Seidel (sequential-sweep) update,...">GaussSeidelPCLayer.h</a>'s own class comment.  <br /></td></tr>
 <tr class="memitem:a2c159e50550e07c6ffbd7cbd7b63e3b3" id="r_a2c159e50550e07c6ffbd7cbd7b63e3b3"><td class="memItemLeft">T *&#160;</td><td class="memItemRight"><a class="el" href="#a2c159e50550e07c6ffbd7cbd7b63e3b3">preact</a> = nullptr</td></tr>
 <tr class="memdesc:a2c159e50550e07c6ffbd7cbd7b63e3b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">mu's pre-activation value, held over across timesteps the same way mu itself is.  <br /></td></tr>
 <tr class="memitem:a5e9dc7b0532b42fe9f22025d8f42b46c" id="r_a5e9dc7b0532b42fe9f22025d8f42b46c"><td class="memItemLeft">T *&#160;</td><td class="memItemRight"><a class="el" href="#a5e9dc7b0532b42fe9f22025d8f42b46c">E</a> = nullptr</td></tr>
@@ -252,7 +252,7 @@ Protected Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T, typename AccumT = T&gt;<br />
-class Deep::GaussSeidelPCLayerT&lt; T, AccumT &gt;</div><p>Templated counterpart to <a class="el" href="classDeep_1_1GaussSeidelPCLayer.html" title="PC layer with Gauss-Seidel (sequential-sweep) settling dynamics, in place of the usual simultaneous u...">GaussSeidelPCLayer</a>. </p>
+class Deep::GaussSeidelPCLayerT&lt; T, AccumT &gt;</div><p>Templated counterpart to <a class="el" href="classDeep_1_1GaussSeidelPCLayer.html" title="PC layer with Gauss-Seidel (sequential-sweep) settling dynamics, in place of the usual simultaneous u...">GaussSeidelPCLayer</a>, see this file's own comment for the full rationale. </p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="a1eaf5a29003c16d1f66c309e5294226e" name="a1eaf5a29003c16d1f66c309e5294226e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1eaf5a29003c16d1f66c309e5294226e">&#9670;&#160;</a></span>BackendDeleter</h2>
@@ -344,7 +344,7 @@ template&lt;typename T, typename AccumT&gt; </div>
     <tr><td class="paramname">lmbda</td><td>Weight decay (L2 regularization) coefficient </td></tr>
     <tr><td class="paramname">aType</td><td>Activation type </td></tr>
     <tr><td class="paramname">dType</td><td>Activation-derivative type </td></tr>
-    <tr><td class="paramname">backend</td><td>Compute backend to run on; defaults to a new <a class="el" href="classDeep_1_1CPUBackendT.html" title="Templated CPU implementation of IComputeBackendT&lt;T, AccumT&gt;, used by templated layers/networks (FullP...">CPUBackendT&lt;T, AccumT&gt;</a> if nullptr. </td></tr>
+    <tr><td class="paramname">backend</td><td>Compute backend to run on; defaults to a new <a class="el" href="classDeep_1_1CPUBackendT.html" title="Templated CPU implementation of IComputeBackendT&lt;T, AccumT&gt;, used by every templated layer/network in...">CPUBackendT&lt;T, AccumT&gt;</a> if nullptr. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1103,7 +1103,7 @@ template&lt;typename T, typename AccumT&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Randomizes this layer's weights. <code class="param">distribution</code> applies to W only; E always uses its own fixed uniform(-0.3,0.3) init. </p>
+<p>Randomizes this layer's weights (and the E feedback-alignment matrix) in place. See <a class="el" href="classDeep_1_1GaussSeidelPCLayer.html#aa30a83187494064e2eb93c310c2168ae" title="Randomizes this layer&#39;s weights (and the E feedback-alignment matrix) in place.">GaussSeidelPCLayer::RandomizeWeights()</a>'s own doc comment: E keeps its own fixed uniform(-0.3,0.3) init regardless of <span class="tt">distribution</span>. </p>
 
 </div>
 </div>
@@ -1352,7 +1352,7 @@ template&lt;typename T, typename AccumT&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Step 1 of a Gauss-Seidel timestep: updates z using mu/e_above held over from the end of the previous timestep. Does NOT mutate mu. </p>
+<p>Step 1 of a Gauss-Seidel timestep: updates z using mu/e_above held over from the end of the previous timestep. Does NOT mutate mu. See <a class="el" href="classDeep_1_1GaussSeidelPCLayer.html#ad8a166dd2069cd5244bea6e3fa940727" title="Step 1: the actual z-update. See class-level docs for the required three-sweep calling order.">GaussSeidelPCLayer::UpdateState()</a>'s own doc comment for the required calling order. </p>
 
 </div>
 </div>
@@ -1980,7 +1980,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>This layer's own outgoing prediction. Stays clean and activated at all times, never mutated into a derivative. </p>
+<p>This layer's own outgoing prediction. Stays clean and activated at all times, never mutated into a derivative &ndash; see <a class="el" href="GaussSeidelPCLayer_8h.html" title="A PC layer whose settling dynamics follow a Gauss-Seidel (sequential-sweep) update,...">GaussSeidelPCLayer.h</a>'s own class comment. </p>
 
 </div>
 </div>

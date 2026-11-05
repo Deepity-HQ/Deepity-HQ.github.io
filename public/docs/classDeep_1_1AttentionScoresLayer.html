@@ -138,7 +138,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8acbe8853dfdf9cd0f98825613a91205" id="r_a8acbe8853dfdf9cd0f98825613a91205"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a8acbe8853dfdf9cd0f98825613a91205">CalculateState</a> (bool needEnergy) noexcept</td></tr>
 <tr class="memdesc:a8acbe8853dfdf9cd0f98825613a91205"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes e = z - softmax(mu) (row-wise over the key dimension), and optionally this layer's total categorical energy.  <br /></td></tr>
 <tr class="memitem:a2ed73f7cedc389b28de460a6d22a2274" id="r_a2ed73f7cedc389b28de460a6d22a2274"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a2ed73f7cedc389b28de460a6d22a2274">UpdateState</a> (float ir, const float *eAbove, const float *vBeliefs) noexcept</td></tr>
-<tr class="memdesc:a2ed73f7cedc389b28de460a6d22a2274"><td class="mdescLeft">&#160;</td><td class="mdescRight">Settles z one Euler step: z += ir * (feedback - e), where feedback is the top-down signal from <a class="el" href="classDeep_1_1AttentionOutputLayer.html" title="Attention-output node: mu[b,i,:] = sum_j attnZ[b,i,j] * V[b,j,:], settled via the ordinary Gaussian e...">AttentionOutputLayer</a> above (feedback[b,i,j] = sum_d e_above[b,i,d] * V[b,j,d], i.e. e_above projected through V^T). With no layer above (vBeliefs == nullptr), reduces to plain z += -ir * e.  <br /></td></tr>
+<tr class="memdesc:a2ed73f7cedc389b28de460a6d22a2274"><td class="mdescLeft">&#160;</td><td class="mdescRight">Settles z one Euler step: z += ir * (feedback - e), where feedback is the top-down signal from <a class="el" href="classDeep_1_1AttentionOutputLayer.html" title="Attention-output node: mu[b,i,:] = sum_j attnZ[b,i,j] * V[b,j,:], settled via the ordinary Gaussian e...">AttentionOutputLayer</a> above (feedback[b,i,j] = sum_d e_above[b,i,d] * V[b,j,d], i.e. e_above projected through V^T &ndash; the Jacobian of mu_output = attnZ @ V w.r.t. attnZ, no activation derivative needed since that product is already linear in attnZ). With no layer above (vBeliefs == nullptr), reduces to plain z += -ir * e.  <br /></td></tr>
 <tr class="memitem:a4600bc431fe98682d17becb2aa7d3792" id="r_a4600bc431fe98682d17becb2aa7d3792"><td class="memItemLeft">float *&#160;</td><td class="memItemRight"><a class="el" href="#a4600bc431fe98682d17becb2aa7d3792">GetBeliefs</a> () noexcept</td></tr>
 <tr class="memitem:ad4fed932558c8d2f2c0f1a32bab66ec9" id="r_ad4fed932558c8d2f2c0f1a32bab66ec9"><td class="memItemLeft">const float *&#160;</td><td class="memItemRight"><a class="el" href="#ad4fed932558c8d2f2c0f1a32bab66ec9">GetErrors</a> () const noexcept</td></tr>
 <tr class="memitem:a2bdc0cc91f8d820df386abb76f55cb35" id="r_a2bdc0cc91f8d820df386abb76f55cb35"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a2bdc0cc91f8d820df386abb76f55cb35">GetBatchSize</a> () const noexcept</td></tr>
@@ -181,7 +181,7 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramname">batchSize</td><td>Batch size. </td></tr>
     <tr><td class="paramname">seqLen</td><td>Sequence length (both query and key positions). </td></tr>
     <tr><td class="paramname">headDim</td><td>Per-head feature dimension of Q and K. </td></tr>
-    <tr><td class="paramname">backend</td><td>Compute backend to use; nullptr constructs an owned <a class="el" href="classDeep_1_1CPUBackend.html" title="CPU implementation of IComputeBackend: SIMD (via Activations.h) for elementwise ops,...">CPUBackend</a>. </td></tr>
+    <tr><td class="paramname">backend</td><td>Compute backend to use; nullptr constructs an owned <a class="el" href="classDeep_1_1CPUBackend.html" title="CPU implementation of IComputeBackend: SIMD (via Activations.h) for elementwise ops,...">CPUBackend</a> (CPU-only for v1, matching the current proof-of-concept scope &ndash; see the file doc comment). </td></tr>
   </table>
   </dd>
 </dl>
@@ -468,7 +468,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Settles z one Euler step: z += ir * (feedback - e), where feedback is the top-down signal from <a class="el" href="classDeep_1_1AttentionOutputLayer.html" title="Attention-output node: mu[b,i,:] = sum_j attnZ[b,i,j] * V[b,j,:], settled via the ordinary Gaussian e...">AttentionOutputLayer</a> above (feedback[b,i,j] = sum_d e_above[b,i,d] * V[b,j,d], i.e. e_above projected through V^T). With no layer above (vBeliefs == nullptr), reduces to plain z += -ir * e. </p>
+<p>Settles z one Euler step: z += ir * (feedback - e), where feedback is the top-down signal from <a class="el" href="classDeep_1_1AttentionOutputLayer.html" title="Attention-output node: mu[b,i,:] = sum_j attnZ[b,i,j] * V[b,j,:], settled via the ordinary Gaussian e...">AttentionOutputLayer</a> above (feedback[b,i,j] = sum_d e_above[b,i,d] * V[b,j,d], i.e. e_above projected through V^T &ndash; the Jacobian of mu_output = attnZ @ V w.r.t. attnZ, no activation derivative needed since that product is already linear in attnZ). With no layer above (vBeliefs == nullptr), reduces to plain z += -ir * e. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ir</td><td>Inference rate (Euler step size). </td></tr>

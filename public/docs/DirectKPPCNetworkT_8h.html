@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('DirectKPPCNetw
 </div><!--header-->
 <div class="contents">
 
-<p>Templated counterpart to DirectKPPCNetwork, over the same <span class="tt">T</span>/<span class="tt">AccumT</span> pair as DirectKPPCLayerT. Orchestrates DirectKPPCLayerT's four DKP-PC phases in order:  
+<p>Templated counterpart to DirectKPPCNetwork, over the same <span class="tt">T</span>/<span class="tt">AccumT</span> pair as DirectKPPCLayerT &ndash; see FullPCNetworkT's own doc comment for the full rationale. Produced by mechanically retyping DirectKPPCNetwork's own <span class="tt">float</span> members/parameters to <span class="tt">T</span>/<span class="tt">AccumT</span>. Orchestrates DirectKPPCLayerT's four DKP-PC phases in the same fixed order DirectKPPCNetwork's own class comment requires:  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="BackendT_8h_source.html">deepity/backend/BackendT.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="DirectKPPCLayerT_8h_source.html">deepity/layers/DirectKPPCLayerT.h</a>&gt;</code><br />
@@ -140,22 +140,23 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('DirectKPPCNetw
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:Deep_3A_3ADirectKPPCNetworkT_3C_20T_2C_20AccumT_20_3E" id="r_Deep_3A_3ADirectKPPCNetworkT_3C_20T_2C_20AccumT_20_3E"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classDeep_1_1DirectKPPCNetworkT.html">Deep::DirectKPPCNetworkT&lt; T, AccumT &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Templated counterpart to <a class="el" href="classDeep_1_1DirectKPPCNetwork.html" title="Predictive Coding network built from DirectKPPCLayer, using Direct Kolen-Pollack feedback alignment (...">DirectKPPCNetwork</a>.  <a href="classDeep_1_1DirectKPPCNetworkT.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Templated counterpart to <a class="el" href="classDeep_1_1DirectKPPCNetwork.html" title="Predictive Coding network built from DirectKPPCLayer, using Direct Kolen-Pollack feedback alignment (...">DirectKPPCNetwork</a>, see this file's own comment for the full rationale.  <a href="classDeep_1_1DirectKPPCNetworkT.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:Deep" id="r_Deep"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep.html">Deep</a></td></tr>
+<tr class="memdesc:namespaceDeep"><td class="mdescLeft">&#160;</td><td class="mdescRight">This file exists to provide both <a class="el" href="Tensor_8h.html" title="A device-aware, RAII-managed buffer. Device is fixed at construction, there is no support for moving ...">Tensor.h</a> and <a class="el" href="IComputeBackend_8h.html">IComputeBackend.h</a> with device types without introducing circular dependencies. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Templated counterpart to DirectKPPCNetwork, over the same <span class="tt">T</span>/<span class="tt">AccumT</span> pair as DirectKPPCLayerT. Orchestrates DirectKPPCLayerT's four DKP-PC phases in order: </p>
+<div class="textblock"><p>Templated counterpart to DirectKPPCNetwork, over the same <span class="tt">T</span>/<span class="tt">AccumT</span> pair as DirectKPPCLayerT &ndash; see FullPCNetworkT's own doc comment for the full rationale. Produced by mechanically retyping DirectKPPCNetwork's own <span class="tt">float</span> members/parameters to <span class="tt">T</span>/<span class="tt">AccumT</span>. Orchestrates DirectKPPCLayerT's four DKP-PC phases in the same fixed order DirectKPPCNetwork's own class comment requires: </p>
 <ol type="1">
 <li>Forward initialization: clamp input, ProjectForward(), clamp target, CalculateTerminalError().</li>
 <li>DirectFeedbackUpdate() on every non-terminal layer.</li>
 <li>Ordinary PC settling (Step()) for inferenceSteps steps.</li>
 <li>UpdateWeights() on every non-terminal layer.</li>
 </ol>
-<p>Has no CUDA graph capture path.</p>
-<dl class="section warning"><dt>Warning</dt><dd>Not yet gradient-checked at the network level. </dd></dl>
+<p>CUDA graph capture is dropped entirely, same reasoning as FullPCNetworkT/SimplePCNetworkT/GaussSeidelPCNetworkT: device==DEVICE_GPU already throws inside CreateBackendT() at construction (no CUDABackendT yet), so there's no graph path to reach here.</p>
+<dl class="section warning"><dt>Warning</dt><dd>Not yet gradient-checked at the network level, same caveat as DirectKPPCNetwork's own class comment. </dd></dl>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">

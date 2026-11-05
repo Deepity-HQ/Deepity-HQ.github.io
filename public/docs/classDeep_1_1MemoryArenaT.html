@@ -141,20 +141,20 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9e134ca03bcaddbdec42341582cac401" id="r_a9e134ca03bcaddbdec42341582cac401"><td class="memItemLeft">T *&#160;</td><td class="memItemRight"><a class="el" href="#a9e134ca03bcaddbdec42341582cac401">Allocate</a> (size_t num_elements)</td></tr>
 <tr class="memdesc:a9e134ca03bcaddbdec42341582cac401"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates a 64-byte aligned chunk of <span class="tt">num_elements</span> elements of type T from the arena.  <br /></td></tr>
 <tr class="memitem:a97a5e9c5fa05a0bad656f4a56c57e78b" id="r_a97a5e9c5fa05a0bad656f4a56c57e78b"><td class="memItemLeft">T *&#160;</td><td class="memItemRight"><a class="el" href="#a97a5e9c5fa05a0bad656f4a56c57e78b">AllocateFloats</a> (size_t num_elements)</td></tr>
-<tr class="memdesc:a97a5e9c5fa05a0bad656f4a56c57e78b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias for <a class="el" href="#a9e134ca03bcaddbdec42341582cac401" title="Allocates a 64-byte aligned chunk of num_elements elements of type T from the arena.">Allocate()</a>. Only meaningful when T=float.  <br /></td></tr>
+<tr class="memdesc:a97a5e9c5fa05a0bad656f4a56c57e78b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Back-compat alias for <a class="el" href="#a9e134ca03bcaddbdec42341582cac401" title="Allocates a 64-byte aligned chunk of num_elements elements of type T from the arena.">Allocate()</a>, kept for every existing (non-templated) caller written against the old <a class="el" href="#a97a5e9c5fa05a0bad656f4a56c57e78b" title="Back-compat alias for Allocate(), kept for every existing (non-templated) caller written against the ...">AllocateFloats()</a> name. Only meaningful when T=float; new templated code should call <a class="el" href="#a9e134ca03bcaddbdec42341582cac401" title="Allocates a 64-byte aligned chunk of num_elements elements of type T from the arena.">Allocate()</a> directly.  <br /></td></tr>
 <tr class="memitem:ab2f97fde15418b221ea7b1b77c9b8e99" id="r_ab2f97fde15418b221ea7b1b77c9b8e99"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#ab2f97fde15418b221ea7b1b77c9b8e99">GetUsedBytes</a> () const</td></tr>
 <tr class="memdesc:ab2f97fde15418b221ea7b1b77c9b8e99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns how many bytes have been allocated from the arena so far.  <br /></td></tr>
 <tr class="memitem:a5ad5d96f6042d10e0d03e73ca86aa509" id="r_a5ad5d96f6042d10e0d03e73ca86aa509"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a5ad5d96f6042d10e0d03e73ca86aa509">GetCapacityBytes</a> () const</td></tr>
 <tr class="memdesc:a5ad5d96f6042d10e0d03e73ca86aa509"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the arena's total capacity.  <br /></td></tr>
 <tr class="memitem:af87a6a7d7ef50a20bc541a0f56c38b80" id="r_af87a6a7d7ef50a20bc541a0f56c38b80"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#af87a6a7d7ef50a20bc541a0f56c38b80">UsedHugePages</a> () const</td></tr>
-<tr class="memdesc:af87a6a7d7ef50a20bc541a0f56c38b80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether this arena's memory is actually huge-page-backed. Can be false even if use_huge_pages was passed to the constructor, if the request wasn't honored.  <br /></td></tr>
+<tr class="memdesc:af87a6a7d7ef50a20bc541a0f56c38b80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether this arena's memory is actually huge-page-backed. Since huge pages are requested on a best-effort basis, this can be false even if use_huge_pages was passed to the constructor, if the request wasn't honored (system lacks configuration/privilege), or the allocation call failed) and the arena silently fell back to the standard aligned allocator instead.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T&gt;<br />
 class Deep::MemoryArenaT&lt; T &gt;</div><p>A 64-byte-aligned bump-pointer allocator over a single contiguous block of host memory, generic over the element type <span class="tt">T</span> it hands out. Every chunk handed out via <a class="el" href="#a9e134ca03bcaddbdec42341582cac401" title="Allocates a 64-byte aligned chunk of num_elements elements of type T from the arena.">Allocate()</a> is itself 64-byte aligned, satisfying this codebase's strict alignment requirement for AVX2/AVX-512 loads. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T</td><td>Element type this arena allocates. <span class="tt"><a class="el" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4" title="Non-templated alias: MemoryArena is MemoryArenaT&lt;float&gt;.">MemoryArena</a></span> (see the alias below) is <span class="tt"><a class="el" href="classDeep_1_1MemoryArenaT.html" title="A 64-byte-aligned bump-pointer allocator over a single contiguous block of host memory,...">MemoryArenaT</a>&lt;float&gt;</span>. </td></tr>
+    <tr><td class="paramname">T</td><td>Element type this arena allocates. <span class="tt"><a class="el" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: MemoryArena is MemoryArenaT&lt;...">MemoryArena</a></span> (see the alias below) is <span class="tt"><a class="el" href="classDeep_1_1MemoryArenaT.html" title="A 64-byte-aligned bump-pointer allocator over a single contiguous block of host memory,...">MemoryArenaT</a>&lt;float&gt;</span>, preserving every existing non-templated caller's behavior exactly; new templated code (<a class="el" href="classDeep_1_1FullPCLayer.html" title="PC layer combining muPC scaling, optional residual connections, and DKP direct feedback,...">FullPCLayer&lt;T&gt;</a>/FullPCNetwork&lt;T&gt;) uses MemoryArenaT&lt;T&gt; directly. </td></tr>
   </table>
   </dd>
 </dl>
@@ -192,7 +192,7 @@ template&lt;typename T&gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">total_elements</td><td>Total number of elements this arena can hand out across all future <a class="el" href="#a9e134ca03bcaddbdec42341582cac401" title="Allocates a 64-byte aligned chunk of num_elements elements of type T from the arena.">Allocate()</a> calls combined. </td></tr>
-    <tr><td class="paramname">use_huge_pages</td><td>Opt-in, best-effort request for huge-page-backed memory. Defaults to false. Falls back safely to the standard aligned allocator if the request isn't honored. </td></tr>
+    <tr><td class="paramname">use_huge_pages</td><td>Opt-in, best-effort request for huge-page-backed memory (see HugePageAllocPortable() for the platform-specific caveats). Defaults to false, preserving existing behavior exactly for anyone not explicitly opting in. Falls back safely to the standard aligned allocator if the request isn't honored, this never causes a hard failure on its own. </td></tr>
   </table>
   </dd>
 </dl>
@@ -332,7 +332,7 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Alias for <a class="el" href="#a9e134ca03bcaddbdec42341582cac401" title="Allocates a 64-byte aligned chunk of num_elements elements of type T from the arena.">Allocate()</a>. Only meaningful when T=float. </p>
+<p>Back-compat alias for <a class="el" href="#a9e134ca03bcaddbdec42341582cac401" title="Allocates a 64-byte aligned chunk of num_elements elements of type T from the arena.">Allocate()</a>, kept for every existing (non-templated) caller written against the old <a class="el" href="#a97a5e9c5fa05a0bad656f4a56c57e78b" title="Back-compat alias for Allocate(), kept for every existing (non-templated) caller written against the ...">AllocateFloats()</a> name. Only meaningful when T=float; new templated code should call <a class="el" href="#a9e134ca03bcaddbdec42341582cac401" title="Allocates a 64-byte aligned chunk of num_elements elements of type T from the arena.">Allocate()</a> directly. </p>
 
 </div>
 </div>
@@ -450,7 +450,7 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Returns whether this arena's memory is actually huge-page-backed. Can be false even if use_huge_pages was passed to the constructor, if the request wasn't honored. </p>
+<p>Returns whether this arena's memory is actually huge-page-backed. Since huge pages are requested on a best-effort basis, this can be false even if use_huge_pages was passed to the constructor, if the request wasn't honored (system lacks configuration/privilege), or the allocation call failed) and the arena silently fell back to the standard aligned allocator instead. </p>
 
 </div>
 </div>

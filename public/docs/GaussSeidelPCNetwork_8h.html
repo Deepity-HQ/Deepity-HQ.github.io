@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('GaussSeidelPCN
 </div><!--header-->
 <div class="contents">
 
-<p>Orchestrates GaussSeidelPCLayer's three-phase settling step, in order, across every layer. Device-aware.  
+<p>Orchestrates GaussSeidelPCLayer's three-phase settling step in the correct order. The layer class alone cannot produce genuine Gauss-Seidel dynamics; the sweep order across layers is what makes it Gauss-Seidel rather than Jacobi, and that only exists at this level. Device-aware (DeviceType constructor parameter, backend member, cpuArena/gpuArena split in Compile()).  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="DeviceType_8h_source.html">deepity/backend/DeviceType.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="IComputeBackend_8h_source.html">deepity/backend/IComputeBackend.h</a>&gt;</code><br />
@@ -145,15 +145,16 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:Deep" id="r_Deep"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep.html">Deep</a></td></tr>
+<tr class="memdesc:namespaceDeep"><td class="mdescLeft">&#160;</td><td class="mdescRight">This file exists to provide both <a class="el" href="Tensor_8h.html" title="A device-aware, RAII-managed buffer. Device is fixed at construction, there is no support for moving ...">Tensor.h</a> and <a class="el" href="IComputeBackend_8h.html">IComputeBackend.h</a> with device types without introducing circular dependencies. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Orchestrates GaussSeidelPCLayer's three-phase settling step, in order, across every layer. Device-aware. </p>
+<div class="textblock"><p>Orchestrates GaussSeidelPCLayer's three-phase settling step in the correct order. The layer class alone cannot produce genuine Gauss-Seidel dynamics; the sweep order across layers is what makes it Gauss-Seidel rather than Jacobi, and that only exists at this level. Device-aware (DeviceType constructor parameter, backend member, cpuArena/gpuArena split in Compile()). </p>
 <p>Per settling step, in order:</p><ol type="1">
-<li>UpdateState() on every layer (uses previous timestep's mu/e)</li>
-<li>ComputePrediction() on every layer (uses this timestep's fresh z)</li>
-<li>ComputeError() on every layer (uses this timestep's fresh z and layerBelow's fresh mu)</li>
+<li>UpdateState() on EVERY layer (uses PREVIOUS timestep's mu/e)</li>
+<li>ComputePrediction() on EVERY layer (uses THIS timestep's fresh z)</li>
+<li>ComputeError() on EVERY layer (uses THIS timestep's fresh z and layerBelow's fresh mu)</li>
 </ol>
-<p>Order among layers within a single sweep does not matter; only the order of the three sweeps themselves is load-bearing. </p>
+<p>Order among layers within a single sweep does not matter: each layer's step-1/2/3 only depends on its own state plus a neighbor's value from a sweep that has already fully completed. Only the order of the three sweeps themselves is load-bearing. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">

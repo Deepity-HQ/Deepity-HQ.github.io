@@ -48,6 +48,9 @@ var NAVTREEINDEX0 =
 "ConvPCLayer_8h.html":[9,0,1,0,1,2],
 "ConvPCLayer_8h_source.html":[9,0,1,0,1,2],
 "ConvPCLayer_math.html":[6],
+"ConvPCLayer_math.html#conv_formulas":[6,0,1],
+"ConvPCLayer_math.html#dense_formulas":[6,0,0],
+"ConvPCLayer_math.html#design_notes":[6,0],
 "ConvPCNetworkT_8h.html":[9,0,1,0,2,1],
 "ConvPCNetworkT_8h_source.html":[9,0,1,0,2,1],
 "ConvPCNetwork_8cpp.html":[9,0,2,2,0],
@@ -246,8 +249,5 @@ var NAVTREEINDEX0 =
 "classDeep_1_1CPUBackend.html#a17f82599e3f41e43490ca8fbb152a096":[7,0,0,8,65],
 "classDeep_1_1CPUBackend.html#a17f82599e3f41e43490ca8fbb152a096":[8,0,0,6,65],
 "classDeep_1_1CPUBackend.html#a19952585273e9977bd9448933e74ce75":[7,0,0,8,23],
-"classDeep_1_1CPUBackend.html#a19952585273e9977bd9448933e74ce75":[8,0,0,6,23],
-"classDeep_1_1CPUBackend.html#a1e129459b87878d0127c7b03b576b035":[7,0,0,8,0],
-"classDeep_1_1CPUBackend.html#a1e129459b87878d0127c7b03b576b035":[8,0,0,6,0],
-"classDeep_1_1CPUBackend.html#a25d526e0867d536d413bc340f16241c7":[7,0,0,8,57]
+"classDeep_1_1CPUBackend.html#a19952585273e9977bd9448933e74ce75":[8,0,0,6,23]
 };

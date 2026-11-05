@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('DTypeTag_8h.ht
 </div><!--header-->
 <div class="contents">
 
-<p>Maps a C++ storage type to its safetensors-style dtype string, for ModelIO's save/load. Add a new specialization here as each new templated T lands.  
+<p>Maps a C++ storage type to its safetensors-style dtype string, for ModelIO's save/load &ndash; see that class's own doc comment on why the dtype now gets authentically derived instead of hardcoded "F32". Add a new specialization here as each new templated T lands (half, the FP4/posit formats, ...); ModelIO itself needs no changes to pick it up, since it reads this trait off the type it already has in hand (a layer's GetStateDict() tensor's own element type).  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="QuantFormat_8h_source.html">deepity/utils/QuantFormat.h</a>&gt;</code><br />
 <code>#include &lt;hwy/base.h&gt;</code><br />
@@ -143,9 +143,10 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:Deep" id="r_Deep"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep.html">Deep</a></td></tr>
+<tr class="memdesc:namespaceDeep"><td class="mdescLeft">&#160;</td><td class="mdescRight">This file exists to provide both <a class="el" href="Tensor_8h.html" title="A device-aware, RAII-managed buffer. Device is fixed at construction, there is no support for moving ...">Tensor.h</a> and <a class="el" href="IComputeBackend_8h.html">IComputeBackend.h</a> with device types without introducing circular dependencies. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Maps a C++ storage type to its safetensors-style dtype string, for ModelIO's save/load. Add a new specialization here as each new templated T lands. </p>
+<div class="textblock"><p>Maps a C++ storage type to its safetensors-style dtype string, for ModelIO's save/load &ndash; see that class's own doc comment on why the dtype now gets authentically derived instead of hardcoded "F32". Add a new specialization here as each new templated T lands (half, the FP4/posit formats, ...); ModelIO itself needs no changes to pick it up, since it reads this trait off the type it already has in hand (a layer's GetStateDict() tensor's own element type). </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">

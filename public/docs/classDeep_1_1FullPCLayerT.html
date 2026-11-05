@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classDeep_1_1F
 </div><!--header-->
 <div class="contents">
 
-<p>Templated counterpart to <a class="el" href="classDeep_1_1FullPCLayer.html" title="PC layer with muPC scaling, optional residual connections, and DKP direct feedback,...">FullPCLayer</a>.  
+<p>Templated counterpart to <a class="el" href="classDeep_1_1FullPCLayer.html" title="PC layer combining muPC scaling, optional residual connections, and DKP direct feedback,...">FullPCLayer</a>, see this file's own comment for the full rationale.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="FullPCLayerT_8h_source.html">FullPCLayerT.h</a>&gt;</code></p>
@@ -138,14 +138,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0d28cec85e37fe8088c7f581dfaa5f3f" id="r_a0d28cec85e37fe8088c7f581dfaa5f3f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a0d28cec85e37fe8088c7f581dfaa5f3f">RandomizeWeights</a> (std::mt19937 &amp;seedGenerator, const char *distribution=&quot;normal&quot;) noexcept</td></tr>
 <tr class="memitem:a8ea495f8baf161158074f1f4aa9bdce2" id="r_a8ea495f8baf161158074f1f4aa9bdce2"><td class="memItemLeft">std::map&lt; std::string, <a class="el" href="structDeep_1_1TensorDescriptorT.html">TensorDescriptorT</a>&lt; T &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a8ea495f8baf161158074f1f4aa9bdce2">GetStateDict</a> () const</td></tr>
 <tr class="memitem:a66bc01dbe7b839785b99b8fb1ccec4ed" id="r_a66bc01dbe7b839785b99b8fb1ccec4ed"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a66bc01dbe7b839785b99b8fb1ccec4ed">SyncStateDictFromDevice</a> () const</td></tr>
-<tr class="memdesc:a66bc01dbe7b839785b99b8fb1ccec4ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies W/b/Psi into the host staging buffers <a class="el" href="#a8ea495f8baf161158074f1f4aa9bdce2">GetStateDict()</a> exposes. Call before reading a <a class="el" href="#a8ea495f8baf161158074f1f4aa9bdce2">GetStateDict()</a> pointer.  <br /></td></tr>
+<tr class="memdesc:a66bc01dbe7b839785b99b8fb1ccec4ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies W/b/Psi from device memory into the host staging buffers <a class="el" href="#a8ea495f8baf161158074f1f4aa9bdce2">GetStateDict()</a> exposes, so a save can read them directly. A plain memcpy on <a class="el" href="classDeep_1_1CPUBackendT.html" title="Templated CPU implementation of IComputeBackendT&lt;T, AccumT&gt;, used by every templated layer/network in...">CPUBackendT</a>, so free to call unconditionally.  <br /></td></tr>
 <tr class="memitem:abee277db821c2c705f0acf09940b2c3c" id="r_abee277db821c2c705f0acf09940b2c3c"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abee277db821c2c705f0acf09940b2c3c">SyncStateDictToDevice</a> ()</td></tr>
-<tr class="memdesc:abee277db821c2c705f0acf09940b2c3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the host staging buffers (after writing into a <a class="el" href="#a8ea495f8baf161158074f1f4aa9bdce2">GetStateDict()</a> pointer) back onto the real W/b/Psi.  <br /></td></tr>
+<tr class="memdesc:abee277db821c2c705f0acf09940b2c3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The reverse of <a class="el" href="#a66bc01dbe7b839785b99b8fb1ccec4ed" title="Copies W/b/Psi from device memory into the host staging buffers GetStateDict() exposes,...">SyncStateDictFromDevice()</a>: pushes the host staging buffers (just overwritten by a load) back on to the actual device-resident W/b/Psi.  <br /></td></tr>
 <tr class="memitem:ac3caf17bd9ec91fed97d0e6c52db9015" id="r_ac3caf17bd9ec91fed97d0e6c52db9015"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac3caf17bd9ec91fed97d0e6c52db9015">SetLayerAbove</a> (<a class="el" href="#a4d4e2bb5bc12024f2d12e03eb8ec4d88">FullPCLayerT</a> *l) noexcept</td></tr>
 <tr class="memitem:abb884f243df022002bffbe3bcff540d8" id="r_abb884f243df022002bffbe3bcff540d8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abb884f243df022002bffbe3bcff540d8">SetLayerBelow</a> (<a class="el" href="#a4d4e2bb5bc12024f2d12e03eb8ec4d88">FullPCLayerT</a> *l) noexcept</td></tr>
 <tr class="memitem:a35eb631db58394e59d26b5d73581ec24" id="r_a35eb631db58394e59d26b5d73581ec24"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a35eb631db58394e59d26b5d73581ec24">SetTerminalLayer</a> (<a class="el" href="#a4d4e2bb5bc12024f2d12e03eb8ec4d88">FullPCLayerT</a> *l) noexcept</td></tr>
 <tr class="memitem:a247ec6e36a8428e70f2c38a77dc4579b" id="r_a247ec6e36a8428e70f2c38a77dc4579b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a247ec6e36a8428e70f2c38a77dc4579b">SetMuPCScale</a> (AccumT a) noexcept</td></tr>
-<tr class="memdesc:a247ec6e36a8428e70f2c38a77dc4579b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the muPC forward-scaling factor and rescales DKP's feedback rate to match.  <br /></td></tr>
 <tr class="memitem:adbb7e4884c0b8dcb83fbe3319b5680b8" id="r_adbb7e4884c0b8dcb83fbe3319b5680b8"><td class="memItemLeft">AccumT&#160;</td><td class="memItemRight"><a class="el" href="#adbb7e4884c0b8dcb83fbe3319b5680b8">GetMuPCScale</a> () const noexcept</td></tr>
 <tr class="memitem:afa291f2ea6c04733b54df61546d200aa" id="r_afa291f2ea6c04733b54df61546d200aa"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#afa291f2ea6c04733b54df61546d200aa">SetMuPCInit</a> (bool enabled) noexcept</td></tr>
 <tr class="memitem:aa1c4ee082061e76d1c905dcc4c3b9c6b" id="r_aa1c4ee082061e76d1c905dcc4c3b9c6b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aa1c4ee082061e76d1c905dcc4c3b9c6b">GetMuPCInit</a> () const noexcept</td></tr>
@@ -154,7 +153,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af9d2288e738ab52b1675b1cf2c468e2c" id="r_af9d2288e738ab52b1675b1cf2c468e2c"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af9d2288e738ab52b1675b1cf2c468e2c">SetCrossEntropy</a> (bool enabled) noexcept</td></tr>
 <tr class="memitem:ac404147e6181a65330e3e3d7095acbef" id="r_ac404147e6181a65330e3e3d7095acbef"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ac404147e6181a65330e3e3d7095acbef">GetCrossEntropy</a> () const noexcept</td></tr>
 <tr class="memitem:a686f48794f94867a238a9f43bdc351c0" id="r_a686f48794f94867a238a9f43bdc351c0"><td class="memItemLeft">AccumT&#160;</td><td class="memItemRight"><a class="el" href="#a686f48794f94867a238a9f43bdc351c0">CalculateState</a> () noexcept</td></tr>
-<tr class="memdesc:a686f48794f94867a238a9f43bdc351c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Always computes real energy.  <br /></td></tr>
+<tr class="memdesc:a686f48794f94867a238a9f43bdc351c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Always computes real energy; not a <a class="el" href="classDeep_1_1Layer.html" title="A deepity layer virtual class.">Layer</a>:: override (see this file's own class comment on why <a class="el" href="classDeep_1_1FullPCLayerT.html" title="Templated counterpart to FullPCLayer, see this file&#39;s own comment for the full rationale.">FullPCLayerT</a> no longer derives from <a class="el" href="classDeep_1_1Layer.html" title="A deepity layer virtual class.">Layer</a>).  <br /></td></tr>
 <tr class="memitem:af7c6d1d08ae11efdb0b6a556882ec2b8" id="r_af7c6d1d08ae11efdb0b6a556882ec2b8"><td class="memItemLeft">AccumT&#160;</td><td class="memItemRight"><a class="el" href="#af7c6d1d08ae11efdb0b6a556882ec2b8">CalculateState</a> (bool needEnergy) noexcept</td></tr>
 <tr class="memitem:ac0b1525fefa2d040e6e5fc9d6a4fab99" id="r_ac0b1525fefa2d040e6e5fc9d6a4fab99"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac0b1525fefa2d040e6e5fc9d6a4fab99">ComputeMuOnly</a> () noexcept</td></tr>
 <tr class="memitem:a8637a099b6c9b4746e7727e2964f162a" id="r_a8637a099b6c9b4746e7727e2964f162a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a8637a099b6c9b4746e7727e2964f162a">UpdateState</a> () noexcept</td></tr>
@@ -202,7 +201,7 @@ Protected Types</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a65d5030313bc2375fe162f1c5971b63e" id="r_a65d5030313bc2375fe162f1c5971b63e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a65d5030313bc2375fe162f1c5971b63e">EnsureStateDictStaging</a> () const noexcept</td></tr>
-<tr class="memdesc:a65d5030313bc2375fe162f1c5971b63e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resizes the host staging buffers above to match W/b/Psi's current shapes. Idempotent, so <a class="el" href="#a8ea495f8baf161158074f1f4aa9bdce2">GetStateDict()</a>, <a class="el" href="#a66bc01dbe7b839785b99b8fb1ccec4ed" title="Copies W/b/Psi into the host staging buffers GetStateDict() exposes. Call before reading a GetStateDi...">SyncStateDictFromDevice()</a>, and <a class="el" href="#abee277db821c2c705f0acf09940b2c3c" title="Copies the host staging buffers (after writing into a GetStateDict() pointer) back onto the real W/b/...">SyncStateDictToDevice()</a> can all call it unconditionally.  <br /></td></tr>
+<tr class="memdesc:a65d5030313bc2375fe162f1c5971b63e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resizes the host staging buffers above to match W/b/Psi's current shapes. Idempotent, so <a class="el" href="#a8ea495f8baf161158074f1f4aa9bdce2">GetStateDict()</a>, <a class="el" href="#a66bc01dbe7b839785b99b8fb1ccec4ed" title="Copies W/b/Psi from device memory into the host staging buffers GetStateDict() exposes,...">SyncStateDictFromDevice()</a>, and <a class="el" href="#abee277db821c2c705f0acf09940b2c3c" title="The reverse of SyncStateDictFromDevice(): pushes the host staging buffers (just overwritten by a load...">SyncStateDictToDevice()</a> can all call it unconditionally.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -223,7 +222,7 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:aecb9bab073700e726f3744723c789bfb" id="r_aecb9bab073700e726f3744723c789bfb"><td class="memItemLeft">AccumT&#160;</td><td class="memItemRight"><a class="el" href="#aecb9bab073700e726f3744723c789bfb">lmbda</a></td></tr>
 <tr class="memdesc:aecb9bab073700e726f3744723c789bfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Weight decay (L2 regularization) coefficient, shared between W and Psi.  <br /></td></tr>
 <tr class="memitem:a393062cd48ec9207567eb02bc87ea1c0" id="r_a393062cd48ec9207567eb02bc87ea1c0"><td class="memItemLeft">AccumT&#160;</td><td class="memItemRight"><a class="el" href="#a393062cd48ec9207567eb02bc87ea1c0">a</a> = AccumT(1)</td></tr>
-<tr class="memdesc:a393062cd48ec9207567eb02bc87ea1c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">muPC forward-scaling factor, see <a class="el" href="#a247ec6e36a8428e70f2c38a77dc4579b" title="Sets the muPC forward-scaling factor and rescales DKP&#39;s feedback rate to match.">SetMuPCScale()</a>.  <br /></td></tr>
+<tr class="memdesc:a393062cd48ec9207567eb02bc87ea1c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">muPC forward-scaling factor, see <a class="el" href="#a247ec6e36a8428e70f2c38a77dc4579b">SetMuPCScale()</a>.  <br /></td></tr>
 <tr class="memitem:a9a9ab41cd596ce2968ef6a73e6ff4d2a" id="r_a9a9ab41cd596ce2968ef6a73e6ff4d2a"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a9a9ab41cd596ce2968ef6a73e6ff4d2a">useResidual</a> = false</td></tr>
 <tr class="memdesc:a9a9ab41cd596ce2968ef6a73e6ff4d2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether the residual/skip connection is enabled, see <a class="el" href="#a1d6338efdf66ddbbc043083b8b6a076d">SetResidual()</a>.  <br /></td></tr>
 <tr class="memitem:a27e11aa6b5bbca80c3dfd3cd4d038054" id="r_a27e11aa6b5bbca80c3dfd3cd4d038054"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a27e11aa6b5bbca80c3dfd3cd4d038054">useMuPCInit</a> = false</td></tr>
@@ -259,12 +258,13 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:af866d5aa3f7b5e3501735b208bd37fd3" id="r_af866d5aa3f7b5e3501735b208bd37fd3"><td class="memItemLeft">T *&#160;</td><td class="memItemRight"><a class="el" href="#af866d5aa3f7b5e3501735b208bd37fd3">cachedMu</a> = nullptr</td></tr>
 <tr class="memdesc:af866d5aa3f7b5e3501735b208bd37fd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cached mu, valid when muCacheValid is true.  <br /></td></tr>
 <tr class="memitem:aba73dcf016ea4c7d436227e2c5ab6802" id="r_aba73dcf016ea4c7d436227e2c5ab6802"><td class="memItemLeft">T *&#160;</td><td class="memItemRight"><a class="el" href="#aba73dcf016ea4c7d436227e2c5ab6802">preact</a> = nullptr</td></tr>
-<tr class="memdesc:aba73dcf016ea4c7d436227e2c5ab6802"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pre-activation snapshot of mu, see <a class="el" href="classDeep_1_1FullPCLayer.html" title="PC layer with muPC scaling, optional residual connections, and DKP direct feedback,...">FullPCLayer</a>'s own doc comment.  <br /></td></tr>
+<tr class="memdesc:aba73dcf016ea4c7d436227e2c5ab6802"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pre-activation snapshot of mu, see <a class="el" href="classDeep_1_1FullPCLayer.html" title="PC layer combining muPC scaling, optional residual connections, and DKP direct feedback,...">FullPCLayer</a>'s own doc comment.  <br /></td></tr>
 <tr class="memitem:a793264f1839fcfee97cd8364e6e03572" id="r_a793264f1839fcfee97cd8364e6e03572"><td class="memItemLeft">T *&#160;</td><td class="memItemRight"><a class="el" href="#a793264f1839fcfee97cd8364e6e03572">cachedPreact</a> = nullptr</td></tr>
+<tr class="memdesc:a793264f1839fcfee97cd8364e6e03572"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cached pre-activation, valid alongside cachedMu.  <br /></td></tr>
 <tr class="memitem:ad7bfc21c409df07ccb927dd08a4e2d16" id="r_ad7bfc21c409df07ccb927dd08a4e2d16"><td class="memItemLeft">std::vector&lt; AccumT &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ad7bfc21c409df07ccb927dd08a4e2d16">derivScratch</a></td></tr>
-<tr class="memdesc:ad7bfc21c409df07ccb927dd08a4e2d16"><td class="mdescLeft">&#160;</td><td class="mdescRight">nextSize-shaped scratch holding f'(preact), kept at AccumT precision (not T) since the raw derivative can underflow to zero at low-precision T.  <br /></td></tr>
+<tr class="memdesc:ad7bfc21c409df07ccb927dd08a4e2d16"><td class="mdescLeft">&#160;</td><td class="mdescRight">nextSize-shaped scratch holding f'(preact).  <br /></td></tr>
 <tr class="memitem:a0160a32cedd13446e94607bac2ffb57c" id="r_a0160a32cedd13446e94607bac2ffb57c"><td class="memItemLeft">std::vector&lt; AccumT &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a0160a32cedd13446e94607bac2ffb57c">feedbackError</a></td></tr>
-<tr class="memdesc:a0160a32cedd13446e94607bac2ffb57c"><td class="mdescLeft">&#160;</td><td class="mdescRight">nextSize-shaped scratch, see <a class="el" href="classDeep_1_1FullPCLayer.html" title="PC layer with muPC scaling, optional residual connections, and DKP direct feedback,...">FullPCLayer</a>'s own doc comment, kept at AccumT precision.  <br /></td></tr>
+<tr class="memdesc:a0160a32cedd13446e94607bac2ffb57c"><td class="mdescLeft">&#160;</td><td class="mdescRight">nextSize-shaped scratch, see <a class="el" href="classDeep_1_1FullPCLayer.html" title="PC layer combining muPC scaling, optional residual connections, and DKP direct feedback,...">FullPCLayer</a>'s own doc comment.  <br /></td></tr>
 <tr class="memitem:ae2fa1489fdf1e6889de3478bd3aded4b" id="r_ae2fa1489fdf1e6889de3478bd3aded4b"><td class="memItemLeft">T *&#160;</td><td class="memItemRight"><a class="el" href="#ae2fa1489fdf1e6889de3478bd3aded4b">Psi</a> = nullptr</td></tr>
 <tr class="memdesc:ae2fa1489fdf1e6889de3478bd3aded4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Direct feedback (DFA) weight matrix, shape [size, terminalSize].  <br /></td></tr>
 <tr class="memitem:ae5f346b6829f49a8f23ac4340b64de30" id="r_ae5f346b6829f49a8f23ac4340b64de30"><td class="memItemLeft">std::vector&lt; AccumT &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ae5f346b6829f49a8f23ac4340b64de30">proj</a></td></tr>
@@ -305,7 +305,7 @@ Protected Attributes</h2></td></tr>
 <tr class="memdesc:af6b282b1dc67f38c063acb3f944f035e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Momentum EMA decay rate, see <a class="el" href="#aeb0fa507d3e5023cfe5ad8b10a223d64">SetMomentum()</a>.  <br /></td></tr>
 <tr class="memitem:a649a8bb4f12e3c3aa129f007b3068a63" id="r_a649a8bb4f12e3c3aa129f007b3068a63"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a649a8bb4f12e3c3aa129f007b3068a63">useCrossEntropy</a> = false</td></tr>
 <tr class="memitem:a9d263b2fdd30277e1e6793615f2b36d3" id="r_a9d263b2fdd30277e1e6793615f2b36d3"><td class="memItemLeft">std::vector&lt; AccumT &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a9d263b2fdd30277e1e6793615f2b36d3">rowEnergies</a></td></tr>
-<tr class="memdesc:a9d263b2fdd30277e1e6793615f2b36d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Per-row energy scratch for the cross-entropy path. Unused on CPU, kept for CUDA-path parity.  <br /></td></tr>
+<tr class="memdesc:a9d263b2fdd30277e1e6793615f2b36d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Per-row energy scratch for the cross-entropy path. Owned directly (not arena-allocated like every other buffer here): it's AccumT-typed, and <a class="el" href="classDeep_1_1CPUBackendT.html" title="Templated CPU implementation of IComputeBackendT&lt;T, AccumT&gt;, used by every templated layer/network in...">CPUBackendT</a> has no AccumT-typed Zero()/ allocation primitive of its own to hand it a slot in the T-typed arena when T != AccumT (see <a class="el" href="classDeep_1_1IComputeBackendT.html" title="Device-agnostic compute backend interface: every numerical primitive a layer/network needs,...">IComputeBackendT</a>'s own doc comment on why AccumT buffers are the optimizer's domain, not the backend's). Harmless: it's unused on CPU (<a class="el" href="classDeep_1_1CPUBackendT.html" title="Templated CPU implementation of IComputeBackendT&lt;T, AccumT&gt;, used by every templated layer/network in...">CPUBackendT</a>'s own ComputeSoftmaxCrossEntropyErrorAndEnergy() ignores it, matching the non-templated <a class="el" href="classDeep_1_1CPUBackend.html" title="CPU implementation of IComputeBackend: SIMD (via Activations.h) for elementwise ops,...">CPUBackend</a>), kept only for CUDA-path parity.  <br /></td></tr>
 <tr class="memitem:a17a384770562a0968badd6742d747a98" id="r_a17a384770562a0968badd6742d747a98"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a17a384770562a0968badd6742d747a98">useEPC</a> = false</td></tr>
 <tr class="memdesc:a17a384770562a0968badd6742d747a98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether ePC settling is enabled, see <a class="el" href="#aeff2be727e5cb32b3723edc242660e85">SetUseEPC()</a>.  <br /></td></tr>
 <tr class="memitem:a0252f6df784e7333ccaf73c1668444cf" id="r_a0252f6df784e7333ccaf73c1668444cf"><td class="memItemLeft">T *&#160;</td><td class="memItemRight"><a class="el" href="#a0252f6df784e7333ccaf73c1668444cf">adjoint</a> = nullptr</td></tr>
@@ -313,7 +313,7 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a63a9baa2d47a7da4c9bbe44cde76de20" id="r_a63a9baa2d47a7da4c9bbe44cde76de20"><td class="memItemLeft">std::unique_ptr&lt; <a class="el" href="classDeep_1_1MemoryArenaT.html">MemoryArenaT</a>&lt; T &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a63a9baa2d47a7da4c9bbe44cde76de20">localArena</a></td></tr>
 <tr class="memdesc:a63a9baa2d47a7da4c9bbe44cde76de20"><td class="mdescLeft">&#160;</td><td class="mdescRight">This layer's own arena, used when it isn't bound into a network-wide one.  <br /></td></tr>
 <tr id="pro-attribs-0" class="groupHeader"><td colspan="2"><div class="groupHeader">GetStateDict() host staging</div></td></tr>
-<tr><td colspan="2" class="ititle"><div class="groupText"><p>Host-side mirrors of W/b/Psi, for <a class="el" href="#a66bc01dbe7b839785b99b8fb1ccec4ed" title="Copies W/b/Psi into the host staging buffers GetStateDict() exposes. Call before reading a GetStateDi...">SyncStateDictFromDevice()</a>/ <a class="el" href="#abee277db821c2c705f0acf09940b2c3c" title="Copies the host staging buffers (after writing into a GetStateDict() pointer) back onto the real W/b/...">SyncStateDictToDevice()</a> to copy into/out of. <a class="el" href="#a8ea495f8baf161158074f1f4aa9bdce2">GetStateDict()</a> always returns pointers into these buffers, never a live device pointer. </p>
+<tr><td colspan="2" class="ititle"><div class="groupText"><p>Host-side mirrors of W/b/Psi, for <a class="el" href="#a66bc01dbe7b839785b99b8fb1ccec4ed" title="Copies W/b/Psi from device memory into the host staging buffers GetStateDict() exposes,...">SyncStateDictFromDevice()</a>/ <a class="el" href="#abee277db821c2c705f0acf09940b2c3c" title="The reverse of SyncStateDictFromDevice(): pushes the host staging buffers (just overwritten by a load...">SyncStateDictToDevice()</a> to copy into/out of when <span class="tt"><a class="el" href="#a6961f9a024e76e54d8f2361c5268025e" title="This layer&#39;s compute backend.">backend</a></span> keeps the real buffers in device memory &ndash; see <a class="el" href="classDeep_1_1FullConvPCLayer.html" title="Convolutional PC layer combining DKP direct feedback, muPC scaling, residual connections,...">FullConvPCLayer</a>'s own precedent. Sized lazily by <a class="el" href="#a8ea495f8baf161158074f1f4aa9bdce2">GetStateDict()</a> itself. Adam moments (m_W/v_W/m_b/v_b/m_Psi/v_Psi) need no staging of their own: they're already host-resident std::vector&lt;AccumT&gt;s regardless of backend (see those members' own comment above). </p>
 </div></td></tr>
 <tr class="memitem:ad829e3c85e3f2271685b9f232321061a" id="r_ad829e3c85e3f2271685b9f232321061a"><td class="memItemLeft">std::vector&lt; T &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ad829e3c85e3f2271685b9f232321061a">hostW</a></td></tr>
 <tr class="memitem:aa849542d305ad4576e03cbe6c6b22285" id="r_aa849542d305ad4576e03cbe6c6b22285"><td class="memItemLeft">std::vector&lt; T &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aa849542d305ad4576e03cbe6c6b22285">hostB</a></td></tr>
@@ -321,7 +321,7 @@ Protected Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T, typename AccumT = T&gt;<br />
-class Deep::FullPCLayerT&lt; T, AccumT &gt;</div><p>Templated counterpart to <a class="el" href="classDeep_1_1FullPCLayer.html" title="PC layer with muPC scaling, optional residual connections, and DKP direct feedback,...">FullPCLayer</a>. </p>
+class Deep::FullPCLayerT&lt; T, AccumT &gt;</div><p>Templated counterpart to <a class="el" href="classDeep_1_1FullPCLayer.html" title="PC layer combining muPC scaling, optional residual connections, and DKP direct feedback,...">FullPCLayer</a>, see this file's own comment for the full rationale. </p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="afff052fa75d379394ed5e60245ed0593" name="afff052fa75d379394ed5e60245ed0593"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afff052fa75d379394ed5e60245ed0593">&#9670;&#160;</a></span>BackendDeleter</h2>
@@ -426,8 +426,8 @@ template&lt;typename T, typename AccumT&gt; </div>
     <tr><td class="paramname">feedback</td><td>feedback rate for Psi </td></tr>
     <tr><td class="paramname">lmbda</td><td>weight decay (L2 regularization) coefficient </td></tr>
     <tr><td class="paramname">aType</td><td>activation type </td></tr>
-    <tr><td class="paramname">dType</td><td>Unused; the derivative type is derived from <code class="param">aType</code> internally. Kept for call-site parity with <a class="el" href="classDeep_1_1FullPCLayer.html" title="PC layer with muPC scaling, optional residual connections, and DKP direct feedback,...">FullPCLayer</a>. </td></tr>
-    <tr><td class="paramname">backend</td><td>Compute backend to run on; defaults to a new <a class="el" href="classDeep_1_1CPUBackendT.html" title="Templated CPU implementation of IComputeBackendT&lt;T, AccumT&gt;, used by templated layers/networks (FullP...">CPUBackendT&lt;T, AccumT&gt;</a> if nullptr. </td></tr>
+    <tr><td class="paramname">dType</td><td>activation derivative type (unused, kept for call-site parity with <a class="el" href="classDeep_1_1FullPCLayer.html" title="PC layer combining muPC scaling, optional residual connections, and DKP direct feedback,...">FullPCLayer</a>'s own constructor; derivative type is always derived from aType via ToDerivativeType() at each use site) </td></tr>
+    <tr><td class="paramname">backend</td><td>Compute backend to run on; defaults to a new <a class="el" href="classDeep_1_1CPUBackendT.html" title="Templated CPU implementation of IComputeBackendT&lt;T, AccumT&gt;, used by every templated layer/network in...">CPUBackendT&lt;T, AccumT&gt;</a> if nullptr. </td></tr>
   </table>
   </dd>
 </dl>
@@ -508,7 +508,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Always computes real energy. </p>
+<p>Always computes real energy; not a <a class="el" href="classDeep_1_1Layer.html" title="A deepity layer virtual class.">Layer</a>:: override (see this file's own class comment on why <a class="el" href="classDeep_1_1FullPCLayerT.html" title="Templated counterpart to FullPCLayer, see this file&#39;s own comment for the full rationale.">FullPCLayerT</a> no longer derives from <a class="el" href="classDeep_1_1Layer.html" title="A deepity layer virtual class.">Layer</a>). </p>
 
 </div>
 </div>
@@ -676,7 +676,7 @@ template&lt;typename T, typename AccumT&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Resizes the host staging buffers above to match W/b/Psi's current shapes. Idempotent, so <a class="el" href="#a8ea495f8baf161158074f1f4aa9bdce2">GetStateDict()</a>, <a class="el" href="#a66bc01dbe7b839785b99b8fb1ccec4ed" title="Copies W/b/Psi into the host staging buffers GetStateDict() exposes. Call before reading a GetStateDi...">SyncStateDictFromDevice()</a>, and <a class="el" href="#abee277db821c2c705f0acf09940b2c3c" title="Copies the host staging buffers (after writing into a GetStateDict() pointer) back onto the real W/b/...">SyncStateDictToDevice()</a> can all call it unconditionally. </p>
+<p>Resizes the host staging buffers above to match W/b/Psi's current shapes. Idempotent, so <a class="el" href="#a8ea495f8baf161158074f1f4aa9bdce2">GetStateDict()</a>, <a class="el" href="#a66bc01dbe7b839785b99b8fb1ccec4ed" title="Copies W/b/Psi from device memory into the host staging buffers GetStateDict() exposes,...">SyncStateDictFromDevice()</a>, and <a class="el" href="#abee277db821c2c705f0acf09940b2c3c" title="The reverse of SyncStateDictFromDevice(): pushes the host staging buffers (just overwritten by a load...">SyncStateDictToDevice()</a> can all call it unconditionally. </p>
 
 </div>
 </div>
@@ -1703,8 +1703,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Sets the muPC forward-scaling factor and rescales DKP's feedback rate to match. </p>
+<p>Also rescales DKP's feedback rate by the new <span class="tt"><a class="el" href="#a393062cd48ec9207567eb02bc87ea1c0" title="muPC forward-scaling factor, see SetMuPCScale().">a</a></span> &ndash; see <a class="el" href="#ae7b3b687be6f713aa0a39d60a4833a4e">SetFeedbackRate()</a>'s own comment and <a class="el" href="classDeep_1_1FullPCLayer.html#af9337a271a209ce3d7cb7bdecdb99fee" title="Set by the owning network at Compile() time, once the full layer_sizes list (and therefore d_in/N/L) ...">FullPCLayer::SetMuPCScale()</a>'s (the non-templated counterpart, fixed for the same reason). </p>
 
 </div>
 </div>
@@ -1860,7 +1859,7 @@ template&lt;typename T, typename AccumT&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Copies W/b/Psi into the host staging buffers <a class="el" href="#a8ea495f8baf161158074f1f4aa9bdce2">GetStateDict()</a> exposes. Call before reading a <a class="el" href="#a8ea495f8baf161158074f1f4aa9bdce2">GetStateDict()</a> pointer. </p>
+<p>Copies W/b/Psi from device memory into the host staging buffers <a class="el" href="#a8ea495f8baf161158074f1f4aa9bdce2">GetStateDict()</a> exposes, so a save can read them directly. A plain memcpy on <a class="el" href="classDeep_1_1CPUBackendT.html" title="Templated CPU implementation of IComputeBackendT&lt;T, AccumT&gt;, used by every templated layer/network in...">CPUBackendT</a>, so free to call unconditionally. </p>
 
 </div>
 </div>
@@ -1881,7 +1880,7 @@ template&lt;typename T, typename AccumT&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Copies the host staging buffers (after writing into a <a class="el" href="#a8ea495f8baf161158074f1f4aa9bdce2">GetStateDict()</a> pointer) back onto the real W/b/Psi. </p>
+<p>The reverse of <a class="el" href="#a66bc01dbe7b839785b99b8fb1ccec4ed" title="Copies W/b/Psi from device memory into the host staging buffers GetStateDict() exposes,...">SyncStateDictFromDevice()</a>: pushes the host staging buffers (just overwritten by a load) back on to the actual device-resident W/b/Psi. </p>
 
 </div>
 </div>
@@ -2016,7 +2015,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>muPC forward-scaling factor, see <a class="el" href="#a247ec6e36a8428e70f2c38a77dc4579b" title="Sets the muPC forward-scaling factor and rescales DKP&#39;s feedback rate to match.">SetMuPCScale()</a>. </p>
+<p>muPC forward-scaling factor, see <a class="el" href="#a247ec6e36a8428e70f2c38a77dc4579b">SetMuPCScale()</a>. </p>
 
 </div>
 </div>
@@ -2197,6 +2196,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
 <p>Cached pre-activation, valid alongside cachedMu. </p>
 
 </div>
@@ -2223,7 +2223,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>nextSize-shaped scratch holding f'(preact), kept at AccumT precision (not T) since the raw derivative can underflow to zero at low-precision T. </p>
+<p>nextSize-shaped scratch holding f'(preact). </p>
 
 </div>
 </div>
@@ -2275,7 +2275,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>nextSize-shaped scratch, see <a class="el" href="classDeep_1_1FullPCLayer.html" title="PC layer with muPC scaling, optional residual connections, and DKP direct feedback,...">FullPCLayer</a>'s own doc comment, kept at AccumT precision. </p>
+<p>nextSize-shaped scratch, see <a class="el" href="classDeep_1_1FullPCLayer.html" title="PC layer combining muPC scaling, optional residual connections, and DKP direct feedback,...">FullPCLayer</a>'s own doc comment. </p>
 
 </div>
 </div>
@@ -2973,7 +2973,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Pre-activation snapshot of mu, see <a class="el" href="classDeep_1_1FullPCLayer.html" title="PC layer with muPC scaling, optional residual connections, and DKP direct feedback,...">FullPCLayer</a>'s own doc comment. </p>
+<p>Pre-activation snapshot of mu, see <a class="el" href="classDeep_1_1FullPCLayer.html" title="PC layer combining muPC scaling, optional residual connections, and DKP direct feedback,...">FullPCLayer</a>'s own doc comment. </p>
 
 </div>
 </div>
@@ -3051,7 +3051,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Per-row energy scratch for the cross-entropy path. Unused on CPU, kept for CUDA-path parity. </p>
+<p>Per-row energy scratch for the cross-entropy path. Owned directly (not arena-allocated like every other buffer here): it's AccumT-typed, and <a class="el" href="classDeep_1_1CPUBackendT.html" title="Templated CPU implementation of IComputeBackendT&lt;T, AccumT&gt;, used by every templated layer/network in...">CPUBackendT</a> has no AccumT-typed Zero()/ allocation primitive of its own to hand it a slot in the T-typed arena when T != AccumT (see <a class="el" href="classDeep_1_1IComputeBackendT.html" title="Device-agnostic compute backend interface: every numerical primitive a layer/network needs,...">IComputeBackendT</a>'s own doc comment on why AccumT buffers are the optimizer's domain, not the backend's). Harmless: it's unused on CPU (<a class="el" href="classDeep_1_1CPUBackendT.html" title="Templated CPU implementation of IComputeBackendT&lt;T, AccumT&gt;, used by every templated layer/network in...">CPUBackendT</a>'s own ComputeSoftmaxCrossEntropyErrorAndEnergy() ignores it, matching the non-templated <a class="el" href="classDeep_1_1CPUBackend.html" title="CPU implementation of IComputeBackend: SIMD (via Activations.h) for elementwise ops,...">CPUBackend</a>), kept only for CUDA-path parity. </p>
 
 </div>
 </div>

@@ -38,7 +38,12 @@ var NAVTREE =
     [ "Performance", "index.html#performance", null ],
     [ "Roadmap", "index.html#roadmap", null ],
     [ "Elsewhere", "index.html#elsewhere", null ],
-    [ "ConvPCLayer Mathematical Derivation", "ConvPCLayer_math.html", null ],
+    [ "ConvPCLayer Mathematical Derivation", "ConvPCLayer_math.html", [
+      [ "Design Notes", "ConvPCLayer_math.html#design_notes", [
+        [ "DiscriminativePCLayer (dense)", "ConvPCLayer_math.html#dense_formulas", null ],
+        [ "ConvPCLayer (conv)", "ConvPCLayer_math.html#conv_formulas", null ]
+      ] ]
+    ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -75,24 +80,24 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "ActivationDispatch_8h.html",
-"classDeep_1_1CPUBackend.html#a25d526e0867d536d413bc340f16241c7",
-"classDeep_1_1CPUBackendT.html#afac55a550f0454696e482667a8ac10a3",
-"classDeep_1_1ConvPCLayer.html#afee30e07ebd335ccb46344fe74ec4f09",
-"classDeep_1_1DirectKPPCLayer.html#a2a36933a1dda7672df0ba5212a4a79a8",
-"classDeep_1_1DirectKPPCLayerT.html#a88883cae6d1179f9f75b0000df2f7e30",
-"classDeep_1_1DiscriminativePCLayer.html#ae2c3689fdc9ad5e24a881d668fecf4db",
-"classDeep_1_1FullConvPCLayer.html#a7abc698e59d5a75ddde5baa4cbc6afe8",
-"classDeep_1_1FullConvPCLayerT.html#a3939ffc7f3556009b6ec7b5c4351b9b5",
-"classDeep_1_1FullConvPCNetwork.html",
-"classDeep_1_1FullPCLayer.html#a69bf2bf0bade00a00bdda253fa52e4ea",
-"classDeep_1_1FullPCLayerT.html#a9a9ab41cd596ce2968ef6a73e6ff4d2a",
-"classDeep_1_1GaussSeidelPCLayer.html#a00a67e3faab588cb2f2f4e7aeb2e7194",
-"classDeep_1_1GaussSeidelPCNetwork.html#a795672cbea690c6a4039b0f224010d8d",
-"classDeep_1_1MemoryArenaT.html#a97a5e9c5fa05a0bad656f4a56c57e78b",
-"classDeep_1_1SimpleConvPCNetwork.html#ad8051973a1f7dd181fdcf76138e4d881",
-"classDeep_1_1SimplePCLayerT.html#acca3718c34bc6f948bf9c85abb234409",
-"functions_i.html",
-"structDeep_1_1DTypeTag_3_01Posit4__2Value_01_4.html"
+"classDeep_1_1CPUBackend.html#a1e129459b87878d0127c7b03b576b035",
+"classDeep_1_1CPUBackendT.html#af8bd7e42ba0ba5856f1b956e439e084b",
+"classDeep_1_1ConvPCLayer.html#afdf44d3bbd15219ca5eeae7299b2e8ff",
+"classDeep_1_1DirectKPPCLayer.html#a282accc0a5fe0c8fa982c48a73f527bb",
+"classDeep_1_1DirectKPPCLayerT.html#a8442ec671cf64fa74f2e6960454eda70",
+"classDeep_1_1DiscriminativePCLayer.html#addc7e21589e6731c96652e31bcea9562",
+"classDeep_1_1FullConvPCLayer.html#a7727a40d1f32b3c11fcfed5edc1be577",
+"classDeep_1_1FullConvPCLayerT.html#a34ae356745ca89d2f7dc4fd7ce31091d",
+"classDeep_1_1FullConvPCLayerT.html#afcf3aa5631d5bcac1205167332c395b1",
+"classDeep_1_1FullPCLayer.html#a6503bc39f3421c551f35fa0b508b9279",
+"classDeep_1_1FullPCLayerT.html#a9155629bdfacca48d0d3d082fc80aee0",
+"classDeep_1_1GaussSeidelPCLayer.html",
+"classDeep_1_1GaussSeidelPCNetwork.html#a73f1e9385fd01832aa1f23a587069b02",
+"classDeep_1_1MemoryArenaT.html#a8e50a175e799bf74ed3d653f97a1af35",
+"classDeep_1_1SimpleConvPCNetwork.html#abd1eea453c06dcd8d8f51e7b298ef181",
+"classDeep_1_1SimplePCLayerT.html#ac92e658d8e6569d670c6df0d60d4302a",
+"functions_func_~.html",
+"structDeep_1_1DTypeTag_3_01Posit4__1Value_01_4.html#af59ef3beb3c782714d0e59598a5d3331"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';

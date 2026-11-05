@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classDeep_1_1S
 </div><!--header-->
 <div class="contents">
 
-<p>Builds batches with a fixed, grouped number of examples per class.  
+<p>Builds batches with a fixed, grouped number of examples per class, see the file-level note for why this exists and what it deliberately doesn't own.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="StreamAlignedBatcher_8h_source.html">StreamAlignedBatcher.h</a>&gt;</code></p>
@@ -132,9 +132,9 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classDeep_1_1S
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a7b85750508e4e9882f656027ba7e730b" id="r_a7b85750508e4e9882f656027ba7e730b"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a7b85750508e4e9882f656027ba7e730b">StreamAlignedBatcher</a> (const float *X, const float *Y, const int *labels, size_t numSamples, size_t xStride, size_t yStride, int numClasses, int perClass, unsigned seed=42)</td></tr>
 <tr class="memitem:aa14e92ec71dec9635bbdbef9faebb06b" id="r_aa14e92ec71dec9635bbdbef9faebb06b"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#aa14e92ec71dec9635bbdbef9faebb06b">NumBatchesPerEpoch</a> () const noexcept</td></tr>
-<tr class="memdesc:aa14e92ec71dec9635bbdbef9faebb06b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of complete batches obtainable per epoch, limited by the rarest class's sample count. Some samples from more common classes go unused each epoch.  <br /></td></tr>
+<tr class="memdesc:aa14e92ec71dec9635bbdbef9faebb06b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of complete batches obtainable per epoch, limited by the rarest class's sample count (matches the Python version's behavior, some samples from more common classes go unused each epoch, rather than padding/repeating to force even usage).  <br /></td></tr>
 <tr class="memitem:aca65ab8f7a124767d3a45577a7200d16" id="r_aca65ab8f7a124767d3a45577a7200d16"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aca65ab8f7a124767d3a45577a7200d16">GetBatch</a> (float *X_out, float *Y_out, int *labels_out) noexcept</td></tr>
-<tr class="memdesc:aca65ab8f7a124767d3a45577a7200d16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fills the next batch into caller-provided, pre-allocated output buffers. Rows are grouped by class: rows [0, perClass) are class 0, [perClass, 2*perClass) are class 1, etc.  <br /></td></tr>
+<tr class="memdesc:aca65ab8f7a124767d3a45577a7200d16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fills the next batch into caller-provided, pre-allocated output buffers. Rows are GROUPED by class: rows [0, perClass) are class 0, [perClass, 2*perClass) are class 1, etc., same convention as the Python version, so per-class slicing for cache-averaging is a trivial contiguous range.  <br /></td></tr>
 <tr class="memitem:ad67843b5322c419d45343ab19cdb94c8" id="r_ad67843b5322c419d45343ab19cdb94c8"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ad67843b5322c419d45343ab19cdb94c8">GetBatchSize</a> () const noexcept</td></tr>
 <tr class="memdesc:ad67843b5322c419d45343ab19cdb94c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rows per batch: numClasses * perClass.  <br /></td></tr>
 <tr class="memitem:ae85a2675756ddbbc264c4a44a8e9e02b" id="r_ae85a2675756ddbbc264c4a44a8e9e02b"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ae85a2675756ddbbc264c4a44a8e9e02b">GetPerClass</a> () const noexcept</td></tr>
@@ -147,7 +147,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a6d913163a45ab64996674824b6a6468f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Floats per Y row, as given at construction.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Builds batches with a fixed, grouped number of examples per class. </p>
+<div class="textblock"><p>Builds batches with a fixed, grouped number of examples per class, see the file-level note for why this exists and what it deliberately doesn't own. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a7b85750508e4e9882f656027ba7e730b" name="a7b85750508e4e9882f656027ba7e730b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7b85750508e4e9882f656027ba7e730b">&#9670;&#160;</a></span>StreamAlignedBatcher()</h2>
@@ -252,7 +252,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Fills the next batch into caller-provided, pre-allocated output buffers. Rows are grouped by class: rows [0, perClass) are class 0, [perClass, 2*perClass) are class 1, etc. </p>
+<p>Fills the next batch into caller-provided, pre-allocated output buffers. Rows are GROUPED by class: rows [0, perClass) are class 0, [perClass, 2*perClass) are class 1, etc., same convention as the Python version, so per-class slicing for cache-averaging is a trivial contiguous range. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">X_out</td><td>Must be sized (numClasses*perClass) * xStride. </td></tr>
@@ -422,7 +422,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Number of complete batches obtainable per epoch, limited by the rarest class's sample count. Some samples from more common classes go unused each epoch. </p>
+<p>Number of complete batches obtainable per epoch, limited by the rarest class's sample count (matches the Python version's behavior, some samples from more common classes go unused each epoch, rather than padding/repeating to force even usage). </p>
 
 </div>
 </div>

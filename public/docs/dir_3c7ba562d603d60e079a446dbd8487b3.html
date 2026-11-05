@@ -132,7 +132,7 @@ Files</h2></td></tr>
 <tr class="memitem:Gelu_2Eh" id="r_Gelu_2Eh"><td class="memItemLeft"><a href="Gelu_8h_source.html"><span class="icondoc"><div class="doc-icon"></div></span></a>&#160;</td><td class="memItemRight"><a class="el" href="Gelu_8h.html">Gelu.h</a></td></tr>
 <tr class="memdesc:Gelu_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">GELU (tanh approximation) and its derivative (plain and two-buffer variants), with AVX512/AVX2/SSE paths and a scalar tail. <br /></td></tr>
 <tr class="memitem:HardTanh_2Eh" id="r_HardTanh_2Eh"><td class="memItemLeft"><a href="HardTanh_8h_source.html"><span class="icondoc"><div class="doc-icon"></div></span></a>&#160;</td><td class="memItemRight"><a class="el" href="HardTanh_8h.html">HardTanh.h</a></td></tr>
-<tr class="memdesc:HardTanh_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">hard_tanh and its derivative: clamp(x,-1,1), a piecewise- linear approximation to tanh, bounded above and below unlike ReLU. <br /></td></tr>
+<tr class="memdesc:HardTanh_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">hard_tanh and its derivative: clamp(x,-1,1), the piecewise- linear approximation to tanh PCX uses for its PC-CE/iPC variants. Bounded above and below, unlike ReLU &ndash; the property this was added for (ReLU's unbounded growth was implicated in the energy blow-ups seen when porting PCX's VGG-7 config with ReLU substituted in for PCX's own hard_tanh). <br /></td></tr>
 <tr class="memitem:Linear_2Eh" id="r_Linear_2Eh"><td class="memItemLeft"><a href="Linear_8h_source.html"><span class="icondoc"><div class="doc-icon"></div></span></a>&#160;</td><td class="memItemRight"><a class="el" href="Linear_8h.html">Linear.h</a></td></tr>
 <tr class="memdesc:Linear_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">The identity activation and its (constant) derivative. <br /></td></tr>
 <tr class="memitem:Relu_2Eh" id="r_Relu_2Eh"><td class="memItemLeft"><a href="Relu_8h_source.html"><span class="icondoc"><div class="doc-icon"></div></span></a>&#160;</td><td class="memItemRight"><a class="el" href="Relu_8h.html">Relu.h</a></td></tr>
@@ -142,7 +142,7 @@ Files</h2></td></tr>
 <tr class="memitem:Tanh_2Eh" id="r_Tanh_2Eh"><td class="memItemLeft"><a href="Tanh_8h_source.html"><span class="icondoc"><div class="doc-icon"></div></span></a>&#160;</td><td class="memItemRight"><a class="el" href="Tanh_8h.html">Tanh.h</a></td></tr>
 <tr class="memdesc:Tanh_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">tanh and its derivative (plain and two-buffer variants), with AVX512/AVX2/SSE paths and a scalar tail. <br /></td></tr>
 <tr class="memitem:VectorMath_2Eh" id="r_VectorMath_2Eh"><td class="memItemLeft"><a href="VectorMath_8h_source.html"><span class="icondoc"><div class="doc-icon"></div></span></a>&#160;</td><td class="memItemRight"><a class="el" href="VectorMath_8h.html">VectorMath.h</a></td></tr>
-<tr class="memdesc:VectorMath_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">SIMD-vectorized exp/log helpers (AVX512/AVX2/SSE with a scalar tail). <br /></td></tr>
+<tr class="memdesc:VectorMath_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">SIMD-vectorized exp/log helpers (AVX512/AVX2/SSE with a scalar tail). Currently unused by the rest of the codebase, kept for planned future use (e.g. a vectorized softmax path) rather than deleted. <br /></td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->

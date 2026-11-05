@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('SimplePCNetwor
 </div><!--header-->
 <div class="contents">
 
-<p>Templated counterpart to SimplePCNetwork, over the same <span class="tt">T</span>/ <span class="tt">AccumT</span> pair as SimplePCLayerT. Has no CUDA graph capture path.  
+<p>Templated counterpart to SimplePCNetwork, over the same <span class="tt">T</span>/ <span class="tt">AccumT</span> pair as SimplePCLayerT &ndash; see FullPCNetworkT's own doc comment for the full rationale. Produced by mechanically retyping SimplePCNetwork's own <span class="tt">float</span> members/parameters to <span class="tt">T</span>/<span class="tt">AccumT</span>.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="BackendT_8h_source.html">deepity/backend/BackendT.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="SimplePCLayerT_8h_source.html">deepity/layers/SimplePCLayerT.h</a>&gt;</code><br />
@@ -140,14 +140,16 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('SimplePCNetwor
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:Deep_3A_3ASimplePCNetworkT_3C_20T_2C_20AccumT_20_3E" id="r_Deep_3A_3ASimplePCNetworkT_3C_20T_2C_20AccumT_20_3E"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classDeep_1_1SimplePCNetworkT.html">Deep::SimplePCNetworkT&lt; T, AccumT &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Templated counterpart to <a class="el" href="classDeep_1_1SimplePCNetwork.html" title="An abstracted class for an array of SimplePCLayer.">SimplePCNetwork</a>.  <a href="classDeep_1_1SimplePCNetworkT.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Templated counterpart to <a class="el" href="classDeep_1_1SimplePCNetwork.html" title="An abstracted class for an array of SimplePCLayer.">SimplePCNetwork</a>, see this file's own comment for the full rationale.  <a href="classDeep_1_1SimplePCNetworkT.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:Deep" id="r_Deep"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep.html">Deep</a></td></tr>
+<tr class="memdesc:namespaceDeep"><td class="mdescLeft">&#160;</td><td class="mdescRight">This file exists to provide both <a class="el" href="Tensor_8h.html" title="A device-aware, RAII-managed buffer. Device is fixed at construction, there is no support for moving ...">Tensor.h</a> and <a class="el" href="IComputeBackend_8h.html">IComputeBackend.h</a> with device types without introducing circular dependencies. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Templated counterpart to SimplePCNetwork, over the same <span class="tt">T</span>/ <span class="tt">AccumT</span> pair as SimplePCLayerT. Has no CUDA graph capture path. </p>
+<div class="textblock"><p>Templated counterpart to SimplePCNetwork, over the same <span class="tt">T</span>/ <span class="tt">AccumT</span> pair as SimplePCLayerT &ndash; see FullPCNetworkT's own doc comment for the full rationale. Produced by mechanically retyping SimplePCNetwork's own <span class="tt">float</span> members/parameters to <span class="tt">T</span>/<span class="tt">AccumT</span>. </p>
+<p>CUDA graph capture (BeginGraphCapture/ReplayGraph and the three graphCaptured-style flags SimplePCNetwork carries) is dropped entirely, same reasoning as FullPCNetworkT: device==DEVICE_GPU already throws inside CreateBackendT() at construction (no CUDABackendT yet), so there's no graph path to reach here, and no runtime toggle that could leave a stale captured graph behind in the first place &ndash; switching precision means constructing a brand-new SimplePCNetworkT&lt;OtherT&gt;. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">

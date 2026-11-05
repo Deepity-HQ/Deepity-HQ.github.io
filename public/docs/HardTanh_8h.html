@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('HardTanh_8h.ht
 </div><!--header-->
 <div class="contents">
 
-<p>hard_tanh and its derivative: clamp(x,-1,1), a piecewise- linear approximation to tanh, bounded above and below unlike ReLU.  
+<p>hard_tanh and its derivative: clamp(x,-1,1), the piecewise- linear approximation to tanh PCX uses for its PC-CE/iPC variants. Bounded above and below, unlike ReLU &ndash; the property this was added for (ReLU's unbounded growth was implicated in the energy blow-ups seen when porting PCX's VGG-7 config with ReLU substituted in for PCX's own hard_tanh).  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
 <code>#include &lt;cstddef&gt;</code><br />
@@ -134,19 +134,20 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('HardTanh_8h.ht
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:Deep" id="r_Deep"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep.html">Deep</a></td></tr>
+<tr class="memdesc:namespaceDeep"><td class="mdescLeft">&#160;</td><td class="mdescRight">This file exists to provide both <a class="el" href="Tensor_8h.html" title="A device-aware, RAII-managed buffer. Device is fixed at construction, there is no support for moving ...">Tensor.h</a> and <a class="el" href="IComputeBackend_8h.html">IComputeBackend.h</a> with device types without introducing circular dependencies. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:afd8afdf0eb978240359a7400b2b0481e" id="r_afd8afdf0eb978240359a7400b2b0481e"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep.html#afd8afdf0eb978240359a7400b2b0481e">Deep::hardTanh</a> (float *x, size_t n) noexcept</td></tr>
 <tr class="memdesc:afd8afdf0eb978240359a7400b2b0481e"><td class="mdescLeft">&#160;</td><td class="mdescRight">hard_tanh(x) = clamp(x, -1, 1).  <br /></td></tr>
 <tr class="memitem:a16602c1265f91a5576d45ad17ada8e76" id="r_a16602c1265f91a5576d45ad17ada8e76"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep.html#a16602c1265f91a5576d45ad17ada8e76">Deep::dHardTanh</a> (float *x, size_t n, bool activated=false) noexcept</td></tr>
-<tr class="memdesc:a16602c1265f91a5576d45ad17ada8e76"><td class="mdescLeft">&#160;</td><td class="mdescRight">In-place derivative: 1 where the value is strictly inside (-1, 1), else 0. Exact whether computed from the pre-activation z or the already-activated value.  <br /></td></tr>
+<tr class="memdesc:a16602c1265f91a5576d45ad17ada8e76"><td class="mdescLeft">&#160;</td><td class="mdescRight">In-place derivative: 1 where the value is strictly inside (-1, 1), else 0 (the clamp boundaries have zero gradient). Exact whether computed from the pre-activation z or the already- activated value &ndash; hard_tanh's derivative only depends on whether clamping happened, which clamp(z,-1,1) itself already tells you from the activated value alone (unlike GELU, this has no from-activated ambiguity).  <br /></td></tr>
 <tr class="memitem:a1bc6e38d6ec0a8f3156faedc96ebb595" id="r_a1bc6e38d6ec0a8f3156faedc96ebb595"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep.html#a1bc6e38d6ec0a8f3156faedc96ebb595">Deep::dHardTanhInto</a> (float *<a class="el" href="ActivationMacros_8h.html#aae3356b63849abbe8789dd41648ee90a">RESTRICT</a> dst, const float *<a class="el" href="ActivationMacros_8h.html#aae3356b63849abbe8789dd41648ee90a">RESTRICT</a> src, size_t n) noexcept</td></tr>
 <tr class="memdesc:a1bc6e38d6ec0a8f3156faedc96ebb595"><td class="mdescLeft">&#160;</td><td class="mdescRight">Two-buffer variant: reads src, writes the derivative into dst.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>hard_tanh and its derivative: clamp(x,-1,1), a piecewise- linear approximation to tanh, bounded above and below unlike ReLU. </p>
-<p>Scalar only; no SIMD path. </p>
+<div class="textblock"><p>hard_tanh and its derivative: clamp(x,-1,1), the piecewise- linear approximation to tanh PCX uses for its PC-CE/iPC variants. Bounded above and below, unlike ReLU &ndash; the property this was added for (ReLU's unbounded growth was implicated in the energy blow-ups seen when porting PCX's VGG-7 config with ReLU substituted in for PCX's own hard_tanh). </p>
+<p>Scalar only, deliberately: correctness over speed for now, matching <a class="el" href="Linear_8h.html" title="The identity activation and its (constant) derivative.">Linear.h</a>'s own precedent rather than <a class="el" href="Relu_8h.html" title="ReLU and its derivative (plain and two-buffer variants), with AVX512/AVX2/SSE paths and a scalar tail...">Relu.h</a>'s full SIMD treatment. Add AVX paths later if this becomes a measured bottleneck. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">

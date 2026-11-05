@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classDeep_1_1D
 </div><!--header-->
 <div class="contents">
 
-<p>Templated counterpart to <a class="el" href="classDeep_1_1DirectKPPCLayer.html" title="Predictive Coding layer using Direct Kolen-Pollack feedback alignment (DFA): a per-layer feedback mat...">DirectKPPCLayer</a>.  
+<p>Templated counterpart to <a class="el" href="classDeep_1_1DirectKPPCLayer.html" title="Predictive Coding layer using Direct Kolen-Pollack feedback alignment (DFA): a per-layer feedback mat...">DirectKPPCLayer</a>, see this file's own comment for the full rationale.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="DirectKPPCLayerT_8h_source.html">DirectKPPCLayerT.h</a>&gt;</code></p>
@@ -136,13 +136,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac5a2d3d337bb157acea4350bcb1452fd template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac5a2d3d337bb157acea4350bcb1452fd">BindMemory</a> (ArenaT &amp;arena)</td></tr>
 <tr class="memitem:adcbc02d801f1a55191867c6f675689e0" id="r_adcbc02d801f1a55191867c6f675689e0"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#adcbc02d801f1a55191867c6f675689e0">GetRequiredElements</a> () const noexcept</td></tr>
 <tr class="memitem:a4d6c4cf4e8c9b21822f8f3e87c203966" id="r_a4d6c4cf4e8c9b21822f8f3e87c203966"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4d6c4cf4e8c9b21822f8f3e87c203966">RandomizeWeights</a> (std::mt19937 &amp;seedGenerator, const char *distribution=&quot;normal&quot;) noexcept</td></tr>
-<tr class="memdesc:a4d6c4cf4e8c9b21822f8f3e87c203966"><td class="mdescLeft">&#160;</td><td class="mdescRight">Randomizes W and Psi. Psi always uses its own fixed fan-scaled init, regardless of <span class="tt">distribution</span>.  <br /></td></tr>
+<tr class="memdesc:a4d6c4cf4e8c9b21822f8f3e87c203966"><td class="mdescLeft">&#160;</td><td class="mdescRight">Randomizes W and Psi. See <a class="el" href="classDeep_1_1DirectKPPCLayer.html#aa6ff2823cf7d1765087ff98825be97ed" title="Randomizes W and Psi.">DirectKPPCLayer::RandomizeWeights()</a>'s own doc comment: Psi keeps its own fixed fan-scaled init regardless of <span class="tt">distribution</span>.  <br /></td></tr>
 <tr class="memitem:a9574ba4a102bb08edebfcadcc6f43c05" id="r_a9574ba4a102bb08edebfcadcc6f43c05"><td class="memItemLeft">std::map&lt; std::string, <a class="el" href="structDeep_1_1TensorDescriptorT.html">TensorDescriptorT</a>&lt; T &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a9574ba4a102bb08edebfcadcc6f43c05">GetStateDict</a> () const</td></tr>
 <tr class="memitem:ae31e811a61c932a4628bcd4b58c96090" id="r_ae31e811a61c932a4628bcd4b58c96090"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ae31e811a61c932a4628bcd4b58c96090">SetLayerAbove</a> (<a class="el" href="#a88883cae6d1179f9f75b0000df2f7e30">DirectKPPCLayerT</a> *l) noexcept</td></tr>
 <tr class="memitem:a7dab20a43c1e84df3f95d5e6e18381f0" id="r_a7dab20a43c1e84df3f95d5e6e18381f0"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7dab20a43c1e84df3f95d5e6e18381f0">SetLayerBelow</a> (<a class="el" href="#a88883cae6d1179f9f75b0000df2f7e30">DirectKPPCLayerT</a> *l) noexcept</td></tr>
 <tr class="memitem:abf0225b3dd79141d561215f0393dcb89" id="r_abf0225b3dd79141d561215f0393dcb89"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abf0225b3dd79141d561215f0393dcb89">SetTerminalLayer</a> (<a class="el" href="#a88883cae6d1179f9f75b0000df2f7e30">DirectKPPCLayerT</a> *l) noexcept</td></tr>
 <tr class="memitem:a2493619a9478608bc5bdb47fe1634c04" id="r_a2493619a9478608bc5bdb47fe1634c04"><td class="memItemLeft">AccumT&#160;</td><td class="memItemRight"><a class="el" href="#a2493619a9478608bc5bdb47fe1634c04">CalculateState</a> () noexcept</td></tr>
-<tr class="memdesc:a2493619a9478608bc5bdb47fe1634c04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Always computes real energy.  <br /></td></tr>
+<tr class="memdesc:a2493619a9478608bc5bdb47fe1634c04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Always computes real energy; not a <a class="el" href="classDeep_1_1Layer.html" title="A deepity layer virtual class.">Layer</a>:: override (see this file's own class comment on why <a class="el" href="classDeep_1_1DirectKPPCLayerT.html" title="Templated counterpart to DirectKPPCLayer, see this file&#39;s own comment for the full rationale.">DirectKPPCLayerT</a> no longer derives from <a class="el" href="classDeep_1_1Layer.html" title="A deepity layer virtual class.">Layer</a>).  <br /></td></tr>
 <tr class="memitem:a085e3848673682b849904c6359868575" id="r_a085e3848673682b849904c6359868575"><td class="memItemLeft">AccumT&#160;</td><td class="memItemRight"><a class="el" href="#a085e3848673682b849904c6359868575">CalculateState</a> (bool needEnergy) noexcept</td></tr>
 <tr class="memitem:a96a34ac9f379e097391f9971ba6189c5" id="r_a96a34ac9f379e097391f9971ba6189c5"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a96a34ac9f379e097391f9971ba6189c5">ComputeMuOnly</a> () noexcept</td></tr>
 <tr class="memitem:abafa389ddbe2a1c8f38d1566b38eefc0" id="r_abafa389ddbe2a1c8f38d1566b38eefc0"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abafa389ddbe2a1c8f38d1566b38eefc0">UpdateState</a> () noexcept</td></tr>
@@ -271,7 +271,7 @@ Protected Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T, typename AccumT = T&gt;<br />
-class Deep::DirectKPPCLayerT&lt; T, AccumT &gt;</div><p>Templated counterpart to <a class="el" href="classDeep_1_1DirectKPPCLayer.html" title="Predictive Coding layer using Direct Kolen-Pollack feedback alignment (DFA): a per-layer feedback mat...">DirectKPPCLayer</a>. </p>
+class Deep::DirectKPPCLayerT&lt; T, AccumT &gt;</div><p>Templated counterpart to <a class="el" href="classDeep_1_1DirectKPPCLayer.html" title="Predictive Coding layer using Direct Kolen-Pollack feedback alignment (DFA): a per-layer feedback mat...">DirectKPPCLayer</a>, see this file's own comment for the full rationale. </p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="aa5c838930a9a5b8b8391d8dd6e84b27d" name="aa5c838930a9a5b8b8391d8dd6e84b27d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa5c838930a9a5b8b8391d8dd6e84b27d">&#9670;&#160;</a></span>BackendDeleter</h2>
@@ -374,8 +374,8 @@ template&lt;typename T, typename AccumT&gt; </div>
     <tr><td class="paramname">feedback</td><td>feedback rate for Psi </td></tr>
     <tr><td class="paramname">lmbda</td><td>weight decay (L2 regularization) coefficient </td></tr>
     <tr><td class="paramname">aType</td><td>activation type </td></tr>
-    <tr><td class="paramname">dType</td><td>Unused; the derivative type is derived from <code class="param">aType</code> internally. Kept for call-site parity with <a class="el" href="classDeep_1_1DirectKPPCLayer.html" title="Predictive Coding layer using Direct Kolen-Pollack feedback alignment (DFA): a per-layer feedback mat...">DirectKPPCLayer</a>. </td></tr>
-    <tr><td class="paramname">backend</td><td>Compute backend to run on; defaults to a new <a class="el" href="classDeep_1_1CPUBackendT.html" title="Templated CPU implementation of IComputeBackendT&lt;T, AccumT&gt;, used by templated layers/networks (FullP...">CPUBackendT&lt;T, AccumT&gt;</a> if nullptr. </td></tr>
+    <tr><td class="paramname">dType</td><td>activation-derivative type (unused, kept for call-site parity with <a class="el" href="classDeep_1_1DirectKPPCLayer.html" title="Predictive Coding layer using Direct Kolen-Pollack feedback alignment (DFA): a per-layer feedback mat...">DirectKPPCLayer</a>'s own constructor; derivative type is always derived from aType via ToDerivativeType() at each use site) </td></tr>
+    <tr><td class="paramname">backend</td><td>Compute backend to run on; defaults to a new <a class="el" href="classDeep_1_1CPUBackendT.html" title="Templated CPU implementation of IComputeBackendT&lt;T, AccumT&gt;, used by every templated layer/network in...">CPUBackendT&lt;T, AccumT&gt;</a> if nullptr. </td></tr>
   </table>
   </dd>
 </dl>
@@ -456,7 +456,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Always computes real energy. </p>
+<p>Always computes real energy; not a <a class="el" href="classDeep_1_1Layer.html" title="A deepity layer virtual class.">Layer</a>:: override (see this file's own class comment on why <a class="el" href="classDeep_1_1DirectKPPCLayerT.html" title="Templated counterpart to DirectKPPCLayer, see this file&#39;s own comment for the full rationale.">DirectKPPCLayerT</a> no longer derives from <a class="el" href="classDeep_1_1Layer.html" title="A deepity layer virtual class.">Layer</a>). </p>
 
 </div>
 </div>
@@ -1050,7 +1050,7 @@ template&lt;typename T, typename AccumT&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Randomizes W and Psi. Psi always uses its own fixed fan-scaled init, regardless of <span class="tt">distribution</span>. </p>
+<p>Randomizes W and Psi. See <a class="el" href="classDeep_1_1DirectKPPCLayer.html#aa6ff2823cf7d1765087ff98825be97ed" title="Randomizes W and Psi.">DirectKPPCLayer::RandomizeWeights()</a>'s own doc comment: Psi keeps its own fixed fan-scaled init regardless of <span class="tt">distribution</span>. </p>
 
 </div>
 </div>

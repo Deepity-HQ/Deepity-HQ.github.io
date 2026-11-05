@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('DirectKPPCNetw
 </div><!--header-->
 <div class="contents">
 
-<p>Orchestrates DirectKPPCLayer's Direct Kolen-Pollack predictive coding (DKP-PC) phases, in order:  
+<p>Orchestrates DirectKPPCLayer's Direct Kolen-Pollack predictive coding (DKP-PC) phases in the correct order, the ORDER of the phases across layers is what makes this DKP-PC rather than plain PC.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="Backend_8h_source.html">deepity/backend/Backend.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="DirectKPPCLayer_8h_source.html">deepity/layers/DirectKPPCLayer.h</a>&gt;</code><br />
@@ -138,24 +138,25 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('DirectKPPCNetw
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:Deep_3A_3ADirectKPPCNetwork" id="r_Deep_3A_3ADirectKPPCNetwork"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classDeep_1_1DirectKPPCNetwork.html">Deep::DirectKPPCNetwork</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Predictive Coding network built from <a class="el" href="classDeep_1_1DirectKPPCLayer.html" title="Predictive Coding layer using Direct Kolen-Pollack feedback alignment (DFA): a per-layer feedback mat...">DirectKPPCLayer</a>, using Direct Kolen-Pollack feedback alignment (DFA) instead of symmetric weight transport.  <a href="classDeep_1_1DirectKPPCNetwork.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Predictive Coding network built from <a class="el" href="classDeep_1_1DirectKPPCLayer.html" title="Predictive Coding layer using Direct Kolen-Pollack feedback alignment (DFA): a per-layer feedback mat...">DirectKPPCLayer</a>, using Direct Kolen-Pollack feedback alignment (DFA) instead of symmetric weight transport. See the file-level warning above on its current verification status.  <a href="classDeep_1_1DirectKPPCNetwork.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:Deep" id="r_Deep"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep.html">Deep</a></td></tr>
+<tr class="memdesc:namespaceDeep"><td class="mdescLeft">&#160;</td><td class="mdescRight">This file exists to provide both <a class="el" href="Tensor_8h.html" title="A device-aware, RAII-managed buffer. Device is fixed at construction, there is no support for moving ...">Tensor.h</a> and <a class="el" href="IComputeBackend_8h.html">IComputeBackend.h</a> with device types without introducing circular dependencies. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Orchestrates DirectKPPCLayer's Direct Kolen-Pollack predictive coding (DKP-PC) phases, in order: </p>
+<div class="textblock"><p>Orchestrates DirectKPPCLayer's Direct Kolen-Pollack predictive coding (DKP-PC) phases in the correct order, the ORDER of the phases across layers is what makes this DKP-PC rather than plain PC. </p>
+<p>Per Casnici, Lefebvre, Dauwels &amp; Frenkel, "Accelerated Predictive
+Coding Networks via Direct Kolen-Pollack Feedback Alignment" (2026), Algorithm 1, a full DKP-PC train step is four phases, in order:</p>
 <ol type="1">
-<li>Forward initialization: clamp input, forward-project every hidden layer's z from current weights, clamp the target, then CalculateState() on the terminal layer alone to produce a real, non-zero epsilon_L. Every other layer's error stays zero here.</li>
-<li>Direct feedback alignment update: DirectFeedbackUpdate() on every non-terminal layer, perturbing W using epsilon_L (via terminalLayer) and the layer above's Psi, before settling begins.</li>
-<li>Inference phase: ordinary PC settling (CalculateState() + UpdateState() across every layer) for inferenceSteps steps.</li>
-<li>Learning phase: UpdateWeights() on every non-terminal layer, updating both W (from the settled state) and Psi (from the settled state and epsilon_L).</li>
+<li>Forward initialization, clamp input, forward-project every hidden layer's z from current weights, clamp the target, then CalculateState() on the terminal layer alone to produce a real, non-zero epsilon_L. Every other layer's error stays zero here.</li>
+<li>Direct feedback alignment update, DirectFeedbackUpdate() on every non-terminal layer, perturbing W using epsilon_L (via terminalLayer) and the layer above's Psi, before settling begins. Order among layers doesn't matter: each layer only reads Psi and epsilon_L, both already available.</li>
+<li>Inference phase, ordinary PC settling (CalculateState() + UpdateState() across every layer) for inferenceSteps steps. Phase 1 already perturbed every layer's W, so inferenceSteps=1 is sufficient per the paper; larger values trade that speed advantage for potentially higher accuracy.</li>
+<li>Learning phase, UpdateWeights() on every non-terminal layer, updating both W (from the settled state) and Psi (from the settled state and epsilon_L).</li>
 </ol>
 <p>Routed through IComputeBackend; <span class="tt">device</span> defaults to DEVICE_CPU.</p>
-<dl class="section see"><dt>See also</dt><dd>Casnici, Lefebvre, Dauwels &amp; Frenkel, "Accelerated Predictive
-Coding Networks via Direct Kolen-Pollack Feedback Alignment" (2026)</dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>Not yet gradient-checked at the network level, and not yet tested on GPU. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>Not yet gradient-checked at the network level, and not yet tested on GPU. Verify the individual layer's math independently before trusting accuracy conclusions from training with this class. </dd></dl>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">

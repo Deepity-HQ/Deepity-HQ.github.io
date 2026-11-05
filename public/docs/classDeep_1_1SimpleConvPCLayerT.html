@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classDeep_1_1S
 </div><!--header-->
 <div class="contents">
 
-<p>Templated counterpart to <a class="el" href="classDeep_1_1SimpleConvPCLayer.html" title="Convolutional PC layer, precision-free, AdamW-capable, routed through IComputeBackend for GPU portabi...">SimpleConvPCLayer</a>.  
+<p>Templated counterpart to <a class="el" href="classDeep_1_1SimpleConvPCLayer.html" title="Convolutional PC layer, precision-free, AdamW-capable, routed through IComputeBackend for GPU portabi...">SimpleConvPCLayer</a>, see this file's own comment for the full rationale.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="SimpleConvPCLayerT_8h_source.html">SimpleConvPCLayerT.h</a>&gt;</code></p>
@@ -162,7 +162,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a66c3023b4a8803ae69f03f92abadac6d" id="r_a66c3023b4a8803ae69f03f92abadac6d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a66c3023b4a8803ae69f03f92abadac6d">SetLayerBelow</a> (<a class="el" href="#a6f55e18967f80aed140e0b452071fae2">SimpleConvPCLayerT</a> *below) noexcept</td></tr>
 <tr class="memitem:a3a5cef86e18187e1d346b10201b35240" id="r_a3a5cef86e18187e1d346b10201b35240"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a3a5cef86e18187e1d346b10201b35240">ComputeMuOnly</a> () noexcept</td></tr>
 <tr class="memitem:a4e9b9eb342292b979f435dd875bde2ea" id="r_a4e9b9eb342292b979f435dd875bde2ea"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4e9b9eb342292b979f435dd875bde2ea">PrepareConvWorkspace</a> () noexcept</td></tr>
-<tr class="memdesc:a4e9b9eb342292b979f435dd875bde2ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pre-sizes the CUDA backend's cuDNN workspace for this layer's convolution shape. Must run before the network's first CUDA graph capture. No-op on CPU.  <br /></td></tr>
+<tr class="memdesc:a4e9b9eb342292b979f435dd875bde2ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">No-op on CPU, see <a class="el" href="classDeep_1_1SimpleConvPCLayer.html#a053d8e90fff30393f1698f162638ec17" title="Pre-sizes the CUDA backend&#39;s cuDNN workspace for this layer&#39;s convolution shape. Must run before the ...">SimpleConvPCLayer::PrepareConvWorkspace()</a>'s own doc comment (kept for call-site parity with the network's Compile(), which calls this unconditionally).  <br /></td></tr>
 <tr class="memitem:aa3e5fb2d20871e0110c83f961d23f492" id="r_aa3e5fb2d20871e0110c83f961d23f492"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aa3e5fb2d20871e0110c83f961d23f492">ResetState</a> () noexcept</td></tr>
 <tr class="memitem:afa50e045180e49696886944ddb9993ea" id="r_afa50e045180e49696886944ddb9993ea"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#afa50e045180e49696886944ddb9993ea">RandomizeWeights</a> (std::mt19937 &amp;twister, const char *distribution=&quot;normal&quot;) noexcept</td></tr>
 <tr class="memitem:ade4ef384f759fa2bc179c9bba5e9ccc5" id="r_ade4ef384f759fa2bc179c9bba5e9ccc5"><td class="memItemLeft"><a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a>&#160;</td><td class="memItemRight"><a class="el" href="#ade4ef384f759fa2bc179c9bba5e9ccc5">GetActivationType</a> () const noexcept</td></tr>
@@ -182,7 +182,7 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T, typename AccumT = T&gt;<br />
-class Deep::SimpleConvPCLayerT&lt; T, AccumT &gt;</div><p>Templated counterpart to <a class="el" href="classDeep_1_1SimpleConvPCLayer.html" title="Convolutional PC layer, precision-free, AdamW-capable, routed through IComputeBackend for GPU portabi...">SimpleConvPCLayer</a>. </p>
+class Deep::SimpleConvPCLayerT&lt; T, AccumT &gt;</div><p>Templated counterpart to <a class="el" href="classDeep_1_1SimpleConvPCLayer.html" title="Convolutional PC layer, precision-free, AdamW-capable, routed through IComputeBackend for GPU portabi...">SimpleConvPCLayer</a>, see this file's own comment for the full rationale. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a6f55e18967f80aed140e0b452071fae2" name="a6f55e18967f80aed140e0b452071fae2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6f55e18967f80aed140e0b452071fae2">&#9670;&#160;</a></span>SimpleConvPCLayerT()</h2>
@@ -292,7 +292,7 @@ template&lt;typename T, typename AccumT&gt; </div>
     <tr><td class="paramname">lmbda</td><td>Weight decay (L2 regularization) coefficient. </td></tr>
     <tr><td class="paramname">aType</td><td>Activation type. </td></tr>
     <tr><td class="paramname">dType</td><td>Activation derivative type. </td></tr>
-    <tr><td class="paramname">backend</td><td>Compute backend to run on; defaults to a new <a class="el" href="classDeep_1_1CPUBackendT.html" title="Templated CPU implementation of IComputeBackendT&lt;T, AccumT&gt;, used by templated layers/networks (FullP...">CPUBackendT&lt;T, AccumT&gt;</a> if nullptr. </td></tr>
+    <tr><td class="paramname">backend</td><td>Compute backend to run on; defaults to a new <a class="el" href="classDeep_1_1CPUBackendT.html" title="Templated CPU implementation of IComputeBackendT&lt;T, AccumT&gt;, used by every templated layer/network in...">CPUBackendT&lt;T, AccumT&gt;</a> if nullptr. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1212,7 +1212,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Pre-sizes the CUDA backend's cuDNN workspace for this layer's convolution shape. Must run before the network's first CUDA graph capture. No-op on CPU. </p>
+<p>No-op on CPU, see <a class="el" href="classDeep_1_1SimpleConvPCLayer.html#a053d8e90fff30393f1698f162638ec17" title="Pre-sizes the CUDA backend&#39;s cuDNN workspace for this layer&#39;s convolution shape. Must run before the ...">SimpleConvPCLayer::PrepareConvWorkspace()</a>'s own doc comment (kept for call-site parity with the network's Compile(), which calls this unconditionally). </p>
 
 </div>
 </div>

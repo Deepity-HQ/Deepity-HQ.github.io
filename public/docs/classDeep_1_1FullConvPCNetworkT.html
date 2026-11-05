@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classDeep_1_1F
 </div><!--header-->
 <div class="contents">
 
-<p>Templated counterpart to <a class="el" href="classDeep_1_1FullConvPCNetwork.html" title="Convolutional Predictive Coding network combining every PC variant FullPCNetwork has,...">FullConvPCNetwork</a>.  
+<p>Templated counterpart to <a class="el" href="classDeep_1_1FullConvPCNetwork.html" title="Convolutional Predictive Coding network combining every PC variant FullPCNetwork has,...">FullConvPCNetwork</a>, see this file's own comment for the full rationale.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="FullConvPCNetworkT_8h_source.html">FullConvPCNetworkT.h</a>&gt;</code></p>
@@ -149,7 +149,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7201eb0f05a6092c11dc4837e8851eb2" id="r_a7201eb0f05a6092c11dc4837e8851eb2"><td class="memItemLeft">AccumT&#160;</td><td class="memItemRight"><a class="el" href="#a7201eb0f05a6092c11dc4837e8851eb2">CalculateTerminalError</a> () noexcept</td></tr>
 <tr class="memitem:a22fe6e68e1687d94eb83e1230a00c066" id="r_a22fe6e68e1687d94eb83e1230a00c066"><td class="memItemLeft">AccumT&#160;</td><td class="memItemRight"><a class="el" href="#a22fe6e68e1687d94eb83e1230a00c066">Step</a> (bool needEnergy=true) noexcept</td></tr>
 <tr class="memitem:a08a150c436d47a024755027ff4c2a90b" id="r_a08a150c436d47a024755027ff4c2a90b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a08a150c436d47a024755027ff4c2a90b">EPCStep</a> () noexcept</td></tr>
-<tr class="memdesc:a08a150c436d47a024755027ff4c2a90b"><td class="mdescLeft">&#160;</td><td class="mdescRight">ePC's settling step: full forward sweep (bottom to top) then full backward sweep (top to bottom).  <br /></td></tr>
+<tr class="memdesc:a08a150c436d47a024755027ff4c2a90b"><td class="mdescLeft">&#160;</td><td class="mdescRight">ePC's settling step: full forward sweep (bottom to top) then full backward sweep (top to bottom), see <a class="el" href="classDeep_1_1FullConvPCNetwork.html#ab7a0f41ffa8816789e87e704242dc0a6" title="ePC&#39;s settling step: full forward sweep (bottom to top) then full backward sweep (top to bottom),...">FullConvPCNetwork::EPCStep()</a>'s own doc comment for the identical structure this mirrors.  <br /></td></tr>
 <tr class="memitem:ae44eeb0f78a3519f63a195f31e8db896" id="r_ae44eeb0f78a3519f63a195f31e8db896"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ae44eeb0f78a3519f63a195f31e8db896">UpdateWeights</a> () noexcept</td></tr>
 <tr class="memitem:af69bc8b51600e320f70aec4f42eb9390" id="r_af69bc8b51600e320f70aec4f42eb9390"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af69bc8b51600e320f70aec4f42eb9390">SetOptimizer</a> (<a class="el" href="namespaceDeep.html#a76c7b5d078cce2bed29f6f592560bf02">OptimizerType</a> o) noexcept</td></tr>
 <tr class="memitem:a10bf42ce94aeba41eee931be41e5d047" id="r_a10bf42ce94aeba41eee931be41e5d047"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a10bf42ce94aeba41eee931be41e5d047">SetPsiOptimizer</a> (<a class="el" href="namespaceDeep.html#a76c7b5d078cce2bed29f6f592560bf02">OptimizerType</a> o) noexcept</td></tr>
@@ -173,7 +173,7 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T, typename AccumT = T&gt;<br />
-class Deep::FullConvPCNetworkT&lt; T, AccumT &gt;</div><p>Templated counterpart to <a class="el" href="classDeep_1_1FullConvPCNetwork.html" title="Convolutional Predictive Coding network combining every PC variant FullPCNetwork has,...">FullConvPCNetwork</a>. </p>
+class Deep::FullConvPCNetworkT&lt; T, AccumT &gt;</div><p>Templated counterpart to <a class="el" href="classDeep_1_1FullConvPCNetwork.html" title="Convolutional Predictive Coding network combining every PC variant FullPCNetwork has,...">FullConvPCNetwork</a>, see this file's own comment for the full rationale. </p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="a1f9a66abbb81e785d63c2a4d0e0e3d69" name="a1f9a66abbb81e785d63c2a4d0e0e3d69"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1f9a66abbb81e785d63c2a4d0e0e3d69">&#9670;&#160;</a></span>ElementType</h2>
@@ -544,7 +544,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>ePC's settling step: full forward sweep (bottom to top) then full backward sweep (top to bottom). </p>
+<p>ePC's settling step: full forward sweep (bottom to top) then full backward sweep (top to bottom), see <a class="el" href="classDeep_1_1FullConvPCNetwork.html#ab7a0f41ffa8816789e87e704242dc0a6" title="ePC&#39;s settling step: full forward sweep (bottom to top) then full backward sweep (top to bottom),...">FullConvPCNetwork::EPCStep()</a>'s own doc comment for the identical structure this mirrors. </p>
 
 </div>
 </div>

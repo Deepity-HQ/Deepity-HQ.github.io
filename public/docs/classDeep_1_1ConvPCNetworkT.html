@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classDeep_1_1C
 </div><!--header-->
 <div class="contents">
 
-<p>Templated counterpart to <a class="el" href="classDeep_1_1ConvPCNetwork.html" title="Convolutional Predictive Coding Network built from ConvPCLayer, precision-weighted,...">ConvPCNetwork</a>.  
+<p>Templated counterpart to <a class="el" href="classDeep_1_1ConvPCNetwork.html" title="Convolutional Predictive Coding Network built from ConvPCLayer, precision-weighted,...">ConvPCNetwork</a>, see this file's own comment for the full rationale.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="ConvPCNetworkT_8h_source.html">ConvPCNetworkT.h</a>&gt;</code></p>
@@ -149,7 +149,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad60778f378baa755142dd17943c7dd2e" id="r_ad60778f378baa755142dd17943c7dd2e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ad60778f378baa755142dd17943c7dd2e">UpdateState</a> () noexcept</td></tr>
 <tr class="memitem:a04ace82b44e43c4ae5c9c04b2d9c1cb2" id="r_a04ace82b44e43c4ae5c9c04b2d9c1cb2"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a04ace82b44e43c4ae5c9c04b2d9c1cb2">UpdateWeights</a> () noexcept</td></tr>
 <tr class="memitem:a7772b964a28d368d2a048163ca5c3acb" id="r_a7772b964a28d368d2a048163ca5c3acb"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7772b964a28d368d2a048163ca5c3acb">UpdatePrecision</a> () noexcept</td></tr>
-<tr class="memdesc:a7772b964a28d368d2a048163ca5c3acb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies precision updates to every non-terminal layer. Not called automatically by <a class="el" href="#abb83b7e8d0adf4befb7bc5de8e0255e6">TrainStep()</a>; the caller invokes this explicitly when desired.  <br /></td></tr>
+<tr class="memdesc:a7772b964a28d368d2a048163ca5c3acb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies precision updates to every non-terminal layer. Not called automatically by <a class="el" href="#abb83b7e8d0adf4befb7bc5de8e0255e6">TrainStep()</a>, same as <a class="el" href="classDeep_1_1ConvPCNetwork.html#a69c0f3cec4ecb379c3deb08fe22354e2" title="Applies precision updates to every layer.">ConvPCNetwork::UpdatePrecision()</a>'s own convention &ndash; the caller invokes this explicitly when desired.  <br /></td></tr>
 <tr class="memitem:af163f8d36df16c130d05a6226fa6e842" id="r_af163f8d36df16c130d05a6226fa6e842"><td class="memItemLeft"><a class="el" href="classDeep_1_1ConvPCLayerT.html">ConvPCLayerT</a>&lt; T, AccumT &gt; *&#160;</td><td class="memItemRight"><a class="el" href="#af163f8d36df16c130d05a6226fa6e842">GetTerminalLayer</a> () noexcept</td></tr>
 <tr class="memitem:a2d47862767f8042f011af4bc145526c6" id="r_a2d47862767f8042f011af4bc145526c6"><td class="memItemLeft">const std::vector&lt; std::unique_ptr&lt; <a class="el" href="classDeep_1_1ConvPCLayerT.html">ConvPCLayerT</a>&lt; T, AccumT &gt; &gt; &gt; &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a2d47862767f8042f011af4bc145526c6">GetLayers</a> () const noexcept</td></tr>
 <tr class="memitem:a43632a4569663f1fc0b9e53acf311a14" id="r_a43632a4569663f1fc0b9e53acf311a14"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a43632a4569663f1fc0b9e53acf311a14">GetBatchSize</a> () const noexcept</td></tr>
@@ -161,7 +161,7 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T, typename AccumT = T&gt;<br />
-class Deep::ConvPCNetworkT&lt; T, AccumT &gt;</div><p>Templated counterpart to <a class="el" href="classDeep_1_1ConvPCNetwork.html" title="Convolutional Predictive Coding Network built from ConvPCLayer, precision-weighted,...">ConvPCNetwork</a>. </p>
+class Deep::ConvPCNetworkT&lt; T, AccumT &gt;</div><p>Templated counterpart to <a class="el" href="classDeep_1_1ConvPCNetwork.html" title="Convolutional Predictive Coding Network built from ConvPCLayer, precision-weighted,...">ConvPCNetwork</a>, see this file's own comment for the full rationale. </p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="a7c8e433a8f353aa52e825d692ac6eeca" name="a7c8e433a8f353aa52e825d692ac6eeca"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7c8e433a8f353aa52e825d692ac6eeca">&#9670;&#160;</a></span>ElementType</h2>
@@ -829,7 +829,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Applies precision updates to every non-terminal layer. Not called automatically by <a class="el" href="#abb83b7e8d0adf4befb7bc5de8e0255e6">TrainStep()</a>; the caller invokes this explicitly when desired. </p>
+<p>Applies precision updates to every non-terminal layer. Not called automatically by <a class="el" href="#abb83b7e8d0adf4befb7bc5de8e0255e6">TrainStep()</a>, same as <a class="el" href="classDeep_1_1ConvPCNetwork.html#a69c0f3cec4ecb379c3deb08fe22354e2" title="Applies precision updates to every layer.">ConvPCNetwork::UpdatePrecision()</a>'s own convention &ndash; the caller invokes this explicitly when desired. </p>
 
 </div>
 </div>

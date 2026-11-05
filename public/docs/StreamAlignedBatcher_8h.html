@@ -123,7 +123,8 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('StreamAlignedB
 </div><!--header-->
 <div class="contents">
 
-<p>Builds batches with a fixed number of examples per class, grouped together. A standalone data-pipeline utility, independent of any particular network class; feed its output into whichever network via the usual ClampInput/ClampState-style API.  
+<p>C++ port of the Python StreamAlignedBatcher, builds batches with a fixed number of examples per class, grouped together, required for I_avg's per-class averaging (Eq. 7 of "Faster Predictive Coding Networks
+via Better Initialization").  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;cstring&gt;</code><br />
 <code>#include &lt;random&gt;</code><br />
@@ -135,15 +136,18 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('StreamAlignedB
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:Deep_3A_3AStreamAlignedBatcher" id="r_Deep_3A_3AStreamAlignedBatcher"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classDeep_1_1StreamAlignedBatcher.html">Deep::StreamAlignedBatcher</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds batches with a fixed, grouped number of examples per class.  <a href="classDeep_1_1StreamAlignedBatcher.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds batches with a fixed, grouped number of examples per class, see the file-level note for why this exists and what it deliberately doesn't own.  <a href="classDeep_1_1StreamAlignedBatcher.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:Deep" id="r_Deep"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep.html">Deep</a></td></tr>
+<tr class="memdesc:namespaceDeep"><td class="mdescLeft">&#160;</td><td class="mdescRight">This file exists to provide both <a class="el" href="Tensor_8h.html" title="A device-aware, RAII-managed buffer. Device is fixed at construction, there is no support for moving ...">Tensor.h</a> and <a class="el" href="IComputeBackend_8h.html">IComputeBackend.h</a> with device types without introducing circular dependencies. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Builds batches with a fixed number of examples per class, grouped together. A standalone data-pipeline utility, independent of any particular network class; feed its output into whichever network via the usual ClampInput/ClampState-style API. </p>
-<p>Does not own or copy the dataset, holds pointers + stride info only. Caller must keep X/Y/labels alive for the batcher's lifetime. GetBatch() gathers selected rows into caller-provided output buffers, so the same buffers can be reused across calls. </p>
+<div class="textblock"><p>C++ port of the Python StreamAlignedBatcher, builds batches with a fixed number of examples per class, grouped together, required for I_avg's per-class averaging (Eq. 7 of "Faster Predictive Coding Networks
+via Better Initialization"). </p>
+<p>Kept deliberately SEPARATE from DiscriminativePCNetwork/SimplePCNetwork/ ConvPCNetwork, this is a standalone data-pipeline utility, not part of the core numerical library. Any consumer (C++, or via future bindings) uses it independently, feeding its output into whichever network class they're using via the existing ClampInput/ClampState-style API.</p>
+<p>Does NOT own or copy the dataset, holds pointers + stride info only. Caller must keep X/Y/labels alive for the batcher's lifetime. GetBatch() gathers selected rows into caller-provided output buffers, so the same buffers can be reused across calls without repeated allocation. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">

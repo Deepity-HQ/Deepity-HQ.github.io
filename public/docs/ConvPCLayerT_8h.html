@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('ConvPCLayerT_8
 </div><!--header-->
 <div class="contents">
 
-<p>Templated counterpart to ConvPCLayer, over a storage type <span class="tt">T</span> and an accumulator type <span class="tt">AccumT</span>. Every scratch buffer here (colBuffer, feedbackScratch, bottom_up_cols, colsRepacked, lgRepacked) stays T*, not AccumT*, same as SimpleConvPCLayerT.  
+<p>Templated counterpart to ConvPCLayer, over a storage type <span class="tt">T</span> and an accumulator type <span class="tt">AccumT</span> &ndash; see FullPCLayerT's own doc comment for the T/AccumT split's full rationale, and <a class="el" href="SimpleConvPCLayerT_8h.html" title="Templated counterpart to SimpleConvPCLayer, over a storage type T and an accumulator type AccumT – se...">SimpleConvPCLayerT.h</a>'s own class comment for why every scratch buffer here (colBuffer, feedbackScratch, bottom_up_cols, colsRepacked, lgRepacked) stays T*, not AccumT* &ndash; same deliberate, documented scope reduction, same deferred-validation caveat for sub-8-bit T. float/double are entirely unaffected.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;cstdlib&gt;</code><br />
 <code>#include &lt;<a class="el" href="IComputeBackend_8h_source.html">deepity/backend/IComputeBackend.h</a>&gt;</code><br />
@@ -142,15 +142,16 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('ConvPCLayerT_8
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:Deep_3A_3AConvPCLayerT_3C_20T_2C_20AccumT_20_3E" id="r_Deep_3A_3AConvPCLayerT_3C_20T_2C_20AccumT_20_3E"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classDeep_1_1ConvPCLayerT.html">Deep::ConvPCLayerT&lt; T, AccumT &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Templated counterpart to <a class="el" href="classDeep_1_1ConvPCLayer.html" title="Convolutional Predictive Coding layer (im2col-based), precision-weighted, routed through IComputeBack...">ConvPCLayer</a>.  <a href="classDeep_1_1ConvPCLayerT.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Templated counterpart to <a class="el" href="classDeep_1_1ConvPCLayer.html" title="Convolutional Predictive Coding layer (im2col-based), precision-weighted, routed through IComputeBack...">ConvPCLayer</a>, see this file's own comment for the full rationale.  <a href="classDeep_1_1ConvPCLayerT.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:Deep" id="r_Deep"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep.html">Deep</a></td></tr>
+<tr class="memdesc:namespaceDeep"><td class="mdescLeft">&#160;</td><td class="mdescRight">This file exists to provide both <a class="el" href="Tensor_8h.html" title="A device-aware, RAII-managed buffer. Device is fixed at construction, there is no support for moving ...">Tensor.h</a> and <a class="el" href="IComputeBackend_8h.html">IComputeBackend.h</a> with device types without introducing circular dependencies. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Templated counterpart to ConvPCLayer, over a storage type <span class="tt">T</span> and an accumulator type <span class="tt">AccumT</span>. Every scratch buffer here (colBuffer, feedbackScratch, bottom_up_cols, colsRepacked, lgRepacked) stays T*, not AccumT*, same as SimpleConvPCLayerT. </p>
-<p>Does not inherit from Layer. Does not implement GetStateDict()/checkpointing. </p>
+<div class="textblock"><p>Templated counterpart to ConvPCLayer, over a storage type <span class="tt">T</span> and an accumulator type <span class="tt">AccumT</span> &ndash; see FullPCLayerT's own doc comment for the T/AccumT split's full rationale, and <a class="el" href="SimpleConvPCLayerT_8h.html" title="Templated counterpart to SimpleConvPCLayer, over a storage type T and an accumulator type AccumT – se...">SimpleConvPCLayerT.h</a>'s own class comment for why every scratch buffer here (colBuffer, feedbackScratch, bottom_up_cols, colsRepacked, lgRepacked) stays T*, not AccumT* &ndash; same deliberate, documented scope reduction, same deferred-validation caveat for sub-8-bit T. float/double are entirely unaffected. </p>
+<p>Deliberately does NOT inherit from Layer, same reasoning as FullPCLayerT/SimpleConvPCLayerT. GetStateDict()/checkpointing is NOT ported here &ndash; ModelIO&lt;T&gt; is explicitly a separate, later step in the templating plan's own verification section, not part of this layer's own scope. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">

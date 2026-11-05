@@ -122,7 +122,10 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('ConvPCLayer_ma
   <div class="headertitle"><div class="title">ConvPCLayer Mathematical Derivation </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h2 class="doxsection"><a class="anchor" id="dense_formulas"></a>
+<div class="textblock"><h1 class="doxsection"><a class="anchor" id="design_notes"></a>
+Design Notes</h1>
+<p>Conv energy/state/weight derivation, adapted from DiscriminativePCLayer's already-verified formulas:</p>
+<h2 class="doxsection"><a class="anchor" id="dense_formulas"></a>
 DiscriminativePCLayer (dense)</h2>
 <p class="formulaDsp">
 \[\begin{align}
@@ -153,7 +156,7 @@ elementwise} \\
 \end{align}
 \]
 </p>
-<p>The forward GEMM and the feedback GEMM use the SAME weight matrix, with CblasTrans flipped between them. </p>
+<p>The forward GEMM and the feedback GEMM are transposes of the SAME weight matrix, mirroring how DiscriminativePCLayer's forward and feedback GEMMs both use W with CblasTrans flipped between them. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

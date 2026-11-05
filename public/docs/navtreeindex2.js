@@ -1,5 +1,8 @@
 var NAVTREEINDEX2 =
 {
+"classDeep_1_1CPUBackendT.html#af8bd7e42ba0ba5856f1b956e439e084b":[7,0,0,9,3],
+"classDeep_1_1CPUBackendT.html#af8bd7e42ba0ba5856f1b956e439e084b":[8,0,0,7,3],
+"classDeep_1_1CPUBackendT.html#afac55a550f0454696e482667a8ac10a3":[7,0,0,9,60],
 "classDeep_1_1CPUBackendT.html#afac55a550f0454696e482667a8ac10a3":[8,0,0,7,60],
 "classDeep_1_1CPUBackendT.html#afb15ca6b82343b3dd327c99c65c4d3e8":[7,0,0,9,62],
 "classDeep_1_1CPUBackendT.html#afb15ca6b82343b3dd327c99c65c4d3e8":[8,0,0,7,62],
@@ -246,8 +249,5 @@ var NAVTREEINDEX2 =
 "classDeep_1_1ConvPCLayer.html#afa77c3ce9a6c03e03e4c585d978bd3d0":[7,0,0,4,36],
 "classDeep_1_1ConvPCLayer.html#afa77c3ce9a6c03e03e4c585d978bd3d0":[8,0,0,2,36],
 "classDeep_1_1ConvPCLayer.html#afdd7786fc9c6a98c84aee691b39f9a13":[7,0,0,4,10],
-"classDeep_1_1ConvPCLayer.html#afdd7786fc9c6a98c84aee691b39f9a13":[8,0,0,2,10],
-"classDeep_1_1ConvPCLayer.html#afdf44d3bbd15219ca5eeae7299b2e8ff":[7,0,0,4,5],
-"classDeep_1_1ConvPCLayer.html#afdf44d3bbd15219ca5eeae7299b2e8ff":[8,0,0,2,5],
-"classDeep_1_1ConvPCLayer.html#afee30e07ebd335ccb46344fe74ec4f09":[7,0,0,4,50]
+"classDeep_1_1ConvPCLayer.html#afdd7786fc9c6a98c84aee691b39f9a13":[8,0,0,2,10]
 };

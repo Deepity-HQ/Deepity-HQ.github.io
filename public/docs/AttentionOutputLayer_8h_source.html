@@ -121,86 +121,86 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('AttentionOutpu
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;<a class="code" href="MemoryArena_8h.html">deepity/utils/MemoryArena.h</a>&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceDeep.html">Deep</a></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
-<div class="foldopen" id="foldopen00022" data-start="{" data-end="};">
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classDeep_1_1AttentionOutputLayer.html">   22</a></span><span class="keyword">class </span><a class="code hl_function" href="classDeep_1_1AttentionOutputLayer.html#a05414d7b3b375c804dae5e5a72b0f91e">AttentionOutputLayer</a></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>{</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <a class="code hl_function" href="classDeep_1_1AttentionOutputLayer.html#a05414d7b3b375c804dae5e5a72b0f91e">AttentionOutputLayer</a>(<span class="keywordtype">size_t</span> batchSize, <span class="keywordtype">size_t</span> seqLen, <span class="keywordtype">size_t</span> headDim,</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>                       <a class="code hl_typedef" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a>* backend = <span class="keyword">nullptr</span>);</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classDeep_1_1AttentionOutputLayer.html#aa41340d595a349f6805473c398da925b">   34</a></span>  <a class="code hl_function" href="classDeep_1_1AttentionOutputLayer.html#aa41340d595a349f6805473c398da925b">AttentionOutputLayer</a>(<span class="keyword">const</span> <a class="code hl_function" href="classDeep_1_1AttentionOutputLayer.html#a05414d7b3b375c804dae5e5a72b0f91e">AttentionOutputLayer</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classDeep_1_1AttentionOutputLayer.html#a38a744ca48ab2b81a50aff81f89410b9">   35</a></span>  <a class="code hl_function" href="classDeep_1_1AttentionOutputLayer.html#a05414d7b3b375c804dae5e5a72b0f91e">AttentionOutputLayer</a>&amp; <a class="code hl_function" href="classDeep_1_1AttentionOutputLayer.html#a38a744ca48ab2b81a50aff81f89410b9">operator=</a>(<span class="keyword">const</span> <a class="code hl_function" href="classDeep_1_1AttentionOutputLayer.html#a05414d7b3b375c804dae5e5a72b0f91e">AttentionOutputLayer</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span></div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1AttentionOutputLayer.html#a9d52bd47c9b2348182b55c6965c7ad21">ComputeMuOnly</a>(<span class="keyword">const</span> <span class="keywordtype">float</span>* attnBeliefs, <span class="keyword">const</span> <span class="keywordtype">float</span>* vBeliefs) <span class="keyword">noexcept</span>;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classDeep_1_1AttentionOutputLayer.html#a9330f9063283e8a86bc9678e44cdc526">CalculateState</a>(<span class="keywordtype">bool</span> needEnergy) <span class="keyword">noexcept</span>;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1AttentionOutputLayer.html#ac4d8c06e0899c2664d7e750962fefd86">UpdateState</a>(<span class="keywordtype">float</span> ir, <span class="keyword">const</span> <span class="keywordtype">float</span>* eAbove = <span class="keyword">nullptr</span>) noexcept;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="foldopen" id="foldopen00051" data-start="{" data-end="}">
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classDeep_1_1AttentionOutputLayer.html#a2c678af056a64fb992fd112bc5c67a4b">   51</a></span>  <span class="keywordtype">float</span>* <a class="code hl_function" href="classDeep_1_1AttentionOutputLayer.html#a2c678af056a64fb992fd112bc5c67a4b">GetBeliefs</a>() noexcept</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  {</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordflow">return</span> z;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  }</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceDeep.html">Deep</a></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>{</div>
+<div class="foldopen" id="foldopen00024" data-start="{" data-end="};">
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classDeep_1_1AttentionOutputLayer.html">   24</a></span><span class="keyword">class </span><a class="code hl_function" href="classDeep_1_1AttentionOutputLayer.html#a05414d7b3b375c804dae5e5a72b0f91e">AttentionOutputLayer</a></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>{</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <a class="code hl_function" href="classDeep_1_1AttentionOutputLayer.html#a05414d7b3b375c804dae5e5a72b0f91e">AttentionOutputLayer</a>(<span class="keywordtype">size_t</span> batchSize, <span class="keywordtype">size_t</span> seqLen, <span class="keywordtype">size_t</span> headDim,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>                       <a class="code hl_typedef" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a>* backend = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classDeep_1_1AttentionOutputLayer.html#aa41340d595a349f6805473c398da925b">   36</a></span>  <a class="code hl_function" href="classDeep_1_1AttentionOutputLayer.html#aa41340d595a349f6805473c398da925b">AttentionOutputLayer</a>(<span class="keyword">const</span> <a class="code hl_function" href="classDeep_1_1AttentionOutputLayer.html#a05414d7b3b375c804dae5e5a72b0f91e">AttentionOutputLayer</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classDeep_1_1AttentionOutputLayer.html#a38a744ca48ab2b81a50aff81f89410b9">   37</a></span>  <a class="code hl_function" href="classDeep_1_1AttentionOutputLayer.html#a05414d7b3b375c804dae5e5a72b0f91e">AttentionOutputLayer</a>&amp; <a class="code hl_function" href="classDeep_1_1AttentionOutputLayer.html#a38a744ca48ab2b81a50aff81f89410b9">operator=</a>(<span class="keyword">const</span> <a class="code hl_function" href="classDeep_1_1AttentionOutputLayer.html#a05414d7b3b375c804dae5e5a72b0f91e">AttentionOutputLayer</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1AttentionOutputLayer.html#a9d52bd47c9b2348182b55c6965c7ad21">ComputeMuOnly</a>(<span class="keyword">const</span> <span class="keywordtype">float</span>* attnBeliefs, <span class="keyword">const</span> <span class="keywordtype">float</span>* vBeliefs) <span class="keyword">noexcept</span>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classDeep_1_1AttentionOutputLayer.html#a9330f9063283e8a86bc9678e44cdc526">CalculateState</a>(<span class="keywordtype">bool</span> needEnergy) <span class="keyword">noexcept</span>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1AttentionOutputLayer.html#ac4d8c06e0899c2664d7e750962fefd86">UpdateState</a>(<span class="keywordtype">float</span> ir, <span class="keyword">const</span> <span class="keywordtype">float</span>* eAbove = <span class="keyword">nullptr</span>) noexcept;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="foldopen" id="foldopen00056" data-start="{" data-end="}">
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classDeep_1_1AttentionOutputLayer.html#a2c678af056a64fb992fd112bc5c67a4b">   56</a></span>  <span class="keywordtype">float</span>* <a class="code hl_function" href="classDeep_1_1AttentionOutputLayer.html#a2c678af056a64fb992fd112bc5c67a4b">GetBeliefs</a>() noexcept</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordflow">return</span> z;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  }</div>
 </div>
-<div class="foldopen" id="foldopen00055" data-start="{" data-end="}">
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classDeep_1_1AttentionOutputLayer.html#a62edcfdc69a47c14546f281f6fa741a6">   55</a></span>  <span class="keyword">const</span> <span class="keywordtype">float</span>* <a class="code hl_function" href="classDeep_1_1AttentionOutputLayer.html#a62edcfdc69a47c14546f281f6fa741a6">GetErrors</a>() const noexcept</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  {</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordflow">return</span> e;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  }</div>
+<div class="foldopen" id="foldopen00060" data-start="{" data-end="}">
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classDeep_1_1AttentionOutputLayer.html#a62edcfdc69a47c14546f281f6fa741a6">   60</a></span>  <span class="keyword">const</span> <span class="keywordtype">float</span>* <a class="code hl_function" href="classDeep_1_1AttentionOutputLayer.html#a62edcfdc69a47c14546f281f6fa741a6">GetErrors</a>() const noexcept</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  {</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordflow">return</span> e;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  }</div>
 </div>
-<div class="foldopen" id="foldopen00059" data-start="{" data-end="}">
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classDeep_1_1AttentionOutputLayer.html#a0175f06e8d4c8dfb79bdd2d7e083f40a">   59</a></span>  <span class="keywordtype">size_t</span> <a class="code hl_function" href="classDeep_1_1AttentionOutputLayer.html#a0175f06e8d4c8dfb79bdd2d7e083f40a">GetBatchSize</a>() const noexcept</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  {</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordflow">return</span> batchSize;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  }</div>
+<div class="foldopen" id="foldopen00064" data-start="{" data-end="}">
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classDeep_1_1AttentionOutputLayer.html#a0175f06e8d4c8dfb79bdd2d7e083f40a">   64</a></span>  <span class="keywordtype">size_t</span> <a class="code hl_function" href="classDeep_1_1AttentionOutputLayer.html#a0175f06e8d4c8dfb79bdd2d7e083f40a">GetBatchSize</a>() const noexcept</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordflow">return</span> batchSize;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  }</div>
 </div>
-<div class="foldopen" id="foldopen00063" data-start="{" data-end="}">
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classDeep_1_1AttentionOutputLayer.html#aa596bf47636a768c03f11c683631a7c0">   63</a></span>  <span class="keywordtype">size_t</span> <a class="code hl_function" href="classDeep_1_1AttentionOutputLayer.html#aa596bf47636a768c03f11c683631a7c0">GetSeqLen</a>() const noexcept</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  {</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordflow">return</span> seqLen;</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  }</div>
+<div class="foldopen" id="foldopen00068" data-start="{" data-end="}">
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classDeep_1_1AttentionOutputLayer.html#aa596bf47636a768c03f11c683631a7c0">   68</a></span>  <span class="keywordtype">size_t</span> <a class="code hl_function" href="classDeep_1_1AttentionOutputLayer.html#aa596bf47636a768c03f11c683631a7c0">GetSeqLen</a>() const noexcept</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  {</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordflow">return</span> seqLen;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  }</div>
 </div>
-<div class="foldopen" id="foldopen00067" data-start="{" data-end="}">
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classDeep_1_1AttentionOutputLayer.html#a2f6985f19ad7474efa93cfc0505538a7">   67</a></span>  <span class="keywordtype">size_t</span> <a class="code hl_function" href="classDeep_1_1AttentionOutputLayer.html#a2f6985f19ad7474efa93cfc0505538a7">GetHeadDim</a>() const noexcept</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  {</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordflow">return</span> headDim;</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  }</div>
+<div class="foldopen" id="foldopen00072" data-start="{" data-end="}">
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classDeep_1_1AttentionOutputLayer.html#a2f6985f19ad7474efa93cfc0505538a7">   72</a></span>  <span class="keywordtype">size_t</span> <a class="code hl_function" href="classDeep_1_1AttentionOutputLayer.html#a2f6985f19ad7474efa93cfc0505538a7">GetHeadDim</a>() const noexcept</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  {</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordflow">return</span> headDim;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  }</div>
 </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  <span class="keywordtype">size_t</span> batchSize;</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  <span class="keywordtype">size_t</span> seqLen;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  <span class="keywordtype">size_t</span> headDim;</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  <span class="keywordtype">float</span>* z = <span class="keyword">nullptr</span>;  </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  <span class="keywordtype">float</span>* e = <span class="keyword">nullptr</span>;  </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  <span class="keywordtype">float</span>* mu = <span class="keyword">nullptr</span>; </div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  <span class="keyword">using </span>BackendDeleter = void (*)(<a class="code hl_typedef" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a>*);</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  std::unique_ptr&lt;IComputeBackend, BackendDeleter&gt; backend;</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  std::unique_ptr&lt;MemoryArena&gt; arena;</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>};</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  <span class="keywordtype">size_t</span> batchSize;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  <span class="keywordtype">size_t</span> seqLen;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  <span class="keywordtype">size_t</span> headDim;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  <span class="keywordtype">float</span>* z = <span class="keyword">nullptr</span>;  </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  <span class="keywordtype">float</span>* e = <span class="keyword">nullptr</span>;  </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  <span class="keywordtype">float</span>* mu = <span class="keyword">nullptr</span>; </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  <span class="keyword">using </span>BackendDeleter = void (*)(<a class="code hl_typedef" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">IComputeBackend</a>*);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  std::unique_ptr&lt;IComputeBackend, BackendDeleter&gt; backend;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  std::unique_ptr&lt;MemoryArena&gt; arena;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>};</div>
 </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>} <span class="comment">// namespace Deep</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>} <span class="comment">// namespace Deep</span></div>
 <div class="ttc" id="aIComputeBackend_8h_html"><div class="ttname"><a href="IComputeBackend_8h.html">IComputeBackend.h</a></div></div>
 <div class="ttc" id="aMemoryArena_8h_html"><div class="ttname"><a href="MemoryArena_8h.html">MemoryArena.h</a></div><div class="ttdoc">A 64-byte-aligned bump-pointer allocator over a single heap-allocated block, used to pack every layer...</div></div>
-<div class="ttc" id="aclassDeep_1_1AttentionOutputLayer_html_a0175f06e8d4c8dfb79bdd2d7e083f40a"><div class="ttname"><a href="classDeep_1_1AttentionOutputLayer.html#a0175f06e8d4c8dfb79bdd2d7e083f40a">Deep::AttentionOutputLayer::GetBatchSize</a></div><div class="ttdeci">size_t GetBatchSize() const noexcept</div><div class="ttdef"><b>Definition</b> AttentionOutputLayer.h:59</div></div>
+<div class="ttc" id="aclassDeep_1_1AttentionOutputLayer_html_a0175f06e8d4c8dfb79bdd2d7e083f40a"><div class="ttname"><a href="classDeep_1_1AttentionOutputLayer.html#a0175f06e8d4c8dfb79bdd2d7e083f40a">Deep::AttentionOutputLayer::GetBatchSize</a></div><div class="ttdeci">size_t GetBatchSize() const noexcept</div><div class="ttdef"><b>Definition</b> AttentionOutputLayer.h:64</div></div>
 <div class="ttc" id="aclassDeep_1_1AttentionOutputLayer_html_a05414d7b3b375c804dae5e5a72b0f91e"><div class="ttname"><a href="classDeep_1_1AttentionOutputLayer.html#a05414d7b3b375c804dae5e5a72b0f91e">Deep::AttentionOutputLayer::AttentionOutputLayer</a></div><div class="ttdeci">AttentionOutputLayer(size_t batchSize, size_t seqLen, size_t headDim, IComputeBackend *backend=nullptr)</div><div class="ttdef"><b>Definition</b> AttentionOutputLayer.cpp:15</div></div>
-<div class="ttc" id="aclassDeep_1_1AttentionOutputLayer_html_a2c678af056a64fb992fd112bc5c67a4b"><div class="ttname"><a href="classDeep_1_1AttentionOutputLayer.html#a2c678af056a64fb992fd112bc5c67a4b">Deep::AttentionOutputLayer::GetBeliefs</a></div><div class="ttdeci">float * GetBeliefs() noexcept</div><div class="ttdef"><b>Definition</b> AttentionOutputLayer.h:51</div></div>
-<div class="ttc" id="aclassDeep_1_1AttentionOutputLayer_html_a2f6985f19ad7474efa93cfc0505538a7"><div class="ttname"><a href="classDeep_1_1AttentionOutputLayer.html#a2f6985f19ad7474efa93cfc0505538a7">Deep::AttentionOutputLayer::GetHeadDim</a></div><div class="ttdeci">size_t GetHeadDim() const noexcept</div><div class="ttdef"><b>Definition</b> AttentionOutputLayer.h:67</div></div>
+<div class="ttc" id="aclassDeep_1_1AttentionOutputLayer_html_a2c678af056a64fb992fd112bc5c67a4b"><div class="ttname"><a href="classDeep_1_1AttentionOutputLayer.html#a2c678af056a64fb992fd112bc5c67a4b">Deep::AttentionOutputLayer::GetBeliefs</a></div><div class="ttdeci">float * GetBeliefs() noexcept</div><div class="ttdef"><b>Definition</b> AttentionOutputLayer.h:56</div></div>
+<div class="ttc" id="aclassDeep_1_1AttentionOutputLayer_html_a2f6985f19ad7474efa93cfc0505538a7"><div class="ttname"><a href="classDeep_1_1AttentionOutputLayer.html#a2f6985f19ad7474efa93cfc0505538a7">Deep::AttentionOutputLayer::GetHeadDim</a></div><div class="ttdeci">size_t GetHeadDim() const noexcept</div><div class="ttdef"><b>Definition</b> AttentionOutputLayer.h:72</div></div>
 <div class="ttc" id="aclassDeep_1_1AttentionOutputLayer_html_a38a744ca48ab2b81a50aff81f89410b9"><div class="ttname"><a href="classDeep_1_1AttentionOutputLayer.html#a38a744ca48ab2b81a50aff81f89410b9">Deep::AttentionOutputLayer::operator=</a></div><div class="ttdeci">AttentionOutputLayer &amp; operator=(const AttentionOutputLayer &amp;)=delete</div></div>
-<div class="ttc" id="aclassDeep_1_1AttentionOutputLayer_html_a62edcfdc69a47c14546f281f6fa741a6"><div class="ttname"><a href="classDeep_1_1AttentionOutputLayer.html#a62edcfdc69a47c14546f281f6fa741a6">Deep::AttentionOutputLayer::GetErrors</a></div><div class="ttdeci">const float * GetErrors() const noexcept</div><div class="ttdef"><b>Definition</b> AttentionOutputLayer.h:55</div></div>
+<div class="ttc" id="aclassDeep_1_1AttentionOutputLayer_html_a62edcfdc69a47c14546f281f6fa741a6"><div class="ttname"><a href="classDeep_1_1AttentionOutputLayer.html#a62edcfdc69a47c14546f281f6fa741a6">Deep::AttentionOutputLayer::GetErrors</a></div><div class="ttdeci">const float * GetErrors() const noexcept</div><div class="ttdef"><b>Definition</b> AttentionOutputLayer.h:60</div></div>
 <div class="ttc" id="aclassDeep_1_1AttentionOutputLayer_html_a9330f9063283e8a86bc9678e44cdc526"><div class="ttname"><a href="classDeep_1_1AttentionOutputLayer.html#a9330f9063283e8a86bc9678e44cdc526">Deep::AttentionOutputLayer::CalculateState</a></div><div class="ttdeci">float CalculateState(bool needEnergy) noexcept</div><div class="ttdoc">Computes e = z - mu (plain Gaussian), and optionally this layer&#39;s total energy.</div><div class="ttdef"><b>Definition</b> AttentionOutputLayer.cpp:51</div></div>
 <div class="ttc" id="aclassDeep_1_1AttentionOutputLayer_html_a9d52bd47c9b2348182b55c6965c7ad21"><div class="ttname"><a href="classDeep_1_1AttentionOutputLayer.html#a9d52bd47c9b2348182b55c6965c7ad21">Deep::AttentionOutputLayer::ComputeMuOnly</a></div><div class="ttdeci">void ComputeMuOnly(const float *attnBeliefs, const float *vBeliefs) noexcept</div><div class="ttdoc">Computes mu[b,i,:] = sum_j attnBeliefs[b,i,j] * vBeliefs[b,j,:].</div><div class="ttdef"><b>Definition</b> AttentionOutputLayer.cpp:37</div></div>
 <div class="ttc" id="aclassDeep_1_1AttentionOutputLayer_html_aa41340d595a349f6805473c398da925b"><div class="ttname"><a href="classDeep_1_1AttentionOutputLayer.html#aa41340d595a349f6805473c398da925b">Deep::AttentionOutputLayer::AttentionOutputLayer</a></div><div class="ttdeci">AttentionOutputLayer(const AttentionOutputLayer &amp;)=delete</div></div>
-<div class="ttc" id="aclassDeep_1_1AttentionOutputLayer_html_aa596bf47636a768c03f11c683631a7c0"><div class="ttname"><a href="classDeep_1_1AttentionOutputLayer.html#aa596bf47636a768c03f11c683631a7c0">Deep::AttentionOutputLayer::GetSeqLen</a></div><div class="ttdeci">size_t GetSeqLen() const noexcept</div><div class="ttdef"><b>Definition</b> AttentionOutputLayer.h:63</div></div>
+<div class="ttc" id="aclassDeep_1_1AttentionOutputLayer_html_aa596bf47636a768c03f11c683631a7c0"><div class="ttname"><a href="classDeep_1_1AttentionOutputLayer.html#aa596bf47636a768c03f11c683631a7c0">Deep::AttentionOutputLayer::GetSeqLen</a></div><div class="ttdeci">size_t GetSeqLen() const noexcept</div><div class="ttdef"><b>Definition</b> AttentionOutputLayer.h:68</div></div>
 <div class="ttc" id="aclassDeep_1_1AttentionOutputLayer_html_ac4d8c06e0899c2664d7e750962fefd86"><div class="ttname"><a href="classDeep_1_1AttentionOutputLayer.html#ac4d8c06e0899c2664d7e750962fefd86">Deep::AttentionOutputLayer::UpdateState</a></div><div class="ttdeci">void UpdateState(float ir, const float *eAbove=nullptr) noexcept</div><div class="ttdoc">Settles z one Euler step: z += ir * (eAbove - e) if there&#39;s a real layer above (eAbove non-null),...</div><div class="ttdef"><b>Definition</b> AttentionOutputLayer.cpp:62</div></div>
-<div class="ttc" id="anamespaceDeep_html"><div class="ttname"><a href="namespaceDeep.html">Deep</a></div><div class="ttdef"><b>Definition</b> Backend.cpp:10</div></div>
-<div class="ttc" id="anamespaceDeep_html_a24f44e5368f10174045be9658b125eb4"><div class="ttname"><a href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">Deep::IComputeBackend</a></div><div class="ttdeci">IComputeBackendT&lt; float, float &gt; IComputeBackend</div><div class="ttdoc">Non-templated alias: IComputeBackend is IComputeBackendT&lt;float, float&gt;.</div><div class="ttdef"><b>Definition</b> IComputeBackend.h:506</div></div>
+<div class="ttc" id="anamespaceDeep_html"><div class="ttname"><a href="namespaceDeep.html">Deep</a></div><div class="ttdoc">This file exists to provide both Tensor.h and IComputeBackend.h with device types without introducing...</div><div class="ttdef"><b>Definition</b> Backend.cpp:10</div></div>
+<div class="ttc" id="anamespaceDeep_html_a24f44e5368f10174045be9658b125eb4"><div class="ttname"><a href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4">Deep::IComputeBackend</a></div><div class="ttdeci">IComputeBackendT&lt; float, float &gt; IComputeBackend</div><div class="ttdoc">Non-templated alias preserving every existing caller&#39;s behavior exactly: IComputeBackend is IComputeB...</div><div class="ttdef"><b>Definition</b> IComputeBackend.h:767</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

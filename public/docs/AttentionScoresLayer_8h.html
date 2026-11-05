@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('AttentionScore
 </div><!--header-->
 <div class="contents">
 
-<p>Causal single-head self-attention weights as a free-standing PC node: a FullPCLayer toggle can't express this, since its mu depends on two upstream beliefs (Q and K). Does not inherit Layer.  
+<p>Causal single-head self-attention weights as a free-standing PC node &ndash; NOT a FullPCLayer toggle, since its mu depends on TWO upstream beliefs (Q and K), breaking the single-layerBelow assumption FullPCLayer's state machinery relies on everywhere. Does not inherit Layer for the same reason FullPCLayer&lt;T&gt; doesn't (see that class's own doc comment): Layer's virtual interface has no notion of two predecessors either.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="IComputeBackend_8h_source.html">deepity/backend/IComputeBackend.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="MemoryArena_8h_source.html">deepity/utils/MemoryArena.h</a>&gt;</code><br />
@@ -139,11 +139,12 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:Deep" id="r_Deep"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep.html">Deep</a></td></tr>
+<tr class="memdesc:namespaceDeep"><td class="mdescLeft">&#160;</td><td class="mdescRight">This file exists to provide both <a class="el" href="Tensor_8h.html" title="A device-aware, RAII-managed buffer. Device is fixed at construction, there is no support for moving ...">Tensor.h</a> and <a class="el" href="IComputeBackend_8h.html">IComputeBackend.h</a> with device types without introducing circular dependencies. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Causal single-head self-attention weights as a free-standing PC node: a FullPCLayer toggle can't express this, since its mu depends on two upstream beliefs (Q and K). Does not inherit Layer. </p>
-<p>Uses a categorical/KL energy, not the usual Gaussian PC energy, since this layer's output is a softmax distribution. </p><dl class="section see"><dt>See also</dt><dd>Pinchetti et al., "Predictive Coding beyond Gaussian
-Distributions" (arXiv:2211.03481) </dd></dl>
+<div class="textblock"><p>Causal single-head self-attention weights as a free-standing PC node &ndash; NOT a FullPCLayer toggle, since its mu depends on TWO upstream beliefs (Q and K), breaking the single-layerBelow assumption FullPCLayer's state machinery relies on everywhere. Does not inherit Layer for the same reason FullPCLayer&lt;T&gt; doesn't (see that class's own doc comment): Layer's virtual interface has no notion of two predecessors either. </p>
+<p>Energy function follows Pinchetti et al., "Predictive Coding beyond
+Gaussian Distributions" (arXiv:2211.03481): every ordinary PC layer keeps the usual Gaussian energy, but a layer whose output is a softmax distribution (attention weights here) needs the categorical/KL energy instead, or training collapses (their own naive-Gaussian-PC transformer hit test perplexity 590 vs backprop's 162.64; the categorical-energy version reached 175.90). Deepity already has this energy function &ndash; FullPCLayer's SetCrossEntropy()/ComputeSoftmaxCrossEntropyError(AndEnergy) &ndash; this class reuses it directly rather than re-deriving it, by treating each of the batchSize*seqLen query positions as one independent softmax-over-seqLen row. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">

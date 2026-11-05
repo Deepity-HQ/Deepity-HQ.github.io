@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classDeep_1_1D
 </div><!--header-->
 <div class="contents">
 
-<p>Precision-weighted dense Predictive Coding layer, routed through <a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4" title="Non-templated alias: IComputeBackend is IComputeBackendT&lt;float, float&gt;.">IComputeBackend</a> for GPU portability.  
+<p>Precision-weighted dense Predictive Coding layer, routed through <a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: IComputeBackend is IComputeB...">IComputeBackend</a> for GPU portability.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="DiscriminativePCLayer_8h_source.html">DiscriminativePCLayer.h</a>&gt;</code></p>
@@ -144,7 +144,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4d50660fe8014f93db31e3478f98ee07" id="r_a4d50660fe8014f93db31e3478f98ee07"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a4d50660fe8014f93db31e3478f98ee07">CalculateState</a> () noexcept override</td></tr>
 <tr class="memdesc:a4d50660fe8014f93db31e3478f98ee07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the total network energy state.  <br /></td></tr>
 <tr class="memitem:afdd17fa8b94e39537a080ef330625ff0" id="r_afdd17fa8b94e39537a080ef330625ff0"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#afdd17fa8b94e39537a080ef330625ff0">CalculateState</a> (bool needEnergy) noexcept</td></tr>
-<tr class="memdesc:afdd17fa8b94e39537a080ef330625ff0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as <a class="el" href="#a4d50660fe8014f93db31e3478f98ee07" title="Calculates the total network energy state.">CalculateState()</a>, but can skip computing (and returning) the energy. Pass false inside a captured CUDA graph region.  <br /></td></tr>
+<tr class="memdesc:afdd17fa8b94e39537a080ef330625ff0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as <a class="el" href="#a4d50660fe8014f93db31e3478f98ee07" title="Calculates the total network energy state.">CalculateState()</a>, but can skip computing (and returning) the energy. On <a class="el" href="classDeep_1_1CUDABackend.html" title="CUDA implementation of IComputeBackend: device kernels for elementwise ops, cuBLAS for GEMM,...">CUDABackend</a>, needEnergy=false also means no blocking host sync, required for any settling-loop caller that runs this inside a captured CUDA graph region (see <a class="el" href="classDeep_1_1DiscriminativePCNetwork.html#ac234beb279bfd8ffa13e374624ba790a" title="Runs a complete training step (clamp, settle, update, unclamp).">DiscriminativePCNetwork::TrainStep()</a>'s GPU branch).  <br /></td></tr>
 <tr class="memitem:a40f4dbeedd94bdc369d45091bbbdf559" id="r_a40f4dbeedd94bdc369d45091bbbdf559"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a40f4dbeedd94bdc369d45091bbbdf559">UpdateState</a> () noexcept override</td></tr>
 <tr class="memdesc:a40f4dbeedd94bdc369d45091bbbdf559"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the state derivatives for inference.  <br /></td></tr>
 <tr class="memitem:a39631620cf0d84cc97977b619fac2e9f" id="r_a39631620cf0d84cc97977b619fac2e9f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a39631620cf0d84cc97977b619fac2e9f">UpdateWeights</a> () noexcept override</td></tr>
@@ -162,7 +162,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9e45d35b56c319fda368435acde46e6e" id="r_a9e45d35b56c319fda368435acde46e6e"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a9e45d35b56c319fda368435acde46e6e">IsClamped</a> () const noexcept</td></tr>
 <tr class="memdesc:a9e45d35b56c319fda368435acde46e6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether <a class="el" href="#a1eeec84533bb61ccab53f105a0ced2f1" title="Clamps the layer to the input data.">ClampState()</a> is currently active on this layer.  <br /></td></tr>
 <tr class="memitem:ab45f8f6d157c254d75deecbbff914c58" id="r_ab45f8f6d157c254d75deecbbff914c58"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ab45f8f6d157c254d75deecbbff914c58">InvalidateMuCache</a> () noexcept</td></tr>
-<tr class="memdesc:ab45f8f6d157c254d75deecbbff914c58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces the next <a class="el" href="#a91974a53d4e2a130a6e3fbfaaab2ba36" title="Computes only mu (forward prediction), skipping error and energy computation entirely....">ComputeMuOnly()</a> call to recompute mu instead of reusing a cached value, without otherwise touching clamp state. Call after a CUDA-graph (re)capture.  <br /></td></tr>
+<tr class="memdesc:ab45f8f6d157c254d75deecbbff914c58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces the next <a class="el" href="#a91974a53d4e2a130a6e3fbfaaab2ba36" title="Computes only mu (forward prediction), skipping error and energy computation entirely....">ComputeMuOnly()</a> call to recompute mu instead of reusing a cached value, without otherwise touching clamp state. Needed after a CUDA-graph (re)capture: the recording pass runs the settling loop as real C++, leaving muCacheValid=true as a side effect, which would otherwise make the following fresh, uncaptured energy read reuse mu from before this call's own weight update.  <br /></td></tr>
 <tr class="memitem:ac5cf3c7da1032b64442ea4317876ad15" id="r_ac5cf3c7da1032b64442ea4317876ad15"><td class="memItemLeft">float *&#160;</td><td class="memItemRight"><a class="el" href="#ac5cf3c7da1032b64442ea4317876ad15">GetBeliefs</a> () noexcept override</td></tr>
 <tr class="memdesc:ac5cf3c7da1032b64442ea4317876ad15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns beliefs.  <br /></td></tr>
 <tr class="memitem:a274953fef6f8bbed0c30e50891b5acaf" id="r_a274953fef6f8bbed0c30e50891b5acaf"><td class="memItemLeft">const float *&#160;</td><td class="memItemRight"><a class="el" href="#a274953fef6f8bbed0c30e50891b5acaf">GetErrors</a> () const noexcept override</td></tr>
@@ -216,7 +216,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4f33d0cb0a2816d050a35e224fee3408" id="r_a4f33d0cb0a2816d050a35e224fee3408"><td class="memItemLeft">const <a class="el" href="#a3cba865a2c2de4548fe468c64ad4a6a5">DiscriminativePCLayer</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a4f33d0cb0a2816d050a35e224fee3408">GetLayerBelow</a> () const noexcept</td></tr>
 <tr class="memdesc:a4f33d0cb0a2816d050a35e224fee3408"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets const reference to the layer below.  <br /></td></tr>
 <tr class="memitem:aff4ed235135b449297b5c0b0f1c1429f" id="r_aff4ed235135b449297b5c0b0f1c1429f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aff4ed235135b449297b5c0b0f1c1429f">RandomizeWeights</a> (std::mt19937 &amp;twister, const char *distribution=&quot;normal&quot;) noexcept</td></tr>
-<tr class="memdesc:aff4ed235135b449297b5c0b0f1c1429f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Randomizes the weights W in place.  <br /></td></tr>
+<tr class="memdesc:aff4ed235135b449297b5c0b0f1c1429f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Randomizes the weights W using a normal distribution scaled by fan-in/fan-out (see <a class="el" href="#aff4ed235135b449297b5c0b0f1c1429f" title="Randomizes the weights W using a normal distribution scaled by fan-in/fan-out (see RandomizeWeights()...">RandomizeWeights()</a>'s .cpp).  <br /></td></tr>
 <tr class="memitem:a19c60f114c24e1acfe656bb457bd2fbf" id="r_a19c60f114c24e1acfe656bb457bd2fbf"><td class="memItemLeft"><a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a>&#160;</td><td class="memItemRight"><a class="el" href="#a19c60f114c24e1acfe656bb457bd2fbf">GetActivationType</a> () const noexcept</td></tr>
 <tr class="memdesc:a19c60f114c24e1acfe656bb457bd2fbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns this layer's configured activation type.  <br /></td></tr>
 <tr class="memitem:aef19aa4132fdcc53eec41a3aec0df17f" id="r_aef19aa4132fdcc53eec41a3aec0df17f"><td class="memItemLeft"><a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a>&#160;</td><td class="memItemRight"><a class="el" href="#aef19aa4132fdcc53eec41a3aec0df17f">GetDerivativeType</a> () const noexcept</td></tr>
@@ -250,7 +250,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memdesc:a5a538a25f3064996bbe651e6d48918d0 pro_attribs_classDeep_1_1Layer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of output.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Precision-weighted dense Predictive Coding layer, routed through <a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4" title="Non-templated alias: IComputeBackend is IComputeBackendT&lt;float, float&gt;.">IComputeBackend</a> for GPU portability. </p>
+<div class="textblock"><p>Precision-weighted dense Predictive Coding layer, routed through <a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: IComputeBackend is IComputeB...">IComputeBackend</a> for GPU portability. </p>
 <p>To perform inference (prediction):</p><ol type="1">
 <li>Clamp the input data to the bottom layer's latent state (z).</li>
 <li>Enter a continuous loop across all layers, calling <a class="el" href="#a4d50660fe8014f93db31e3478f98ee07" title="Calculates the total network energy state.">CalculateState()</a> to compute the local prediction errors (e).</li>
@@ -359,7 +359,7 @@ template&lt;typename ArenaT&gt; </div>
 <p>Binds all tensor pointers to the contiguous memory block. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">ArenaT</td><td>Either <a class="el" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4" title="Non-templated alias: MemoryArena is MemoryArenaT&lt;float&gt;.">MemoryArena</a> or <a class="el" href="namespaceDeep.html#a1389c0520260789b0d62d62237a71d0c" title="Non-templated alias: DeviceMemoryArena is DeviceMemoryArenaT&lt;float, float&gt;.">DeviceMemoryArena</a>. </td></tr>
+    <tr><td class="paramname">ArenaT</td><td>Either <a class="el" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: MemoryArena is MemoryArenaT&lt;...">MemoryArena</a> or <a class="el" href="namespaceDeep.html#a1389c0520260789b0d62d62237a71d0c" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: DeviceMemoryArena is DeviceM...">DeviceMemoryArena</a>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -429,7 +429,7 @@ template&lt;typename ArenaT&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Same as <a class="el" href="#a4d50660fe8014f93db31e3478f98ee07" title="Calculates the total network energy state.">CalculateState()</a>, but can skip computing (and returning) the energy. Pass false inside a captured CUDA graph region. </p>
+<p>Same as <a class="el" href="#a4d50660fe8014f93db31e3478f98ee07" title="Calculates the total network energy state.">CalculateState()</a>, but can skip computing (and returning) the energy. On <a class="el" href="classDeep_1_1CUDABackend.html" title="CUDA implementation of IComputeBackend: device kernels for elementwise ops, cuBLAS for GEMM,...">CUDABackend</a>, needEnergy=false also means no blocking host sync, required for any settling-loop caller that runs this inside a captured CUDA graph region (see <a class="el" href="classDeep_1_1DiscriminativePCNetwork.html#ac234beb279bfd8ffa13e374624ba790a" title="Runs a complete training step (clamp, settle, update, unclamp).">DiscriminativePCNetwork::TrainStep()</a>'s GPU branch). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">needEnergy</td><td>Whether to compute and return the energy. </td></tr>
@@ -1177,7 +1177,7 @@ template&lt;typename ArenaT&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Forces the next <a class="el" href="#a91974a53d4e2a130a6e3fbfaaab2ba36" title="Computes only mu (forward prediction), skipping error and energy computation entirely....">ComputeMuOnly()</a> call to recompute mu instead of reusing a cached value, without otherwise touching clamp state. Call after a CUDA-graph (re)capture. </p>
+<p>Forces the next <a class="el" href="#a91974a53d4e2a130a6e3fbfaaab2ba36" title="Computes only mu (forward prediction), skipping error and energy computation entirely....">ComputeMuOnly()</a> call to recompute mu instead of reusing a cached value, without otherwise touching clamp state. Needed after a CUDA-graph (re)capture: the recording pass runs the settling loop as real C++, leaving muCacheValid=true as a side effect, which would otherwise make the following fresh, uncaptured energy read reuse mu from before this call's own weight update. </p>
 
 </div>
 </div>
@@ -1235,11 +1235,11 @@ template&lt;typename ArenaT&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Randomizes the weights W in place. </p>
+<p>Randomizes the weights W using a normal distribution scaled by fan-in/fan-out (see <a class="el" href="#aff4ed235135b449297b5c0b0f1c1429f" title="Randomizes the weights W using a normal distribution scaled by fan-in/fan-out (see RandomizeWeights()...">RandomizeWeights()</a>'s .cpp). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">twister</td><td>The classic Mersenne Twister </td></tr>
-    <tr><td class="paramname">distribution</td><td>e.g. "normal(0,1)" or "uniform(-0.3,0.3)". The default "normal" (with no "(a,b)") falls back to this class's own fan-scaled default. </td></tr>
+    <tr><td class="paramname">distribution</td><td>e.g. "normal(0,1)" or "uniform(-0.3,0.3)". The default "normal" has no "(a,b)" and so deliberately fails to parse, falling back to this class's own existing fan-scaled default. </td></tr>
   </table>
   </dd>
 </dl>

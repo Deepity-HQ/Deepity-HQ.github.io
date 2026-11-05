@@ -124,311 +124,311 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('SimpleConvPCNe
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;random&gt;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceDeep.html">Deep</a></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>{</div>
-<div class="foldopen" id="foldopen00020" data-start="{" data-end="};">
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html">   20</a></span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> AccumT = T&gt; <span class="keyword">class </span><a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a7417bee8208deb845e75e2c5e5298aba">SimpleConvPCNetworkT</a></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>{</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#ad804cc5bab35739a7243f4fb08a6ae25">   24</a></span>  <span class="keyword">using </span><a class="code hl_typedef" href="classDeep_1_1SimpleConvPCNetworkT.html#ad804cc5bab35739a7243f4fb08a6ae25">ElementType</a> = T;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span></div>
-<div class="foldopen" id="foldopen00028" data-start="{" data-end="}">
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#a7417bee8208deb845e75e2c5e5298aba">   28</a></span>  <span class="keyword">explicit</span> <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a7417bee8208deb845e75e2c5e5298aba">SimpleConvPCNetworkT</a>(<span class="keywordtype">int</span> batchSize, <a class="code hl_enumeration" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a> device = <a class="code hl_enumvalue" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3a2b51e711df2cded71f92128f2f8f34dd">DeviceType::DEVICE_CPU</a>)</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>      : device(device)</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>      , batchSize(batchSize)</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  {</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    backend = <a class="code hl_function" href="namespaceDeep.html#a348ceadc3b61e6a1b937b72582291411">CreateBackendT&lt;T, AccumT&gt;</a>(device);</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  }</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceDeep.html">Deep</a></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>{</div>
+<div class="foldopen" id="foldopen00028" data-start="{" data-end="};">
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html">   28</a></span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> AccumT = T&gt; <span class="keyword">class </span><a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a7417bee8208deb845e75e2c5e5298aba">SimpleConvPCNetworkT</a></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>{</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#ad804cc5bab35739a7243f4fb08a6ae25">   33</a></span>  <span class="keyword">using </span><a class="code hl_typedef" href="classDeep_1_1SimpleConvPCNetworkT.html#ad804cc5bab35739a7243f4fb08a6ae25">ElementType</a> = T;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span></div>
+<div class="foldopen" id="foldopen00037" data-start="{" data-end="}">
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#a7417bee8208deb845e75e2c5e5298aba">   37</a></span>  <span class="keyword">explicit</span> <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a7417bee8208deb845e75e2c5e5298aba">SimpleConvPCNetworkT</a>(<span class="keywordtype">int</span> batchSize, <a class="code hl_enumeration" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a> device = <a class="code hl_enumvalue" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3a2b51e711df2cded71f92128f2f8f34dd">DeviceType::DEVICE_CPU</a>)</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>      : device(device)</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>      , batchSize(batchSize)</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    backend = <a class="code hl_function" href="namespaceDeep.html#a348ceadc3b61e6a1b937b72582291411">CreateBackendT&lt;T, AccumT&gt;</a>(device);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  }</div>
 </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#a8b584b4186cc3080c425bd48fc27169a">   34</a></span>  <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a8b584b4186cc3080c425bd48fc27169a">~SimpleConvPCNetworkT</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#aca21c0eab53a0ca96629393d6c2b07b6">   36</a></span>  <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#aca21c0eab53a0ca96629393d6c2b07b6">SimpleConvPCNetworkT</a>(<span class="keyword">const</span> <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a7417bee8208deb845e75e2c5e5298aba">SimpleConvPCNetworkT</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#a05a63568216eeb26bdd7d25808cb66f4">   37</a></span>  <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a7417bee8208deb845e75e2c5e5298aba">SimpleConvPCNetworkT</a>&amp; <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a05a63568216eeb26bdd7d25808cb66f4">operator=</a>(<span class="keyword">const</span> <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a7417bee8208deb845e75e2c5e5298aba">SimpleConvPCNetworkT</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span></div>
-<div class="foldopen" id="foldopen00042" data-start="{" data-end="}">
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#a18530b941bef72d786c91e1a57fb587f">   42</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a18530b941bef72d786c91e1a57fb587f">AddLayer</a>(<span class="keywordtype">int</span> inChannels, <span class="keywordtype">int</span> outChannels, <span class="keywordtype">int</span> inHeight, <span class="keywordtype">int</span> inWidth, <span class="keywordtype">int</span> kernelH,</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>               <span class="keywordtype">int</span> kernelW, <span class="keywordtype">int</span> strideH = 1, <span class="keywordtype">int</span> strideW = 1, <span class="keywordtype">int</span> padH = 0, <span class="keywordtype">int</span> padW = 0,</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>               AccumT lr = AccumT(1e-6), AccumT ir = AccumT(0.1), AccumT lmbda = AccumT(1e-2),</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>               <a class="code hl_enumeration" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> aType = <a class="code hl_enumvalue" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ad346bb4679d29be241279f15d7795c1c">ActivationType::RELU</a>,</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>               <a class="code hl_enumeration" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> dType = <a class="code hl_enumvalue" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ae3d97c20b976be09990b745185b14d75">ActivationType::dRELU</a>)</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  {</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keyword">auto</span> l = std::make_unique&lt;SimpleConvPCLayerT&lt;T, AccumT&gt;&gt;(</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        inChannels, outChannels, inHeight, inWidth, kernelH, kernelW, strideH, strideW, padH,</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        padW, batchSize, lr, ir, lmbda, aType, dType, backend.get());</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordflow">if</span> (!layers.empty())</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    {</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>      layers.back()-&gt;SetLayerAbove(l.get());</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>      l-&gt;SetLayerBelow(layers.back().get());</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    }</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    layers.push_back(std::move(l));</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  }</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#a8b584b4186cc3080c425bd48fc27169a">   43</a></span>  <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a8b584b4186cc3080c425bd48fc27169a">~SimpleConvPCNetworkT</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#aca21c0eab53a0ca96629393d6c2b07b6">   45</a></span>  <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#aca21c0eab53a0ca96629393d6c2b07b6">SimpleConvPCNetworkT</a>(<span class="keyword">const</span> <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a7417bee8208deb845e75e2c5e5298aba">SimpleConvPCNetworkT</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#a05a63568216eeb26bdd7d25808cb66f4">   46</a></span>  <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a7417bee8208deb845e75e2c5e5298aba">SimpleConvPCNetworkT</a>&amp; <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a05a63568216eeb26bdd7d25808cb66f4">operator=</a>(<span class="keyword">const</span> <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a7417bee8208deb845e75e2c5e5298aba">SimpleConvPCNetworkT</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span></div>
+<div class="foldopen" id="foldopen00051" data-start="{" data-end="}">
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#a18530b941bef72d786c91e1a57fb587f">   51</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a18530b941bef72d786c91e1a57fb587f">AddLayer</a>(<span class="keywordtype">int</span> inChannels, <span class="keywordtype">int</span> outChannels, <span class="keywordtype">int</span> inHeight, <span class="keywordtype">int</span> inWidth, <span class="keywordtype">int</span> kernelH,</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>               <span class="keywordtype">int</span> kernelW, <span class="keywordtype">int</span> strideH = 1, <span class="keywordtype">int</span> strideW = 1, <span class="keywordtype">int</span> padH = 0, <span class="keywordtype">int</span> padW = 0,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>               AccumT lr = AccumT(1e-6), AccumT ir = AccumT(0.1), AccumT lmbda = AccumT(1e-2),</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>               <a class="code hl_enumeration" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> aType = <a class="code hl_enumvalue" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ad346bb4679d29be241279f15d7795c1c">ActivationType::RELU</a>,</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>               <a class="code hl_enumeration" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> dType = <a class="code hl_enumvalue" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ae3d97c20b976be09990b745185b14d75">ActivationType::dRELU</a>)</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keyword">auto</span> l = std::make_unique&lt;SimpleConvPCLayerT&lt;T, AccumT&gt;&gt;(</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        inChannels, outChannels, inHeight, inWidth, kernelH, kernelW, strideH, strideW, padH,</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        padW, batchSize, lr, ir, lmbda, aType, dType, backend.get());</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordflow">if</span> (!layers.empty())</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    {</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>      layers.back()-&gt;SetLayerAbove(l.get());</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>      l-&gt;SetLayerBelow(layers.back().get());</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    }</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    layers.push_back(std::move(l));</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  }</div>
 </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span></div>
-<div class="foldopen" id="foldopen00061" data-start="{" data-end="}">
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#ad55c2cda32ea9fb6fc81aef6497a8d94">   61</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ad55c2cda32ea9fb6fc81aef6497a8d94">SetOptimizer</a>(<a class="code hl_enumeration" href="namespaceDeep.html#a76c7b5d078cce2bed29f6f592560bf02">OptimizerType</a> opt) <span class="keyword">noexcept</span></div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  {</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    pendingOpt = opt;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  }</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span></div>
+<div class="foldopen" id="foldopen00070" data-start="{" data-end="}">
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#ad55c2cda32ea9fb6fc81aef6497a8d94">   70</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ad55c2cda32ea9fb6fc81aef6497a8d94">SetOptimizer</a>(<a class="code hl_enumeration" href="namespaceDeep.html#a76c7b5d078cce2bed29f6f592560bf02">OptimizerType</a> opt) <span class="keyword">noexcept</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    pendingOpt = opt;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  }</div>
 </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span></div>
-<div class="foldopen" id="foldopen00069" data-start="{" data-end="}">
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#a602e56922b02f202e2541834f640c463">   69</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a602e56922b02f202e2541834f640c463">Compile</a>()</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  {</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; l : layers)</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>      l-&gt;SetOptimizer(pendingOpt);</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordtype">size_t</span> total = 0;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; l : layers)</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>      total += l-&gt;GetRequiredElements();</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordflow">if</span> (device == <a class="code hl_enumvalue" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3a2b51e711df2cded71f92128f2f8f34dd">DeviceType::DEVICE_CPU</a>)</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    {</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>      cpuArena = std::make_unique&lt;MemoryArenaT&lt;T&gt;&gt;(total);</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>      <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; l : layers)</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        l-&gt;BindMemory(*cpuArena);</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    }</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="preprocessor">#if defined(DEEPITY_USE_CUDA)</span></div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    {</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>      backend-&gt;PrepareForBatchSize(batchSize);</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>      gpuArena = std::make_unique&lt;DeviceMemoryArenaT&lt;T, AccumT&gt;&gt;(backend.get(), total);</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>      <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; l : layers)</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        l-&gt;BindMemory(*gpuArena);</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>      <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; l : layers)</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        l-&gt;PrepareConvWorkspace();</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    }</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  }</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span></div>
+<div class="foldopen" id="foldopen00078" data-start="{" data-end="}">
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#a602e56922b02f202e2541834f640c463">   78</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a602e56922b02f202e2541834f640c463">Compile</a>()</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  {</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; l : layers)</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>      l-&gt;SetOptimizer(pendingOpt);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordtype">size_t</span> total = 0;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; l : layers)</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>      total += l-&gt;GetRequiredElements();</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordflow">if</span> (device == <a class="code hl_enumvalue" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3a2b51e711df2cded71f92128f2f8f34dd">DeviceType::DEVICE_CPU</a>)</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    {</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>      cpuArena = std::make_unique&lt;MemoryArenaT&lt;T&gt;&gt;(total);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>      <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; l : layers)</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        l-&gt;BindMemory(*cpuArena);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    }</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="preprocessor">#if defined(DEEPITY_USE_CUDA)</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    {</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>      backend-&gt;PrepareForBatchSize(batchSize);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>      gpuArena = std::make_unique&lt;DeviceMemoryArenaT&lt;T, AccumT&gt;&gt;(backend.get(), total);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>      <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; l : layers)</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        l-&gt;BindMemory(*gpuArena);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>      <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; l : layers)</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        l-&gt;PrepareConvWorkspace();</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    }</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>  }</div>
 </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
-<div class="foldopen" id="foldopen00097" data-start="{" data-end="}">
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#acbc8417fa31ab217d200f8888a0d9843">   97</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#acbc8417fa31ab217d200f8888a0d9843">RandomizeWeights</a>(std::mt19937&amp; rng, <span class="keyword">const</span> <span class="keywordtype">char</span>* distribution = <span class="stringliteral">&quot;normal&quot;</span>) noexcept</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  {</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; l : layers)</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>      l-&gt;RandomizeWeights(rng, distribution);</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  }</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="foldopen" id="foldopen00106" data-start="{" data-end="}">
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#acbc8417fa31ab217d200f8888a0d9843">  106</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#acbc8417fa31ab217d200f8888a0d9843">RandomizeWeights</a>(std::mt19937&amp; rng, <span class="keyword">const</span> <span class="keywordtype">char</span>* distribution = <span class="stringliteral">&quot;normal&quot;</span>) noexcept</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>  {</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; l : layers)</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>      l-&gt;RandomizeWeights(rng, distribution);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  }</div>
 </div>
-<div class="foldopen" id="foldopen00102" data-start="{" data-end="}">
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#ae0f388addf1466d3366be1eccee74ace">  102</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ae0f388addf1466d3366be1eccee74ace">ResetState</a>() noexcept</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>  {</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; l : layers)</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>      l-&gt;ResetState();</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  }</div>
+<div class="foldopen" id="foldopen00111" data-start="{" data-end="}">
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#ae0f388addf1466d3366be1eccee74ace">  111</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ae0f388addf1466d3366be1eccee74ace">ResetState</a>() noexcept</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>  {</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; l : layers)</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>      l-&gt;ResetState();</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>  }</div>
 </div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
-<div class="foldopen" id="foldopen00108" data-start="{" data-end="}">
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#ae966b1df8403b34f5707be88d0cae753">  108</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ae966b1df8403b34f5707be88d0cae753">Clamp</a>(<span class="keyword">const</span> std::vector&lt;T&gt;&amp; input) <span class="keyword">noexcept</span></div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>  {</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    layers.front()-&gt;ClampState(input);</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  }</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="foldopen" id="foldopen00117" data-start="{" data-end="}">
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#ae966b1df8403b34f5707be88d0cae753">  117</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ae966b1df8403b34f5707be88d0cae753">Clamp</a>(<span class="keyword">const</span> std::vector&lt;T&gt;&amp; input) <span class="keyword">noexcept</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>  {</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    layers.front()-&gt;ClampState(input);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>  }</div>
 </div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
-<div class="foldopen" id="foldopen00113" data-start="{" data-end="}">
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#a8fbdd938b206974ca32854b429c9a9eb">  113</a></span>  AccumT <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a8fbdd938b206974ca32854b429c9a9eb">CalculateState</a>(<span class="keywordtype">bool</span> needEnergy = <span class="keyword">true</span>) noexcept</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>  {</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    AccumT e(0);</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; l : layers)</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>      e += l-&gt;CalculateState(needEnergy);</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keywordflow">return</span> needEnergy ? e : AccumT(0);</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>  }</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="foldopen" id="foldopen00122" data-start="{" data-end="}">
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#a8fbdd938b206974ca32854b429c9a9eb">  122</a></span>  AccumT <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a8fbdd938b206974ca32854b429c9a9eb">CalculateState</a>(<span class="keywordtype">bool</span> needEnergy = <span class="keyword">true</span>) noexcept</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>  {</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    AccumT e(0);</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; l : layers)</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>      e += l-&gt;CalculateState(needEnergy);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="keywordflow">return</span> needEnergy ? e : AccumT(0);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>  }</div>
 </div>
-<div class="foldopen" id="foldopen00120" data-start="{" data-end="}">
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#a7c14932870137828a871c193ca015581">  120</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a7c14932870137828a871c193ca015581">UpdateState</a>() noexcept</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>  {</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; l : layers)</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>      l-&gt;UpdateState();</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>  }</div>
-</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span></div>
 <div class="foldopen" id="foldopen00129" data-start="{" data-end="}">
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#a27579796da7f576369438a7d13572220">  129</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a27579796da7f576369438a7d13572220">UpdateWeights</a>() noexcept</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#a7c14932870137828a871c193ca015581">  129</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a7c14932870137828a871c193ca015581">UpdateState</a>() noexcept</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>  {</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i + 1 &lt; layers.size(); ++i)</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>      layers[i]-&gt;<a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a27579796da7f576369438a7d13572220">UpdateWeights</a>();</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; l : layers)</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>      l-&gt;UpdateState();</div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>  }</div>
 </div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
-<div class="foldopen" id="foldopen00135" data-start="{" data-end="}">
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#ab58950387ab6ef3b1fe606be0062d6ba">  135</a></span>  <a class="code hl_class" href="classDeep_1_1SimpleConvPCLayerT.html">SimpleConvPCLayerT&lt;T, AccumT&gt;</a>* <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ab58950387ab6ef3b1fe606be0062d6ba">GetTerminalLayer</a>() noexcept</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>  {</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="keywordflow">return</span> layers.back().get();</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>  }</div>
-</div>
-<div class="foldopen" id="foldopen00139" data-start="{" data-end="}">
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#a62fea130d0d241c3238b08ca1902c7d3">  139</a></span>  <span class="keyword">const</span> std::vector&lt;std::unique_ptr&lt;SimpleConvPCLayerT&lt;T, AccumT&gt;&gt;&gt;&amp; <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a62fea130d0d241c3238b08ca1902c7d3">GetLayers</a>() const noexcept</div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>  {</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="keywordflow">return</span> layers;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span></div>
+<div class="foldopen" id="foldopen00138" data-start="{" data-end="}">
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#a27579796da7f576369438a7d13572220">  138</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a27579796da7f576369438a7d13572220">UpdateWeights</a>() noexcept</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>  {</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i + 1 &lt; layers.size(); ++i)</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>      layers[i]-&gt;<a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a27579796da7f576369438a7d13572220">UpdateWeights</a>();</div>
 <div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>  }</div>
 </div>
-<div class="foldopen" id="foldopen00143" data-start="{" data-end="}">
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#aea120921a7f7a2a548d89136ab1b0e78">  143</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#aea120921a7f7a2a548d89136ab1b0e78">GetBatchSize</a>() const noexcept</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>  {</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="keywordflow">return</span> batchSize;</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>  }</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="foldopen" id="foldopen00144" data-start="{" data-end="}">
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#ab58950387ab6ef3b1fe606be0062d6ba">  144</a></span>  <a class="code hl_class" href="classDeep_1_1SimpleConvPCLayerT.html">SimpleConvPCLayerT&lt;T, AccumT&gt;</a>* <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ab58950387ab6ef3b1fe606be0062d6ba">GetTerminalLayer</a>() noexcept</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>  {</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keywordflow">return</span> layers.back().get();</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>  }</div>
 </div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span></div>
-<div class="foldopen" id="foldopen00150" data-start="{" data-end="}">
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#a1e0dee6cd45eca02bc8176878dcba0e2">  150</a></span>  AccumT <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a1e0dee6cd45eca02bc8176878dcba0e2">TrainStep</a>(<span class="keyword">const</span> std::vector&lt;T&gt;&amp; x, <span class="keyword">const</span> std::vector&lt;T&gt;&amp; y, <span class="keywordtype">int</span> inferenceSteps)</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>  {</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ae0f388addf1466d3366be1eccee74ace">ResetState</a>();</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ae966b1df8403b34f5707be88d0cae753">Clamp</a>(x);</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ab58950387ab6ef3b1fe606be0062d6ba">GetTerminalLayer</a>()-&gt;ClampState(y);</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> t = 0; t &lt; inferenceSteps; ++t)</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    {</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>      <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a8fbdd938b206974ca32854b429c9a9eb">CalculateState</a>(<span class="keyword">false</span>);</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>      <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a7c14932870137828a871c193ca015581">UpdateState</a>();</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    }</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a27579796da7f576369438a7d13572220">UpdateWeights</a>();</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    AccumT finalEnergy = <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a8fbdd938b206974ca32854b429c9a9eb">CalculateState</a>();</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ab58950387ab6ef3b1fe606be0062d6ba">GetTerminalLayer</a>()-&gt;UnclampState();</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <span class="keywordflow">return</span> finalEnergy;</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>  }</div>
+<div class="foldopen" id="foldopen00148" data-start="{" data-end="}">
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#a62fea130d0d241c3238b08ca1902c7d3">  148</a></span>  <span class="keyword">const</span> std::vector&lt;std::unique_ptr&lt;SimpleConvPCLayerT&lt;T, AccumT&gt;&gt;&gt;&amp; <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a62fea130d0d241c3238b08ca1902c7d3">GetLayers</a>() const noexcept</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>  {</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="keywordflow">return</span> layers;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>  }</div>
 </div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span></div>
-<div class="foldopen" id="foldopen00171" data-start="{" data-end="}">
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#a05374c550ebd47991e015c9f1bb26986">  171</a></span>  std::vector&lt;T&gt; <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a05374c550ebd47991e015c9f1bb26986">Predict</a>(<span class="keyword">const</span> std::vector&lt;T&gt;&amp; x, <span class="keywordtype">int</span> inferenceSteps)</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>  {</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ae0f388addf1466d3366be1eccee74ace">ResetState</a>();</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ae966b1df8403b34f5707be88d0cae753">Clamp</a>(x);</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> t = 0; t &lt; inferenceSteps; ++t)</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    {</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>      <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a8fbdd938b206974ca32854b429c9a9eb">CalculateState</a>(<span class="keyword">false</span>);</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>      <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a7c14932870137828a871c193ca015581">UpdateState</a>();</div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    }</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <a class="code hl_class" href="classDeep_1_1SimpleConvPCLayerT.html">SimpleConvPCLayerT&lt;T, AccumT&gt;</a>* terminal = <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ab58950387ab6ef3b1fe606be0062d6ba">GetTerminalLayer</a>();</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="keyword">const</span> T* beliefs = terminal-&gt;<a class="code hl_function" href="classDeep_1_1SimpleConvPCLayerT.html#aa86d206b649db95a1ab533875a949382">GetBeliefs</a>();</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    <span class="keywordtype">size_t</span> count = terminal-&gt;<a class="code hl_function" href="classDeep_1_1SimpleConvPCLayerT.html#aa9acc2896b7a95915d2a75be19f3dcbf">GetBatchSize</a>() * terminal-&gt;<a class="code hl_function" href="classDeep_1_1SimpleConvPCLayerT.html#a2bc53d89ccce95a808b0796e4965c676">GetInputSize</a>();</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    std::vector&lt;T&gt; result(count);</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    backend-&gt;CopyToHost(result.data(), beliefs, count);</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="keywordflow">return</span> result;</div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>  }</div>
+<div class="foldopen" id="foldopen00152" data-start="{" data-end="}">
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#aea120921a7f7a2a548d89136ab1b0e78">  152</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#aea120921a7f7a2a548d89136ab1b0e78">GetBatchSize</a>() const noexcept</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>  {</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keywordflow">return</span> batchSize;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>  }</div>
 </div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span></div>
-<div class="foldopen" id="foldopen00194" data-start="{" data-end="}">
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#a9b313dc4201a6ca90bd170063070952e">  194</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a9b313dc4201a6ca90bd170063070952e">ProjectForward</a>() noexcept</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>  {</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i + 1 &lt; layers.size(); ++i)</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    {</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>      layers[i]-&gt;ComputeMuOnly();</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span> </div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>      <span class="keywordflow">if</span> (layers[i + 1]-&gt;IsClamped())</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>        <span class="keywordflow">continue</span>;</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>      <span class="keyword">const</span> T* mu = layers[i]-&gt;GetMu();</div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>      T* nextZ = layers[i + 1]-&gt;GetBeliefs();</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>      <span class="keywordtype">size_t</span> n = layers[i]-&gt;GetBatchSize() * layers[i]-&gt;GetOutputSize();</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>      backend-&gt;Copy(nextZ, mu, n);</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    }</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>  }</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span></div>
+<div class="foldopen" id="foldopen00159" data-start="{" data-end="}">
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#a1e0dee6cd45eca02bc8176878dcba0e2">  159</a></span>  AccumT <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a1e0dee6cd45eca02bc8176878dcba0e2">TrainStep</a>(<span class="keyword">const</span> std::vector&lt;T&gt;&amp; x, <span class="keyword">const</span> std::vector&lt;T&gt;&amp; y, <span class="keywordtype">int</span> inferenceSteps)</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>  {</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ae0f388addf1466d3366be1eccee74ace">ResetState</a>();</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ae966b1df8403b34f5707be88d0cae753">Clamp</a>(x);</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ab58950387ab6ef3b1fe606be0062d6ba">GetTerminalLayer</a>()-&gt;ClampState(y);</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> t = 0; t &lt; inferenceSteps; ++t)</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    {</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>      <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a8fbdd938b206974ca32854b429c9a9eb">CalculateState</a>(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>      <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a7c14932870137828a871c193ca015581">UpdateState</a>();</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    }</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a27579796da7f576369438a7d13572220">UpdateWeights</a>();</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    AccumT finalEnergy = <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a8fbdd938b206974ca32854b429c9a9eb">CalculateState</a>();</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ab58950387ab6ef3b1fe606be0062d6ba">GetTerminalLayer</a>()-&gt;UnclampState();</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keywordflow">return</span> finalEnergy;</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>  }</div>
 </div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span></div>
-<div class="foldopen" id="foldopen00214" data-start="{" data-end="}">
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#a783a181ad5f9076340ec15d362e40f20">  214</a></span>  AccumT <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a783a181ad5f9076340ec15d362e40f20">TrainStepWithProjection</a>(<span class="keyword">const</span> std::vector&lt;T&gt;&amp; x, <span class="keyword">const</span> std::vector&lt;T&gt;&amp; y,</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>                                 <span class="keywordtype">int</span> inferenceSteps)</div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>  {</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ae0f388addf1466d3366be1eccee74ace">ResetState</a>();</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ae966b1df8403b34f5707be88d0cae753">Clamp</a>(x);</div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ab58950387ab6ef3b1fe606be0062d6ba">GetTerminalLayer</a>()-&gt;ClampState(y);</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a9b313dc4201a6ca90bd170063070952e">ProjectForward</a>();</div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> t = 0; t &lt; inferenceSteps; ++t)</div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    {</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>      <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a8fbdd938b206974ca32854b429c9a9eb">CalculateState</a>(<span class="keyword">false</span>);</div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>      <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a7c14932870137828a871c193ca015581">UpdateState</a>();</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    }</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a27579796da7f576369438a7d13572220">UpdateWeights</a>();</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span> </div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    AccumT finalEnergy = <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a8fbdd938b206974ca32854b429c9a9eb">CalculateState</a>();</div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ab58950387ab6ef3b1fe606be0062d6ba">GetTerminalLayer</a>()-&gt;UnclampState();</div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    <span class="keywordflow">return</span> finalEnergy;</div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>  }</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span></div>
+<div class="foldopen" id="foldopen00180" data-start="{" data-end="}">
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#a05374c550ebd47991e015c9f1bb26986">  180</a></span>  std::vector&lt;T&gt; <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a05374c550ebd47991e015c9f1bb26986">Predict</a>(<span class="keyword">const</span> std::vector&lt;T&gt;&amp; x, <span class="keywordtype">int</span> inferenceSteps)</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>  {</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ae0f388addf1466d3366be1eccee74ace">ResetState</a>();</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ae966b1df8403b34f5707be88d0cae753">Clamp</a>(x);</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> t = 0; t &lt; inferenceSteps; ++t)</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    {</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>      <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a8fbdd938b206974ca32854b429c9a9eb">CalculateState</a>(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>      <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a7c14932870137828a871c193ca015581">UpdateState</a>();</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    }</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <a class="code hl_class" href="classDeep_1_1SimpleConvPCLayerT.html">SimpleConvPCLayerT&lt;T, AccumT&gt;</a>* terminal = <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ab58950387ab6ef3b1fe606be0062d6ba">GetTerminalLayer</a>();</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <span class="keyword">const</span> T* beliefs = terminal-&gt;<a class="code hl_function" href="classDeep_1_1SimpleConvPCLayerT.html#aa86d206b649db95a1ab533875a949382">GetBeliefs</a>();</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="keywordtype">size_t</span> count = terminal-&gt;<a class="code hl_function" href="classDeep_1_1SimpleConvPCLayerT.html#aa9acc2896b7a95915d2a75be19f3dcbf">GetBatchSize</a>() * terminal-&gt;<a class="code hl_function" href="classDeep_1_1SimpleConvPCLayerT.html#a2bc53d89ccce95a808b0796e4965c676">GetInputSize</a>();</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    std::vector&lt;T&gt; result(count);</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    backend-&gt;CopyToHost(result.data(), beliefs, count);</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>  }</div>
 </div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span></div>
-<div class="foldopen" id="foldopen00238" data-start="{" data-end="}">
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#ae704aa3965cdd1a431e2c83055029c77">  238</a></span>  std::vector&lt;T&gt; <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ae704aa3965cdd1a431e2c83055029c77">PredictWithProjection</a>(<span class="keyword">const</span> std::vector&lt;T&gt;&amp; x, <span class="keywordtype">int</span> inferenceSteps)</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>  {</div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ae0f388addf1466d3366be1eccee74ace">ResetState</a>();</div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ae966b1df8403b34f5707be88d0cae753">Clamp</a>(x);</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span> </div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a9b313dc4201a6ca90bd170063070952e">ProjectForward</a>();</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> t = 0; t &lt; inferenceSteps; ++t)</div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    {</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>      <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a8fbdd938b206974ca32854b429c9a9eb">CalculateState</a>(<span class="keyword">false</span>);</div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>      <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a7c14932870137828a871c193ca015581">UpdateState</a>();</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    }</div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <a class="code hl_class" href="classDeep_1_1SimpleConvPCLayerT.html">SimpleConvPCLayerT&lt;T, AccumT&gt;</a>* terminal = <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ab58950387ab6ef3b1fe606be0062d6ba">GetTerminalLayer</a>();</div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    <span class="keyword">const</span> T* beliefs = terminal-&gt;<a class="code hl_function" href="classDeep_1_1SimpleConvPCLayerT.html#aa86d206b649db95a1ab533875a949382">GetBeliefs</a>();</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="keywordtype">size_t</span> count = terminal-&gt;<a class="code hl_function" href="classDeep_1_1SimpleConvPCLayerT.html#aa9acc2896b7a95915d2a75be19f3dcbf">GetBatchSize</a>() * terminal-&gt;<a class="code hl_function" href="classDeep_1_1SimpleConvPCLayerT.html#a2bc53d89ccce95a808b0796e4965c676">GetInputSize</a>();</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    std::vector&lt;T&gt; result(count);</div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    backend-&gt;CopyToHost(result.data(), beliefs, count);</div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    <span class="keywordflow">return</span> result;</div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>  }</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span></div>
+<div class="foldopen" id="foldopen00203" data-start="{" data-end="}">
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#a9b313dc4201a6ca90bd170063070952e">  203</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a9b313dc4201a6ca90bd170063070952e">ProjectForward</a>() noexcept</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>  {</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i + 1 &lt; layers.size(); ++i)</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    {</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>      layers[i]-&gt;ComputeMuOnly();</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>      <span class="keywordflow">if</span> (layers[i + 1]-&gt;IsClamped())</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>      <span class="keyword">const</span> T* mu = layers[i]-&gt;GetMu();</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>      T* nextZ = layers[i + 1]-&gt;GetBeliefs();</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>      <span class="keywordtype">size_t</span> n = layers[i]-&gt;GetBatchSize() * layers[i]-&gt;GetOutputSize();</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>      backend-&gt;Copy(nextZ, mu, n);</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    }</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>  }</div>
 </div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span></div>
+<div class="foldopen" id="foldopen00223" data-start="{" data-end="}">
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#a783a181ad5f9076340ec15d362e40f20">  223</a></span>  AccumT <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a783a181ad5f9076340ec15d362e40f20">TrainStepWithProjection</a>(<span class="keyword">const</span> std::vector&lt;T&gt;&amp; x, <span class="keyword">const</span> std::vector&lt;T&gt;&amp; y,</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>                                 <span class="keywordtype">int</span> inferenceSteps)</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>  {</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ae0f388addf1466d3366be1eccee74ace">ResetState</a>();</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ae966b1df8403b34f5707be88d0cae753">Clamp</a>(x);</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ab58950387ab6ef3b1fe606be0062d6ba">GetTerminalLayer</a>()-&gt;ClampState(y);</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a9b313dc4201a6ca90bd170063070952e">ProjectForward</a>();</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> t = 0; t &lt; inferenceSteps; ++t)</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    {</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>      <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a8fbdd938b206974ca32854b429c9a9eb">CalculateState</a>(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>      <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a7c14932870137828a871c193ca015581">UpdateState</a>();</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    }</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a27579796da7f576369438a7d13572220">UpdateWeights</a>();</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    AccumT finalEnergy = <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a8fbdd938b206974ca32854b429c9a9eb">CalculateState</a>();</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ab58950387ab6ef3b1fe606be0062d6ba">GetTerminalLayer</a>()-&gt;UnclampState();</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    <span class="keywordflow">return</span> finalEnergy;</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>  }</div>
+</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span></div>
+<div class="foldopen" id="foldopen00247" data-start="{" data-end="}">
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno"><a class="line" href="classDeep_1_1SimpleConvPCNetworkT.html#ae704aa3965cdd1a431e2c83055029c77">  247</a></span>  std::vector&lt;T&gt; <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ae704aa3965cdd1a431e2c83055029c77">PredictWithProjection</a>(<span class="keyword">const</span> std::vector&lt;T&gt;&amp; x, <span class="keywordtype">int</span> inferenceSteps)</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>  {</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ae0f388addf1466d3366be1eccee74ace">ResetState</a>();</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ae966b1df8403b34f5707be88d0cae753">Clamp</a>(x);</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a9b313dc4201a6ca90bd170063070952e">ProjectForward</a>();</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> t = 0; t &lt; inferenceSteps; ++t)</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    {</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>      <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a8fbdd938b206974ca32854b429c9a9eb">CalculateState</a>(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>      <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#a7c14932870137828a871c193ca015581">UpdateState</a>();</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    }</div>
 <div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span> </div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>  std::vector&lt;std::unique_ptr&lt;SimpleConvPCLayerT&lt;T, AccumT&gt;&gt;&gt; layers;</div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>  std::unique_ptr&lt;IComputeBackendT&lt;T, AccumT&gt;&gt; backend;</div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>  <a class="code hl_enumeration" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a> device;</div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>  std::unique_ptr&lt;MemoryArenaT&lt;T&gt;&gt; cpuArena;</div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span><span class="preprocessor">#if defined(DEEPITY_USE_CUDA)</span></div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>  std::unique_ptr&lt;DeviceMemoryArenaT&lt;T, AccumT&gt;&gt; gpuArena;</div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>  <span class="keywordtype">int</span> batchSize;</div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>  <a class="code hl_enumeration" href="namespaceDeep.html#a76c7b5d078cce2bed29f6f592560bf02">OptimizerType</a> pendingOpt = <a class="code hl_enumvalue" href="namespaceDeep.html#a76c7b5d078cce2bed29f6f592560bf02a50ecf75f1077e1d250a781764b89cbc2">OptimizerType::SGD</a>;</div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>};</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    <a class="code hl_class" href="classDeep_1_1SimpleConvPCLayerT.html">SimpleConvPCLayerT&lt;T, AccumT&gt;</a>* terminal = <a class="code hl_function" href="classDeep_1_1SimpleConvPCNetworkT.html#ab58950387ab6ef3b1fe606be0062d6ba">GetTerminalLayer</a>();</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <span class="keyword">const</span> T* beliefs = terminal-&gt;<a class="code hl_function" href="classDeep_1_1SimpleConvPCLayerT.html#aa86d206b649db95a1ab533875a949382">GetBeliefs</a>();</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    <span class="keywordtype">size_t</span> count = terminal-&gt;<a class="code hl_function" href="classDeep_1_1SimpleConvPCLayerT.html#aa9acc2896b7a95915d2a75be19f3dcbf">GetBatchSize</a>() * terminal-&gt;<a class="code hl_function" href="classDeep_1_1SimpleConvPCLayerT.html#a2bc53d89ccce95a808b0796e4965c676">GetInputSize</a>();</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span> </div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    std::vector&lt;T&gt; result(count);</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    backend-&gt;CopyToHost(result.data(), beliefs, count);</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>  }</div>
 </div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>} <span class="comment">// namespace Deep</span></div>
-<div class="ttc" id="aBackendT_8h_html"><div class="ttname"><a href="BackendT_8h.html">BackendT.h</a></div><div class="ttdoc">Templated counterpart to Backend.h&#39;s CreateBackend(), for FullPCNetworkT&lt;T, AccumT&gt;.</div></div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> </div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>  std::vector&lt;std::unique_ptr&lt;SimpleConvPCLayerT&lt;T, AccumT&gt;&gt;&gt; layers;</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>  std::unique_ptr&lt;IComputeBackendT&lt;T, AccumT&gt;&gt; backend;</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>  <a class="code hl_enumeration" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a> device;</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>  std::unique_ptr&lt;MemoryArenaT&lt;T&gt;&gt; cpuArena;</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span><span class="preprocessor">#if defined(DEEPITY_USE_CUDA)</span></div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>  std::unique_ptr&lt;DeviceMemoryArenaT&lt;T, AccumT&gt;&gt; gpuArena;</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>  <span class="keywordtype">int</span> batchSize;</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>  <a class="code hl_enumeration" href="namespaceDeep.html#a76c7b5d078cce2bed29f6f592560bf02">OptimizerType</a> pendingOpt = <a class="code hl_enumvalue" href="namespaceDeep.html#a76c7b5d078cce2bed29f6f592560bf02a50ecf75f1077e1d250a781764b89cbc2">OptimizerType::SGD</a>;</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>};</div>
+</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>} <span class="comment">// namespace Deep</span></div>
+<div class="ttc" id="aBackendT_8h_html"><div class="ttname"><a href="BackendT_8h.html">BackendT.h</a></div><div class="ttdoc">Templated counterpart to Backend.h&#39;s CreateBackend(), for FullPCNetworkT&lt;T, AccumT&gt;....</div></div>
 <div class="ttc" id="aDeviceMemoryArena_8h_html"><div class="ttname"><a href="DeviceMemoryArena_8h.html">DeviceMemoryArena.h</a></div><div class="ttdoc">A 64-byte-aligned bump-pointer allocator over a single device buffer, mirroring this codebase&#39;s host-...</div></div>
 <div class="ttc" id="aMemoryArena_8h_html"><div class="ttname"><a href="MemoryArena_8h.html">MemoryArena.h</a></div><div class="ttdoc">A 64-byte-aligned bump-pointer allocator over a single heap-allocated block, used to pack every layer...</div></div>
-<div class="ttc" id="aSimpleConvPCLayerT_8h_html"><div class="ttname"><a href="SimpleConvPCLayerT_8h.html">SimpleConvPCLayerT.h</a></div><div class="ttdoc">Templated counterpart to SimpleConvPCLayer, over a storage type T and an accumulator type AccumT.</div></div>
-<div class="ttc" id="aclassDeep_1_1SimpleConvPCLayerT_html"><div class="ttname"><a href="classDeep_1_1SimpleConvPCLayerT.html">Deep::SimpleConvPCLayerT</a></div><div class="ttdoc">Templated counterpart to SimpleConvPCLayer.</div><div class="ttdef"><b>Definition</b> SimpleConvPCLayerT.h:33</div></div>
-<div class="ttc" id="aclassDeep_1_1SimpleConvPCLayerT_html_a2bc53d89ccce95a808b0796e4965c676"><div class="ttname"><a href="classDeep_1_1SimpleConvPCLayerT.html#a2bc53d89ccce95a808b0796e4965c676">Deep::SimpleConvPCLayerT::GetInputSize</a></div><div class="ttdeci">size_t GetInputSize() const noexcept</div><div class="ttdef"><b>Definition</b> SimpleConvPCLayerT.h:79</div></div>
-<div class="ttc" id="aclassDeep_1_1SimpleConvPCLayerT_html_aa86d206b649db95a1ab533875a949382"><div class="ttname"><a href="classDeep_1_1SimpleConvPCLayerT.html#aa86d206b649db95a1ab533875a949382">Deep::SimpleConvPCLayerT::GetBeliefs</a></div><div class="ttdeci">T * GetBeliefs() noexcept</div><div class="ttdef"><b>Definition</b> SimpleConvPCLayerT.h:71</div></div>
-<div class="ttc" id="aclassDeep_1_1SimpleConvPCLayerT_html_aa9acc2896b7a95915d2a75be19f3dcbf"><div class="ttname"><a href="classDeep_1_1SimpleConvPCLayerT.html#aa9acc2896b7a95915d2a75be19f3dcbf">Deep::SimpleConvPCLayerT::GetBatchSize</a></div><div class="ttdeci">size_t GetBatchSize() const noexcept</div><div class="ttdef"><b>Definition</b> SimpleConvPCLayerT.h:87</div></div>
-<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_a05374c550ebd47991e015c9f1bb26986"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#a05374c550ebd47991e015c9f1bb26986">Deep::SimpleConvPCNetworkT::Predict</a></div><div class="ttdeci">std::vector&lt; T &gt; Predict(const std::vector&lt; T &gt; &amp;x, int inferenceSteps)</div><div class="ttdoc">Clamps input only, settles, and returns the terminal layer&#39;s settled beliefs (flattened,...</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:171</div></div>
+<div class="ttc" id="aSimpleConvPCLayerT_8h_html"><div class="ttname"><a href="SimpleConvPCLayerT_8h.html">SimpleConvPCLayerT.h</a></div><div class="ttdoc">Templated counterpart to SimpleConvPCLayer, over a storage type T and an accumulator type AccumT – se...</div></div>
+<div class="ttc" id="aclassDeep_1_1SimpleConvPCLayerT_html"><div class="ttname"><a href="classDeep_1_1SimpleConvPCLayerT.html">Deep::SimpleConvPCLayerT</a></div><div class="ttdoc">Templated counterpart to SimpleConvPCLayer, see this file&#39;s own comment for the full rationale.</div><div class="ttdef"><b>Definition</b> SimpleConvPCLayerT.h:49</div></div>
+<div class="ttc" id="aclassDeep_1_1SimpleConvPCLayerT_html_a2bc53d89ccce95a808b0796e4965c676"><div class="ttname"><a href="classDeep_1_1SimpleConvPCLayerT.html#a2bc53d89ccce95a808b0796e4965c676">Deep::SimpleConvPCLayerT::GetInputSize</a></div><div class="ttdeci">size_t GetInputSize() const noexcept</div><div class="ttdef"><b>Definition</b> SimpleConvPCLayerT.h:95</div></div>
+<div class="ttc" id="aclassDeep_1_1SimpleConvPCLayerT_html_aa86d206b649db95a1ab533875a949382"><div class="ttname"><a href="classDeep_1_1SimpleConvPCLayerT.html#aa86d206b649db95a1ab533875a949382">Deep::SimpleConvPCLayerT::GetBeliefs</a></div><div class="ttdeci">T * GetBeliefs() noexcept</div><div class="ttdef"><b>Definition</b> SimpleConvPCLayerT.h:87</div></div>
+<div class="ttc" id="aclassDeep_1_1SimpleConvPCLayerT_html_aa9acc2896b7a95915d2a75be19f3dcbf"><div class="ttname"><a href="classDeep_1_1SimpleConvPCLayerT.html#aa9acc2896b7a95915d2a75be19f3dcbf">Deep::SimpleConvPCLayerT::GetBatchSize</a></div><div class="ttdeci">size_t GetBatchSize() const noexcept</div><div class="ttdef"><b>Definition</b> SimpleConvPCLayerT.h:103</div></div>
+<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_a05374c550ebd47991e015c9f1bb26986"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#a05374c550ebd47991e015c9f1bb26986">Deep::SimpleConvPCNetworkT::Predict</a></div><div class="ttdeci">std::vector&lt; T &gt; Predict(const std::vector&lt; T &gt; &amp;x, int inferenceSteps)</div><div class="ttdoc">Clamps input only, settles, and returns the terminal layer&#39;s settled beliefs (flattened,...</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:180</div></div>
 <div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_a05a63568216eeb26bdd7d25808cb66f4"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#a05a63568216eeb26bdd7d25808cb66f4">Deep::SimpleConvPCNetworkT::operator=</a></div><div class="ttdeci">SimpleConvPCNetworkT &amp; operator=(const SimpleConvPCNetworkT &amp;)=delete</div></div>
-<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_a18530b941bef72d786c91e1a57fb587f"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#a18530b941bef72d786c91e1a57fb587f">Deep::SimpleConvPCNetworkT::AddLayer</a></div><div class="ttdeci">void AddLayer(int inChannels, int outChannels, int inHeight, int inWidth, int kernelH, int kernelW, int strideH=1, int strideW=1, int padH=0, int padW=0, AccumT lr=AccumT(1e-6), AccumT ir=AccumT(0.1), AccumT lmbda=AccumT(1e-2), ActivationType aType=ActivationType::RELU, ActivationType dType=ActivationType::dRELU)</div><div class="ttdoc">Adds a convolutional layer. Pass outChannels=0 to mark a terminal layer (no outgoing prediction),...</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:42</div></div>
-<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_a1e0dee6cd45eca02bc8176878dcba0e2"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#a1e0dee6cd45eca02bc8176878dcba0e2">Deep::SimpleConvPCNetworkT::TrainStep</a></div><div class="ttdeci">AccumT TrainStep(const std::vector&lt; T &gt; &amp;x, const std::vector&lt; T &gt; &amp;y, int inferenceSteps)</div><div class="ttdoc">Full train step: clamp input+target, settle for inferenceSteps, update weights once,...</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:150</div></div>
-<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_a27579796da7f576369438a7d13572220"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#a27579796da7f576369438a7d13572220">Deep::SimpleConvPCNetworkT::UpdateWeights</a></div><div class="ttdeci">void UpdateWeights() noexcept</div><div class="ttdoc">Calls UpdateWeights() on every layer except the terminal one (each layer&#39;s own UpdateWeights() is als...</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:129</div></div>
-<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_a602e56922b02f202e2541834f640c463"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#a602e56922b02f202e2541834f640c463">Deep::SimpleConvPCNetworkT::Compile</a></div><div class="ttdeci">void Compile()</div><div class="ttdoc">Sums every layer&#39;s required element count into a single contiguous arena and binds each layer into it...</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:69</div></div>
-<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_a62fea130d0d241c3238b08ca1902c7d3"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#a62fea130d0d241c3238b08ca1902c7d3">Deep::SimpleConvPCNetworkT::GetLayers</a></div><div class="ttdeci">const std::vector&lt; std::unique_ptr&lt; SimpleConvPCLayerT&lt; T, AccumT &gt; &gt; &gt; &amp; GetLayers() const noexcept</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:139</div></div>
-<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_a7417bee8208deb845e75e2c5e5298aba"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#a7417bee8208deb845e75e2c5e5298aba">Deep::SimpleConvPCNetworkT::SimpleConvPCNetworkT</a></div><div class="ttdeci">SimpleConvPCNetworkT(int batchSize, DeviceType device=DeviceType::DEVICE_CPU)</div><div class="ttdoc">Constructs an empty network; add layers via AddLayer(), then Compile() before use.</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:28</div></div>
-<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_a783a181ad5f9076340ec15d362e40f20"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#a783a181ad5f9076340ec15d362e40f20">Deep::SimpleConvPCNetworkT::TrainStepWithProjection</a></div><div class="ttdeci">AccumT TrainStepWithProjection(const std::vector&lt; T &gt; &amp;x, const std::vector&lt; T &gt; &amp;y, int inferenceSteps)</div><div class="ttdoc">Full train step with forward-projection init: clamp input, project forward, clamp target,...</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:214</div></div>
-<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_a7c14932870137828a871c193ca015581"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#a7c14932870137828a871c193ca015581">Deep::SimpleConvPCNetworkT::UpdateState</a></div><div class="ttdeci">void UpdateState() noexcept</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:120</div></div>
+<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_a18530b941bef72d786c91e1a57fb587f"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#a18530b941bef72d786c91e1a57fb587f">Deep::SimpleConvPCNetworkT::AddLayer</a></div><div class="ttdeci">void AddLayer(int inChannels, int outChannels, int inHeight, int inWidth, int kernelH, int kernelW, int strideH=1, int strideW=1, int padH=0, int padW=0, AccumT lr=AccumT(1e-6), AccumT ir=AccumT(0.1), AccumT lmbda=AccumT(1e-2), ActivationType aType=ActivationType::RELU, ActivationType dType=ActivationType::dRELU)</div><div class="ttdoc">Adds a convolutional layer. Pass outChannels=0 to mark a terminal layer (no outgoing prediction),...</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:51</div></div>
+<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_a1e0dee6cd45eca02bc8176878dcba0e2"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#a1e0dee6cd45eca02bc8176878dcba0e2">Deep::SimpleConvPCNetworkT::TrainStep</a></div><div class="ttdeci">AccumT TrainStep(const std::vector&lt; T &gt; &amp;x, const std::vector&lt; T &gt; &amp;y, int inferenceSteps)</div><div class="ttdoc">Full train step: clamp input+target, settle for inferenceSteps, update weights once,...</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:159</div></div>
+<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_a27579796da7f576369438a7d13572220"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#a27579796da7f576369438a7d13572220">Deep::SimpleConvPCNetworkT::UpdateWeights</a></div><div class="ttdeci">void UpdateWeights() noexcept</div><div class="ttdoc">Calls UpdateWeights() on every layer except the terminal one (each layer&#39;s own UpdateWeights() is als...</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:138</div></div>
+<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_a602e56922b02f202e2541834f640c463"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#a602e56922b02f202e2541834f640c463">Deep::SimpleConvPCNetworkT::Compile</a></div><div class="ttdeci">void Compile()</div><div class="ttdoc">Sums every layer&#39;s required element count into a single contiguous arena and binds each layer into it...</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:78</div></div>
+<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_a62fea130d0d241c3238b08ca1902c7d3"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#a62fea130d0d241c3238b08ca1902c7d3">Deep::SimpleConvPCNetworkT::GetLayers</a></div><div class="ttdeci">const std::vector&lt; std::unique_ptr&lt; SimpleConvPCLayerT&lt; T, AccumT &gt; &gt; &gt; &amp; GetLayers() const noexcept</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:148</div></div>
+<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_a7417bee8208deb845e75e2c5e5298aba"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#a7417bee8208deb845e75e2c5e5298aba">Deep::SimpleConvPCNetworkT::SimpleConvPCNetworkT</a></div><div class="ttdeci">SimpleConvPCNetworkT(int batchSize, DeviceType device=DeviceType::DEVICE_CPU)</div><div class="ttdoc">Constructs an empty network; add layers via AddLayer(), then Compile() before use.</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:37</div></div>
+<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_a783a181ad5f9076340ec15d362e40f20"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#a783a181ad5f9076340ec15d362e40f20">Deep::SimpleConvPCNetworkT::TrainStepWithProjection</a></div><div class="ttdeci">AccumT TrainStepWithProjection(const std::vector&lt; T &gt; &amp;x, const std::vector&lt; T &gt; &amp;y, int inferenceSteps)</div><div class="ttdoc">Full train step with forward-projection init: clamp input, project forward, clamp target,...</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:223</div></div>
+<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_a7c14932870137828a871c193ca015581"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#a7c14932870137828a871c193ca015581">Deep::SimpleConvPCNetworkT::UpdateState</a></div><div class="ttdeci">void UpdateState() noexcept</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:129</div></div>
 <div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_a8b584b4186cc3080c425bd48fc27169a"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#a8b584b4186cc3080c425bd48fc27169a">Deep::SimpleConvPCNetworkT::~SimpleConvPCNetworkT</a></div><div class="ttdeci">~SimpleConvPCNetworkT()=default</div></div>
-<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_a8fbdd938b206974ca32854b429c9a9eb"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#a8fbdd938b206974ca32854b429c9a9eb">Deep::SimpleConvPCNetworkT::CalculateState</a></div><div class="ttdeci">AccumT CalculateState(bool needEnergy=true) noexcept</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:113</div></div>
-<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_a9b313dc4201a6ca90bd170063070952e"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#a9b313dc4201a6ca90bd170063070952e">Deep::SimpleConvPCNetworkT::ProjectForward</a></div><div class="ttdeci">void ProjectForward() noexcept</div><div class="ttdoc">Seeds hidden layers from a genuine forward pass through current weights, instead of zero-init....</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:194</div></div>
-<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_ab58950387ab6ef3b1fe606be0062d6ba"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#ab58950387ab6ef3b1fe606be0062d6ba">Deep::SimpleConvPCNetworkT::GetTerminalLayer</a></div><div class="ttdeci">SimpleConvPCLayerT&lt; T, AccumT &gt; * GetTerminalLayer() noexcept</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:135</div></div>
+<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_a8fbdd938b206974ca32854b429c9a9eb"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#a8fbdd938b206974ca32854b429c9a9eb">Deep::SimpleConvPCNetworkT::CalculateState</a></div><div class="ttdeci">AccumT CalculateState(bool needEnergy=true) noexcept</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:122</div></div>
+<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_a9b313dc4201a6ca90bd170063070952e"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#a9b313dc4201a6ca90bd170063070952e">Deep::SimpleConvPCNetworkT::ProjectForward</a></div><div class="ttdeci">void ProjectForward() noexcept</div><div class="ttdoc">Seeds hidden layers from a genuine forward pass through current weights, instead of zero-init....</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:203</div></div>
+<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_ab58950387ab6ef3b1fe606be0062d6ba"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#ab58950387ab6ef3b1fe606be0062d6ba">Deep::SimpleConvPCNetworkT::GetTerminalLayer</a></div><div class="ttdeci">SimpleConvPCLayerT&lt; T, AccumT &gt; * GetTerminalLayer() noexcept</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:144</div></div>
 <div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_aca21c0eab53a0ca96629393d6c2b07b6"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#aca21c0eab53a0ca96629393d6c2b07b6">Deep::SimpleConvPCNetworkT::SimpleConvPCNetworkT</a></div><div class="ttdeci">SimpleConvPCNetworkT(const SimpleConvPCNetworkT &amp;)=delete</div></div>
-<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_acbc8417fa31ab217d200f8888a0d9843"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#acbc8417fa31ab217d200f8888a0d9843">Deep::SimpleConvPCNetworkT::RandomizeWeights</a></div><div class="ttdeci">void RandomizeWeights(std::mt19937 &amp;rng, const char *distribution=&quot;normal&quot;) noexcept</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:97</div></div>
-<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_ad55c2cda32ea9fb6fc81aef6497a8d94"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#ad55c2cda32ea9fb6fc81aef6497a8d94">Deep::SimpleConvPCNetworkT::SetOptimizer</a></div><div class="ttdeci">void SetOptimizer(OptimizerType opt) noexcept</div><div class="ttdoc">Sets the optimizer for EVERY layer added so far.</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:61</div></div>
-<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_ad804cc5bab35739a7243f4fb08a6ae25"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#ad804cc5bab35739a7243f4fb08a6ae25">Deep::SimpleConvPCNetworkT::ElementType</a></div><div class="ttdeci">T ElementType</div><div class="ttdoc">This network&#39;s storage element type.</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:24</div></div>
-<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_ae0f388addf1466d3366be1eccee74ace"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#ae0f388addf1466d3366be1eccee74ace">Deep::SimpleConvPCNetworkT::ResetState</a></div><div class="ttdeci">void ResetState() noexcept</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:102</div></div>
-<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_ae704aa3965cdd1a431e2c83055029c77"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#ae704aa3965cdd1a431e2c83055029c77">Deep::SimpleConvPCNetworkT::PredictWithProjection</a></div><div class="ttdeci">std::vector&lt; T &gt; PredictWithProjection(const std::vector&lt; T &gt; &amp;x, int inferenceSteps)</div><div class="ttdoc">Inference-only counterpart to TrainStepWithProjection(): clamp input, project forward,...</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:238</div></div>
-<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_ae966b1df8403b34f5707be88d0cae753"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#ae966b1df8403b34f5707be88d0cae753">Deep::SimpleConvPCNetworkT::Clamp</a></div><div class="ttdeci">void Clamp(const std::vector&lt; T &gt; &amp;input) noexcept</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:108</div></div>
-<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_aea120921a7f7a2a548d89136ab1b0e78"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#aea120921a7f7a2a548d89136ab1b0e78">Deep::SimpleConvPCNetworkT::GetBatchSize</a></div><div class="ttdeci">int GetBatchSize() const noexcept</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:143</div></div>
-<div class="ttc" id="anamespaceDeep_html"><div class="ttname"><a href="namespaceDeep.html">Deep</a></div><div class="ttdef"><b>Definition</b> Backend.cpp:10</div></div>
-<div class="ttc" id="anamespaceDeep_html_a348ceadc3b61e6a1b937b72582291411"><div class="ttname"><a href="namespaceDeep.html#a348ceadc3b61e6a1b937b72582291411">Deep::CreateBackendT</a></div><div class="ttdeci">std::unique_ptr&lt; IComputeBackendT&lt; T, AccumT &gt; &gt; CreateBackendT(DeviceType device)</div><div class="ttdoc">Creates the appropriate backend for a given T/AccumT and device.</div><div class="ttdef"><b>Definition</b> BackendT.h:22</div></div>
-<div class="ttc" id="anamespaceDeep_html_a4b7606ca838be34029bd134f319e0f61"><div class="ttname"><a href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">Deep::ActivationType</a></div><div class="ttdeci">ActivationType</div><div class="ttdoc">Identifies an activation function or its derivative, for dispatch tables and layer/backend APIs that ...</div><div class="ttdef"><b>Definition</b> ActivationType.h:16</div></div>
-<div class="ttc" id="anamespaceDeep_html_a4b7606ca838be34029bd134f319e0f61ad346bb4679d29be241279f15d7795c1c"><div class="ttname"><a href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ad346bb4679d29be241279f15d7795c1c">Deep::ActivationType::RELU</a></div><div class="ttdeci">@ RELU</div><div class="ttdef"><b>Definition</b> ActivationType.h:17</div></div>
-<div class="ttc" id="anamespaceDeep_html_a4b7606ca838be34029bd134f319e0f61ae3d97c20b976be09990b745185b14d75"><div class="ttname"><a href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ae3d97c20b976be09990b745185b14d75">Deep::ActivationType::dRELU</a></div><div class="ttdeci">@ dRELU</div><div class="ttdef"><b>Definition</b> ActivationType.h:18</div></div>
+<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_acbc8417fa31ab217d200f8888a0d9843"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#acbc8417fa31ab217d200f8888a0d9843">Deep::SimpleConvPCNetworkT::RandomizeWeights</a></div><div class="ttdeci">void RandomizeWeights(std::mt19937 &amp;rng, const char *distribution=&quot;normal&quot;) noexcept</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:106</div></div>
+<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_ad55c2cda32ea9fb6fc81aef6497a8d94"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#ad55c2cda32ea9fb6fc81aef6497a8d94">Deep::SimpleConvPCNetworkT::SetOptimizer</a></div><div class="ttdeci">void SetOptimizer(OptimizerType opt) noexcept</div><div class="ttdoc">Sets the optimizer for EVERY layer added so far.</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:70</div></div>
+<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_ad804cc5bab35739a7243f4fb08a6ae25"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#ad804cc5bab35739a7243f4fb08a6ae25">Deep::SimpleConvPCNetworkT::ElementType</a></div><div class="ttdeci">T ElementType</div><div class="ttdoc">This network&#39;s storage element type, see FullPCNetworkT::ElementType&#39;s own doc comment.</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:33</div></div>
+<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_ae0f388addf1466d3366be1eccee74ace"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#ae0f388addf1466d3366be1eccee74ace">Deep::SimpleConvPCNetworkT::ResetState</a></div><div class="ttdeci">void ResetState() noexcept</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:111</div></div>
+<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_ae704aa3965cdd1a431e2c83055029c77"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#ae704aa3965cdd1a431e2c83055029c77">Deep::SimpleConvPCNetworkT::PredictWithProjection</a></div><div class="ttdeci">std::vector&lt; T &gt; PredictWithProjection(const std::vector&lt; T &gt; &amp;x, int inferenceSteps)</div><div class="ttdoc">Inference-only counterpart to TrainStepWithProjection(): clamp input, project forward,...</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:247</div></div>
+<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_ae966b1df8403b34f5707be88d0cae753"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#ae966b1df8403b34f5707be88d0cae753">Deep::SimpleConvPCNetworkT::Clamp</a></div><div class="ttdeci">void Clamp(const std::vector&lt; T &gt; &amp;input) noexcept</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:117</div></div>
+<div class="ttc" id="aclassDeep_1_1SimpleConvPCNetworkT_html_aea120921a7f7a2a548d89136ab1b0e78"><div class="ttname"><a href="classDeep_1_1SimpleConvPCNetworkT.html#aea120921a7f7a2a548d89136ab1b0e78">Deep::SimpleConvPCNetworkT::GetBatchSize</a></div><div class="ttdeci">int GetBatchSize() const noexcept</div><div class="ttdef"><b>Definition</b> SimpleConvPCNetworkT.h:152</div></div>
+<div class="ttc" id="anamespaceDeep_html"><div class="ttname"><a href="namespaceDeep.html">Deep</a></div><div class="ttdoc">This file exists to provide both Tensor.h and IComputeBackend.h with device types without introducing...</div><div class="ttdef"><b>Definition</b> Backend.cpp:10</div></div>
+<div class="ttc" id="anamespaceDeep_html_a348ceadc3b61e6a1b937b72582291411"><div class="ttname"><a href="namespaceDeep.html#a348ceadc3b61e6a1b937b72582291411">Deep::CreateBackendT</a></div><div class="ttdeci">std::unique_ptr&lt; IComputeBackendT&lt; T, AccumT &gt; &gt; CreateBackendT(DeviceType device)</div><div class="ttdoc">Factory function to create the appropriate backend for a given T/AccumT. DEVICE_GPU only has a real b...</div><div class="ttdef"><b>Definition</b> BackendT.h:28</div></div>
+<div class="ttc" id="anamespaceDeep_html_a4b7606ca838be34029bd134f319e0f61"><div class="ttname"><a href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">Deep::ActivationType</a></div><div class="ttdeci">ActivationType</div><div class="ttdoc">Identifies an activation function or its derivative, for dispatch tables and layer/backend APIs that ...</div><div class="ttdef"><b>Definition</b> ActivationType.h:25</div></div>
+<div class="ttc" id="anamespaceDeep_html_a4b7606ca838be34029bd134f319e0f61ad346bb4679d29be241279f15d7795c1c"><div class="ttname"><a href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ad346bb4679d29be241279f15d7795c1c">Deep::ActivationType::RELU</a></div><div class="ttdeci">@ RELU</div><div class="ttdef"><b>Definition</b> ActivationType.h:26</div></div>
+<div class="ttc" id="anamespaceDeep_html_a4b7606ca838be34029bd134f319e0f61ae3d97c20b976be09990b745185b14d75"><div class="ttname"><a href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ae3d97c20b976be09990b745185b14d75">Deep::ActivationType::dRELU</a></div><div class="ttdeci">@ dRELU</div><div class="ttdef"><b>Definition</b> ActivationType.h:27</div></div>
 <div class="ttc" id="anamespaceDeep_html_a76c7b5d078cce2bed29f6f592560bf02"><div class="ttname"><a href="namespaceDeep.html#a76c7b5d078cce2bed29f6f592560bf02">Deep::OptimizerType</a></div><div class="ttdeci">OptimizerType</div><div class="ttdoc">Selects which weight-update rule a layer applies during UpdateWeights().</div><div class="ttdef"><b>Definition</b> AdamOptimizer.h:13</div></div>
 <div class="ttc" id="anamespaceDeep_html_a76c7b5d078cce2bed29f6f592560bf02a50ecf75f1077e1d250a781764b89cbc2"><div class="ttname"><a href="namespaceDeep.html#a76c7b5d078cce2bed29f6f592560bf02a50ecf75f1077e1d250a781764b89cbc2">Deep::OptimizerType::SGD</a></div><div class="ttdeci">@ SGD</div><div class="ttdoc">Plain stochastic gradient descent.</div><div class="ttdef"><b>Definition</b> AdamOptimizer.h:14</div></div>
-<div class="ttc" id="anamespaceDeep_html_a79fb20681fc8065313ded67ba70f02f3"><div class="ttname"><a href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">Deep::DeviceType</a></div><div class="ttdeci">DeviceType</div><div class="ttdoc">Which physical device a Tensor/IComputeBackend pair runs on.</div><div class="ttdef"><b>Definition</b> DeviceType.h:7</div></div>
-<div class="ttc" id="anamespaceDeep_html_a79fb20681fc8065313ded67ba70f02f3a2b51e711df2cded71f92128f2f8f34dd"><div class="ttname"><a href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3a2b51e711df2cded71f92128f2f8f34dd">Deep::DeviceType::DEVICE_CPU</a></div><div class="ttdeci">@ DEVICE_CPU</div><div class="ttdef"><b>Definition</b> DeviceType.h:8</div></div>
+<div class="ttc" id="anamespaceDeep_html_a79fb20681fc8065313ded67ba70f02f3"><div class="ttname"><a href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">Deep::DeviceType</a></div><div class="ttdeci">DeviceType</div><div class="ttdoc">Which physical device a Tensor/IComputeBackend pair runs on.</div><div class="ttdef"><b>Definition</b> DeviceType.h:9</div></div>
+<div class="ttc" id="anamespaceDeep_html_a79fb20681fc8065313ded67ba70f02f3a2b51e711df2cded71f92128f2f8f34dd"><div class="ttname"><a href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3a2b51e711df2cded71f92128f2f8f34dd">Deep::DeviceType::DEVICE_CPU</a></div><div class="ttdeci">@ DEVICE_CPU</div><div class="ttdef"><b>Definition</b> DeviceType.h:10</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

@@ -134,6 +134,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('Im2Col_8h.html
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:Deep" id="r_Deep"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep.html">Deep</a></td></tr>
+<tr class="memdesc:namespaceDeep"><td class="mdescLeft">&#160;</td><td class="mdescRight">This file exists to provide both <a class="el" href="Tensor_8h.html" title="A device-aware, RAII-managed buffer. Device is fixed at construction, there is no support for moving ...">Tensor.h</a> and <a class="el" href="IComputeBackend_8h.html">IComputeBackend.h</a> with device types without introducing circular dependencies. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -146,11 +147,12 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Standalone im2col / col2im utilities: convolution expressed as matrix multiplication, so ConvPCLayer can reuse cblas_sgemm rather than needing hand-written conv kernels. </p>
-<p>Col2Im is the true mathematical adjoint of Im2Col (&lt;Wx,y&gt; == &lt;x,W^Ty&gt;), not just an inverse-shaped operation.</p>
+<p>Col2Im is the true mathematical adjoint of Im2Col (&lt;Wx,y&gt; == &lt;x,W^Ty&gt;), not just an inverse-shaped operation. This matters because ConvPCLayer's UpdateState() feedback term relies on that adjoint property the same way DiscriminativePCLayer's feedback term relies on W^T being the genuine transpose.</p>
 <p>Layout convention: NCHW. A single batch item's input is (channels, height, width), row-major, contiguous per channel.</p>
 <p>im2col output shape: (channels*kH*kW, outH*outW), each column is one flattened receptive-field patch, ready to be GEMM'd against a (outChannels, channels*kH*kW) weight matrix to produce (outChannels, outH*outW) in one matrix multiply.</p>
-<p>col2im is the adjoint operation: scatters a (channels*kH*kW, outH*outW) gradient buffer back into a (channels, height, width) image, accumulating (does not zero the destination first, caller must memset if needed).</p>
+<p>col2im is the adjoint operation: scatters a (channels*kH*kW, outH*outW) gradient buffer back into a (channels, height, width) image, ACCUMULATING (does not zero the destination first, caller must memset if needed).</p>
 <p>Neither function knows anything about batching, call once per batch item, with pointers offset to that item's slice.</p>
+<dl class="section note"><dt>Note</dt><dd>Each SIMD width (AVX-512/AVX2+AVX/SSE) is handled as a separate preprocessor branch with its own scalar-tail fallback along the stride-1 fast path; the strided (strideW != 1) path is always scalar, since a fixed vector width can't align with an arbitrary stride. </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2026-06-30 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Jack Rose </dd></dl>

@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classDeep_1_1C
 </div><!--header-->
 <div class="contents">
 
-<p>Templated counterpart to <a class="el" href="classDeep_1_1ConvPCLayer.html" title="Convolutional Predictive Coding layer (im2col-based), precision-weighted, routed through IComputeBack...">ConvPCLayer</a>.  
+<p>Templated counterpart to <a class="el" href="classDeep_1_1ConvPCLayer.html" title="Convolutional Predictive Coding layer (im2col-based), precision-weighted, routed through IComputeBack...">ConvPCLayer</a>, see this file's own comment for the full rationale.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="ConvPCLayerT_8h_source.html">ConvPCLayerT.h</a>&gt;</code></p>
@@ -166,11 +166,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae790f4e225c8b9d986a8ed776d6a7ed2" id="r_ae790f4e225c8b9d986a8ed776d6a7ed2"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ae790f4e225c8b9d986a8ed776d6a7ed2">SetLayerBelow</a> (<a class="el" href="#a1207f96b80a7aaabb74544593a8a6b78">ConvPCLayerT</a> *below) noexcept</td></tr>
 <tr class="memitem:a4392044012c390e14e6bef52d5e5919f" id="r_a4392044012c390e14e6bef52d5e5919f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4392044012c390e14e6bef52d5e5919f">ComputeMuOnly</a> () noexcept</td></tr>
 <tr class="memitem:a3aa89bf87829a325acbbd060e684bdfa" id="r_a3aa89bf87829a325acbbd060e684bdfa"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a3aa89bf87829a325acbbd060e684bdfa">PrepareConvWorkspace</a> () noexcept</td></tr>
-<tr class="memdesc:a3aa89bf87829a325acbbd060e684bdfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pre-sizes the CUDA backend's cuDNN workspace for this layer's convolution shape. Must run before the network's first CUDA graph capture. No-op on CPU.  <br /></td></tr>
+<tr class="memdesc:a3aa89bf87829a325acbbd060e684bdfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">No-op on CPU, see <a class="el" href="classDeep_1_1SimpleConvPCLayerT.html#a4e9b9eb342292b979f435dd875bde2ea" title="No-op on CPU, see SimpleConvPCLayer::PrepareConvWorkspace()&#39;s own doc comment (kept for call-site par...">SimpleConvPCLayerT::PrepareConvWorkspace()</a>'s own doc comment.  <br /></td></tr>
 <tr class="memitem:ae11cb06369f23af74aca7982969153bd" id="r_ae11cb06369f23af74aca7982969153bd"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ae11cb06369f23af74aca7982969153bd">ResetState</a> () noexcept</td></tr>
 <tr class="memitem:a52382622de5c1bee9409234b23c62ff4" id="r_a52382622de5c1bee9409234b23c62ff4"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a52382622de5c1bee9409234b23c62ff4">RandomizeWeights</a> (std::mt19937 &amp;twister, const char *distribution=&quot;normal&quot;) noexcept</td></tr>
 <tr class="memitem:a6e08994b51d01a89280f3971d240ebc9" id="r_a6e08994b51d01a89280f3971d240ebc9"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a6e08994b51d01a89280f3971d240ebc9">ResyncLogPrecision</a> () noexcept</td></tr>
-<tr class="memdesc:a6e08994b51d01a89280f3971d240ebc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rebuilds log_p from p. Call after a checkpoint load that only restores p.  <br /></td></tr>
+<tr class="memdesc:a6e08994b51d01a89280f3971d240ebc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rebuilds log_p from p, required after a checkpoint load that only persists p &ndash; see <a class="el" href="classDeep_1_1ConvPCLayer.html#a265f3eb0937208facfdbc09600d9f521" title="Rebuilds log_p from p, required after a checkpoint load that only persists p (mirrors DiscriminativeP...">ConvPCLayer::ResyncLogPrecision()</a>'s own doc comment.  <br /></td></tr>
 <tr class="memitem:acf13dd05f29073a530b13d2e4926e729" id="r_acf13dd05f29073a530b13d2e4926e729"><td class="memItemLeft"><a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a>&#160;</td><td class="memItemRight"><a class="el" href="#acf13dd05f29073a530b13d2e4926e729">GetActivationType</a> () const noexcept</td></tr>
 <tr class="memitem:ae90bef056fb3dde8e7e563197f51e043" id="r_ae90bef056fb3dde8e7e563197f51e043"><td class="memItemLeft"><a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a>&#160;</td><td class="memItemRight"><a class="el" href="#ae90bef056fb3dde8e7e563197f51e043">GetDerivativeType</a> () const noexcept</td></tr>
 <tr class="memitem:a9946be7cd2669e29c458864abf39b2f7" id="r_a9946be7cd2669e29c458864abf39b2f7"><td class="memItemLeft">const T *&#160;</td><td class="memItemRight"><a class="el" href="#a9946be7cd2669e29c458864abf39b2f7">GetMu</a> () const noexcept</td></tr>
@@ -188,7 +188,7 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T, typename AccumT = T&gt;<br />
-class Deep::ConvPCLayerT&lt; T, AccumT &gt;</div><p>Templated counterpart to <a class="el" href="classDeep_1_1ConvPCLayer.html" title="Convolutional Predictive Coding layer (im2col-based), precision-weighted, routed through IComputeBack...">ConvPCLayer</a>. </p>
+class Deep::ConvPCLayerT&lt; T, AccumT &gt;</div><p>Templated counterpart to <a class="el" href="classDeep_1_1ConvPCLayer.html" title="Convolutional Predictive Coding layer (im2col-based), precision-weighted, routed through IComputeBack...">ConvPCLayer</a>, see this file's own comment for the full rationale. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a1207f96b80a7aaabb74544593a8a6b78" name="a1207f96b80a7aaabb74544593a8a6b78"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1207f96b80a7aaabb74544593a8a6b78">&#9670;&#160;</a></span>ConvPCLayerT()</h2>
@@ -304,7 +304,7 @@ template&lt;typename T, typename AccumT&gt; </div>
     <tr><td class="paramname">lmbda</td><td>Weight decay (L2 regularization) coefficient. </td></tr>
     <tr><td class="paramname">aType</td><td>Activation type. </td></tr>
     <tr><td class="paramname">dType</td><td>Activation derivative type. </td></tr>
-    <tr><td class="paramname">backend</td><td>Compute backend to run on; defaults to a new <a class="el" href="classDeep_1_1CPUBackendT.html" title="Templated CPU implementation of IComputeBackendT&lt;T, AccumT&gt;, used by templated layers/networks (FullP...">CPUBackendT&lt;T, AccumT&gt;</a> if nullptr. </td></tr>
+    <tr><td class="paramname">backend</td><td>Compute backend to run on; defaults to a new <a class="el" href="classDeep_1_1CPUBackendT.html" title="Templated CPU implementation of IComputeBackendT&lt;T, AccumT&gt;, used by every templated layer/network in...">CPUBackendT&lt;T, AccumT&gt;</a> if nullptr. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1276,7 +1276,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Pre-sizes the CUDA backend's cuDNN workspace for this layer's convolution shape. Must run before the network's first CUDA graph capture. No-op on CPU. </p>
+<p>No-op on CPU, see <a class="el" href="classDeep_1_1SimpleConvPCLayerT.html#a4e9b9eb342292b979f435dd875bde2ea" title="No-op on CPU, see SimpleConvPCLayer::PrepareConvWorkspace()&#39;s own doc comment (kept for call-site par...">SimpleConvPCLayerT::PrepareConvWorkspace()</a>'s own doc comment. </p>
 
 </div>
 </div>
@@ -1363,7 +1363,7 @@ template&lt;typename T, typename AccumT&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Rebuilds log_p from p. Call after a checkpoint load that only restores p. </p>
+<p>Rebuilds log_p from p, required after a checkpoint load that only persists p &ndash; see <a class="el" href="classDeep_1_1ConvPCLayer.html#a265f3eb0937208facfdbc09600d9f521" title="Rebuilds log_p from p, required after a checkpoint load that only persists p (mirrors DiscriminativeP...">ConvPCLayer::ResyncLogPrecision()</a>'s own doc comment. </p>
 
 </div>
 </div>

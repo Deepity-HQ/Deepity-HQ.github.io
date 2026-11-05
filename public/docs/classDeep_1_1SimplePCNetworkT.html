@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classDeep_1_1S
 </div><!--header-->
 <div class="contents">
 
-<p>Templated counterpart to <a class="el" href="classDeep_1_1SimplePCNetwork.html" title="An abstracted class for an array of SimplePCLayer.">SimplePCNetwork</a>.  
+<p>Templated counterpart to <a class="el" href="classDeep_1_1SimplePCNetwork.html" title="An abstracted class for an array of SimplePCLayer.">SimplePCNetwork</a>, see this file's own comment for the full rationale.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="SimplePCNetworkT_8h_source.html">SimplePCNetworkT.h</a>&gt;</code></p>
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classDeep_1_1S
 <tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:a458983e38180750bcc893a55860c40c0" id="r_a458983e38180750bcc893a55860c40c0"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a458983e38180750bcc893a55860c40c0">ElementType</a> = T</td></tr>
-<tr class="memdesc:a458983e38180750bcc893a55860c40c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">This network's storage element type.  <br /></td></tr>
+<tr class="memdesc:a458983e38180750bcc893a55860c40c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">This network's storage element type, see <a class="el" href="classDeep_1_1FullPCNetworkT.html#a23a375f55ecf1ccb7639d591f9b9945b" title="This network&#39;s storage element type, for ModelIO&#39;s dtype derivation/checking (see DTypeTag&lt;T&gt;)....">FullPCNetworkT::ElementType</a>'s own doc comment.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -141,7 +141,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:add9501bb5e3372ca8eedb3666e7ee657" id="r_add9501bb5e3372ca8eedb3666e7ee657"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#add9501bb5e3372ca8eedb3666e7ee657">SimplePCNetworkT</a> (const SimplePCNetworkT &amp;)=delete</td></tr>
 <tr class="memitem:adcd17d8b2c67de93e2abf80de192f043" id="r_adcd17d8b2c67de93e2abf80de192f043"><td class="memItemLeft"><a class="el" href="#a91255d2c832b5d3bfe1a8503e714353e">SimplePCNetworkT</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#adcd17d8b2c67de93e2abf80de192f043">operator=</a> (const <a class="el" href="#a91255d2c832b5d3bfe1a8503e714353e">SimplePCNetworkT</a> &amp;)=delete</td></tr>
 <tr class="memitem:a0d68994d0451669e395f004d1e9c1d98" id="r_a0d68994d0451669e395f004d1e9c1d98"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a0d68994d0451669e395f004d1e9c1d98">AddLayer</a> (size_t size, size_t nextSize, AccumT lr, AccumT ir, AccumT lmbda, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> aType, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> dType)</td></tr>
-<tr class="memdesc:a0d68994d0451669e395f004d1e9c1d98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a layer to the network. See <a class="el" href="classDeep_1_1SimplePCLayerT.html" title="Templated counterpart to SimplePCLayer.">SimplePCLayerT</a>'s own constructor doc comment for each parameter's meaning.  <br /></td></tr>
+<tr class="memdesc:a0d68994d0451669e395f004d1e9c1d98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a layer to the network. See <a class="el" href="classDeep_1_1SimplePCLayerT.html" title="Templated counterpart to SimplePCLayer, see this file&#39;s own comment for the full rationale.">SimplePCLayerT</a>'s own constructor doc comment for each parameter's meaning.  <br /></td></tr>
 <tr class="memitem:a4b774499b23645deada1f759db909c79" id="r_a4b774499b23645deada1f759db909c79"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4b774499b23645deada1f759db909c79">RandomizeWeights</a> (std::mt19937 &amp;rng, const char *distribution=&quot;normal&quot;)</td></tr>
 <tr class="memitem:a9e8116447cf1355445ac17759c43a04f" id="r_a9e8116447cf1355445ac17759c43a04f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9e8116447cf1355445ac17759c43a04f">ResetState</a> () noexcept</td></tr>
 <tr class="memitem:a13ee219a4d43d58d6db0dd145e2ec627" id="r_a13ee219a4d43d58d6db0dd145e2ec627"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a13ee219a4d43d58d6db0dd145e2ec627">Clamp</a> (const std::vector&lt; T &gt; &amp;input)</td></tr>
@@ -155,15 +155,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a44ad6aab19b2c6db9cec127985bab023" id="r_a44ad6aab19b2c6db9cec127985bab023"><td class="memItemLeft"><a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a>&#160;</td><td class="memItemRight"><a class="el" href="#a44ad6aab19b2c6db9cec127985bab023">GetDevice</a> () const noexcept</td></tr>
 <tr class="memitem:a6e44aacd9ccb6db2dc21bcc9bbb25ff9" id="r_a6e44aacd9ccb6db2dc21bcc9bbb25ff9"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a6e44aacd9ccb6db2dc21bcc9bbb25ff9">SetOptimizer</a> (<a class="el" href="namespaceDeep.html#a76c7b5d078cce2bed29f6f592560bf02">OptimizerType</a> o) noexcept</td></tr>
 <tr class="memitem:a7ceb69d7dfe976bf320973b3c8952cbb" id="r_a7ceb69d7dfe976bf320973b3c8952cbb"><td class="memItemLeft">AccumT&#160;</td><td class="memItemRight"><a class="el" href="#a7ceb69d7dfe976bf320973b3c8952cbb">TrainStep</a> (const std::vector&lt; T &gt; &amp;x, const std::vector&lt; T &gt; &amp;y, int inferenceSteps)</td></tr>
-<tr class="memdesc:a7ceb69d7dfe976bf320973b3c8952cbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs a complete training step (clamp, settle, update, unclamp).  <br /></td></tr>
+<tr class="memdesc:a7ceb69d7dfe976bf320973b3c8952cbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs a complete training step (clamp, settle, update, unclamp). See <a class="el" href="classDeep_1_1SimplePCNetwork.html#a85b53cd16ead4c216534c799cf2c83a3" title="Runs a complete training step (clamp, settle, update, unclamp).">SimplePCNetwork::TrainStep()</a>'s own doc comment; no CUDA-graph path here, see this file's own class comment.  <br /></td></tr>
 <tr class="memitem:a5cabae9b7cf2062b9e783c518262a04f" id="r_a5cabae9b7cf2062b9e783c518262a04f"><td class="memItemLeft">std::vector&lt; T &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a5cabae9b7cf2062b9e783c518262a04f">Predict</a> (const std::vector&lt; T &gt; &amp;x, int inferenceSteps)</td></tr>
 <tr class="memdesc:a5cabae9b7cf2062b9e783c518262a04f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forward prediction: clamp input, settle, read terminal beliefs.  <br /></td></tr>
 <tr class="memitem:acccf6e34f6ee9df7e54121cbcecef236" id="r_acccf6e34f6ee9df7e54121cbcecef236"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#acccf6e34f6ee9df7e54121cbcecef236">ProjectForward</a> () noexcept</td></tr>
-<tr class="memdesc:acccf6e34f6ee9df7e54121cbcecef236"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seeds hidden layers from a genuine forward pass through current weights, instead of zero-init.  <br /></td></tr>
+<tr class="memdesc:acccf6e34f6ee9df7e54121cbcecef236"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seeds hidden layers from a genuine forward pass through current weights. See <a class="el" href="classDeep_1_1SimplePCNetwork.html#ae3d61db38519b08544a5efa1fc9b4744" title="Runs a single, non-iterative forward pass through current weights, seeding each hidden layer&#39;s z from...">SimplePCNetwork::ProjectForward()</a>'s own doc comment.  <br /></td></tr>
 <tr class="memitem:ad15643e02cc3f733fb15c29e2d4e175c" id="r_ad15643e02cc3f733fb15c29e2d4e175c"><td class="memItemLeft">AccumT&#160;</td><td class="memItemRight"><a class="el" href="#ad15643e02cc3f733fb15c29e2d4e175c">TrainStepWithProjection</a> (const std::vector&lt; T &gt; &amp;x, const std::vector&lt; T &gt; &amp;y, int inferenceSteps, bool computeEnergy=true)</td></tr>
-<tr class="memdesc:ad15643e02cc3f733fb15c29e2d4e175c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Full train step with forward-projection initialization.  <br /></td></tr>
+<tr class="memdesc:ad15643e02cc3f733fb15c29e2d4e175c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Full train step WITH forward-projection initialization. See <a class="el" href="classDeep_1_1SimplePCNetwork.html#ab1bf2129c55f0efe9b8856391bfb04d7" title="Full train step WITH forward-projection initialization, all in ONE call, reset, clamp,...">SimplePCNetwork::TrainStepWithProjection()</a>'s own doc comment; no CUDA-graph path here, see this file's own class comment.  <br /></td></tr>
 <tr class="memitem:a66ea4e6772a104f4fca1b4b72b781486" id="r_a66ea4e6772a104f4fca1b4b72b781486"><td class="memItemLeft">std::vector&lt; T &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a66ea4e6772a104f4fca1b4b72b781486">PredictWithProjection</a> (const std::vector&lt; T &gt; &amp;x, int inferenceSteps)</td></tr>
-<tr class="memdesc:a66ea4e6772a104f4fca1b4b72b781486"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inference-only counterpart to <a class="el" href="#ad15643e02cc3f733fb15c29e2d4e175c" title="Full train step with forward-projection initialization.">TrainStepWithProjection()</a>.  <br /></td></tr>
+<tr class="memdesc:a66ea4e6772a104f4fca1b4b72b781486"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inference-only counterpart to <a class="el" href="#ad15643e02cc3f733fb15c29e2d4e175c" title="Full train step WITH forward-projection initialization. See SimplePCNetwork::TrainStepWithProjection(...">TrainStepWithProjection()</a>.  <br /></td></tr>
 <tr class="memitem:a63298e3c577f2cf8e4678c5731d3f72d" id="r_a63298e3c577f2cf8e4678c5731d3f72d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a63298e3c577f2cf8e4678c5731d3f72d">SetMuCacheThreshold</a> (AccumT threshold) noexcept</td></tr>
 <tr class="memdesc:a63298e3c577f2cf8e4678c5731d3f72d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets mu-cache threshold on every layer. Safe to call any time after <a class="el" href="#a01a48018039bd62f40fb691718b34d15" title="Loads all layers into one contiguous block of memory.">Compile()</a>.  <br /></td></tr>
 <tr class="memitem:a01a48018039bd62f40fb691718b34d15" id="r_a01a48018039bd62f40fb691718b34d15"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a01a48018039bd62f40fb691718b34d15">Compile</a> ()</td></tr>
@@ -171,7 +171,7 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T, typename AccumT = T&gt;<br />
-class Deep::SimplePCNetworkT&lt; T, AccumT &gt;</div><p>Templated counterpart to <a class="el" href="classDeep_1_1SimplePCNetwork.html" title="An abstracted class for an array of SimplePCLayer.">SimplePCNetwork</a>. </p>
+class Deep::SimplePCNetworkT&lt; T, AccumT &gt;</div><p>Templated counterpart to <a class="el" href="classDeep_1_1SimplePCNetwork.html" title="An abstracted class for an array of SimplePCLayer.">SimplePCNetwork</a>, see this file's own comment for the full rationale. </p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="a458983e38180750bcc893a55860c40c0" name="a458983e38180750bcc893a55860c40c0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a458983e38180750bcc893a55860c40c0">&#9670;&#160;</a></span>ElementType</h2>
@@ -187,7 +187,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>This network's storage element type. </p>
+<p>This network's storage element type, see <a class="el" href="classDeep_1_1FullPCNetworkT.html#a23a375f55ecf1ccb7639d591f9b9945b" title="This network&#39;s storage element type, for ModelIO&#39;s dtype derivation/checking (see DTypeTag&lt;T&gt;)....">FullPCNetworkT::ElementType</a>'s own doc comment. </p>
 
 </div>
 </div>
@@ -334,7 +334,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Adds a layer to the network. See <a class="el" href="classDeep_1_1SimplePCLayerT.html" title="Templated counterpart to SimplePCLayer.">SimplePCLayerT</a>'s own constructor doc comment for each parameter's meaning. </p>
+<p>Adds a layer to the network. See <a class="el" href="classDeep_1_1SimplePCLayerT.html" title="Templated counterpart to SimplePCLayer, see this file&#39;s own comment for the full rationale.">SimplePCLayerT</a>'s own constructor doc comment for each parameter's meaning. </p>
 
 </div>
 </div>
@@ -645,7 +645,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Inference-only counterpart to <a class="el" href="#ad15643e02cc3f733fb15c29e2d4e175c" title="Full train step with forward-projection initialization.">TrainStepWithProjection()</a>. </p>
+<p>Inference-only counterpart to <a class="el" href="#ad15643e02cc3f733fb15c29e2d4e175c" title="Full train step WITH forward-projection initialization. See SimplePCNetwork::TrainStepWithProjection(...">TrainStepWithProjection()</a>. </p>
 
 </div>
 </div>
@@ -674,7 +674,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Seeds hidden layers from a genuine forward pass through current weights, instead of zero-init. </p>
+<p>Seeds hidden layers from a genuine forward pass through current weights. See <a class="el" href="classDeep_1_1SimplePCNetwork.html#ae3d61db38519b08544a5efa1fc9b4744" title="Runs a single, non-iterative forward pass through current weights, seeding each hidden layer&#39;s z from...">SimplePCNetwork::ProjectForward()</a>'s own doc comment. </p>
 
 </div>
 </div>
@@ -826,7 +826,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Runs a complete training step (clamp, settle, update, unclamp). </p>
+<p>Runs a complete training step (clamp, settle, update, unclamp). See <a class="el" href="classDeep_1_1SimplePCNetwork.html#a85b53cd16ead4c216534c799cf2c83a3" title="Runs a complete training step (clamp, settle, update, unclamp).">SimplePCNetwork::TrainStep()</a>'s own doc comment; no CUDA-graph path here, see this file's own class comment. </p>
 
 </div>
 </div>
@@ -869,7 +869,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Full train step with forward-projection initialization. </p>
+<p>Full train step WITH forward-projection initialization. See <a class="el" href="classDeep_1_1SimplePCNetwork.html#ab1bf2129c55f0efe9b8856391bfb04d7" title="Full train step WITH forward-projection initialization, all in ONE call, reset, clamp,...">SimplePCNetwork::TrainStepWithProjection()</a>'s own doc comment; no CUDA-graph path here, see this file's own class comment. </p>
 
 </div>
 </div>

@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('Tensor_8h.html
 </div><!--header-->
 <div class="contents">
 
-<p>A device-aware, RAII-managed, move-only buffer. Device is fixed at construction; a Tensor cannot be moved between CPU and GPU afterward. To load host-side data onto a GPU Tensor, construct it directly from a host buffer or <span class="tt">std::vector</span> (see the constructors below).  
+<p>A device-aware, RAII-managed buffer. Device is fixed at construction, there is no support for moving a live Tensor between CPU and GPU after creation. Loading weights saved on CPU and running them on GPU doesn't need that: read the saved file into a plain std::vector on the host, then construct a DEVICE_GPU Tensor directly from that vector (see the host-data constructors below), the one-time host-to-device copy happens inside the constructor, and the temporary host vector falls out of scope immediately after. The Tensor itself is a GPU object from the moment it's born.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;cstddef&gt;</code><br />
 <code>#include &lt;<a class="el" href="DeviceType_8h_source.html">deepity/backend/DeviceType.h</a>&gt;</code><br />
@@ -135,14 +135,16 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('Tensor_8h.html
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:Deep_3A_3ATensor" id="r_Deep_3A_3ATensor"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classDeep_1_1Tensor.html">Deep::Tensor</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A device-aware, RAII-managed, move-only buffer.  <a href="classDeep_1_1Tensor.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A device-aware, RAII-managed, move-only buffer, see the file-level note above for the full ownership/device contract.  <a href="classDeep_1_1Tensor.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:Deep" id="r_Deep"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep.html">Deep</a></td></tr>
+<tr class="memdesc:namespaceDeep"><td class="mdescLeft">&#160;</td><td class="mdescRight">This file exists to provide both <a class="el" href="Tensor_8h.html" title="A device-aware, RAII-managed buffer. Device is fixed at construction, there is no support for moving ...">Tensor.h</a> and <a class="el" href="IComputeBackend_8h.html">IComputeBackend.h</a> with device types without introducing circular dependencies. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A device-aware, RAII-managed, move-only buffer. Device is fixed at construction; a Tensor cannot be moved between CPU and GPU afterward. To load host-side data onto a GPU Tensor, construct it directly from a host buffer or <span class="tt">std::vector</span> (see the constructors below). </p>
+<div class="textblock"><p>A device-aware, RAII-managed buffer. Device is fixed at construction, there is no support for moving a live Tensor between CPU and GPU after creation. Loading weights saved on CPU and running them on GPU doesn't need that: read the saved file into a plain std::vector on the host, then construct a DEVICE_GPU Tensor directly from that vector (see the host-data constructors below), the one-time host-to-device copy happens inside the constructor, and the temporary host vector falls out of scope immediately after. The Tensor itself is a GPU object from the moment it's born. </p>
+<p>Move-only, matching MemoryArena's own established RAII convention in this codebase (a Tensor owns a single device allocation; copying would risk a double-free). </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">

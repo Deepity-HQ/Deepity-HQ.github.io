@@ -137,6 +137,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('Tanh_8h.html',
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:Deep" id="r_Deep"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep.html">Deep</a></td></tr>
+<tr class="memdesc:namespaceDeep"><td class="mdescLeft">&#160;</td><td class="mdescRight">This file exists to provide both <a class="el" href="Tensor_8h.html" title="A device-aware, RAII-managed buffer. Device is fixed at construction, there is no support for moving ...">Tensor.h</a> and <a class="el" href="IComputeBackend_8h.html">IComputeBackend.h</a> with device types without introducing circular dependencies. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -145,7 +146,7 @@ Functions</h2></td></tr>
 <tr class="memitem:a3d97fd977b29a71345ed910e76f41c12" id="r_a3d97fd977b29a71345ed910e76f41c12"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep.html#a3d97fd977b29a71345ed910e76f41c12">Deep::dTanh</a> (float *<a class="el" href="ActivationMacros_8h.html#aae3356b63849abbe8789dd41648ee90a">RESTRICT</a> x, const size_t n, const bool activated=false) noexcept</td></tr>
 <tr class="memdesc:a3d97fd977b29a71345ed910e76f41c12"><td class="mdescLeft">&#160;</td><td class="mdescRight">In-place tanh derivative: 1 - tanh(x)^2.  <br /></td></tr>
 <tr class="memitem:a062dce9151a7e94ae7e0c3c659fdb6ea" id="r_a062dce9151a7e94ae7e0c3c659fdb6ea"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep.html#a062dce9151a7e94ae7e0c3c659fdb6ea">Deep::dTanhInto</a> (float *<a class="el" href="ActivationMacros_8h.html#aae3356b63849abbe8789dd41648ee90a">RESTRICT</a> dst, const float *<a class="el" href="ActivationMacros_8h.html#aae3356b63849abbe8789dd41648ee90a">RESTRICT</a> src, const size_t n) noexcept</td></tr>
-<tr class="memdesc:a062dce9151a7e94ae7e0c3c659fdb6ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Two-buffer, single-pass tanh derivative: reads src, writes 1-tanh(src)^2 directly into dst, leaving src untouched.  <br /></td></tr>
+<tr class="memdesc:a062dce9151a7e94ae7e0c3c659fdb6ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Two-buffer, single-pass tanh derivative: reads src, writes 1-tanh(src)^2 directly into dst. Unlike dTanh(x, n, false), which needs two full passes internally (activate in place, then derive in place) plus a separate copy beforehand if src can't be mutated, this computes tanh(src[i]) into a register and derives from that same register immediately, with only one read of src and one write to dst, no intermediate array pass at all.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>tanh and its derivative (plain and two-buffer variants), with AVX512/AVX2/SSE paths and a scalar tail. </p>

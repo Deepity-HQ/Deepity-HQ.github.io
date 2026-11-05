@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classDeep_1_1D
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a1d13bbb0604e0a55c7d96c5ec9a73d79" id="r_a1d13bbb0604e0a55c7d96c5ec9a73d79"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a1d13bbb0604e0a55c7d96c5ec9a73d79">DiscriminativePCNetwork</a> (<a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a> device=<a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3a2b51e711df2cded71f92128f2f8f34dd">DeviceType::DEVICE_CPU</a>)</td></tr>
-<tr class="memdesc:a1d13bbb0604e0a55c7d96c5ec9a73d79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor; initializes the network with auto-batch-size detection.  <br /></td></tr>
+<tr class="memdesc:a1d13bbb0604e0a55c7d96c5ec9a73d79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor; initializes the network with auto-batch-size detection (see <a class="el" href="#a671f20780865ad65050178fc8852cd6d" title="Adds a layer to the network, using raw activation function pointers, converted to their equivalent Ac...">AddLayer()</a>'s fn-pointer overload's implementation for how the first layer's size triggers this).  <br /></td></tr>
 <tr class="memitem:a668769d2a3d495506b49c792a8d0e5c1" id="r_a668769d2a3d495506b49c792a8d0e5c1"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a668769d2a3d495506b49c792a8d0e5c1">DiscriminativePCNetwork</a> (int batchSize, <a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a> device=<a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3a2b51e711df2cded71f92128f2f8f34dd">DeviceType::DEVICE_CPU</a>)</td></tr>
 <tr class="memdesc:a668769d2a3d495506b49c792a8d0e5c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Batched constructor; initializes the network with a predetermined batch size.  <br /></td></tr>
 <tr class="memitem:afa273d4c2d0eb3787fcbea497c09b5e9" id="r_afa273d4c2d0eb3787fcbea497c09b5e9"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#afa273d4c2d0eb3787fcbea497c09b5e9">~DiscriminativePCNetwork</a> ()=default</td></tr>
@@ -146,7 +146,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2ca6add042ecc71ca17c197b44ce17ae" id="r_a2ca6add042ecc71ca17c197b44ce17ae"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a2ca6add042ecc71ca17c197b44ce17ae">AddLayer</a> (int size, int nextSize, float lr, float ir, float pr, float lmbda, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">Deep::ActivationType</a> aType, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">Deep::ActivationType</a> dType)</td></tr>
 <tr class="memdesc:a2ca6add042ecc71ca17c197b44ce17ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a layer to the network, using a named <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61" title="Identifies an activation function or its derivative, for dispatch tables and layer/backend APIs that ...">ActivationType</a> instead of raw function pointers.  <br /></td></tr>
 <tr class="memitem:afa8d85d6b6a23ca6b3d35ef2f602468a" id="r_afa8d85d6b6a23ca6b3d35ef2f602468a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#afa8d85d6b6a23ca6b3d35ef2f602468a">SetOptimizer</a> (<a class="el" href="namespaceDeep.html#a76c7b5d078cce2bed29f6f592560bf02">OptimizerType</a> opt) noexcept</td></tr>
-<tr class="memdesc:afa8d85d6b6a23ca6b3d35ef2f602468a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the optimizer for every layer added so far. Safe to call any time before <a class="el" href="#a2883834ad1affdadafae000829c025d8" title="Sums every layer&#39;s required float count into a single contiguous arena and binds each layer into it....">Compile()</a>.  <br /></td></tr>
+<tr class="memdesc:afa8d85d6b6a23ca6b3d35ef2f602468a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the optimizer for EVERY layer added so far. Safe to call any time before <a class="el" href="#a2883834ad1affdadafae000829c025d8" title="Sums every layer&#39;s required float count into a single contiguous arena and binds each layer into it....">Compile()</a>, memory allocation is deferred to <a class="el" href="#a2883834ad1affdadafae000829c025d8" title="Sums every layer&#39;s required float count into a single contiguous arena and binds each layer into it....">Compile()</a>, not <a class="el" href="#a671f20780865ad65050178fc8852cd6d" title="Adds a layer to the network, using raw activation function pointers, converted to their equivalent Ac...">AddLayer()</a>.  <br /></td></tr>
 <tr class="memitem:a5f62c8cc4c8971fe969b41530d4370d6" id="r_a5f62c8cc4c8971fe969b41530d4370d6"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a5f62c8cc4c8971fe969b41530d4370d6">RandomizeWeights</a> (std::mt19937 &amp;rng, const char *distribution=&quot;normal&quot;)</td></tr>
 <tr class="memdesc:a5f62c8cc4c8971fe969b41530d4370d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Randomizes the weights of each layer.  <br /></td></tr>
 <tr class="memitem:aad6a69dcf213a6d2dfaa345995cb3d84" id="r_aad6a69dcf213a6d2dfaa345995cb3d84"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aad6a69dcf213a6d2dfaa345995cb3d84">Clamp</a> (const std::vector&lt; float &gt; &amp;input)</td></tr>
@@ -223,7 +223,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Default constructor; initializes the network with auto-batch-size detection. </p>
+<p>Default constructor; initializes the network with auto-batch-size detection (see <a class="el" href="#a671f20780865ad65050178fc8852cd6d" title="Adds a layer to the network, using raw activation function pointers, converted to their equivalent Ac...">AddLayer()</a>'s fn-pointer overload's implementation for how the first layer's size triggers this). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">device</td><td>Which device this network's layers run on. </td></tr>
@@ -833,7 +833,7 @@ Friends</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">rng</td><td>The classic Mersenne Twister </td></tr>
-    <tr><td class="paramname">distribution</td><td>Forwarded to every layer's <a class="el" href="#a5f62c8cc4c8971fe969b41530d4370d6" title="Randomizes the weights of each layer.">RandomizeWeights()</a>; see <a class="el" href="classDeep_1_1DiscriminativePCLayer.html#aff4ed235135b449297b5c0b0f1c1429f" title="Randomizes the weights W in place.">DiscriminativePCLayer::RandomizeWeights()</a>'s own doc comment. </td></tr>
+    <tr><td class="paramname">distribution</td><td>Forwarded to every layer's <a class="el" href="#a5f62c8cc4c8971fe969b41530d4370d6" title="Randomizes the weights of each layer.">RandomizeWeights()</a>; see <a class="el" href="classDeep_1_1DiscriminativePCLayer.html#aff4ed235135b449297b5c0b0f1c1429f" title="Randomizes the weights W using a normal distribution scaled by fan-in/fan-out (see RandomizeWeights()...">DiscriminativePCLayer::RandomizeWeights()</a>'s own doc comment. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1023,7 +1023,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Sets the optimizer for every layer added so far. Safe to call any time before <a class="el" href="#a2883834ad1affdadafae000829c025d8" title="Sums every layer&#39;s required float count into a single contiguous arena and binds each layer into it....">Compile()</a>. </p>
+<p>Sets the optimizer for EVERY layer added so far. Safe to call any time before <a class="el" href="#a2883834ad1affdadafae000829c025d8" title="Sums every layer&#39;s required float count into a single contiguous arena and binds each layer into it....">Compile()</a>, memory allocation is deferred to <a class="el" href="#a2883834ad1affdadafae000829c025d8" title="Sums every layer&#39;s required float count into a single contiguous arena and binds each layer into it....">Compile()</a>, not <a class="el" href="#a671f20780865ad65050178fc8852cd6d" title="Adds a layer to the network, using raw activation function pointers, converted to their equivalent Ac...">AddLayer()</a>. </p>
 
 </div>
 </div>

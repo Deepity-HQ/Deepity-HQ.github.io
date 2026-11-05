@@ -214,7 +214,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a65fa75ad1832bb06c259ca3a02528622" id="r_a65fa75ad1832bb06c259ca3a02528622"><td class="memItemLeft"><a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a>&#160;</td><td class="memItemRight"><a class="el" href="#a65fa75ad1832bb06c259ca3a02528622">GetDerivativeType</a> () const noexcept</td></tr>
 <tr class="memdesc:a65fa75ad1832bb06c259ca3a02528622"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns this layer's configured activation-derivative type.  <br /></td></tr>
 <tr class="memitem:ac8baa90414d136dbaf1e1e61e9e9a1ba" id="r_ac8baa90414d136dbaf1e1e61e9e9a1ba"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#ac8baa90414d136dbaf1e1e61e9e9a1ba">GetRequiredFloats</a> () const noexcept</td></tr>
-<tr class="memdesc:ac8baa90414d136dbaf1e1e61e9e9a1ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the total number of floats this layer requires from a <a class="el" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4" title="Non-templated alias: MemoryArena is MemoryArenaT&lt;float&gt;.">MemoryArena</a>.  <br /></td></tr>
+<tr class="memdesc:ac8baa90414d136dbaf1e1e61e9e9a1ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the total number of floats this layer requires from a <a class="el" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: MemoryArena is MemoryArenaT&lt;...">MemoryArena</a>.  <br /></td></tr>
 <tr class="memitem:ab40490de74d9c1b8a0564b70dd08e419" id="r_ab40490de74d9c1b8a0564b70dd08e419"><td class="memTemplParams" colspan="2">template&lt;typename ArenaT&gt; </td></tr>
 <tr class="memitem:ab40490de74d9c1b8a0564b70dd08e419 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ab40490de74d9c1b8a0564b70dd08e419">BindMemory</a> (ArenaT &amp;arena)</td></tr>
 <tr class="memdesc:ab40490de74d9c1b8a0564b70dd08e419"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds this layer's weight/state/scratch buffers into the supplied arena. Must be called before any other operation.  <br /></td></tr>
@@ -335,7 +335,7 @@ template&lt;typename ArenaT&gt; </div>
 <p>Binds this layer's weight/state/scratch buffers into the supplied arena. Must be called before any other operation. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">ArenaT</td><td>Either <a class="el" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4" title="Non-templated alias: MemoryArena is MemoryArenaT&lt;float&gt;.">MemoryArena</a> or <a class="el" href="namespaceDeep.html#a1389c0520260789b0d62d62237a71d0c" title="Non-templated alias: DeviceMemoryArena is DeviceMemoryArenaT&lt;float, float&gt;.">DeviceMemoryArena</a>. </td></tr>
+    <tr><td class="paramname">ArenaT</td><td>Either <a class="el" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: MemoryArena is MemoryArenaT&lt;...">MemoryArena</a> or <a class="el" href="namespaceDeep.html#a1389c0520260789b0d62d62237a71d0c" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: DeviceMemoryArena is DeviceM...">DeviceMemoryArena</a>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -438,7 +438,7 @@ template&lt;typename ArenaT&gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>This layer's energy contribution at the current state, or 0.0f if needEnergy is false. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">needEnergy</td><td>Whether to compute and return the energy. Pass false inside a captured CUDA graph region. <span class="tt">e</span> itself is always correctly updated either way. </td></tr>
+    <tr><td class="paramname">needEnergy</td><td>Whether to compute and return the energy. On <a class="el" href="classDeep_1_1CUDABackend.html" title="CUDA implementation of IComputeBackend: device kernels for elementwise ops, cuBLAS for GEMM,...">CUDABackend</a>, false also means no blocking host sync, required for any settling-loop caller that runs this inside a captured CUDA graph region (see <a class="el" href="classDeep_1_1GaussSeidelPCNetwork.html#aa03d3d08f47aee41758ead5e2948fbff" title="Full train step: reset, clamp input+target, settle for inferenceSteps, update weights once,...">GaussSeidelPCNetwork::TrainStep()</a>'s GPU branch). <span class="tt">e</span> itself is always correctly updated either way. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1009,7 +1009,7 @@ template&lt;typename ArenaT&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Computes the total number of floats this layer requires from a <a class="el" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4" title="Non-templated alias: MemoryArena is MemoryArenaT&lt;float&gt;.">MemoryArena</a>. </p>
+<p>Computes the total number of floats this layer requires from a <a class="el" href="namespaceDeep.html#a2b91a923456ba8bdffaf35f36d0988d4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: MemoryArena is MemoryArenaT&lt;...">MemoryArena</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd>The required float count. </dd></dl>
 
 </div>
@@ -1158,7 +1158,7 @@ template&lt;typename ArenaT&gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">twister</td><td>The classic Mersenne Twister </td></tr>
-    <tr><td class="paramname">distribution</td><td>Distribution for W only; E (the feedback- alignment matrix) always uses its own fixed uniform(-0.3,0.3) init. </td></tr>
+    <tr><td class="paramname">distribution</td><td>Distribution for W only; E (the feedback- alignment matrix) keeps its own fixed uniform(-0.3,0.3) init regardless. The default "normal" has no "(a,b)" and so deliberately fails to parse, falling back to this class's own existing default. </td></tr>
   </table>
   </dd>
 </dl>

@@ -1,5 +1,8 @@
 var NAVTREEINDEX17 =
 {
+"functions_func_~.html":[8,3,1,19],
+"functions_g.html":[8,3,0,6],
+"functions_h.html":[8,3,0,7],
 "functions_i.html":[8,3,0,8],
 "functions_k.html":[8,3,0,9],
 "functions_l.html":[8,3,0,10],
@@ -246,8 +249,5 @@ var NAVTREEINDEX17 =
 "structDeep_1_1DTypeTag_3_01Posit4__0Value_01_4.html#a1ef6e33622a85c8fe03978dc21fd0939":[7,0,0,25,0],
 "structDeep_1_1DTypeTag_3_01Posit4__0Value_01_4.html#a1ef6e33622a85c8fe03978dc21fd0939":[8,0,0,23,0],
 "structDeep_1_1DTypeTag_3_01Posit4__1Value_01_4.html":[7,0,0,26],
-"structDeep_1_1DTypeTag_3_01Posit4__1Value_01_4.html":[8,0,0,24],
-"structDeep_1_1DTypeTag_3_01Posit4__1Value_01_4.html#af59ef3beb3c782714d0e59598a5d3331":[7,0,0,26,0],
-"structDeep_1_1DTypeTag_3_01Posit4__1Value_01_4.html#af59ef3beb3c782714d0e59598a5d3331":[8,0,0,24,0],
-"structDeep_1_1DTypeTag_3_01Posit4__2Value_01_4.html":[7,0,0,27]
+"structDeep_1_1DTypeTag_3_01Posit4__1Value_01_4.html":[8,0,0,24]
 };

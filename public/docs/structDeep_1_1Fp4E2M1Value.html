@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('structDeep_1_1
 </div><!--header-->
 <div class="contents">
 
-<p>Storage type for the FP4 E2M1 format.  
+<p>Storage type for the FP4 E2M1 format (see arXiv:2610.15933's W4A4E4 QAT setup). Converts to/from any arithmetic AccumT via Decode/EncodeFp4E2M1 (always through a <span class="tt">float</span> intermediate &ndash; the grid itself is only ever specified to float precision, so routing a double AccumT through it loses nothing beyond what the 4-bit grid already discards). The conversion constructor is explicit, since an implicit float/double -&gt; 4-bit-grid narrowing happening by accident (rather than at a deliberate <a class="el" href="classDeep_1_1CPUBackendT.html" title="Templated CPU implementation of IComputeBackendT&lt;T, AccumT&gt;, used by every templated layer/network in...">CPUBackendT</a> decode/encode point) would be exactly the kind of silent precision bug this whole templating pass exists to make impossible to miss.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="QuantFormat_8h_source.html">QuantFormat.h</a>&gt;</code></p>
@@ -141,8 +141,7 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a25c4c4d54f975de7769a2da25d0269f2" id="r_a25c4c4d54f975de7769a2da25d0269f2"><td class="memItemLeft">uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a25c4c4d54f975de7769a2da25d0269f2">bits</a> = 0</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Storage type for the FP4 E2M1 format. </p>
-<dl class="section see"><dt>See also</dt><dd>arXiv:2610.15933's W4A4E4 QAT setup. Converts to/from any arithmetic AccumT via Decode/EncodeFp4E2M1, always through a <span class="tt">float</span> intermediate. The conversion constructor is explicit. </dd></dl>
+<div class="textblock"><p>Storage type for the FP4 E2M1 format (see arXiv:2610.15933's W4A4E4 QAT setup). Converts to/from any arithmetic AccumT via Decode/EncodeFp4E2M1 (always through a <span class="tt">float</span> intermediate &ndash; the grid itself is only ever specified to float precision, so routing a double AccumT through it loses nothing beyond what the 4-bit grid already discards). The conversion constructor is explicit, since an implicit float/double -&gt; 4-bit-grid narrowing happening by accident (rather than at a deliberate <a class="el" href="classDeep_1_1CPUBackendT.html" title="Templated CPU implementation of IComputeBackendT&lt;T, AccumT&gt;, used by every templated layer/network in...">CPUBackendT</a> decode/encode point) would be exactly the kind of silent precision bug this whole templating pass exists to make impossible to miss. </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2c81234bb8b4c9ea594aca67fcc691d6" name="a2c81234bb8b4c9ea594aca67fcc691d6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2c81234bb8b4c9ea594aca67fcc691d6">&#9670;&#160;</a></span>Fp4E2M1Value() <span class="overload">[1/2]</span></h2>

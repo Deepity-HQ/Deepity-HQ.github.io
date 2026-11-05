@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('FullPCLayer_8h
 </div><!--header-->
 <div class="contents">
 
-<p>PC layer with DKP direct feedback, optional muPC scaling (<span class="tt">a</span>), and optional residual connections (<span class="tt">useResidual</span>), each off by default.  
+<p>PC layer combining DKP direct feedback (DirectKPPCLayer's structure) with muPC scaling (<span class="tt">a</span>) and optional residual connections (<span class="tt">useResidual</span>), each off by default so plain defaults reproduce DirectKPPCLayer exactly.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="IComputeBackend_8h_source.html">deepity/backend/IComputeBackend.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="Layer_8h_source.html">deepity/layers/Layer.h</a>&gt;</code><br />
@@ -141,15 +141,16 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('FullPCLayer_8h
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:Deep_3A_3AFullPCLayer" id="r_Deep_3A_3AFullPCLayer"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classDeep_1_1FullPCLayer.html">Deep::FullPCLayer</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">PC layer with muPC scaling, optional residual connections, and DKP direct feedback, each off by default.  <a href="classDeep_1_1FullPCLayer.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">PC layer combining muPC scaling, optional residual connections, and DKP direct feedback, every extra off by default, so plain defaults reproduce <a class="el" href="classDeep_1_1DirectKPPCLayer.html" title="Predictive Coding layer using Direct Kolen-Pollack feedback alignment (DFA): a per-layer feedback mat...">DirectKPPCLayer</a> exactly.  <a href="classDeep_1_1FullPCLayer.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:Deep" id="r_Deep"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep.html">Deep</a></td></tr>
+<tr class="memdesc:namespaceDeep"><td class="mdescLeft">&#160;</td><td class="mdescRight">This file exists to provide both <a class="el" href="Tensor_8h.html" title="A device-aware, RAII-managed buffer. Device is fixed at construction, there is no support for moving ...">Tensor.h</a> and <a class="el" href="IComputeBackend_8h.html">IComputeBackend.h</a> with device types without introducing circular dependencies. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>PC layer with DKP direct feedback, optional muPC scaling (<span class="tt">a</span>), and optional residual connections (<span class="tt">useResidual</span>), each off by default. </p>
-<p><span class="tt">a</span> and <span class="tt">useResidual</span> are normally set by the owning network at Compile() time via SetMuPCScale()/SetResidual(), not by calling code directly. </p>
+<div class="textblock"><p>PC layer combining DKP direct feedback (DirectKPPCLayer's structure) with muPC scaling (<span class="tt">a</span>) and optional residual connections (<span class="tt">useResidual</span>), each off by default so plain defaults reproduce DirectKPPCLayer exactly. </p>
+<p><span class="tt">a</span> and <span class="tt">useResidual</span> are set by the owning network at Compile() time (via SetMuPCScale/SetResidual), not computed here, this layer, at construction time, doesn't know the full network's shape (width N, depth L, input dim) that muPC's own aL formula needs. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">

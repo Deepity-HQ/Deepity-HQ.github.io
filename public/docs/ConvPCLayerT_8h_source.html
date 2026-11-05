@@ -129,330 +129,330 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('ConvPCLayerT_8
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;random&gt;</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceDeep.html">Deep</a></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>{</div>
-<div class="foldopen" id="foldopen00028" data-start="{" data-end="};">
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html">   28</a></span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> AccumT = T&gt; <span class="keyword">class </span><a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a1207f96b80a7aaabb74544593a8a6b78">ConvPCLayerT</a></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>{</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a1207f96b80a7aaabb74544593a8a6b78">ConvPCLayerT</a>(<span class="keywordtype">int</span> inChannels, <span class="keywordtype">int</span> outChannels, <span class="keywordtype">int</span> inHeight, <span class="keywordtype">int</span> inWidth, <span class="keywordtype">int</span> kernelH,</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>              <span class="keywordtype">int</span> kernelW, <span class="keywordtype">int</span> strideH = 1, <span class="keywordtype">int</span> strideW = 1, <span class="keywordtype">int</span> padH = 0, <span class="keywordtype">int</span> padW = 0,</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>              <span class="keywordtype">int</span> batchSize = 1, AccumT learningRate = AccumT(1e-6),</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>              AccumT inferenceRate = AccumT(0.1), AccumT precisionRate = AccumT(0.01),</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>              AccumT lmbda = AccumT(1e-2), <a class="code hl_enumeration" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> aType = <a class="code hl_enumvalue" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ad346bb4679d29be241279f15d7795c1c">ActivationType::RELU</a>,</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>              <a class="code hl_enumeration" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> dType = <a class="code hl_enumvalue" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ae3d97c20b976be09990b745185b14d75">ActivationType::dRELU</a>,</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>              <a class="code hl_class" href="classDeep_1_1IComputeBackendT.html">IComputeBackendT&lt;T, AccumT&gt;</a>* backend = <span class="keyword">nullptr</span>);</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#aa8f9a2cf4bdeec2a11adf5f8aac790c4">   53</a></span>  <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#aa8f9a2cf4bdeec2a11adf5f8aac790c4">~ConvPCLayerT</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="foldopen" id="foldopen00055" data-start="{" data-end="}">
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#ad6a663a28de199e25d26d6a04c2e508f">   55</a></span>  AccumT <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#ad6a663a28de199e25d26d6a04c2e508f">CalculateState</a>() noexcept</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  {</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#ad6a663a28de199e25d26d6a04c2e508f">CalculateState</a>(<span class="keyword">true</span>);</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  }</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceDeep.html">Deep</a></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>{</div>
+<div class="foldopen" id="foldopen00037" data-start="{" data-end="};">
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html">   37</a></span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> AccumT = T&gt; <span class="keyword">class </span><a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a1207f96b80a7aaabb74544593a8a6b78">ConvPCLayerT</a></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>{</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a1207f96b80a7aaabb74544593a8a6b78">ConvPCLayerT</a>(<span class="keywordtype">int</span> inChannels, <span class="keywordtype">int</span> outChannels, <span class="keywordtype">int</span> inHeight, <span class="keywordtype">int</span> inWidth, <span class="keywordtype">int</span> kernelH,</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>              <span class="keywordtype">int</span> kernelW, <span class="keywordtype">int</span> strideH = 1, <span class="keywordtype">int</span> strideW = 1, <span class="keywordtype">int</span> padH = 0, <span class="keywordtype">int</span> padW = 0,</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>              <span class="keywordtype">int</span> batchSize = 1, AccumT learningRate = AccumT(1e-6),</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>              AccumT inferenceRate = AccumT(0.1), AccumT precisionRate = AccumT(0.01),</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>              AccumT lmbda = AccumT(1e-2), <a class="code hl_enumeration" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> aType = <a class="code hl_enumvalue" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ad346bb4679d29be241279f15d7795c1c">ActivationType::RELU</a>,</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>              <a class="code hl_enumeration" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> dType = <a class="code hl_enumvalue" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ae3d97c20b976be09990b745185b14d75">ActivationType::dRELU</a>,</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>              <a class="code hl_class" href="classDeep_1_1IComputeBackendT.html">IComputeBackendT&lt;T, AccumT&gt;</a>* backend = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#aa8f9a2cf4bdeec2a11adf5f8aac790c4">   62</a></span>  <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#aa8f9a2cf4bdeec2a11adf5f8aac790c4">~ConvPCLayerT</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="foldopen" id="foldopen00064" data-start="{" data-end="}">
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#ad6a663a28de199e25d26d6a04c2e508f">   64</a></span>  AccumT <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#ad6a663a28de199e25d26d6a04c2e508f">CalculateState</a>() noexcept</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#ad6a663a28de199e25d26d6a04c2e508f">CalculateState</a>(<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  }</div>
 </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  AccumT <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#ad6a663a28de199e25d26d6a04c2e508f">CalculateState</a>(<span class="keywordtype">bool</span> needEnergy) <span class="keyword">noexcept</span>;</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a12dc42597a3931a66afaaf2fad56d0af">UpdateState</a>() noexcept;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#aff395e8d4867b660fe44beaf997cec96">UpdateWeights</a>() noexcept;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#acbd1f0dc7d892ac9e518895b7f277c35">UpdatePrecision</a>() noexcept;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#af8e0e12bcc342ed1e9cdb8b923da4175">ClampState</a>(const std::vector&lt;T&gt;&amp; inputData) noexcept;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a076671c46017399dfd3e17a736078f70">UnclampState</a>() noexcept;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="foldopen" id="foldopen00069" data-start="{" data-end="}">
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a81b31e84d06164b4f524db7cbf8247a1">   69</a></span>  T* <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a81b31e84d06164b4f524db7cbf8247a1">GetBeliefs</a>() noexcept</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  {</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordflow">return</span> z;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  }</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  AccumT <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#ad6a663a28de199e25d26d6a04c2e508f">CalculateState</a>(<span class="keywordtype">bool</span> needEnergy) <span class="keyword">noexcept</span>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a12dc42597a3931a66afaaf2fad56d0af">UpdateState</a>() noexcept;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#aff395e8d4867b660fe44beaf997cec96">UpdateWeights</a>() noexcept;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#acbd1f0dc7d892ac9e518895b7f277c35">UpdatePrecision</a>() noexcept;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#af8e0e12bcc342ed1e9cdb8b923da4175">ClampState</a>(const std::vector&lt;T&gt;&amp; inputData) noexcept;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a076671c46017399dfd3e17a736078f70">UnclampState</a>() noexcept;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="foldopen" id="foldopen00078" data-start="{" data-end="}">
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a81b31e84d06164b4f524db7cbf8247a1">   78</a></span>  T* <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a81b31e84d06164b4f524db7cbf8247a1">GetBeliefs</a>() noexcept</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  {</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordflow">return</span> z;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  }</div>
 </div>
-<div class="foldopen" id="foldopen00073" data-start="{" data-end="}">
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a5beb1f61ec1ce064a6b305869c1f95ec">   73</a></span>  <span class="keyword">const</span> T* <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a5beb1f61ec1ce064a6b305869c1f95ec">GetErrors</a>() const noexcept</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  {</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordflow">return</span> e;</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  }</div>
+<div class="foldopen" id="foldopen00082" data-start="{" data-end="}">
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a5beb1f61ec1ce064a6b305869c1f95ec">   82</a></span>  <span class="keyword">const</span> T* <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a5beb1f61ec1ce064a6b305869c1f95ec">GetErrors</a>() const noexcept</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordflow">return</span> e;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  }</div>
 </div>
-<div class="foldopen" id="foldopen00077" data-start="{" data-end="}">
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#ac260c1e65f1474f9ba335257385cfa45">   77</a></span>  <span class="keyword">const</span> T* <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#ac260c1e65f1474f9ba335257385cfa45">GetPrecisions</a>() const noexcept</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  {</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordflow">return</span> p;</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  }</div>
+<div class="foldopen" id="foldopen00086" data-start="{" data-end="}">
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#ac260c1e65f1474f9ba335257385cfa45">   86</a></span>  <span class="keyword">const</span> T* <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#ac260c1e65f1474f9ba335257385cfa45">GetPrecisions</a>() const noexcept</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  {</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordflow">return</span> p;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  }</div>
 </div>
-<div class="foldopen" id="foldopen00081" data-start="{" data-end="}">
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a14b01aa11fd5daf64ab60465348c8a23">   81</a></span>  <span class="keywordtype">size_t</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a14b01aa11fd5daf64ab60465348c8a23">GetInputSize</a>() const noexcept</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  {</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordflow">return</span> (<span class="keywordtype">size_t</span>)inChannels * inHeight * inWidth;</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  }</div>
+<div class="foldopen" id="foldopen00090" data-start="{" data-end="}">
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a14b01aa11fd5daf64ab60465348c8a23">   90</a></span>  <span class="keywordtype">size_t</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a14b01aa11fd5daf64ab60465348c8a23">GetInputSize</a>() const noexcept</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>  {</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keywordflow">return</span> (<span class="keywordtype">size_t</span>)inChannels * inHeight * inWidth;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>  }</div>
 </div>
-<div class="foldopen" id="foldopen00085" data-start="{" data-end="}">
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#acb08bb518ee51e248b1802037f01938d">   85</a></span>  <span class="keywordtype">size_t</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#acb08bb518ee51e248b1802037f01938d">GetOutputSize</a>() const noexcept</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  {</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordflow">return</span> outChannels &gt; 0 ? (size_t)outChannels * outHeight * outWidth : 0;</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  }</div>
-</div>
-<div class="foldopen" id="foldopen00089" data-start="{" data-end="}">
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#aacc0dc4215844ece2a91ae29d241ad09">   89</a></span>  <span class="keywordtype">size_t</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#aacc0dc4215844ece2a91ae29d241ad09">GetBatchSize</a>() const noexcept</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  {</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordflow">return</span> batchSize;</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  }</div>
-</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
 <div class="foldopen" id="foldopen00094" data-start="{" data-end="}">
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#aa795868c730c8dbcdddaa8271278a19a">   94</a></span>  <span class="keyword">const</span> T* <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#aa795868c730c8dbcdddaa8271278a19a">GetWeights</a>() const noexcept</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#acb08bb518ee51e248b1802037f01938d">   94</a></span>  <span class="keywordtype">size_t</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#acb08bb518ee51e248b1802037f01938d">GetOutputSize</a>() const noexcept</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  {</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keywordflow">return</span> W;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keywordflow">return</span> outChannels &gt; 0 ? (size_t)outChannels * outHeight * outWidth : 0;</div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  }</div>
 </div>
 <div class="foldopen" id="foldopen00098" data-start="{" data-end="}">
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#accf4deac9ea7421b29030b08aeb29776">   98</a></span>  T* <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#accf4deac9ea7421b29030b08aeb29776">GetWeights</a>() noexcept</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#aacc0dc4215844ece2a91ae29d241ad09">   98</a></span>  <span class="keywordtype">size_t</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#aacc0dc4215844ece2a91ae29d241ad09">GetBatchSize</a>() const noexcept</div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  {</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordflow">return</span> W;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordflow">return</span> batchSize;</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  }</div>
 </div>
-<div class="foldopen" id="foldopen00102" data-start="{" data-end="}">
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a68bd510a428039f6827c4396fe42e393">  102</a></span>  <span class="keyword">const</span> T* <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a68bd510a428039f6827c4396fe42e393">GetBiases</a>() const noexcept</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>  {</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordflow">return</span> b;</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>  }</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="foldopen" id="foldopen00103" data-start="{" data-end="}">
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#aa795868c730c8dbcdddaa8271278a19a">  103</a></span>  <span class="keyword">const</span> T* <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#aa795868c730c8dbcdddaa8271278a19a">GetWeights</a>() const noexcept</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>  {</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keywordflow">return</span> W;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  }</div>
 </div>
-<div class="foldopen" id="foldopen00106" data-start="{" data-end="}">
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#aa1e5783fd46ba691aaa704e33feb6816">  106</a></span>  T* <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#aa1e5783fd46ba691aaa704e33feb6816">GetBiases</a>() noexcept</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>  {</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keywordflow">return</span> b;</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>  }</div>
+<div class="foldopen" id="foldopen00107" data-start="{" data-end="}">
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#accf4deac9ea7421b29030b08aeb29776">  107</a></span>  T* <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#accf4deac9ea7421b29030b08aeb29776">GetWeights</a>() noexcept</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  {</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keywordflow">return</span> W;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  }</div>
 </div>
-<div class="foldopen" id="foldopen00110" data-start="{" data-end="}">
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#abcaf7755c780a70f7c4d5efac0ef2247">  110</a></span>  <a class="code hl_class" href="classDeep_1_1IComputeBackendT.html">IComputeBackendT&lt;T, AccumT&gt;</a>* <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#abcaf7755c780a70f7c4d5efac0ef2247">GetBackend</a>() const noexcept</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  {</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keywordflow">return</span> backend.get();</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  }</div>
+<div class="foldopen" id="foldopen00111" data-start="{" data-end="}">
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a68bd510a428039f6827c4396fe42e393">  111</a></span>  <span class="keyword">const</span> T* <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a68bd510a428039f6827c4396fe42e393">GetBiases</a>() const noexcept</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>  {</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keywordflow">return</span> b;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>  }</div>
 </div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
 <div class="foldopen" id="foldopen00115" data-start="{" data-end="}">
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a52d90805ca7dffb3e90a565e155adb17">  115</a></span>  AccumT <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a52d90805ca7dffb3e90a565e155adb17">GetLearningRate</a>() const noexcept</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#aa1e5783fd46ba691aaa704e33feb6816">  115</a></span>  T* <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#aa1e5783fd46ba691aaa704e33feb6816">GetBiases</a>() noexcept</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>  {</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keywordflow">return</span> lr;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keywordflow">return</span> b;</div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>  }</div>
 </div>
 <div class="foldopen" id="foldopen00119" data-start="{" data-end="}">
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#abdbd0774ce5ccb22f0936436acc46eb7">  119</a></span>  AccumT <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#abdbd0774ce5ccb22f0936436acc46eb7">GetInferenceRate</a>() const noexcept</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#abcaf7755c780a70f7c4d5efac0ef2247">  119</a></span>  <a class="code hl_class" href="classDeep_1_1IComputeBackendT.html">IComputeBackendT&lt;T, AccumT&gt;</a>* <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#abcaf7755c780a70f7c4d5efac0ef2247">GetBackend</a>() const noexcept</div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>  {</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keywordflow">return</span> ir;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keywordflow">return</span> backend.get();</div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>  }</div>
 </div>
-<div class="foldopen" id="foldopen00123" data-start="{" data-end="}">
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a16ed884fbbc5a248fc40fdce745d9aab">  123</a></span>  AccumT <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a16ed884fbbc5a248fc40fdce745d9aab">GetPrecisionRate</a>() const noexcept</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>  {</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="keywordflow">return</span> pr;</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>  }</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="foldopen" id="foldopen00124" data-start="{" data-end="}">
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a52d90805ca7dffb3e90a565e155adb17">  124</a></span>  AccumT <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a52d90805ca7dffb3e90a565e155adb17">GetLearningRate</a>() const noexcept</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>  {</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keywordflow">return</span> lr;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>  }</div>
 </div>
-<div class="foldopen" id="foldopen00127" data-start="{" data-end="}">
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a18d3b604f293d592bb659c5f80ed4ad0">  127</a></span>  AccumT <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a18d3b604f293d592bb659c5f80ed4ad0">GetLambda</a>() const noexcept</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>  {</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keywordflow">return</span> lmbda;</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>  }</div>
+<div class="foldopen" id="foldopen00128" data-start="{" data-end="}">
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#abdbd0774ce5ccb22f0936436acc46eb7">  128</a></span>  AccumT <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#abdbd0774ce5ccb22f0936436acc46eb7">GetInferenceRate</a>() const noexcept</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>  {</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keywordflow">return</span> ir;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>  }</div>
 </div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a9639fd6e55a44da8bcac29393ed44b25">SetLearningRate</a>(AccumT learningRate) <span class="keyword">noexcept</span>;</div>
-<div class="foldopen" id="foldopen00133" data-start="{" data-end="}">
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a75513414474e2e08634a18bc5c2a091c">  133</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a75513414474e2e08634a18bc5c2a091c">SetInferenceRate</a>(AccumT inferenceRate) <span class="keyword">noexcept</span></div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>  {</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    ir = inferenceRate;</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>  }</div>
+<div class="foldopen" id="foldopen00132" data-start="{" data-end="}">
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a16ed884fbbc5a248fc40fdce745d9aab">  132</a></span>  AccumT <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a16ed884fbbc5a248fc40fdce745d9aab">GetPrecisionRate</a>() const noexcept</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>  {</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="keywordflow">return</span> pr;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>  }</div>
 </div>
-<div class="foldopen" id="foldopen00137" data-start="{" data-end="}">
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#af62d636493315b30324615a1c8798e6b">  137</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#af62d636493315b30324615a1c8798e6b">SetPrecisionRate</a>(AccumT precisionRate) <span class="keyword">noexcept</span></div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>  {</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    pr = precisionRate;</div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>  }</div>
+<div class="foldopen" id="foldopen00136" data-start="{" data-end="}">
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a18d3b604f293d592bb659c5f80ed4ad0">  136</a></span>  AccumT <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a18d3b604f293d592bb659c5f80ed4ad0">GetLambda</a>() const noexcept</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>  {</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="keywordflow">return</span> lmbda;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>  }</div>
 </div>
-<div class="foldopen" id="foldopen00141" data-start="{" data-end="}">
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#ac3bb2f83411068cb1cf0974c9d932cbe">  141</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#ac3bb2f83411068cb1cf0974c9d932cbe">SetLambda</a>(AccumT l) <span class="keyword">noexcept</span></div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>  {</div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    lmbda = l;</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>  }</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a9639fd6e55a44da8bcac29393ed44b25">SetLearningRate</a>(AccumT learningRate) <span class="keyword">noexcept</span>;</div>
+<div class="foldopen" id="foldopen00142" data-start="{" data-end="}">
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a75513414474e2e08634a18bc5c2a091c">  142</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a75513414474e2e08634a18bc5c2a091c">SetInferenceRate</a>(AccumT inferenceRate) <span class="keyword">noexcept</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>  {</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    ir = inferenceRate;</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>  }</div>
 </div>
-<div class="foldopen" id="foldopen00145" data-start="{" data-end="}">
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a0b077d7470a3e29fe3597d9bcd883f58">  145</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a0b077d7470a3e29fe3597d9bcd883f58">SetOptimizer</a>(<span class="keyword">const</span> <a class="code hl_enumeration" href="namespaceDeep.html#a76c7b5d078cce2bed29f6f592560bf02">OptimizerType</a> o) <span class="keyword">noexcept</span></div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>  {</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    opt = o;</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>  }</div>
+<div class="foldopen" id="foldopen00146" data-start="{" data-end="}">
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#af62d636493315b30324615a1c8798e6b">  146</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#af62d636493315b30324615a1c8798e6b">SetPrecisionRate</a>(AccumT precisionRate) <span class="keyword">noexcept</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>  {</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    pr = precisionRate;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>  }</div>
 </div>
-<div class="foldopen" id="foldopen00149" data-start="{" data-end="}">
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#af7e69786640277b84ab6cb043886b511">  149</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#af7e69786640277b84ab6cb043886b511">IsClamped</a>() const noexcept</div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>  {</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="keywordflow">return</span> isClamped;</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>  }</div>
+<div class="foldopen" id="foldopen00150" data-start="{" data-end="}">
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#ac3bb2f83411068cb1cf0974c9d932cbe">  150</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#ac3bb2f83411068cb1cf0974c9d932cbe">SetLambda</a>(AccumT l) <span class="keyword">noexcept</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>  {</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    lmbda = l;</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>  }</div>
 </div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
 <div class="foldopen" id="foldopen00154" data-start="{" data-end="}">
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a19057711cf1fd959c59e4a80569e26ce">  154</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a19057711cf1fd959c59e4a80569e26ce">InvalidateMuCache</a>() noexcept</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a0b077d7470a3e29fe3597d9bcd883f58">  154</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a0b077d7470a3e29fe3597d9bcd883f58">SetOptimizer</a>(<span class="keyword">const</span> <a class="code hl_enumeration" href="namespaceDeep.html#a76c7b5d078cce2bed29f6f592560bf02">OptimizerType</a> o) <span class="keyword">noexcept</span></div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>  {</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    muCacheValid = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    opt = o;</div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>  }</div>
 </div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
-<div class="foldopen" id="foldopen00159" data-start="{" data-end="}">
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a1ece052601cd8ffaeaa73bd7a9d907d9">  159</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a1ece052601cd8ffaeaa73bd7a9d907d9">SetLayerAbove</a>(<a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a1207f96b80a7aaabb74544593a8a6b78">ConvPCLayerT</a>* above) <span class="keyword">noexcept</span></div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>  {</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    layerAbove = above;</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>  }</div>
+<div class="foldopen" id="foldopen00158" data-start="{" data-end="}">
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#af7e69786640277b84ab6cb043886b511">  158</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#af7e69786640277b84ab6cb043886b511">IsClamped</a>() const noexcept</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>  {</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="keywordflow">return</span> isClamped;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>  }</div>
 </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
 <div class="foldopen" id="foldopen00163" data-start="{" data-end="}">
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#ae790f4e225c8b9d986a8ed776d6a7ed2">  163</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#ae790f4e225c8b9d986a8ed776d6a7ed2">SetLayerBelow</a>(<a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a1207f96b80a7aaabb74544593a8a6b78">ConvPCLayerT</a>* below) <span class="keyword">noexcept</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a19057711cf1fd959c59e4a80569e26ce">  163</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a19057711cf1fd959c59e4a80569e26ce">InvalidateMuCache</a>() noexcept</div>
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>  {</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    layerBelow = below;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    muCacheValid = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>  }</div>
 </div>
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a4392044012c390e14e6bef52d5e5919f">ComputeMuOnly</a>() noexcept;</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span></div>
-<div class="foldopen" id="foldopen00173" data-start="{" data-end="}">
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a3aa89bf87829a325acbbd060e684bdfa">  173</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a3aa89bf87829a325acbbd060e684bdfa">PrepareConvWorkspace</a>() noexcept</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>  {</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keywordflow">if</span> (outChannels == 0)</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>      <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    backend-&gt;PrepareConvWorkspace(batchSize, inChannels, inHeight, inWidth, outChannels, kernelH,</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>                                  kernelW, strideH, strideW, padH, padW);</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>  }</div>
+<div class="foldopen" id="foldopen00168" data-start="{" data-end="}">
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a1ece052601cd8ffaeaa73bd7a9d907d9">  168</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a1ece052601cd8ffaeaa73bd7a9d907d9">SetLayerAbove</a>(<a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a1207f96b80a7aaabb74544593a8a6b78">ConvPCLayerT</a>* above) <span class="keyword">noexcept</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>  {</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    layerAbove = above;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>  }</div>
 </div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#ae11cb06369f23af74aca7982969153bd">ResetState</a>() noexcept;</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a52382622de5c1bee9409234b23c62ff4">RandomizeWeights</a>(std::mt19937&amp; twister, const <span class="keywordtype">char</span>* distribution = <span class="stringliteral">&quot;normal&quot;</span>) noexcept;</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span></div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a6e08994b51d01a89280f3971d240ebc9">ResyncLogPrecision</a>() noexcept;</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
-<div class="foldopen" id="foldopen00188" data-start="{" data-end="}">
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#acf13dd05f29073a530b13d2e4926e729">  188</a></span>  <a class="code hl_enumeration" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#acf13dd05f29073a530b13d2e4926e729">GetActivationType</a>() const noexcept</div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>  {</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="keywordflow">return</span> activationType;</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>  }</div>
+<div class="foldopen" id="foldopen00172" data-start="{" data-end="}">
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#ae790f4e225c8b9d986a8ed776d6a7ed2">  172</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#ae790f4e225c8b9d986a8ed776d6a7ed2">SetLayerBelow</a>(<a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a1207f96b80a7aaabb74544593a8a6b78">ConvPCLayerT</a>* below) <span class="keyword">noexcept</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>  {</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    layerBelow = below;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>  }</div>
 </div>
-<div class="foldopen" id="foldopen00192" data-start="{" data-end="}">
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#ae90bef056fb3dde8e7e563197f51e043">  192</a></span>  <a class="code hl_enumeration" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#ae90bef056fb3dde8e7e563197f51e043">GetDerivativeType</a>() const noexcept</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>  {</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <span class="keywordflow">return</span> derivativeType;</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>  }</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a4392044012c390e14e6bef52d5e5919f">ComputeMuOnly</a>() noexcept;</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span></div>
+<div class="foldopen" id="foldopen00181" data-start="{" data-end="}">
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a3aa89bf87829a325acbbd060e684bdfa">  181</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a3aa89bf87829a325acbbd060e684bdfa">PrepareConvWorkspace</a>() noexcept</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>  {</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="keywordflow">if</span> (outChannels == 0)</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>      <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    backend-&gt;PrepareConvWorkspace(batchSize, inChannels, inHeight, inWidth, outChannels, kernelH,</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>                                  kernelW, strideH, strideW, padH, padW);</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>  }</div>
 </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#ae11cb06369f23af74aca7982969153bd">ResetState</a>() noexcept;</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a52382622de5c1bee9409234b23c62ff4">RandomizeWeights</a>(std::mt19937&amp; twister, const <span class="keywordtype">char</span>* distribution = <span class="stringliteral">&quot;normal&quot;</span>) noexcept;</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a6e08994b51d01a89280f3971d240ebc9">ResyncLogPrecision</a>() noexcept;</div>
 <div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
 <div class="foldopen" id="foldopen00197" data-start="{" data-end="}">
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a9946be7cd2669e29c458864abf39b2f7">  197</a></span>  <span class="keyword">const</span> T* <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a9946be7cd2669e29c458864abf39b2f7">GetMu</a>() const noexcept</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#acf13dd05f29073a530b13d2e4926e729">  197</a></span>  <a class="code hl_enumeration" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#acf13dd05f29073a530b13d2e4926e729">GetActivationType</a>() const noexcept</div>
 <div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>  {</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="keywordflow">return</span> mu;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="keywordflow">return</span> activationType;</div>
 <div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>  }</div>
 </div>
 <div class="foldopen" id="foldopen00201" data-start="{" data-end="}">
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#ad03eea1d4874a180a904703eac3327c6">  201</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#ad03eea1d4874a180a904703eac3327c6">GetInChannels</a>() const noexcept</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#ae90bef056fb3dde8e7e563197f51e043">  201</a></span>  <a class="code hl_enumeration" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#ae90bef056fb3dde8e7e563197f51e043">GetDerivativeType</a>() const noexcept</div>
 <div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>  {</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <span class="keywordflow">return</span> inChannels;</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <span class="keywordflow">return</span> derivativeType;</div>
 <div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>  }</div>
 </div>
-<div class="foldopen" id="foldopen00205" data-start="{" data-end="}">
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a2d50662c5cc6bda29635d720e2328962">  205</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a2d50662c5cc6bda29635d720e2328962">GetOutChannels</a>() const noexcept</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>  {</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="keywordflow">return</span> outChannels;</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>  }</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
+<div class="foldopen" id="foldopen00206" data-start="{" data-end="}">
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a9946be7cd2669e29c458864abf39b2f7">  206</a></span>  <span class="keyword">const</span> T* <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a9946be7cd2669e29c458864abf39b2f7">GetMu</a>() const noexcept</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>  {</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="keywordflow">return</span> mu;</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>  }</div>
 </div>
-<div class="foldopen" id="foldopen00209" data-start="{" data-end="}">
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#adc39448cff028db0c605641bf76b2cee">  209</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#adc39448cff028db0c605641bf76b2cee">GetInHeight</a>() const noexcept</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>  {</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    <span class="keywordflow">return</span> inHeight;</div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>  }</div>
+<div class="foldopen" id="foldopen00210" data-start="{" data-end="}">
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#ad03eea1d4874a180a904703eac3327c6">  210</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#ad03eea1d4874a180a904703eac3327c6">GetInChannels</a>() const noexcept</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>  {</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <span class="keywordflow">return</span> inChannels;</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>  }</div>
 </div>
-<div class="foldopen" id="foldopen00213" data-start="{" data-end="}">
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#aa5732338a97ade2321518e1a0dc9124b">  213</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#aa5732338a97ade2321518e1a0dc9124b">GetInWidth</a>() const noexcept</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>  {</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <span class="keywordflow">return</span> inWidth;</div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>  }</div>
+<div class="foldopen" id="foldopen00214" data-start="{" data-end="}">
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a2d50662c5cc6bda29635d720e2328962">  214</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a2d50662c5cc6bda29635d720e2328962">GetOutChannels</a>() const noexcept</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>  {</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="keywordflow">return</span> outChannels;</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>  }</div>
 </div>
-<div class="foldopen" id="foldopen00217" data-start="{" data-end="}">
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a64e32e53da44fb6195d09027ae046434">  217</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a64e32e53da44fb6195d09027ae046434">GetOutHeight</a>() const noexcept</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>  {</div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <span class="keywordflow">return</span> outHeight;</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>  }</div>
+<div class="foldopen" id="foldopen00218" data-start="{" data-end="}">
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#adc39448cff028db0c605641bf76b2cee">  218</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#adc39448cff028db0c605641bf76b2cee">GetInHeight</a>() const noexcept</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>  {</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="keywordflow">return</span> inHeight;</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>  }</div>
 </div>
-<div class="foldopen" id="foldopen00221" data-start="{" data-end="}">
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#aff2f8dca80cd4f6b94344dcf871b0b2f">  221</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#aff2f8dca80cd4f6b94344dcf871b0b2f">GetOutWidth</a>() const noexcept</div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>  {</div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    <span class="keywordflow">return</span> outWidth;</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>  }</div>
+<div class="foldopen" id="foldopen00222" data-start="{" data-end="}">
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#aa5732338a97ade2321518e1a0dc9124b">  222</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#aa5732338a97ade2321518e1a0dc9124b">GetInWidth</a>() const noexcept</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>  {</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    <span class="keywordflow">return</span> inWidth;</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>  }</div>
 </div>
-<div class="foldopen" id="foldopen00225" data-start="{" data-end="}">
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a130f6196c9bc85031d60c4dfab56ad14">  225</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a130f6196c9bc85031d60c4dfab56ad14">GetKernelH</a>() const noexcept</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>  {</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="keywordflow">return</span> kernelH;</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>  }</div>
+<div class="foldopen" id="foldopen00226" data-start="{" data-end="}">
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a64e32e53da44fb6195d09027ae046434">  226</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a64e32e53da44fb6195d09027ae046434">GetOutHeight</a>() const noexcept</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>  {</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="keywordflow">return</span> outHeight;</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>  }</div>
 </div>
-<div class="foldopen" id="foldopen00229" data-start="{" data-end="}">
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#aad4c8e3e3a6fb1b19672258a6db79d75">  229</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#aad4c8e3e3a6fb1b19672258a6db79d75">GetKernelW</a>() const noexcept</div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>  {</div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    <span class="keywordflow">return</span> kernelW;</div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>  }</div>
+<div class="foldopen" id="foldopen00230" data-start="{" data-end="}">
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#aff2f8dca80cd4f6b94344dcf871b0b2f">  230</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#aff2f8dca80cd4f6b94344dcf871b0b2f">GetOutWidth</a>() const noexcept</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>  {</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    <span class="keywordflow">return</span> outWidth;</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>  }</div>
 </div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span> </div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>  <span class="keywordtype">size_t</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#afcacb42592affc5753ea1af35d04e43e">GetRequiredElements</a>() const noexcept;</div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>  template &lt;typename ArenaT&gt; <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a96361e8669db1d82459ceee26fbe4d8f">BindMemory</a>(ArenaT&amp; arena);</div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>private:</div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>  std::unique_ptr&lt;<a class="code hl_class" href="classDeep_1_1MemoryArenaT.html">MemoryArenaT</a>&lt;T&gt;&gt; localArena;</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>  <span class="keywordtype">int</span> inChannels, outChannels;</div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>  <span class="keywordtype">int</span> inHeight, inWidth;</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>  <span class="keywordtype">int</span> outHeight, outWidth;</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>  <span class="keywordtype">int</span> kernelH, kernelW;</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>  <span class="keywordtype">int</span> strideH, strideW;</div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>  <span class="keywordtype">int</span> padH, padW;</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>  <span class="keywordtype">int</span> batchSize;</div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>  T* W = <span class="keywordtype">nullptr</span>;</div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>  T* b = <span class="keywordtype">nullptr</span>;</div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>  T* z = <span class="keywordtype">nullptr</span>;</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>  T* e = <span class="keywordtype">nullptr</span>;</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>  T* dz_dt = <span class="keywordtype">nullptr</span>;</div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>  T* p = <span class="keywordtype">nullptr</span>;</div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>  T* log_p = <span class="keywordtype">nullptr</span>;</div>
+<div class="foldopen" id="foldopen00234" data-start="{" data-end="}">
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#a130f6196c9bc85031d60c4dfab56ad14">  234</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a130f6196c9bc85031d60c4dfab56ad14">GetKernelH</a>() const noexcept</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>  {</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    <span class="keywordflow">return</span> kernelH;</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>  }</div>
+</div>
+<div class="foldopen" id="foldopen00238" data-start="{" data-end="}">
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno"><a class="line" href="classDeep_1_1ConvPCLayerT.html#aad4c8e3e3a6fb1b19672258a6db79d75">  238</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#aad4c8e3e3a6fb1b19672258a6db79d75">GetKernelW</a>() const noexcept</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>  {</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    <span class="keywordflow">return</span> kernelW;</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>  }</div>
+</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span> </div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>  <span class="keywordtype">size_t</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#afcacb42592affc5753ea1af35d04e43e">GetRequiredElements</a>() const noexcept;</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>  template &lt;typename ArenaT&gt; <span class="keywordtype">void</span> <a class="code hl_function" href="classDeep_1_1ConvPCLayerT.html#a96361e8669db1d82459ceee26fbe4d8f">BindMemory</a>(ArenaT&amp; arena);</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span> </div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>private:</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>  std::unique_ptr&lt;<a class="code hl_class" href="classDeep_1_1MemoryArenaT.html">MemoryArenaT</a>&lt;T&gt;&gt; localArena;</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span> </div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>  <span class="keywordtype">int</span> inChannels, outChannels;</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>  <span class="keywordtype">int</span> inHeight, inWidth;</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>  <span class="keywordtype">int</span> outHeight, outWidth;</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>  <span class="keywordtype">int</span> kernelH, kernelW;</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>  <span class="keywordtype">int</span> strideH, strideW;</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>  <span class="keywordtype">int</span> padH, padW;</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>  <span class="keywordtype">int</span> batchSize;</div>
 <div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span> </div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>  T* mu = <span class="keywordtype">nullptr</span>;</div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>  T* colBuffer = <span class="keywordtype">nullptr</span>;</div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>  T* feedbackScratch = <span class="keywordtype">nullptr</span>;</div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>  T* bottom_up_cols = <span class="keywordtype">nullptr</span>;</div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>  T* colsRepacked = <span class="keywordtype">nullptr</span>;</div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>  T* lgRepacked = <span class="keywordtype">nullptr</span>;</div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>  T* onesVector = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>  T* W = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>  T* b = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span> </div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>  T* z = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>  T* e = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>  T* dz_dt = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>  T* p = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>  T* log_p = <span class="keywordtype">nullptr</span>;</div>
 <div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span> </div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>  T* cachedMu = <span class="keywordtype">nullptr</span>;</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>  <span class="keywordtype">bool</span> muCacheValid = false;</div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span> </div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>  T* preact = <span class="keywordtype">nullptr</span>;</div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>  T* cachedPreact = <span class="keywordtype">nullptr</span>;</div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span> </div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>  std::vector&lt;AccumT&gt; grad_W;</div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>  std::vector&lt;AccumT&gt; grad_b;</div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>  std::vector&lt;AccumT&gt; m_W;</div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>  std::vector&lt;AccumT&gt; v_W;</div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>  std::vector&lt;AccumT&gt; m_b;</div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>  std::vector&lt;AccumT&gt; v_b;</div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span> </div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>  <span class="keywordtype">int</span> t_device = 0;</div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>  AccumT lr_device = AccumT(0);</div>
-<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span> </div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>  AccumT lr, ir, pr, lmbda;</div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>  <span class="keywordtype">bool</span> isClamped = false;</div>
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span> </div>
-<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>  <a class="code hl_class" href="classDeep_1_1ConvPCLayerT.html">ConvPCLayerT</a>* layerAbove = <span class="keywordtype">nullptr</span>;</div>
-<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>  <a class="code hl_class" href="classDeep_1_1ConvPCLayerT.html">ConvPCLayerT</a>* layerBelow = <span class="keywordtype">nullptr</span>;</div>
-<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>  <a class="code hl_enumeration" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> activationType;</div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>  <a class="code hl_enumeration" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> derivativeType;</div>
-<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>  <a class="code hl_enumeration" href="namespaceDeep.html#a76c7b5d078cce2bed29f6f592560bf02">OptimizerType</a> opt = <a class="code hl_enumeration" href="namespaceDeep.html#a76c7b5d078cce2bed29f6f592560bf02">OptimizerType</a>::SGD;</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>  T* mu = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>  T* colBuffer = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>  T* feedbackScratch = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>  T* bottom_up_cols = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>  T* colsRepacked = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>  T* lgRepacked = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span> </div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>  T* onesVector = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> </div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>  T* cachedMu = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>  <span class="keywordtype">bool</span> muCacheValid = false;</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span> </div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>  T* preact = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>  T* cachedPreact = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>  std::vector&lt;AccumT&gt; grad_W;</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>  std::vector&lt;AccumT&gt; grad_b;</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>  std::vector&lt;AccumT&gt; m_W;</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>  std::vector&lt;AccumT&gt; v_W;</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>  std::vector&lt;AccumT&gt; m_b;</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>  std::vector&lt;AccumT&gt; v_b;</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span> </div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>  <span class="keywordtype">int</span> t_device = 0;</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>  AccumT lr_device = AccumT(0);</div>
 <div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span> </div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>  using BackendDeleter = <span class="keywordtype">void</span> (*)(<a class="code hl_class" href="classDeep_1_1IComputeBackendT.html">IComputeBackendT</a>&lt;T, AccumT&gt;*);</div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>  std::unique_ptr&lt;<a class="code hl_class" href="classDeep_1_1IComputeBackendT.html">IComputeBackendT</a>&lt;T, AccumT&gt;, BackendDeleter&gt; backend;</div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>};</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>  AccumT lr, ir, pr, lmbda;</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>  <span class="keywordtype">bool</span> isClamped = false;</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>  <a class="code hl_class" href="classDeep_1_1ConvPCLayerT.html">ConvPCLayerT</a>* layerAbove = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>  <a class="code hl_class" href="classDeep_1_1ConvPCLayerT.html">ConvPCLayerT</a>* layerBelow = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>  <a class="code hl_enumeration" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> activationType;</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>  <a class="code hl_enumeration" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> derivativeType;</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>  <a class="code hl_enumeration" href="namespaceDeep.html#a76c7b5d078cce2bed29f6f592560bf02">OptimizerType</a> opt = <a class="code hl_enumeration" href="namespaceDeep.html#a76c7b5d078cce2bed29f6f592560bf02">OptimizerType</a>::SGD;</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span> </div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>  using BackendDeleter = <span class="keywordtype">void</span> (*)(<a class="code hl_class" href="classDeep_1_1IComputeBackendT.html">IComputeBackendT</a>&lt;T, AccumT&gt;*);</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>  std::unique_ptr&lt;<a class="code hl_class" href="classDeep_1_1IComputeBackendT.html">IComputeBackendT</a>&lt;T, AccumT&gt;, BackendDeleter&gt; backend;</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>};</div>
 </div>
-<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span> </div>
-<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>} <span class="comment">// namespace Deep</span></div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span> </div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>} <span class="comment">// namespace Deep</span></div>
 <div class="ttc" id="aActivations_8h_html"><div class="ttname"><a href="Activations_8h.html">Activations.h</a></div><div class="ttdoc">Defines the activation functions of a predictive coding model.</div></div>
 <div class="ttc" id="aAdamOptimizer_8h_html"><div class="ttname"><a href="AdamOptimizer_8h.html">AdamOptimizer.h</a></div><div class="ttdoc">The OptimizerType enum shared by every PC layer&#39;s UpdateWeights() (actual Adam/AdamW math lives in IC...</div></div>
 <div class="ttc" id="aDeviceMemoryArena_8h_html"><div class="ttname"><a href="DeviceMemoryArena_8h.html">DeviceMemoryArena.h</a></div><div class="ttdoc">A 64-byte-aligned bump-pointer allocator over a single device buffer, mirroring this codebase&#39;s host-...</div></div>
@@ -460,63 +460,63 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('ConvPCLayerT_8
 <div class="ttc" id="aIm2Col_8h_html"><div class="ttname"><a href="Im2Col_8h.html">Im2Col.h</a></div><div class="ttdoc">Standalone im2col / col2im utilities: convolution expressed as matrix multiplication,...</div></div>
 <div class="ttc" id="aLayer_8h_html"><div class="ttname"><a href="Layer_8h.html">Layer.h</a></div><div class="ttdoc">Virtual Layer.</div></div>
 <div class="ttc" id="aMemoryArena_8h_html"><div class="ttname"><a href="MemoryArena_8h.html">MemoryArena.h</a></div><div class="ttdoc">A 64-byte-aligned bump-pointer allocator over a single heap-allocated block, used to pack every layer...</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html">Deep::ConvPCLayerT</a></div><div class="ttdoc">Templated counterpart to ConvPCLayer.</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:29</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html">Deep::ConvPCLayerT</a></div><div class="ttdoc">Templated counterpart to ConvPCLayer, see this file&#39;s own comment for the full rationale.</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:38</div></div>
 <div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a076671c46017399dfd3e17a736078f70"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a076671c46017399dfd3e17a736078f70">Deep::ConvPCLayerT::UnclampState</a></div><div class="ttdeci">void UnclampState() noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.cpp:417</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a0b077d7470a3e29fe3597d9bcd883f58"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a0b077d7470a3e29fe3597d9bcd883f58">Deep::ConvPCLayerT::SetOptimizer</a></div><div class="ttdeci">void SetOptimizer(const OptimizerType o) noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:145</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a0b077d7470a3e29fe3597d9bcd883f58"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a0b077d7470a3e29fe3597d9bcd883f58">Deep::ConvPCLayerT::SetOptimizer</a></div><div class="ttdeci">void SetOptimizer(const OptimizerType o) noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:154</div></div>
 <div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a1207f96b80a7aaabb74544593a8a6b78"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a1207f96b80a7aaabb74544593a8a6b78">Deep::ConvPCLayerT::ConvPCLayerT</a></div><div class="ttdeci">ConvPCLayerT(int inChannels, int outChannels, int inHeight, int inWidth, int kernelH, int kernelW, int strideH=1, int strideW=1, int padH=0, int padW=0, int batchSize=1, AccumT learningRate=AccumT(1e-6), AccumT inferenceRate=AccumT(0.1), AccumT precisionRate=AccumT(0.01), AccumT lmbda=AccumT(1e-2), ActivationType aType=ActivationType::RELU, ActivationType dType=ActivationType::dRELU, IComputeBackendT&lt; T, AccumT &gt; *backend=nullptr)</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.cpp:23</div></div>
 <div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a12dc42597a3931a66afaaf2fad56d0af"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a12dc42597a3931a66afaaf2fad56d0af">Deep::ConvPCLayerT::UpdateState</a></div><div class="ttdeci">void UpdateState() noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.cpp:268</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a130f6196c9bc85031d60c4dfab56ad14"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a130f6196c9bc85031d60c4dfab56ad14">Deep::ConvPCLayerT::GetKernelH</a></div><div class="ttdeci">int GetKernelH() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:225</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a14b01aa11fd5daf64ab60465348c8a23"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a14b01aa11fd5daf64ab60465348c8a23">Deep::ConvPCLayerT::GetInputSize</a></div><div class="ttdeci">size_t GetInputSize() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:81</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a16ed884fbbc5a248fc40fdce745d9aab"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a16ed884fbbc5a248fc40fdce745d9aab">Deep::ConvPCLayerT::GetPrecisionRate</a></div><div class="ttdeci">AccumT GetPrecisionRate() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:123</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a18d3b604f293d592bb659c5f80ed4ad0"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a18d3b604f293d592bb659c5f80ed4ad0">Deep::ConvPCLayerT::GetLambda</a></div><div class="ttdeci">AccumT GetLambda() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:127</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a19057711cf1fd959c59e4a80569e26ce"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a19057711cf1fd959c59e4a80569e26ce">Deep::ConvPCLayerT::InvalidateMuCache</a></div><div class="ttdeci">void InvalidateMuCache() noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:154</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a1ece052601cd8ffaeaa73bd7a9d907d9"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a1ece052601cd8ffaeaa73bd7a9d907d9">Deep::ConvPCLayerT::SetLayerAbove</a></div><div class="ttdeci">void SetLayerAbove(ConvPCLayerT *above) noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:159</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a2d50662c5cc6bda29635d720e2328962"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a2d50662c5cc6bda29635d720e2328962">Deep::ConvPCLayerT::GetOutChannels</a></div><div class="ttdeci">int GetOutChannels() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:205</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a3aa89bf87829a325acbbd060e684bdfa"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a3aa89bf87829a325acbbd060e684bdfa">Deep::ConvPCLayerT::PrepareConvWorkspace</a></div><div class="ttdeci">void PrepareConvWorkspace() noexcept</div><div class="ttdoc">Pre-sizes the CUDA backend&#39;s cuDNN workspace for this layer&#39;s convolution shape. Must run before the ...</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:173</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a130f6196c9bc85031d60c4dfab56ad14"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a130f6196c9bc85031d60c4dfab56ad14">Deep::ConvPCLayerT::GetKernelH</a></div><div class="ttdeci">int GetKernelH() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:234</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a14b01aa11fd5daf64ab60465348c8a23"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a14b01aa11fd5daf64ab60465348c8a23">Deep::ConvPCLayerT::GetInputSize</a></div><div class="ttdeci">size_t GetInputSize() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:90</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a16ed884fbbc5a248fc40fdce745d9aab"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a16ed884fbbc5a248fc40fdce745d9aab">Deep::ConvPCLayerT::GetPrecisionRate</a></div><div class="ttdeci">AccumT GetPrecisionRate() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:132</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a18d3b604f293d592bb659c5f80ed4ad0"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a18d3b604f293d592bb659c5f80ed4ad0">Deep::ConvPCLayerT::GetLambda</a></div><div class="ttdeci">AccumT GetLambda() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:136</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a19057711cf1fd959c59e4a80569e26ce"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a19057711cf1fd959c59e4a80569e26ce">Deep::ConvPCLayerT::InvalidateMuCache</a></div><div class="ttdeci">void InvalidateMuCache() noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:163</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a1ece052601cd8ffaeaa73bd7a9d907d9"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a1ece052601cd8ffaeaa73bd7a9d907d9">Deep::ConvPCLayerT::SetLayerAbove</a></div><div class="ttdeci">void SetLayerAbove(ConvPCLayerT *above) noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:168</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a2d50662c5cc6bda29635d720e2328962"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a2d50662c5cc6bda29635d720e2328962">Deep::ConvPCLayerT::GetOutChannels</a></div><div class="ttdeci">int GetOutChannels() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:214</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a3aa89bf87829a325acbbd060e684bdfa"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a3aa89bf87829a325acbbd060e684bdfa">Deep::ConvPCLayerT::PrepareConvWorkspace</a></div><div class="ttdeci">void PrepareConvWorkspace() noexcept</div><div class="ttdoc">No-op on CPU, see SimpleConvPCLayerT::PrepareConvWorkspace()&#39;s own doc comment.</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:181</div></div>
 <div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a4392044012c390e14e6bef52d5e5919f"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a4392044012c390e14e6bef52d5e5919f">Deep::ConvPCLayerT::ComputeMuOnly</a></div><div class="ttdeci">void ComputeMuOnly() noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.cpp:224</div></div>
 <div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a52382622de5c1bee9409234b23c62ff4"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a52382622de5c1bee9409234b23c62ff4">Deep::ConvPCLayerT::RandomizeWeights</a></div><div class="ttdeci">void RandomizeWeights(std::mt19937 &amp;twister, const char *distribution=&quot;normal&quot;) noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.cpp:177</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a52d90805ca7dffb3e90a565e155adb17"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a52d90805ca7dffb3e90a565e155adb17">Deep::ConvPCLayerT::GetLearningRate</a></div><div class="ttdeci">AccumT GetLearningRate() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:115</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a5beb1f61ec1ce064a6b305869c1f95ec"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a5beb1f61ec1ce064a6b305869c1f95ec">Deep::ConvPCLayerT::GetErrors</a></div><div class="ttdeci">const T * GetErrors() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:73</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a64e32e53da44fb6195d09027ae046434"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a64e32e53da44fb6195d09027ae046434">Deep::ConvPCLayerT::GetOutHeight</a></div><div class="ttdeci">int GetOutHeight() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:217</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a68bd510a428039f6827c4396fe42e393"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a68bd510a428039f6827c4396fe42e393">Deep::ConvPCLayerT::GetBiases</a></div><div class="ttdeci">const T * GetBiases() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:102</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a6e08994b51d01a89280f3971d240ebc9"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a6e08994b51d01a89280f3971d240ebc9">Deep::ConvPCLayerT::ResyncLogPrecision</a></div><div class="ttdeci">void ResyncLogPrecision() noexcept</div><div class="ttdoc">Rebuilds log_p from p. Call after a checkpoint load that only restores p.</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.cpp:423</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a75513414474e2e08634a18bc5c2a091c"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a75513414474e2e08634a18bc5c2a091c">Deep::ConvPCLayerT::SetInferenceRate</a></div><div class="ttdeci">void SetInferenceRate(AccumT inferenceRate) noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:133</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a81b31e84d06164b4f524db7cbf8247a1"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a81b31e84d06164b4f524db7cbf8247a1">Deep::ConvPCLayerT::GetBeliefs</a></div><div class="ttdeci">T * GetBeliefs() noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:69</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a52d90805ca7dffb3e90a565e155adb17"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a52d90805ca7dffb3e90a565e155adb17">Deep::ConvPCLayerT::GetLearningRate</a></div><div class="ttdeci">AccumT GetLearningRate() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:124</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a5beb1f61ec1ce064a6b305869c1f95ec"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a5beb1f61ec1ce064a6b305869c1f95ec">Deep::ConvPCLayerT::GetErrors</a></div><div class="ttdeci">const T * GetErrors() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:82</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a64e32e53da44fb6195d09027ae046434"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a64e32e53da44fb6195d09027ae046434">Deep::ConvPCLayerT::GetOutHeight</a></div><div class="ttdeci">int GetOutHeight() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:226</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a68bd510a428039f6827c4396fe42e393"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a68bd510a428039f6827c4396fe42e393">Deep::ConvPCLayerT::GetBiases</a></div><div class="ttdeci">const T * GetBiases() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:111</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a6e08994b51d01a89280f3971d240ebc9"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a6e08994b51d01a89280f3971d240ebc9">Deep::ConvPCLayerT::ResyncLogPrecision</a></div><div class="ttdeci">void ResyncLogPrecision() noexcept</div><div class="ttdoc">Rebuilds log_p from p, required after a checkpoint load that only persists p – see ConvPCLayer::Resyn...</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.cpp:423</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a75513414474e2e08634a18bc5c2a091c"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a75513414474e2e08634a18bc5c2a091c">Deep::ConvPCLayerT::SetInferenceRate</a></div><div class="ttdeci">void SetInferenceRate(AccumT inferenceRate) noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:142</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a81b31e84d06164b4f524db7cbf8247a1"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a81b31e84d06164b4f524db7cbf8247a1">Deep::ConvPCLayerT::GetBeliefs</a></div><div class="ttdeci">T * GetBeliefs() noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:78</div></div>
 <div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a96361e8669db1d82459ceee26fbe4d8f"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a96361e8669db1d82459ceee26fbe4d8f">Deep::ConvPCLayerT::BindMemory</a></div><div class="ttdeci">void BindMemory(ArenaT &amp;arena)</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.cpp:102</div></div>
 <div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a9639fd6e55a44da8bcac29393ed44b25"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a9639fd6e55a44da8bcac29393ed44b25">Deep::ConvPCLayerT::SetLearningRate</a></div><div class="ttdeci">void SetLearningRate(AccumT learningRate) noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.cpp:58</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a9946be7cd2669e29c458864abf39b2f7"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a9946be7cd2669e29c458864abf39b2f7">Deep::ConvPCLayerT::GetMu</a></div><div class="ttdeci">const T * GetMu() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:197</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_aa1e5783fd46ba691aaa704e33feb6816"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#aa1e5783fd46ba691aaa704e33feb6816">Deep::ConvPCLayerT::GetBiases</a></div><div class="ttdeci">T * GetBiases() noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:106</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_aa5732338a97ade2321518e1a0dc9124b"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#aa5732338a97ade2321518e1a0dc9124b">Deep::ConvPCLayerT::GetInWidth</a></div><div class="ttdeci">int GetInWidth() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:213</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_aa795868c730c8dbcdddaa8271278a19a"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#aa795868c730c8dbcdddaa8271278a19a">Deep::ConvPCLayerT::GetWeights</a></div><div class="ttdeci">const T * GetWeights() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:94</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_a9946be7cd2669e29c458864abf39b2f7"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#a9946be7cd2669e29c458864abf39b2f7">Deep::ConvPCLayerT::GetMu</a></div><div class="ttdeci">const T * GetMu() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:206</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_aa1e5783fd46ba691aaa704e33feb6816"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#aa1e5783fd46ba691aaa704e33feb6816">Deep::ConvPCLayerT::GetBiases</a></div><div class="ttdeci">T * GetBiases() noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:115</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_aa5732338a97ade2321518e1a0dc9124b"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#aa5732338a97ade2321518e1a0dc9124b">Deep::ConvPCLayerT::GetInWidth</a></div><div class="ttdeci">int GetInWidth() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:222</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_aa795868c730c8dbcdddaa8271278a19a"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#aa795868c730c8dbcdddaa8271278a19a">Deep::ConvPCLayerT::GetWeights</a></div><div class="ttdeci">const T * GetWeights() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:103</div></div>
 <div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_aa8f9a2cf4bdeec2a11adf5f8aac790c4"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#aa8f9a2cf4bdeec2a11adf5f8aac790c4">Deep::ConvPCLayerT::~ConvPCLayerT</a></div><div class="ttdeci">~ConvPCLayerT()=default</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_aacc0dc4215844ece2a91ae29d241ad09"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#aacc0dc4215844ece2a91ae29d241ad09">Deep::ConvPCLayerT::GetBatchSize</a></div><div class="ttdeci">size_t GetBatchSize() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:89</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_aad4c8e3e3a6fb1b19672258a6db79d75"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#aad4c8e3e3a6fb1b19672258a6db79d75">Deep::ConvPCLayerT::GetKernelW</a></div><div class="ttdeci">int GetKernelW() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:229</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_abcaf7755c780a70f7c4d5efac0ef2247"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#abcaf7755c780a70f7c4d5efac0ef2247">Deep::ConvPCLayerT::GetBackend</a></div><div class="ttdeci">IComputeBackendT&lt; T, AccumT &gt; * GetBackend() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:110</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_abdbd0774ce5ccb22f0936436acc46eb7"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#abdbd0774ce5ccb22f0936436acc46eb7">Deep::ConvPCLayerT::GetInferenceRate</a></div><div class="ttdeci">AccumT GetInferenceRate() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:119</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_ac260c1e65f1474f9ba335257385cfa45"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#ac260c1e65f1474f9ba335257385cfa45">Deep::ConvPCLayerT::GetPrecisions</a></div><div class="ttdeci">const T * GetPrecisions() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:77</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_ac3bb2f83411068cb1cf0974c9d932cbe"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#ac3bb2f83411068cb1cf0974c9d932cbe">Deep::ConvPCLayerT::SetLambda</a></div><div class="ttdeci">void SetLambda(AccumT l) noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:141</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_acb08bb518ee51e248b1802037f01938d"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#acb08bb518ee51e248b1802037f01938d">Deep::ConvPCLayerT::GetOutputSize</a></div><div class="ttdeci">size_t GetOutputSize() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:85</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_aacc0dc4215844ece2a91ae29d241ad09"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#aacc0dc4215844ece2a91ae29d241ad09">Deep::ConvPCLayerT::GetBatchSize</a></div><div class="ttdeci">size_t GetBatchSize() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:98</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_aad4c8e3e3a6fb1b19672258a6db79d75"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#aad4c8e3e3a6fb1b19672258a6db79d75">Deep::ConvPCLayerT::GetKernelW</a></div><div class="ttdeci">int GetKernelW() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:238</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_abcaf7755c780a70f7c4d5efac0ef2247"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#abcaf7755c780a70f7c4d5efac0ef2247">Deep::ConvPCLayerT::GetBackend</a></div><div class="ttdeci">IComputeBackendT&lt; T, AccumT &gt; * GetBackend() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:119</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_abdbd0774ce5ccb22f0936436acc46eb7"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#abdbd0774ce5ccb22f0936436acc46eb7">Deep::ConvPCLayerT::GetInferenceRate</a></div><div class="ttdeci">AccumT GetInferenceRate() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:128</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_ac260c1e65f1474f9ba335257385cfa45"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#ac260c1e65f1474f9ba335257385cfa45">Deep::ConvPCLayerT::GetPrecisions</a></div><div class="ttdeci">const T * GetPrecisions() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:86</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_ac3bb2f83411068cb1cf0974c9d932cbe"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#ac3bb2f83411068cb1cf0974c9d932cbe">Deep::ConvPCLayerT::SetLambda</a></div><div class="ttdeci">void SetLambda(AccumT l) noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:150</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_acb08bb518ee51e248b1802037f01938d"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#acb08bb518ee51e248b1802037f01938d">Deep::ConvPCLayerT::GetOutputSize</a></div><div class="ttdeci">size_t GetOutputSize() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:94</div></div>
 <div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_acbd1f0dc7d892ac9e518895b7f277c35"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#acbd1f0dc7d892ac9e518895b7f277c35">Deep::ConvPCLayerT::UpdatePrecision</a></div><div class="ttdeci">void UpdatePrecision() noexcept</div><div class="ttdoc">Updates this layer&#39;s precision estimate from current prediction errors, using the configured precisio...</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.cpp:392</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_accf4deac9ea7421b29030b08aeb29776"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#accf4deac9ea7421b29030b08aeb29776">Deep::ConvPCLayerT::GetWeights</a></div><div class="ttdeci">T * GetWeights() noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:98</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_acf13dd05f29073a530b13d2e4926e729"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#acf13dd05f29073a530b13d2e4926e729">Deep::ConvPCLayerT::GetActivationType</a></div><div class="ttdeci">ActivationType GetActivationType() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:188</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_ad03eea1d4874a180a904703eac3327c6"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#ad03eea1d4874a180a904703eac3327c6">Deep::ConvPCLayerT::GetInChannels</a></div><div class="ttdeci">int GetInChannels() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:201</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_ad6a663a28de199e25d26d6a04c2e508f"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#ad6a663a28de199e25d26d6a04c2e508f">Deep::ConvPCLayerT::CalculateState</a></div><div class="ttdeci">AccumT CalculateState() noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:55</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_adc39448cff028db0c605641bf76b2cee"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#adc39448cff028db0c605641bf76b2cee">Deep::ConvPCLayerT::GetInHeight</a></div><div class="ttdeci">int GetInHeight() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:209</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_accf4deac9ea7421b29030b08aeb29776"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#accf4deac9ea7421b29030b08aeb29776">Deep::ConvPCLayerT::GetWeights</a></div><div class="ttdeci">T * GetWeights() noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:107</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_acf13dd05f29073a530b13d2e4926e729"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#acf13dd05f29073a530b13d2e4926e729">Deep::ConvPCLayerT::GetActivationType</a></div><div class="ttdeci">ActivationType GetActivationType() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:197</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_ad03eea1d4874a180a904703eac3327c6"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#ad03eea1d4874a180a904703eac3327c6">Deep::ConvPCLayerT::GetInChannels</a></div><div class="ttdeci">int GetInChannels() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:210</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_ad6a663a28de199e25d26d6a04c2e508f"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#ad6a663a28de199e25d26d6a04c2e508f">Deep::ConvPCLayerT::CalculateState</a></div><div class="ttdeci">AccumT CalculateState() noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:64</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_adc39448cff028db0c605641bf76b2cee"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#adc39448cff028db0c605641bf76b2cee">Deep::ConvPCLayerT::GetInHeight</a></div><div class="ttdeci">int GetInHeight() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:218</div></div>
 <div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_ae11cb06369f23af74aca7982969153bd"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#ae11cb06369f23af74aca7982969153bd">Deep::ConvPCLayerT::ResetState</a></div><div class="ttdeci">void ResetState() noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.cpp:401</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_ae790f4e225c8b9d986a8ed776d6a7ed2"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#ae790f4e225c8b9d986a8ed776d6a7ed2">Deep::ConvPCLayerT::SetLayerBelow</a></div><div class="ttdeci">void SetLayerBelow(ConvPCLayerT *below) noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:163</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_ae90bef056fb3dde8e7e563197f51e043"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#ae90bef056fb3dde8e7e563197f51e043">Deep::ConvPCLayerT::GetDerivativeType</a></div><div class="ttdeci">ActivationType GetDerivativeType() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:192</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_af62d636493315b30324615a1c8798e6b"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#af62d636493315b30324615a1c8798e6b">Deep::ConvPCLayerT::SetPrecisionRate</a></div><div class="ttdeci">void SetPrecisionRate(AccumT precisionRate) noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:137</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_af7e69786640277b84ab6cb043886b511"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#af7e69786640277b84ab6cb043886b511">Deep::ConvPCLayerT::IsClamped</a></div><div class="ttdeci">bool IsClamped() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:149</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_ae790f4e225c8b9d986a8ed776d6a7ed2"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#ae790f4e225c8b9d986a8ed776d6a7ed2">Deep::ConvPCLayerT::SetLayerBelow</a></div><div class="ttdeci">void SetLayerBelow(ConvPCLayerT *below) noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:172</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_ae90bef056fb3dde8e7e563197f51e043"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#ae90bef056fb3dde8e7e563197f51e043">Deep::ConvPCLayerT::GetDerivativeType</a></div><div class="ttdeci">ActivationType GetDerivativeType() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:201</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_af62d636493315b30324615a1c8798e6b"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#af62d636493315b30324615a1c8798e6b">Deep::ConvPCLayerT::SetPrecisionRate</a></div><div class="ttdeci">void SetPrecisionRate(AccumT precisionRate) noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:146</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_af7e69786640277b84ab6cb043886b511"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#af7e69786640277b84ab6cb043886b511">Deep::ConvPCLayerT::IsClamped</a></div><div class="ttdeci">bool IsClamped() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:158</div></div>
 <div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_af8e0e12bcc342ed1e9cdb8b923da4175"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#af8e0e12bcc342ed1e9cdb8b923da4175">Deep::ConvPCLayerT::ClampState</a></div><div class="ttdeci">void ClampState(const std::vector&lt; T &gt; &amp;inputData) noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.cpp:408</div></div>
 <div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_afcacb42592affc5753ea1af35d04e43e"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#afcacb42592affc5753ea1af35d04e43e">Deep::ConvPCLayerT::GetRequiredElements</a></div><div class="ttdeci">size_t GetRequiredElements() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.cpp:65</div></div>
-<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_aff2f8dca80cd4f6b94344dcf871b0b2f"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#aff2f8dca80cd4f6b94344dcf871b0b2f">Deep::ConvPCLayerT::GetOutWidth</a></div><div class="ttdeci">int GetOutWidth() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:221</div></div>
+<div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_aff2f8dca80cd4f6b94344dcf871b0b2f"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#aff2f8dca80cd4f6b94344dcf871b0b2f">Deep::ConvPCLayerT::GetOutWidth</a></div><div class="ttdeci">int GetOutWidth() const noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.h:230</div></div>
 <div class="ttc" id="aclassDeep_1_1ConvPCLayerT_html_aff395e8d4867b660fe44beaf997cec96"><div class="ttname"><a href="classDeep_1_1ConvPCLayerT.html#aff395e8d4867b660fe44beaf997cec96">Deep::ConvPCLayerT::UpdateWeights</a></div><div class="ttdeci">void UpdateWeights() noexcept</div><div class="ttdef"><b>Definition</b> ConvPCLayerT.cpp:315</div></div>
-<div class="ttc" id="aclassDeep_1_1IComputeBackendT_html"><div class="ttname"><a href="classDeep_1_1IComputeBackendT.html">Deep::IComputeBackendT</a></div><div class="ttdoc">Device-agnostic compute backend interface: every numerical primitive a layer/network needs,...</div><div class="ttdef"><b>Definition</b> IComputeBackend.h:19</div></div>
-<div class="ttc" id="aclassDeep_1_1MemoryArenaT_html"><div class="ttname"><a href="classDeep_1_1MemoryArenaT.html">Deep::MemoryArenaT</a></div><div class="ttdoc">A 64-byte-aligned bump-pointer allocator over a single contiguous block of host memory,...</div><div class="ttdef"><b>Definition</b> MemoryArena.h:130</div></div>
-<div class="ttc" id="anamespaceDeep_html"><div class="ttname"><a href="namespaceDeep.html">Deep</a></div><div class="ttdef"><b>Definition</b> Backend.cpp:10</div></div>
-<div class="ttc" id="anamespaceDeep_html_a4b7606ca838be34029bd134f319e0f61"><div class="ttname"><a href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">Deep::ActivationType</a></div><div class="ttdeci">ActivationType</div><div class="ttdoc">Identifies an activation function or its derivative, for dispatch tables and layer/backend APIs that ...</div><div class="ttdef"><b>Definition</b> ActivationType.h:16</div></div>
-<div class="ttc" id="anamespaceDeep_html_a4b7606ca838be34029bd134f319e0f61ad346bb4679d29be241279f15d7795c1c"><div class="ttname"><a href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ad346bb4679d29be241279f15d7795c1c">Deep::ActivationType::RELU</a></div><div class="ttdeci">@ RELU</div><div class="ttdef"><b>Definition</b> ActivationType.h:17</div></div>
-<div class="ttc" id="anamespaceDeep_html_a4b7606ca838be34029bd134f319e0f61ae3d97c20b976be09990b745185b14d75"><div class="ttname"><a href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ae3d97c20b976be09990b745185b14d75">Deep::ActivationType::dRELU</a></div><div class="ttdeci">@ dRELU</div><div class="ttdef"><b>Definition</b> ActivationType.h:18</div></div>
+<div class="ttc" id="aclassDeep_1_1IComputeBackendT_html"><div class="ttname"><a href="classDeep_1_1IComputeBackendT.html">Deep::IComputeBackendT</a></div><div class="ttdoc">Device-agnostic compute backend interface: every numerical primitive a layer/network needs,...</div><div class="ttdef"><b>Definition</b> IComputeBackend.h:31</div></div>
+<div class="ttc" id="aclassDeep_1_1MemoryArenaT_html"><div class="ttname"><a href="classDeep_1_1MemoryArenaT.html">Deep::MemoryArenaT</a></div><div class="ttdoc">A 64-byte-aligned bump-pointer allocator over a single contiguous block of host memory,...</div><div class="ttdef"><b>Definition</b> MemoryArena.h:148</div></div>
+<div class="ttc" id="anamespaceDeep_html"><div class="ttname"><a href="namespaceDeep.html">Deep</a></div><div class="ttdoc">This file exists to provide both Tensor.h and IComputeBackend.h with device types without introducing...</div><div class="ttdef"><b>Definition</b> Backend.cpp:10</div></div>
+<div class="ttc" id="anamespaceDeep_html_a4b7606ca838be34029bd134f319e0f61"><div class="ttname"><a href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">Deep::ActivationType</a></div><div class="ttdeci">ActivationType</div><div class="ttdoc">Identifies an activation function or its derivative, for dispatch tables and layer/backend APIs that ...</div><div class="ttdef"><b>Definition</b> ActivationType.h:25</div></div>
+<div class="ttc" id="anamespaceDeep_html_a4b7606ca838be34029bd134f319e0f61ad346bb4679d29be241279f15d7795c1c"><div class="ttname"><a href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ad346bb4679d29be241279f15d7795c1c">Deep::ActivationType::RELU</a></div><div class="ttdeci">@ RELU</div><div class="ttdef"><b>Definition</b> ActivationType.h:26</div></div>
+<div class="ttc" id="anamespaceDeep_html_a4b7606ca838be34029bd134f319e0f61ae3d97c20b976be09990b745185b14d75"><div class="ttname"><a href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61ae3d97c20b976be09990b745185b14d75">Deep::ActivationType::dRELU</a></div><div class="ttdeci">@ dRELU</div><div class="ttdef"><b>Definition</b> ActivationType.h:27</div></div>
 <div class="ttc" id="anamespaceDeep_html_a76c7b5d078cce2bed29f6f592560bf02"><div class="ttname"><a href="namespaceDeep.html#a76c7b5d078cce2bed29f6f592560bf02">Deep::OptimizerType</a></div><div class="ttdeci">OptimizerType</div><div class="ttdoc">Selects which weight-update rule a layer applies during UpdateWeights().</div><div class="ttdef"><b>Definition</b> AdamOptimizer.h:13</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

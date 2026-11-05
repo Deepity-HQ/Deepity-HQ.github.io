@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classDeep_1_1S
 </div><!--header-->
 <div class="contents">
 
-<p>Templated counterpart to <a class="el" href="classDeep_1_1SimplePCLayer.html" title="Predictive Coding layer without precision weighting: the simpler, unweighted-energy counterpart to Di...">SimplePCLayer</a>.  
+<p>Templated counterpart to <a class="el" href="classDeep_1_1SimplePCLayer.html" title="Predictive Coding layer without precision weighting: the simpler, unweighted-energy counterpart to Di...">SimplePCLayer</a>, see this file's own comment for the full rationale.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="SimplePCLayerT_8h_source.html">SimplePCLayerT.h</a>&gt;</code></p>
@@ -244,7 +244,6 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:addc3f74b50f37bb19b14a58b04c271f2" id="r_addc3f74b50f37bb19b14a58b04c271f2"><td class="memItemLeft">AccumT&#160;</td><td class="memItemRight"><a class="el" href="#addc3f74b50f37bb19b14a58b04c271f2">lr_device</a> = AccumT(0)</td></tr>
 <tr class="memdesc:addc3f74b50f37bb19b14a58b04c271f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mirror of <span class="tt"><a class="el" href="#a6d7ccc84b3229cb1a18dba09f14269d5" title="Learning rate for weight updates.">lr</a></span>, passed by address to the backend.  <br /></td></tr>
 <tr class="memitem:ac92e658d8e6569d670c6df0d60d4302a" id="r_ac92e658d8e6569d670c6df0d60d4302a"><td class="memItemLeft">AccumT&#160;</td><td class="memItemRight"><a class="el" href="#ac92e658d8e6569d670c6df0d60d4302a">muCacheThreshold</a> = AccumT(-1)</td></tr>
-<tr class="memdesc:ac92e658d8e6569d670c6df0d60d4302a"><td class="mdescLeft">&#160;</td><td class="mdescRight">-1 = disabled; see <a class="el" href="#ab518dd80a8c227247dd20e658f9d8e22">SetMuCacheThreshold()</a>.  <br /></td></tr>
 <tr class="memitem:a0eb8962faebfdbe36957697c10be9464" id="r_a0eb8962faebfdbe36957697c10be9464"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a0eb8962faebfdbe36957697c10be9464">muCacheValid</a> = false</td></tr>
 <tr class="memdesc:a0eb8962faebfdbe36957697c10be9464"><td class="mdescLeft">&#160;</td><td class="mdescRight">true once mu computed at least once since <a class="el" href="#ab9a0b5fc1c96761a9436362dddb72d0c">ClampState()</a>.  <br /></td></tr>
 <tr class="memitem:a59f4b42daba30fa5bf602711611e296d" id="r_a59f4b42daba30fa5bf602711611e296d"><td class="memItemLeft">std::unique_ptr&lt; <a class="el" href="classDeep_1_1MemoryArenaT.html">MemoryArenaT</a>&lt; T &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a59f4b42daba30fa5bf602711611e296d">localArena</a></td></tr>
@@ -252,7 +251,7 @@ Protected Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T, typename AccumT = T&gt;<br />
-class Deep::SimplePCLayerT&lt; T, AccumT &gt;</div><p>Templated counterpart to <a class="el" href="classDeep_1_1SimplePCLayer.html" title="Predictive Coding layer without precision weighting: the simpler, unweighted-energy counterpart to Di...">SimplePCLayer</a>. </p>
+class Deep::SimplePCLayerT&lt; T, AccumT &gt;</div><p>Templated counterpart to <a class="el" href="classDeep_1_1SimplePCLayer.html" title="Predictive Coding layer without precision weighting: the simpler, unweighted-energy counterpart to Di...">SimplePCLayer</a>, see this file's own comment for the full rationale. </p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="a333f2f308fbe531fc325d4f46e3ef8bc" name="a333f2f308fbe531fc325d4f46e3ef8bc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a333f2f308fbe531fc325d4f46e3ef8bc">&#9670;&#160;</a></span>BackendDeleter</h2>
@@ -343,8 +342,8 @@ template&lt;typename T, typename AccumT&gt; </div>
     <tr><td class="paramname">inferenceRate</td><td>Inference rate (Euler integration step size) </td></tr>
     <tr><td class="paramname">lmbda</td><td>Weight decay (L2 regularization) coefficient </td></tr>
     <tr><td class="paramname">aType</td><td>Activation type </td></tr>
-    <tr><td class="paramname">dType</td><td>Unused; the derivative type is derived from <code class="param">aType</code> internally. Kept for call-site parity with <a class="el" href="classDeep_1_1SimplePCLayer.html" title="Predictive Coding layer without precision weighting: the simpler, unweighted-energy counterpart to Di...">SimplePCLayer</a>. </td></tr>
-    <tr><td class="paramname">backend</td><td>Compute backend to run on; defaults to a new <a class="el" href="classDeep_1_1CPUBackendT.html" title="Templated CPU implementation of IComputeBackendT&lt;T, AccumT&gt;, used by templated layers/networks (FullP...">CPUBackendT&lt;T, AccumT&gt;</a> if nullptr. </td></tr>
+    <tr><td class="paramname">dType</td><td>Activation derivative type (unused, kept for call-site parity with <a class="el" href="classDeep_1_1SimplePCLayer.html" title="Predictive Coding layer without precision weighting: the simpler, unweighted-energy counterpart to Di...">SimplePCLayer</a>'s own constructor; derivative type is always derived from aType via ToDerivativeType() at each use site) </td></tr>
+    <tr><td class="paramname">backend</td><td>Compute backend to run on; defaults to a new <a class="el" href="classDeep_1_1CPUBackendT.html" title="Templated CPU implementation of IComputeBackendT&lt;T, AccumT&gt;, used by every templated layer/network in...">CPUBackendT&lt;T, AccumT&gt;</a> if nullptr. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2008,8 +2007,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>-1 = disabled; see <a class="el" href="#ab518dd80a8c227247dd20e658f9d8e22">SetMuCacheThreshold()</a>. </p>
+<p>-1 = disabled; see <a class="el" href="#ab518dd80a8c227247dd20e658f9d8e22">SetMuCacheThreshold()</a>. Currently unused by <a class="el" href="#ac7166a15c7aeff9209270e4e8dba5667" title="Computes only mu (forward prediction), skipping error/energy.">ComputeMuOnly()</a> &ndash; carried over unchanged from <a class="el" href="classDeep_1_1SimplePCLayer.html" title="Predictive Coding layer without precision weighting: the simpler, unweighted-energy counterpart to Di...">SimplePCLayer</a>, where it's equally dead today. </p>
 
 </div>
 </div>

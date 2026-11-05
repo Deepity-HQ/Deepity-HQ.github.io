@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('SimplePCLayer_
 </div><!--header-->
 <div class="contents">
 
-<p>Predictive coding layer with plain Gaussian energy (no precision weighting): E = 0.5*sum(e^2), dz_dt = -e.  
+<p>DiscriminativePCLayer with precision weighting removed: energy reduces to plain E = 0.5*sum(e^2), and UpdateState()'s own term reduces to dz_dt = -e. Mirrors DiscriminativePCLayer's public interface (construction pattern, ActivationType constructor, accessors) as a drop-in for callers that don't need precision.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;cstdlib&gt;</code><br />
 <code>#include &lt;<a class="el" href="IComputeBackend_8h_source.html">deepity/backend/IComputeBackend.h</a>&gt;</code><br />
@@ -146,15 +146,16 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:Deep" id="r_Deep"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep.html">Deep</a></td></tr>
+<tr class="memdesc:namespaceDeep"><td class="mdescLeft">&#160;</td><td class="mdescRight">This file exists to provide both <a class="el" href="Tensor_8h.html" title="A device-aware, RAII-managed buffer. Device is fixed at construction, there is no support for moving ...">Tensor.h</a> and <a class="el" href="IComputeBackend_8h.html">IComputeBackend.h</a> with device types without introducing circular dependencies. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Predictive coding layer with plain Gaussian energy (no precision weighting): E = 0.5*sum(e^2), dz_dt = -e. </p>
+<div class="textblock"><p>DiscriminativePCLayer with precision weighting removed: energy reduces to plain E = 0.5*sum(e^2), and UpdateState()'s own term reduces to dz_dt = -e. Mirrors DiscriminativePCLayer's public interface (construction pattern, ActivationType constructor, accessors) as a drop-in for callers that don't need precision. </p>
 <p>Routed through an IComputeBackend, so it runs on either CPUBackend or CUDABackend. <span class="tt">backend</span> defaults to nullptr, in which case the layer constructs and owns its own CPUBackend.</p>
 <dl class="section note"><dt>Note</dt><dd>Optionally uses Adam instead of plain SGD, selected via SetOptimizer().</dd>
 <dd>
-Optionally caches a clamped layer's outgoing prediction (mu) across settling steps via SetMuCacheThreshold(). Default off.</dd>
+Optionally caches a CLAMPED layer's outgoing prediction (mu) across settling steps via SetMuCaching(). While clamped, z is fixed and W/b don't change until UpdateWeights() runs, so mu=W@phi(z)+b is exactly identical every step. Default off.</dd>
 <dd>
-Activation convention: mu = W@phi(z) + b &ndash; the nonlinearity applies to this layer's own belief before projecting up. mu itself carries no final activation, so a terminal layer's mu is unbounded logits; pair with SetCrossEntropy() when the terminal comparison needs to stay bounded (e.g. classification against a one-hot target). </dd></dl>
+Activation convention: mu = W@phi(z) + b &ndash; the nonlinearity applies to THIS layer's own belief before projecting up, not to the projection's result. This is the same composition an ordinary feedforward layer already uses (consuming the previous layer's activated output), and the convention jpc (github.com/thebuckleylab/jpc) uses for its own PC reference implementation. mu itself carries no final activation, so a terminal layer's mu is unbounded logits, not a bounded value &ndash; pair with SetCrossEntropy() when the terminal comparison needs to stay bounded (e.g. classification against a one-hot target), rather than reaching for a bounding activation on mu. </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>1.1 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2026-09-05 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Jack Rose </dd></dl>

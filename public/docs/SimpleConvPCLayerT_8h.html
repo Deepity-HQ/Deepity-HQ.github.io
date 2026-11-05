@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('SimpleConvPCLa
 </div><!--header-->
 <div class="contents">
 
-<p>Templated counterpart to SimpleConvPCLayer, over a storage type <span class="tt">T</span> and an accumulator type <span class="tt">AccumT</span>.  
+<p>Templated counterpart to SimpleConvPCLayer, over a storage type <span class="tt">T</span> and an accumulator type <span class="tt">AccumT</span> &ndash; see FullPCLayerT's own doc comment for the T/AccumT split's full rationale. Produced by mechanically retyping SimpleConvPCLayer's own <span class="tt">float</span> members/ parameters to <span class="tt">T</span>, NOT a reimplementation.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;cstdlib&gt;</code><br />
 <code>#include &lt;<a class="el" href="IComputeBackend_8h_source.html">deepity/backend/IComputeBackend.h</a>&gt;</code><br />
@@ -142,16 +142,18 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('SimpleConvPCLa
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:Deep_3A_3ASimpleConvPCLayerT_3C_20T_2C_20AccumT_20_3E" id="r_Deep_3A_3ASimpleConvPCLayerT_3C_20T_2C_20AccumT_20_3E"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classDeep_1_1SimpleConvPCLayerT.html">Deep::SimpleConvPCLayerT&lt; T, AccumT &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Templated counterpart to <a class="el" href="classDeep_1_1SimpleConvPCLayer.html" title="Convolutional PC layer, precision-free, AdamW-capable, routed through IComputeBackend for GPU portabi...">SimpleConvPCLayer</a>.  <a href="classDeep_1_1SimpleConvPCLayerT.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Templated counterpart to <a class="el" href="classDeep_1_1SimpleConvPCLayer.html" title="Convolutional PC layer, precision-free, AdamW-capable, routed through IComputeBackend for GPU portabi...">SimpleConvPCLayer</a>, see this file's own comment for the full rationale.  <a href="classDeep_1_1SimpleConvPCLayerT.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:Deep" id="r_Deep"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep.html">Deep</a></td></tr>
+<tr class="memdesc:namespaceDeep"><td class="mdescLeft">&#160;</td><td class="mdescRight">This file exists to provide both <a class="el" href="Tensor_8h.html" title="A device-aware, RAII-managed buffer. Device is fixed at construction, there is no support for moving ...">Tensor.h</a> and <a class="el" href="IComputeBackend_8h.html">IComputeBackend.h</a> with device types without introducing circular dependencies. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Templated counterpart to SimpleConvPCLayer, over a storage type <span class="tt">T</span> and an accumulator type <span class="tt">AccumT</span>. </p>
-<p>Unlike FullPCLayerT/SimplePCLayerT/GaussSeidelPCLayerT/DirectKPPCLayerT, every scratch buffer here (colBuffer, feedbackScratch, bottom_up_cols, colsRepacked, lgRepacked, muRepacked) stays T*, not AccumT*. At sub-8-bit T, an activation derivative can round to exactly zero in these buffers; float/double are unaffected.</p>
-<p>Does not inherit from Layer. </p>
+<div class="textblock"><p>Templated counterpart to SimpleConvPCLayer, over a storage type <span class="tt">T</span> and an accumulator type <span class="tt">AccumT</span> &ndash; see FullPCLayerT's own doc comment for the T/AccumT split's full rationale. Produced by mechanically retyping SimpleConvPCLayer's own <span class="tt">float</span> members/ parameters to <span class="tt">T</span>, NOT a reimplementation. </p>
+<p>Unlike FullPCLayerT/SimplePCLayerT/GaussSeidelPCLayerT/DirectKPPCLayerT, this port keeps every scratch buffer (colBuffer, feedbackScratch, bottom_up_cols, colsRepacked, lgRepacked, muRepacked) as T*, not AccumT* &ndash; a deliberate, documented scope reduction, not an oversight. Properly widening the conv family's derivative-carrying buffers to AccumT needs new AccumT-typed Im2Col/Col2Im/ RepackForBatchedGemm backend entry points (mirroring MatMulAccumMixed's own precedent), which is a larger, separate backend-interface change than this pass's goal of getting the conv family itself building, device-portable, and bit-exact at <span class="tt">float</span>. This means the known "an activation derivative can round to exactly
+zero at low precision" failure mode FullPCLayerT's own class comment documents is NOT fixed here for sub-8-bit T &ndash; flagged as a known, deferred gap for this layer, same spirit as FullPCLayerT's own Psi/ePC deferred-validation note, not a silent one. float/double (where T IS the accumulator already) are entirely unaffected.</p>
+<p>Deliberately does NOT inherit from Layer, same reasoning as FullPCLayerT. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">

@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('CUDABackendT_8
 </div><!--header-->
 <div class="contents">
 
-<p>Templated counterpart to CUDABackend, implementing IComputeBackendT&lt;T, AccumT&gt; on CUDA.  
+<p>Templated counterpart to the plain CUDABackend, for issue #55 (CUDA backend for the templated FullPCNetworkT&lt;T, AccumT&gt; path).  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="CUDABackend_8h_source.html">deepity/backend/CUDABackend.h</a>&gt;</code><br />
 </div>
@@ -136,10 +136,13 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:Deep" id="r_Deep"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep.html">Deep</a></td></tr>
+<tr class="memdesc:namespaceDeep"><td class="mdescLeft">&#160;</td><td class="mdescRight">This file exists to provide both <a class="el" href="Tensor_8h.html" title="A device-aware, RAII-managed buffer. Device is fixed at construction, there is no support for moving ...">Tensor.h</a> and <a class="el" href="IComputeBackend_8h.html">IComputeBackend.h</a> with device types without introducing circular dependencies. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Templated counterpart to CUDABackend, implementing IComputeBackendT&lt;T, AccumT&gt; on CUDA. </p>
-<p>Only CUDABackendT&lt;float, float&gt; is defined. Naming any other (T, AccumT) pair, e.g. CUDABackendT&lt;double, double&gt;, is a compile error. </p>
+<div class="textblock"><p>Templated counterpart to the plain CUDABackend, for issue #55 (CUDA backend for the templated FullPCNetworkT&lt;T, AccumT&gt; path). </p>
+<p><a class="el" href="IComputeBackend_8h.html">IComputeBackend.h</a>'s own closing line is <span class="tt">using IComputeBackend =
+IComputeBackendT&lt;float, float&gt;;</span> &ndash; so the existing, already-shipping CUDABackend class ALREADY fully implements IComputeBackendT&lt;float, float&gt;, just never spelled that way. CUDABackendT&lt;float, float&gt; is therefore nothing more than that same class under a templated name, so CreateBackendT&lt;T, AccumT&gt; (<a class="el" href="BackendT_8h.html" title="Templated counterpart to Backend.h&#39;s CreateBackend(), for FullPCNetworkT&lt;T, AccumT&gt;....">BackendT.h</a>) can construct it generically.</p>
+<p>No other (T, AccumT) pair is supported yet: no fp16 cuBLAS GEMM and no device-side decode/encode kernels for the <a class="el" href="QuantFormat_8h.html" title="Sub-8-bit storage types for the quantization plan&#39;s Phase 2+: each format is its own 1-byte struct (n...">QuantFormat.h</a> sub-8-bit structs exist anywhere in this codebase today, even on the non-templated path &ndash; that's genuinely new engineering, deliberately out of scope here. The primary template below is intentionally left incomplete (never defined) for every pair but float/float, so naming e.g. CUDABackendT&lt;double, double&gt; anywhere is a compile error, not a runtime throw. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">

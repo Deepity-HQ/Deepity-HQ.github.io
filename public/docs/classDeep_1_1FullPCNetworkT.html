@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classDeep_1_1F
 </div><!--header-->
 <div class="contents">
 
-<p>Templated counterpart to <a class="el" href="classDeep_1_1FullPCNetwork.html" title="Predictive Coding network combining muPC scaling, optional residual connections, and DKP direct feedb...">FullPCNetwork</a>.  
+<p>Templated counterpart to <a class="el" href="classDeep_1_1FullPCNetwork.html" title="Predictive Coding network combining muPC scaling, optional residual connections, and DKP direct feedb...">FullPCNetwork</a>, see this file's own comment for the full rationale.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="FullPCNetworkT_8h_source.html">FullPCNetworkT.h</a>&gt;</code></p>
@@ -131,21 +131,21 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classDeep_1_1F
 <tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:a23a375f55ecf1ccb7639d591f9b9945b" id="r_a23a375f55ecf1ccb7639d591f9b9945b"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a23a375f55ecf1ccb7639d591f9b9945b">ElementType</a> = T</td></tr>
-<tr class="memdesc:a23a375f55ecf1ccb7639d591f9b9945b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This network's storage element type.  <br /></td></tr>
+<tr class="memdesc:a23a375f55ecf1ccb7639d591f9b9945b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This network's storage element type, for <a class="el" href="classDeep_1_1ModelIO.html" title="Static save/load helpers for any network type exposing GetLayers(), templated so it works across ever...">ModelIO</a>'s dtype derivation/checking (see <a class="el" href="structDeep_1_1DTypeTag.html">DTypeTag&lt;T&gt;</a>). <a class="el" href="classDeep_1_1ModelIO.html" title="Static save/load helpers for any network type exposing GetLayers(), templated so it works across ever...">ModelIO</a> itself actually reads the type off each tensor's own GetStateDict() pointer rather than this typedef, but it documents the network's own element type at the type level, for anyone reading this class.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af9c85312c57ac52adb5e00f916be1c61" id="r_af9c85312c57ac52adb5e00f916be1c61"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#af9c85312c57ac52adb5e00f916be1c61">FullPCNetworkT</a> (int batchSize, <a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a> device=<a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3a2b51e711df2cded71f92128f2f8f34dd">DeviceType::DEVICE_CPU</a>)</td></tr>
-<tr class="memdesc:af9c85312c57ac52adb5e00f916be1c61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an empty network; add layers via <a class="el" href="#a8b565dad3009bb8940097e12fe3d46a5" title="Adds a layer to the network. See FullPCLayerT&#39;s own constructor doc comment for each parameter&#39;s mean...">AddLayer()</a>, then <a class="el" href="#ac36f1cced7cbf5b4bbad392b51d99d74" title="Loads all layers into one contiguous block of memory and wires layerAbove/layerBelow/terminalLayer ac...">Compile()</a> before use.  <br /></td></tr>
+<tr class="memdesc:af9c85312c57ac52adb5e00f916be1c61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an empty network; add layers via <a class="el" href="#a8b565dad3009bb8940097e12fe3d46a5" title="Adds a layer to the network. See FullPCLayerT&#39;s own constructor doc comment for each parameter&#39;s mean...">AddLayer()</a>, then <a class="el" href="#ac36f1cced7cbf5b4bbad392b51d99d74" title="Loads all layers into one contiguous block of memory, see FullPCNetwork::Compile()&#39;s own doc comment.">Compile()</a> before use.  <br /></td></tr>
 <tr class="memitem:a21f767abf8ddc004b2cee277e45d1859" id="r_a21f767abf8ddc004b2cee277e45d1859"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a21f767abf8ddc004b2cee277e45d1859">~FullPCNetworkT</a> ()=default</td></tr>
 <tr class="memitem:a471d955d196ca72fc9fa5f222cfe1da0" id="r_a471d955d196ca72fc9fa5f222cfe1da0"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a471d955d196ca72fc9fa5f222cfe1da0">FullPCNetworkT</a> (const FullPCNetworkT &amp;)=delete</td></tr>
 <tr class="memitem:a6dd8f71352182d3e52ecac327a77e66e" id="r_a6dd8f71352182d3e52ecac327a77e66e"><td class="memItemLeft"><a class="el" href="#af9c85312c57ac52adb5e00f916be1c61">FullPCNetworkT</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a6dd8f71352182d3e52ecac327a77e66e">operator=</a> (const <a class="el" href="#af9c85312c57ac52adb5e00f916be1c61">FullPCNetworkT</a> &amp;)=delete</td></tr>
 <tr class="memitem:a8b565dad3009bb8940097e12fe3d46a5" id="r_a8b565dad3009bb8940097e12fe3d46a5"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a8b565dad3009bb8940097e12fe3d46a5">AddLayer</a> (size_t size, size_t nextSize, size_t terminalSize, AccumT lr, AccumT ir, AccumT fl, AccumT lmbda, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> aType, <a class="el" href="namespaceDeep.html#a4b7606ca838be34029bd134f319e0f61">ActivationType</a> dType)</td></tr>
-<tr class="memdesc:a8b565dad3009bb8940097e12fe3d46a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a layer to the network. See <a class="el" href="classDeep_1_1FullPCLayerT.html" title="Templated counterpart to FullPCLayer.">FullPCLayerT</a>'s own constructor doc comment for each parameter's meaning.  <br /></td></tr>
+<tr class="memdesc:a8b565dad3009bb8940097e12fe3d46a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a layer to the network. See <a class="el" href="classDeep_1_1FullPCLayerT.html" title="Templated counterpart to FullPCLayer, see this file&#39;s own comment for the full rationale.">FullPCLayerT</a>'s own constructor doc comment for each parameter's meaning.  <br /></td></tr>
 <tr class="memitem:a2042e7ff74a1e5196519e18ef5520ab7" id="r_a2042e7ff74a1e5196519e18ef5520ab7"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a2042e7ff74a1e5196519e18ef5520ab7">SetUseMuPCScaling</a> (bool enabled) noexcept</td></tr>
-<tr class="memdesc:a2042e7ff74a1e5196519e18ef5520ab7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables each layer's forward-scaling factor <span class="tt">a</span> and unit-variance weight init. Must be called before <a class="el" href="#ac36f1cced7cbf5b4bbad392b51d99d74" title="Loads all layers into one contiguous block of memory and wires layerAbove/layerBelow/terminalLayer ac...">Compile()</a> and <a class="el" href="#a07aefc406141e3f730b836ec3eba5220" title="Randomizes the weights (W and Psi) of each layer.">RandomizeWeights()</a>.  <br /></td></tr>
+<tr class="memdesc:a2042e7ff74a1e5196519e18ef5520ab7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables muPC's full Table 1 parameterization, see <a class="el" href="classDeep_1_1FullPCNetwork.html#a8dfb214dba8e2de70d10124d21bfdf5c" title="Enables muPC&#39;s full Table 1 parameterization: each layer&#39;s forward-scaling factor a (width/depth-depe...">FullPCNetwork::SetUseMuPCScaling()</a>'s own doc comment.  <br /></td></tr>
 <tr class="memitem:acb9d6f7a162bf4694c5361e17f68c673" id="r_acb9d6f7a162bf4694c5361e17f68c673"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#acb9d6f7a162bf4694c5361e17f68c673">SetUseResidualConnections</a> (bool enabled) noexcept</td></tr>
-<tr class="memdesc:acb9d6f7a162bf4694c5361e17f68c673"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables residual/skip connections on middle hidden layers. Requires every middle hidden layer to have the same width as its neighbor; <a class="el" href="#ac36f1cced7cbf5b4bbad392b51d99d74" title="Loads all layers into one contiguous block of memory and wires layerAbove/layerBelow/terminalLayer ac...">Compile()</a> throws std::invalid_argument otherwise.  <br /></td></tr>
+<tr class="memdesc:acb9d6f7a162bf4694c5361e17f68c673"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables residual/skip connections, see <a class="el" href="classDeep_1_1FullPCNetwork.html#af658483608970ecf08989b5da96e1301" title="Enables residual/skip connections on middle hidden layers (muPC&#39;s &quot;1-skip&quot; ResNet formulation,...">FullPCNetwork::SetUseResidualConnections()</a>'s own doc comment.  <br /></td></tr>
 <tr class="memitem:a07aefc406141e3f730b836ec3eba5220" id="r_a07aefc406141e3f730b836ec3eba5220"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a07aefc406141e3f730b836ec3eba5220">RandomizeWeights</a> (std::mt19937 &amp;rng, const char *distribution=&quot;normal&quot;)</td></tr>
 <tr class="memdesc:a07aefc406141e3f730b836ec3eba5220"><td class="mdescLeft">&#160;</td><td class="mdescRight">Randomizes the weights (W and Psi) of each layer.  <br /></td></tr>
 <tr class="memitem:ac2ed25dde78130dcfa071a62e687d816" id="r_ac2ed25dde78130dcfa071a62e687d816"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac2ed25dde78130dcfa071a62e687d816">ResetState</a> () noexcept</td></tr>
@@ -153,15 +153,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa583ea107695c76d21237d7485e17e9f" id="r_aa583ea107695c76d21237d7485e17e9f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aa583ea107695c76d21237d7485e17e9f">Clamp</a> (const std::vector&lt; T &gt; &amp;input)</td></tr>
 <tr class="memdesc:aa583ea107695c76d21237d7485e17e9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clamps the input to the first layer.  <br /></td></tr>
 <tr class="memitem:a04196f5f5efbbc60deff604347bb13c9" id="r_a04196f5f5efbbc60deff604347bb13c9"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a04196f5f5efbbc60deff604347bb13c9">ProjectForward</a> () noexcept</td></tr>
-<tr class="memdesc:a04196f5f5efbbc60deff604347bb13c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seeds hidden layers from a genuine forward pass through current weights, instead of zero-init. Call after <a class="el" href="#aa583ea107695c76d21237d7485e17e9f" title="Clamps the input to the first layer.">Clamp()</a>, before the settling loop.  <br /></td></tr>
+<tr class="memdesc:a04196f5f5efbbc60deff604347bb13c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seeds hidden layers from a genuine forward pass through current weights, see <a class="el" href="classDeep_1_1FullPCNetwork.html#a9db6b1e49c225821865d25c367ef7015" title="Seeds hidden layers from a genuine forward pass through current weights, instead of zero-init....">FullPCNetwork::ProjectForward()</a>'s own doc comment.  <br /></td></tr>
 <tr class="memitem:a5614bec35c68e8be9fd292f950c9a661" id="r_a5614bec35c68e8be9fd292f950c9a661"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a5614bec35c68e8be9fd292f950c9a661">DirectFeedbackUpdate</a> () noexcept</td></tr>
-<tr class="memdesc:a5614bec35c68e8be9fd292f950c9a661"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the DFA phase on every non-terminal layer. Call after the settle loop, so its injection uses the converged terminal error.  <br /></td></tr>
+<tr class="memdesc:a5614bec35c68e8be9fd292f950c9a661"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the DFA phase on every non-terminal layer. Called after the settle loop (see <a class="el" href="#ad227ed8e109366a615a7418f5d093ffd" title="Full train step: reset, clamp input+target, run all four DKP-PC phases in order, unclamp....">TrainStep()</a>) so its injection uses the converged terminal error, not the pre-settling one &ndash; same preact-staleness refresh as <a class="el" href="#aeb41abbf150efbdd326094b0b5ba73dd" title="Applies weight updates to every layer.">UpdateWeights()</a>'s own, for the same reason, now that this runs post-settle too.  <br /></td></tr>
 <tr class="memitem:a192a81df517478d7a12a7f56a6482615" id="r_a192a81df517478d7a12a7f56a6482615"><td class="memItemLeft">AccumT&#160;</td><td class="memItemRight"><a class="el" href="#a192a81df517478d7a12a7f56a6482615">CalculateTerminalError</a> () noexcept</td></tr>
 <tr class="memdesc:a192a81df517478d7a12a7f56a6482615"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the terminal layer's error/energy against its clamped target.  <br /></td></tr>
 <tr class="memitem:a326e317dfae1d7af1fe4477a64dc73e5" id="r_a326e317dfae1d7af1fe4477a64dc73e5"><td class="memItemLeft">AccumT&#160;</td><td class="memItemRight"><a class="el" href="#a326e317dfae1d7af1fe4477a64dc73e5">Step</a> (bool needEnergy=true) noexcept</td></tr>
 <tr class="memdesc:a326e317dfae1d7af1fe4477a64dc73e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs one settling step on every layer.  <br /></td></tr>
 <tr class="memitem:a9e850f4e09b1db2fad1c18443cf38b2a" id="r_a9e850f4e09b1db2fad1c18443cf38b2a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9e850f4e09b1db2fad1c18443cf38b2a">EPCStep</a> () noexcept</td></tr>
-<tr class="memdesc:a9e850f4e09b1db2fad1c18443cf38b2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">ePC's settling step: a full forward sweep followed by a full backward sweep chaining the terminal's error down through every hidden layer.  <br /></td></tr>
+<tr class="memdesc:a9e850f4e09b1db2fad1c18443cf38b2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">ePC's settling step, see <a class="el" href="classDeep_1_1FullPCNetwork.html#abeca709546437b468e2040c0a15f81c1" title="ePC&#39;s settling step, used by TrainStep() in place of Step() when useEPC is set: a full forward sweep ...">FullPCNetwork::EPCStep()</a>'s own doc comment.  <br /></td></tr>
 <tr class="memitem:aeb41abbf150efbdd326094b0b5ba73dd" id="r_aeb41abbf150efbdd326094b0b5ba73dd"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aeb41abbf150efbdd326094b0b5ba73dd">UpdateWeights</a> () noexcept</td></tr>
 <tr class="memdesc:aeb41abbf150efbdd326094b0b5ba73dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies weight updates to every layer.  <br /></td></tr>
 <tr class="memitem:a98d78edadca10bc2386c1b558bd39be5" id="r_a98d78edadca10bc2386c1b558bd39be5"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a98d78edadca10bc2386c1b558bd39be5">SetOptimizer</a> (<a class="el" href="namespaceDeep.html#a76c7b5d078cce2bed29f6f592560bf02">OptimizerType</a> o) noexcept</td></tr>
@@ -174,11 +174,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ade52cd49cfe6175ee8d70647568c71dd" id="r_ade52cd49cfe6175ee8d70647568c71dd"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ade52cd49cfe6175ee8d70647568c71dd">GetBatchSize</a> () const noexcept</td></tr>
 <tr class="memitem:a0b6956fb0b5f0ee691d0d235284ee153" id="r_a0b6956fb0b5f0ee691d0d235284ee153"><td class="memItemLeft"><a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a>&#160;</td><td class="memItemRight"><a class="el" href="#a0b6956fb0b5f0ee691d0d235284ee153">GetDevice</a> () const noexcept</td></tr>
 <tr class="memitem:ad227ed8e109366a615a7418f5d093ffd" id="r_ad227ed8e109366a615a7418f5d093ffd"><td class="memItemLeft">AccumT&#160;</td><td class="memItemRight"><a class="el" href="#ad227ed8e109366a615a7418f5d093ffd">TrainStep</a> (const std::vector&lt; T &gt; &amp;x, const std::vector&lt; T &gt; &amp;y, int inferenceSteps=1)</td></tr>
-<tr class="memdesc:ad227ed8e109366a615a7418f5d093ffd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Full train step: reset, clamp input+target, run all four DKP-PC phases in order, unclamp.  <br /></td></tr>
+<tr class="memdesc:ad227ed8e109366a615a7418f5d093ffd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Full train step: reset, clamp input+target, run all four DKP-PC phases in order, unclamp. See <a class="el" href="classDeep_1_1FullPCNetwork.html#a4a0bb58b8bdab93c7971e4678b8b72a6" title="Full train step: reset, clamp input+target, run all four DKP-PC phases in order, unclamp.">FullPCNetwork::TrainStep()</a>'s own doc comment, including its CUDA graph capture/replay &ndash; mirrored here exactly now that <a class="el" href="namespaceDeep.html#a348ceadc3b61e6a1b937b72582291411" title="Factory function to create the appropriate backend for a given T/AccumT. DEVICE_GPU only has a real b...">CreateBackendT()</a> can actually return a real <a class="el" href="classDeep_1_1CUDABackendT.html">CUDABackendT</a> (issue #55), not just throw.  <br /></td></tr>
 <tr class="memitem:a6f8a0ad5173b0bb6f7c37c36f9eb4682" id="r_a6f8a0ad5173b0bb6f7c37c36f9eb4682"><td class="memItemLeft">std::vector&lt; T &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a6f8a0ad5173b0bb6f7c37c36f9eb4682">Predict</a> (const std::vector&lt; T &gt; &amp;x, int inferenceSteps)</td></tr>
-<tr class="memdesc:a6f8a0ad5173b0bb6f7c37c36f9eb4682"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forward prediction: clamp input, settle with no DFA perturbation and no target clamped, read the terminal's beliefs.  <br /></td></tr>
+<tr class="memdesc:a6f8a0ad5173b0bb6f7c37c36f9eb4682"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forward prediction: clamp input, settle with no DFA perturbation and no target clamped, read the terminal's beliefs. See <a class="el" href="classDeep_1_1FullPCNetwork.html#ac55e27526862eba9ebaf09061743f218" title="Forward prediction: clamp input, settle with no DFA perturbation and no target clamped,...">FullPCNetwork::Predict()</a>'s own doc comment, including its own separate graph slot (kPredictGraphSlot) &ndash; mirrored here exactly.  <br /></td></tr>
 <tr class="memitem:ac36f1cced7cbf5b4bbad392b51d99d74" id="r_ac36f1cced7cbf5b4bbad392b51d99d74"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac36f1cced7cbf5b4bbad392b51d99d74">Compile</a> ()</td></tr>
-<tr class="memdesc:ac36f1cced7cbf5b4bbad392b51d99d74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads all layers into one contiguous block of memory and wires layerAbove/layerBelow/terminalLayer across every layer. If useMuPCScaling, computes and applies each layer's <span class="tt">a</span> and enables unit-variance init. If useResidualConnections, applies SetResidual(true) to every middle hidden layer after checking width match (throws std::invalid_argument on mismatch).  <br /></td></tr>
+<tr class="memdesc:ac36f1cced7cbf5b4bbad392b51d99d74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads all layers into one contiguous block of memory, see <a class="el" href="classDeep_1_1FullPCNetwork.html#a35697a64777588e996b46c0367d1f1fc" title="Loads all layers into one contiguous block of memory, wires layerAbove/layerBelow/terminalLayer acros...">FullPCNetwork::Compile()</a>'s own doc comment.  <br /></td></tr>
 <tr class="memitem:afa42485017a82eb7428aa1d21dd46027" id="r_afa42485017a82eb7428aa1d21dd46027"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#afa42485017a82eb7428aa1d21dd46027">SetUseIPC</a> (bool enabled) noexcept</td></tr>
 <tr class="memitem:a53c9d400367552e909635cdda22aba14" id="r_a53c9d400367552e909635cdda22aba14"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a53c9d400367552e909635cdda22aba14">SetUseMomentum</a> (bool enabled, AccumT beta=AccumT(0.9)) noexcept</td></tr>
 <tr class="memitem:a49e70360377cbb15073e43fb1ecc59ad" id="r_a49e70360377cbb15073e43fb1ecc59ad"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a49e70360377cbb15073e43fb1ecc59ad">SetUseCrossEntropy</a> (bool enabled) noexcept</td></tr>
@@ -186,7 +186,7 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T, typename AccumT = T&gt;<br />
-class Deep::FullPCNetworkT&lt; T, AccumT &gt;</div><p>Templated counterpart to <a class="el" href="classDeep_1_1FullPCNetwork.html" title="Predictive Coding network combining muPC scaling, optional residual connections, and DKP direct feedb...">FullPCNetwork</a>. </p>
+class Deep::FullPCNetworkT&lt; T, AccumT &gt;</div><p>Templated counterpart to <a class="el" href="classDeep_1_1FullPCNetwork.html" title="Predictive Coding network combining muPC scaling, optional residual connections, and DKP direct feedb...">FullPCNetwork</a>, see this file's own comment for the full rationale. </p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="a23a375f55ecf1ccb7639d591f9b9945b" name="a23a375f55ecf1ccb7639d591f9b9945b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a23a375f55ecf1ccb7639d591f9b9945b">&#9670;&#160;</a></span>ElementType</h2>
@@ -202,7 +202,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>This network's storage element type. </p>
+<p>This network's storage element type, for <a class="el" href="classDeep_1_1ModelIO.html" title="Static save/load helpers for any network type exposing GetLayers(), templated so it works across ever...">ModelIO</a>'s dtype derivation/checking (see <a class="el" href="structDeep_1_1DTypeTag.html">DTypeTag&lt;T&gt;</a>). <a class="el" href="classDeep_1_1ModelIO.html" title="Static save/load helpers for any network type exposing GetLayers(), templated so it works across ever...">ModelIO</a> itself actually reads the type off each tensor's own GetStateDict() pointer rather than this typedef, but it documents the network's own element type at the type level, for anyone reading this class. </p>
 
 </div>
 </div>
@@ -236,7 +236,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Constructs an empty network; add layers via <a class="el" href="#a8b565dad3009bb8940097e12fe3d46a5" title="Adds a layer to the network. See FullPCLayerT&#39;s own constructor doc comment for each parameter&#39;s mean...">AddLayer()</a>, then <a class="el" href="#ac36f1cced7cbf5b4bbad392b51d99d74" title="Loads all layers into one contiguous block of memory and wires layerAbove/layerBelow/terminalLayer ac...">Compile()</a> before use. </p>
+<p>Constructs an empty network; add layers via <a class="el" href="#a8b565dad3009bb8940097e12fe3d46a5" title="Adds a layer to the network. See FullPCLayerT&#39;s own constructor doc comment for each parameter&#39;s mean...">AddLayer()</a>, then <a class="el" href="#ac36f1cced7cbf5b4bbad392b51d99d74" title="Loads all layers into one contiguous block of memory, see FullPCNetwork::Compile()&#39;s own doc comment.">Compile()</a> before use. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">batchSize</td><td>Fixed batch size for every layer. </td></tr>
@@ -366,7 +366,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Adds a layer to the network. See <a class="el" href="classDeep_1_1FullPCLayerT.html" title="Templated counterpart to FullPCLayer.">FullPCLayerT</a>'s own constructor doc comment for each parameter's meaning. </p>
+<p>Adds a layer to the network. See <a class="el" href="classDeep_1_1FullPCLayerT.html" title="Templated counterpart to FullPCLayer, see this file&#39;s own comment for the full rationale.">FullPCLayerT</a>'s own constructor doc comment for each parameter's meaning. </p>
 
 </div>
 </div>
@@ -453,7 +453,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Loads all layers into one contiguous block of memory and wires layerAbove/layerBelow/terminalLayer across every layer. If useMuPCScaling, computes and applies each layer's <span class="tt">a</span> and enables unit-variance init. If useResidualConnections, applies SetResidual(true) to every middle hidden layer after checking width match (throws std::invalid_argument on mismatch). </p>
+<p>Loads all layers into one contiguous block of memory, see <a class="el" href="classDeep_1_1FullPCNetwork.html#a35697a64777588e996b46c0367d1f1fc" title="Loads all layers into one contiguous block of memory, wires layerAbove/layerBelow/terminalLayer acros...">FullPCNetwork::Compile()</a>'s own doc comment. </p>
 
 </div>
 </div>
@@ -482,7 +482,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Runs the DFA phase on every non-terminal layer. Call after the settle loop, so its injection uses the converged terminal error. </p>
+<p>Runs the DFA phase on every non-terminal layer. Called after the settle loop (see <a class="el" href="#ad227ed8e109366a615a7418f5d093ffd" title="Full train step: reset, clamp input+target, run all four DKP-PC phases in order, unclamp....">TrainStep()</a>) so its injection uses the converged terminal error, not the pre-settling one &ndash; same preact-staleness refresh as <a class="el" href="#aeb41abbf150efbdd326094b0b5ba73dd" title="Applies weight updates to every layer.">UpdateWeights()</a>'s own, for the same reason, now that this runs post-settle too. </p>
 
 </div>
 </div>
@@ -511,7 +511,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>ePC's settling step: a full forward sweep followed by a full backward sweep chaining the terminal's error down through every hidden layer. </p>
+<p>ePC's settling step, see <a class="el" href="classDeep_1_1FullPCNetwork.html#abeca709546437b468e2040c0a15f81c1" title="ePC&#39;s settling step, used by TrainStep() in place of Step() when useEPC is set: a full forward sweep ...">FullPCNetwork::EPCStep()</a>'s own doc comment. </p>
 
 </div>
 </div>
@@ -706,7 +706,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Forward prediction: clamp input, settle with no DFA perturbation and no target clamped, read the terminal's beliefs. </p>
+<p>Forward prediction: clamp input, settle with no DFA perturbation and no target clamped, read the terminal's beliefs. See <a class="el" href="classDeep_1_1FullPCNetwork.html#ac55e27526862eba9ebaf09061743f218" title="Forward prediction: clamp input, settle with no DFA perturbation and no target clamped,...">FullPCNetwork::Predict()</a>'s own doc comment, including its own separate graph slot (kPredictGraphSlot) &ndash; mirrored here exactly. </p>
 
 </div>
 </div>
@@ -735,7 +735,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Seeds hidden layers from a genuine forward pass through current weights, instead of zero-init. Call after <a class="el" href="#aa583ea107695c76d21237d7485e17e9f" title="Clamps the input to the first layer.">Clamp()</a>, before the settling loop. </p>
+<p>Seeds hidden layers from a genuine forward pass through current weights, see <a class="el" href="classDeep_1_1FullPCNetwork.html#a9db6b1e49c225821865d25c367ef7015" title="Seeds hidden layers from a genuine forward pass through current weights, instead of zero-init....">FullPCNetwork::ProjectForward()</a>'s own doc comment. </p>
 
 </div>
 </div>
@@ -1046,7 +1046,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Enables each layer's forward-scaling factor <span class="tt">a</span> and unit-variance weight init. Must be called before <a class="el" href="#ac36f1cced7cbf5b4bbad392b51d99d74" title="Loads all layers into one contiguous block of memory and wires layerAbove/layerBelow/terminalLayer ac...">Compile()</a> and <a class="el" href="#a07aefc406141e3f730b836ec3eba5220" title="Randomizes the weights (W and Psi) of each layer.">RandomizeWeights()</a>. </p>
+<p>Enables muPC's full Table 1 parameterization, see <a class="el" href="classDeep_1_1FullPCNetwork.html#a8dfb214dba8e2de70d10124d21bfdf5c" title="Enables muPC&#39;s full Table 1 parameterization: each layer&#39;s forward-scaling factor a (width/depth-depe...">FullPCNetwork::SetUseMuPCScaling()</a>'s own doc comment. </p>
 
 </div>
 </div>
@@ -1075,7 +1075,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Enables residual/skip connections on middle hidden layers. Requires every middle hidden layer to have the same width as its neighbor; <a class="el" href="#ac36f1cced7cbf5b4bbad392b51d99d74" title="Loads all layers into one contiguous block of memory and wires layerAbove/layerBelow/terminalLayer ac...">Compile()</a> throws std::invalid_argument otherwise. </p>
+<p>Enables residual/skip connections, see <a class="el" href="classDeep_1_1FullPCNetwork.html#af658483608970ecf08989b5da96e1301" title="Enables residual/skip connections on middle hidden layers (muPC&#39;s &quot;1-skip&quot; ResNet formulation,...">FullPCNetwork::SetUseResidualConnections()</a>'s own doc comment. </p>
 
 </div>
 </div>
@@ -1142,16 +1142,7 @@ template&lt;typename T, typename AccumT = T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Full train step: reset, clamp input+target, run all four DKP-PC phases in order, unclamp. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">x</td><td>Flattened input batch, clamped to the input layer. </td></tr>
-    <tr><td class="paramname">y</td><td>Flattened target batch, clamped to the terminal layer. </td></tr>
-    <tr><td class="paramname">inferenceSteps</td><td>Number of settling steps for phase 2. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The final settling step's total energy, before weight updates. </dd></dl>
+<p>Full train step: reset, clamp input+target, run all four DKP-PC phases in order, unclamp. See <a class="el" href="classDeep_1_1FullPCNetwork.html#a4a0bb58b8bdab93c7971e4678b8b72a6" title="Full train step: reset, clamp input+target, run all four DKP-PC phases in order, unclamp.">FullPCNetwork::TrainStep()</a>'s own doc comment, including its CUDA graph capture/replay &ndash; mirrored here exactly now that <a class="el" href="namespaceDeep.html#a348ceadc3b61e6a1b937b72582291411" title="Factory function to create the appropriate backend for a given T/AccumT. DEVICE_GPU only has a real b...">CreateBackendT()</a> can actually return a real <a class="el" href="classDeep_1_1CUDABackendT.html">CUDABackendT</a> (issue #55), not just throw. </p>
 
 </div>
 </div>

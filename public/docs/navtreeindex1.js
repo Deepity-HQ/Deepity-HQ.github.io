@@ -1,5 +1,8 @@
 var NAVTREEINDEX1 =
 {
+"classDeep_1_1CPUBackend.html#a1e129459b87878d0127c7b03b576b035":[7,0,0,8,0],
+"classDeep_1_1CPUBackend.html#a1e129459b87878d0127c7b03b576b035":[8,0,0,6,0],
+"classDeep_1_1CPUBackend.html#a25d526e0867d536d413bc340f16241c7":[7,0,0,8,57],
 "classDeep_1_1CPUBackend.html#a25d526e0867d536d413bc340f16241c7":[8,0,0,6,57],
 "classDeep_1_1CPUBackend.html#a276cb68cb706ed1b0098e885235b16a2":[7,0,0,8,50],
 "classDeep_1_1CPUBackend.html#a276cb68cb706ed1b0098e885235b16a2":[8,0,0,6,50],
@@ -246,8 +249,5 @@ var NAVTREEINDEX1 =
 "classDeep_1_1CPUBackendT.html#aea38c057c58b570b23b311d9c382dc5d":[7,0,0,9,45],
 "classDeep_1_1CPUBackendT.html#aea38c057c58b570b23b311d9c382dc5d":[8,0,0,7,45],
 "classDeep_1_1CPUBackendT.html#af4cfcf2b15b376e521b6fc9c0892170d":[7,0,0,9,25],
-"classDeep_1_1CPUBackendT.html#af4cfcf2b15b376e521b6fc9c0892170d":[8,0,0,7,25],
-"classDeep_1_1CPUBackendT.html#af8bd7e42ba0ba5856f1b956e439e084b":[7,0,0,9,3],
-"classDeep_1_1CPUBackendT.html#af8bd7e42ba0ba5856f1b956e439e084b":[8,0,0,7,3],
-"classDeep_1_1CPUBackendT.html#afac55a550f0454696e482667a8ac10a3":[7,0,0,9,60]
+"classDeep_1_1CPUBackendT.html#af4cfcf2b15b376e521b6fc9c0892170d":[8,0,0,7,25]
 };

@@ -1,5 +1,8 @@
 var NAVTREEINDEX12 =
 {
+"classDeep_1_1GaussSeidelPCLayer.html":[7,0,0,37],
+"classDeep_1_1GaussSeidelPCLayer.html":[8,0,0,35],
+"classDeep_1_1GaussSeidelPCLayer.html#a00a67e3faab588cb2f2f4e7aeb2e7194":[7,0,0,37,4],
 "classDeep_1_1GaussSeidelPCLayer.html#a00a67e3faab588cb2f2f4e7aeb2e7194":[8,0,0,35,4],
 "classDeep_1_1GaussSeidelPCLayer.html#a015177afd4635f03c15763b7b6dae6b8":[7,0,0,37,23],
 "classDeep_1_1GaussSeidelPCLayer.html#a015177afd4635f03c15763b7b6dae6b8":[8,0,0,35,23],
@@ -246,8 +249,5 @@ var NAVTREEINDEX12 =
 "classDeep_1_1GaussSeidelPCNetwork.html#a654381cb93d350ae632d940b2e08d821":[7,0,0,39,13],
 "classDeep_1_1GaussSeidelPCNetwork.html#a654381cb93d350ae632d940b2e08d821":[8,0,0,37,13],
 "classDeep_1_1GaussSeidelPCNetwork.html#a6d253d99aa44ea3ae6935f66b7ad1a02":[7,0,0,39,18],
-"classDeep_1_1GaussSeidelPCNetwork.html#a6d253d99aa44ea3ae6935f66b7ad1a02":[8,0,0,37,18],
-"classDeep_1_1GaussSeidelPCNetwork.html#a73f1e9385fd01832aa1f23a587069b02":[7,0,0,39,12],
-"classDeep_1_1GaussSeidelPCNetwork.html#a73f1e9385fd01832aa1f23a587069b02":[8,0,0,37,12],
-"classDeep_1_1GaussSeidelPCNetwork.html#a795672cbea690c6a4039b0f224010d8d":[7,0,0,39,16]
+"classDeep_1_1GaussSeidelPCNetwork.html#a6d253d99aa44ea3ae6935f66b7ad1a02":[8,0,0,37,18]
 };

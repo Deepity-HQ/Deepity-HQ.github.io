@@ -146,6 +146,7 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:Deep" id="r_Deep"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep.html">Deep</a></td></tr>
+<tr class="memdesc:namespaceDeep"><td class="mdescLeft">&#160;</td><td class="mdescRight">This file exists to provide both <a class="el" href="Tensor_8h.html" title="A device-aware, RAII-managed buffer. Device is fixed at construction, there is no support for moving ...">Tensor.h</a> and <a class="el" href="IComputeBackend_8h.html">IComputeBackend.h</a> with device types without introducing circular dependencies. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A PC layer whose settling dynamics follow a Gauss-Seidel (sequential-sweep) update, not the Jacobi (fully-synchronous) update SimplePCLayer uses. Routed through IComputeBackend for GPU portability; feedback goes through the independent matrix E rather than W (see below). </p>
@@ -155,9 +156,10 @@ Namespaces</h2></td></tr>
 <li>ComputePrediction() on every layer: mu recomputes fresh, using the just-updated z from step 1. Order among layers doesn't matter here, since each layer's mu only depends on its own z.</li>
 <li>ComputeError() on every layer: e recomputes fresh, using the just-updated z (step 1) as the target and layerBelow's fresh mu (step 2) as the prediction. Order among layers doesn't matter here either.</li>
 </ol>
+<p>This differs from SimplePCLayer's single-call CalculateState(), which computes error and prediction together, and whose settling loop is simply (CalculateState(); UpdateState();) x N: fully synchronous (Jacobi), where every layer only ever reads values from the end of the previous full step, never a value updated earlier in the same step.</p>
 <p>A GaussSeidelPCNetwork class is required to actually orchestrate the three sweeps above in the correct order across all layers. Calling these methods directly, out of order, or on a single layer in isolation will not reproduce the intended dynamics.</p>
-<p>mu stays in its clean, activated form at all times (the layer above's ComputeError() reads it later in the same timestep); neither UpdateState() nor UpdateWeights() ever writes to mu.</p>
-<p>mu = phi(W@z+b): activation applied to the linear transform's result, not to z beforehand.</p>
+<p>IMPORTANT BUFFER-LIFETIME NOTE (the same class of bug mu-caching hit elsewhere): mu must not be mutated in place into its own derivative the way SimplePCLayer's UpdateState() does. It needs to stay in its clean, activated form, since the layer above's ComputeError() reads it later in this same timestep. Neither UpdateState() nor UpdateWeights() ever writes to mu; they derive the needed f'(preact) into the dedicated feedbackError scratch instead, never into mu itself.</p>
+<p>mu = phi(W@z+b): activation applied to the linear transform's result (preact), not to z beforehand &ndash; preact is snapshotted in ComputePrediction() before Activation() overwrites mu in place, and held over across timesteps exactly like mu/e_above are (UpdateState() reads the previous timestep's preact, not yet fresh for this one).</p>
 <p>Does not implement mu-caching or activateBeforeTransform.</p>
 <dl class="section version"><dt>Version</dt><dd>2.0 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2026-09-27 </dd></dl>

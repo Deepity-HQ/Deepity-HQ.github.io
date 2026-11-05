@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('ModelIO_8h.htm
 </div><!--header-->
 <div class="contents">
 
-<p>Saves/loads a network's compiled weight arena to/from disk, as a JSON header (per-layer shapes/offsets/dtypes) plus a raw binary data blob. Templated on NetworkType, so it works across every PC network variant that exposes GetLayers(). The element type backing each tensor is derived from each tensor's own <span class="tt">.data</span> pointer (via DTypeTag&lt;T&gt;), not assumed to be <span class="tt">float</span>. Load() checks the file's dtype against what the calling network's own tensors expect and throws std::runtime_error on a mismatch.  
+<p>Saves/loads a network's compiled weight arena to/from disk, as a JSON header (per-layer shapes/offsets/dtypes) plus a raw binary data blob. Templated on NetworkType the same as before (works across every PC network variant that exposes GetLayers()), but the element type backing each tensor is no longer assumed to be <span class="tt">float</span>: Save() derives it from each tensor's own <span class="tt">.data</span> pointer (via DTypeTag&lt;T&gt;), so a FullPCNetworkT&lt;double, ...&gt; writes real "F64" tensors at their real 8-byte stride, not truncated through float. Load() checks that dtype against what the CALLING network's own tensors expect and throws std::runtime_error on a mismatch &ndash; strictly new behavior: the previous version never checked "dtype" on read at all.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;cstdint&gt;</code><br />
 <code>#include &lt;<a class="el" href="DTypeTag_8h_source.html">deepity/utils/DTypeTag.h</a>&gt;</code><br />
@@ -143,6 +143,7 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:Deep" id="r_Deep"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep.html">Deep</a></td></tr>
+<tr class="memdesc:namespaceDeep"><td class="mdescLeft">&#160;</td><td class="mdescRight">This file exists to provide both <a class="el" href="Tensor_8h.html" title="A device-aware, RAII-managed buffer. Device is fixed at construction, there is no support for moving ...">Tensor.h</a> and <a class="el" href="IComputeBackend_8h.html">IComputeBackend.h</a> with device types without introducing circular dependencies. <br /></td></tr>
 <tr class="memitem:Deep_3A_3Adetail" id="r_Deep_3A_3Adetail"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep_1_1detail.html">Deep::detail</a></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
@@ -153,7 +154,7 @@ Functions</h2></td></tr>
 <tr class="memitem:a7c5cf6bc95c11f74b44ee386a7bfbd87 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep_1_1detail.html#a7c5cf6bc95c11f74b44ee386a7bfbd87">Deep::detail::SyncToDeviceIfSupported</a> (LayerPtr &amp;layerPtr)</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Saves/loads a network's compiled weight arena to/from disk, as a JSON header (per-layer shapes/offsets/dtypes) plus a raw binary data blob. Templated on NetworkType, so it works across every PC network variant that exposes GetLayers(). The element type backing each tensor is derived from each tensor's own <span class="tt">.data</span> pointer (via DTypeTag&lt;T&gt;), not assumed to be <span class="tt">float</span>. Load() checks the file's dtype against what the calling network's own tensors expect and throws std::runtime_error on a mismatch. </p>
+<div class="textblock"><p>Saves/loads a network's compiled weight arena to/from disk, as a JSON header (per-layer shapes/offsets/dtypes) plus a raw binary data blob. Templated on NetworkType the same as before (works across every PC network variant that exposes GetLayers()), but the element type backing each tensor is no longer assumed to be <span class="tt">float</span>: Save() derives it from each tensor's own <span class="tt">.data</span> pointer (via DTypeTag&lt;T&gt;), so a FullPCNetworkT&lt;double, ...&gt; writes real "F64" tensors at their real 8-byte stride, not truncated through float. Load() checks that dtype against what the CALLING network's own tensors expect and throws std::runtime_error on a mismatch &ndash; strictly new behavior: the previous version never checked "dtype" on read at all. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">

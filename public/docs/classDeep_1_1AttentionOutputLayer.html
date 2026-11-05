@@ -138,7 +138,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9330f9063283e8a86bc9678e44cdc526" id="r_a9330f9063283e8a86bc9678e44cdc526"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a9330f9063283e8a86bc9678e44cdc526">CalculateState</a> (bool needEnergy) noexcept</td></tr>
 <tr class="memdesc:a9330f9063283e8a86bc9678e44cdc526"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes e = z - mu (plain Gaussian), and optionally this layer's total energy.  <br /></td></tr>
 <tr class="memitem:ac4d8c06e0899c2664d7e750962fefd86" id="r_ac4d8c06e0899c2664d7e750962fefd86"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac4d8c06e0899c2664d7e750962fefd86">UpdateState</a> (float ir, const float *eAbove=nullptr) noexcept</td></tr>
-<tr class="memdesc:ac4d8c06e0899c2664d7e750962fefd86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Settles z one Euler step: z += ir * (eAbove - e) if there's a real layer above (eAbove non-null), else plain z += -ir * e.  <br /></td></tr>
+<tr class="memdesc:ac4d8c06e0899c2664d7e750962fefd86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Settles z one Euler step: z += ir * (eAbove - e) if there's a real layer above (eAbove non-null), else plain z += -ir * e &ndash; same shape as <a class="el" href="classDeep_1_1FullPCLayer.html#a363e00dd2667401aa1d908f4665bb32d" title="Updates the states after calculation.">FullPCLayer::UpdateState()</a>'s two branches. v1 has no layer above this one (it's the top of the attention block), so eAbove is always nullptr for now.  <br /></td></tr>
 <tr class="memitem:a2c678af056a64fb992fd112bc5c67a4b" id="r_a2c678af056a64fb992fd112bc5c67a4b"><td class="memItemLeft">float *&#160;</td><td class="memItemRight"><a class="el" href="#a2c678af056a64fb992fd112bc5c67a4b">GetBeliefs</a> () noexcept</td></tr>
 <tr class="memitem:a62edcfdc69a47c14546f281f6fa741a6" id="r_a62edcfdc69a47c14546f281f6fa741a6"><td class="memItemLeft">const float *&#160;</td><td class="memItemRight"><a class="el" href="#a62edcfdc69a47c14546f281f6fa741a6">GetErrors</a> () const noexcept</td></tr>
 <tr class="memitem:a0175f06e8d4c8dfb79bdd2d7e083f40a" id="r_a0175f06e8d4c8dfb79bdd2d7e083f40a"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a0175f06e8d4c8dfb79bdd2d7e083f40a">GetBatchSize</a> () const noexcept</td></tr>
@@ -181,7 +181,7 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramname">batchSize</td><td>Batch size. </td></tr>
     <tr><td class="paramname">seqLen</td><td>Sequence length. </td></tr>
     <tr><td class="paramname">headDim</td><td>Per-head feature dimension of V (and of this layer's own belief). </td></tr>
-    <tr><td class="paramname">backend</td><td>Compute backend to use; nullptr constructs an owned <a class="el" href="classDeep_1_1CPUBackend.html" title="CPU implementation of IComputeBackend: SIMD (via Activations.h) for elementwise ops,...">CPUBackend</a>. </td></tr>
+    <tr><td class="paramname">backend</td><td>Compute backend to use; nullptr constructs an owned <a class="el" href="classDeep_1_1CPUBackend.html" title="CPU implementation of IComputeBackend: SIMD (via Activations.h) for elementwise ops,...">CPUBackend</a> (CPU-only for v1, see <a class="el" href="AttentionScoresLayer_8h.html" title="Causal single-head self-attention weights as a free-standing PC node – NOT a FullPCLayer toggle,...">AttentionScoresLayer.h</a>). </td></tr>
   </table>
   </dd>
 </dl>
@@ -456,7 +456,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Settles z one Euler step: z += ir * (eAbove - e) if there's a real layer above (eAbove non-null), else plain z += -ir * e. </p>
+<p>Settles z one Euler step: z += ir * (eAbove - e) if there's a real layer above (eAbove non-null), else plain z += -ir * e &ndash; same shape as <a class="el" href="classDeep_1_1FullPCLayer.html#a363e00dd2667401aa1d908f4665bb32d" title="Updates the states after calculation.">FullPCLayer::UpdateState()</a>'s two branches. v1 has no layer above this one (it's the top of the attention block), so eAbove is always nullptr for now. </p>
 
 </div>
 </div>

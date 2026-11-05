@@ -142,15 +142,18 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('ConvPCLayer_8h
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:Deep_3A_3AConvPCLayer" id="r_Deep_3A_3AConvPCLayer"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classDeep_1_1ConvPCLayer.html">Deep::ConvPCLayer</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convolutional Predictive Coding layer (im2col-based), precision-weighted, routed through <a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4" title="Non-templated alias: IComputeBackend is IComputeBackendT&lt;float, float&gt;.">IComputeBackend</a> for GPU portability.  <a href="classDeep_1_1ConvPCLayer.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convolutional Predictive Coding layer (im2col-based), precision-weighted, routed through <a class="el" href="namespaceDeep.html#a24f44e5368f10174045be9658b125eb4" title="Non-templated alias preserving every existing caller&#39;s behavior exactly: IComputeBackend is IComputeB...">IComputeBackend</a> for GPU portability.  <a href="classDeep_1_1ConvPCLayer.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:Deep" id="r_Deep"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep.html">Deep</a></td></tr>
+<tr class="memdesc:namespaceDeep"><td class="mdescLeft">&#160;</td><td class="mdescRight">This file exists to provide both <a class="el" href="Tensor_8h.html" title="A device-aware, RAII-managed buffer. Device is fixed at construction, there is no support for moving ...">Tensor.h</a> and <a class="el" href="IComputeBackend_8h.html">IComputeBackend.h</a> with device types without introducing circular dependencies. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Convolutional counterpart to DiscriminativePCLayer, precision- weighted, routed through IComputeBackend for GPU portability. </p>
-<p>Layout convention: NCHW, row-major, contiguous per channel per batch item. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="ConvPCLayer_math.html" title="ConvPCLayer Mathematical Derivation">ConvPCLayer Mathematical Derivation</a> for the derivation. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>CalculateState/UpdateState/UpdateWeights math, including the Col2Im-based feedback term, is finite-difference verified on CPU (tConvPCLayerStateVerify.cpp, tConvDiagnose.cpp). The GPU path is structurally reviewed only, not compiled or run.</dd></dl>
+<p>Layout convention: NCHW, row-major, contiguous per channel per batch item.</p>
+<dl class="section note"><dt>Note</dt><dd>Single-instance layer; scratch/column buffers are bound into a MemoryArena rather than stored in a container. </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>2.0 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2026-09-27 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Jack Rose </dd></dl>

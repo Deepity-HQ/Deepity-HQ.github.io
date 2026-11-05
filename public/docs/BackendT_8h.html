@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('BackendT_8h.ht
 </div><!--header-->
 <div class="contents">
 
-<p>Templated counterpart to <a class="el" href="Backend_8h.html">Backend.h</a>'s CreateBackend(), for FullPCNetworkT&lt;T, AccumT&gt;.  
+<p>Templated counterpart to <a class="el" href="Backend_8h.html">Backend.h</a>'s CreateBackend(), for FullPCNetworkT&lt;T, AccumT&gt;. Header-only (not CreateBackend()'s declaration + CreateBackend.cpp's definition split): a function template's definition has to be visible at every instantiation site anyway, so splitting it into a .cpp would just mean explicitly instantiating it there for every T/AccumT pair FullPCNetworkT supports &ndash; no simpler than defining it here once.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="CPUBackendT_8h_source.html">deepity/backend/CPUBackendT.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="CUDABackendT_8h_source.html">deepity/backend/CUDABackendT.h</a>&gt;</code><br />
@@ -136,15 +136,16 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('BackendT_8h.ht
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:Deep" id="r_Deep"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep.html">Deep</a></td></tr>
+<tr class="memdesc:namespaceDeep"><td class="mdescLeft">&#160;</td><td class="mdescRight">This file exists to provide both <a class="el" href="Tensor_8h.html" title="A device-aware, RAII-managed buffer. Device is fixed at construction, there is no support for moving ...">Tensor.h</a> and <a class="el" href="IComputeBackend_8h.html">IComputeBackend.h</a> with device types without introducing circular dependencies. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a348ceadc3b61e6a1b937b72582291411" id="r_a348ceadc3b61e6a1b937b72582291411"><td class="memTemplParams" colspan="2">template&lt;typename T, typename AccumT = T&gt; </td></tr>
 <tr class="memitem:a348ceadc3b61e6a1b937b72582291411 template"><td class="memItemLeft">std::unique_ptr&lt; <a class="el" href="classDeep_1_1IComputeBackendT.html">IComputeBackendT</a>&lt; T, AccumT &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="namespaceDeep.html#a348ceadc3b61e6a1b937b72582291411">Deep::CreateBackendT</a> (<a class="el" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a> device)</td></tr>
-<tr class="memdesc:a348ceadc3b61e6a1b937b72582291411"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the appropriate backend for a given T/AccumT and device.  <br /></td></tr>
+<tr class="memdesc:a348ceadc3b61e6a1b937b72582291411"><td class="mdescLeft">&#160;</td><td class="mdescRight">Factory function to create the appropriate backend for a given T/AccumT. DEVICE_GPU only has a real backend for T=AccumT= float so far (issue #55; see <a class="el" href="CUDABackendT_8h.html" title="Templated counterpart to the plain CUDABackend, for issue #55 (CUDA backend for the templated FullPCN...">CUDABackendT.h</a>) &ndash; every other T/AccumT still throws, since no CUDA compute path (fp16 GEMM, sub-8-bit decode/encode kernels) exists for them yet, on this path or the non-templated one.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Templated counterpart to <a class="el" href="Backend_8h.html">Backend.h</a>'s CreateBackend(), for FullPCNetworkT&lt;T, AccumT&gt;. </p>
+<div class="textblock"><p>Templated counterpart to <a class="el" href="Backend_8h.html">Backend.h</a>'s CreateBackend(), for FullPCNetworkT&lt;T, AccumT&gt;. Header-only (not CreateBackend()'s declaration + CreateBackend.cpp's definition split): a function template's definition has to be visible at every instantiation site anyway, so splitting it into a .cpp would just mean explicitly instantiating it there for every T/AccumT pair FullPCNetworkT supports &ndash; no simpler than defining it here once. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">

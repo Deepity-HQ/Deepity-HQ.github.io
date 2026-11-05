@@ -122,40 +122,40 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('BackendT_8h_so
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceDeep.html">Deep</a></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> AccumT = T&gt;</div>
-<div class="foldopen" id="foldopen00022" data-start="{" data-end="}">
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="namespaceDeep.html#a348ceadc3b61e6a1b937b72582291411">   22</a></span>std::unique_ptr&lt;IComputeBackendT&lt;T, AccumT&gt;&gt; <a class="code hl_function" href="namespaceDeep.html#a348ceadc3b61e6a1b937b72582291411">CreateBackendT</a>(<a class="code hl_enumeration" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a> device)</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>{</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  <span class="keywordflow">if</span> (device == <a class="code hl_enumvalue" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3a2b51e711df2cded71f92128f2f8f34dd">DeviceType::DEVICE_CPU</a>)</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordflow">return</span> std::make_unique&lt;CPUBackendT&lt;T, AccumT&gt;&gt;();</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <span class="keywordflow">if</span> (device == <a class="code hl_enumvalue" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3a550156b6fa4de0f5ff623e2c3e19d1b2">DeviceType::DEVICE_GPU</a>)</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  {</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#ifdef DEEPITY_USE_CUDA</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (std::is_same_v&lt;T, float&gt; &amp;&amp; std::is_same_v&lt;AccumT, float&gt;)</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>      <span class="keywordflow">return</span> std::make_unique&lt;<a class="code hl_class" href="classDeep_1_1CUDABackendT.html">CUDABackendT&lt;float, float&gt;</a>&gt;();</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;CreateBackendT: CUDABackendT&lt;T, AccumT&gt; only supports T=AccumT=&quot;</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>                             <span class="stringliteral">&quot;float so far; no CUDA backend exists yet for this T/AccumT, or &quot;</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>                             <span class="stringliteral">&quot;CUDA support wasn&#39;t compiled into this build.&quot;</span>);</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  }</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;Unknown DeviceType requested from CreateBackendT.&quot;</span>);</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>}</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceDeep.html">Deep</a></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>{</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> AccumT = T&gt;</div>
+<div class="foldopen" id="foldopen00028" data-start="{" data-end="}">
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="namespaceDeep.html#a348ceadc3b61e6a1b937b72582291411">   28</a></span>std::unique_ptr&lt;IComputeBackendT&lt;T, AccumT&gt;&gt; <a class="code hl_function" href="namespaceDeep.html#a348ceadc3b61e6a1b937b72582291411">CreateBackendT</a>(<a class="code hl_enumeration" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">DeviceType</a> device)</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>{</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <span class="keywordflow">if</span> (device == <a class="code hl_enumvalue" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3a2b51e711df2cded71f92128f2f8f34dd">DeviceType::DEVICE_CPU</a>)</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordflow">return</span> std::make_unique&lt;CPUBackendT&lt;T, AccumT&gt;&gt;();</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <span class="keywordflow">if</span> (device == <a class="code hl_enumvalue" href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3a550156b6fa4de0f5ff623e2c3e19d1b2">DeviceType::DEVICE_GPU</a>)</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#ifdef DEEPITY_USE_CUDA</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (std::is_same_v&lt;T, float&gt; &amp;&amp; std::is_same_v&lt;AccumT, float&gt;)</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>      <span class="keywordflow">return</span> std::make_unique&lt;<a class="code hl_class" href="classDeep_1_1CUDABackendT.html">CUDABackendT&lt;float, float&gt;</a>&gt;();</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;CreateBackendT: CUDABackendT&lt;T, AccumT&gt; only supports T=AccumT=&quot;</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>                             <span class="stringliteral">&quot;float so far (issue #55); no CUDA backend exists yet for this &quot;</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>                             <span class="stringliteral">&quot;T/AccumT, or CUDA support wasn&#39;t compiled into this build.&quot;</span>);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  }</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;Unknown DeviceType requested from CreateBackendT.&quot;</span>);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>}</div>
 </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>} <span class="comment">// namespace Deep</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>} <span class="comment">// namespace Deep</span></div>
 <div class="ttc" id="aCPUBackendT_8h_html"><div class="ttname"><a href="CPUBackendT_8h.html">CPUBackendT.h</a></div></div>
-<div class="ttc" id="aCUDABackendT_8h_html"><div class="ttname"><a href="CUDABackendT_8h.html">CUDABackendT.h</a></div><div class="ttdoc">Templated counterpart to CUDABackend, implementing IComputeBackendT&lt;T, AccumT&gt; on CUDA.</div></div>
+<div class="ttc" id="aCUDABackendT_8h_html"><div class="ttname"><a href="CUDABackendT_8h.html">CUDABackendT.h</a></div><div class="ttdoc">Templated counterpart to the plain CUDABackend, for issue #55 (CUDA backend for the templated FullPCN...</div></div>
 <div class="ttc" id="aIComputeBackend_8h_html"><div class="ttname"><a href="IComputeBackend_8h.html">IComputeBackend.h</a></div></div>
-<div class="ttc" id="aclassDeep_1_1CUDABackendT_html"><div class="ttname"><a href="classDeep_1_1CUDABackendT.html">Deep::CUDABackendT</a></div><div class="ttdef"><b>Definition</b> CUDABackendT.h:17</div></div>
-<div class="ttc" id="anamespaceDeep_html"><div class="ttname"><a href="namespaceDeep.html">Deep</a></div><div class="ttdef"><b>Definition</b> Backend.cpp:10</div></div>
-<div class="ttc" id="anamespaceDeep_html_a348ceadc3b61e6a1b937b72582291411"><div class="ttname"><a href="namespaceDeep.html#a348ceadc3b61e6a1b937b72582291411">Deep::CreateBackendT</a></div><div class="ttdeci">std::unique_ptr&lt; IComputeBackendT&lt; T, AccumT &gt; &gt; CreateBackendT(DeviceType device)</div><div class="ttdoc">Creates the appropriate backend for a given T/AccumT and device.</div><div class="ttdef"><b>Definition</b> BackendT.h:22</div></div>
-<div class="ttc" id="anamespaceDeep_html_a79fb20681fc8065313ded67ba70f02f3"><div class="ttname"><a href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">Deep::DeviceType</a></div><div class="ttdeci">DeviceType</div><div class="ttdoc">Which physical device a Tensor/IComputeBackend pair runs on.</div><div class="ttdef"><b>Definition</b> DeviceType.h:7</div></div>
-<div class="ttc" id="anamespaceDeep_html_a79fb20681fc8065313ded67ba70f02f3a2b51e711df2cded71f92128f2f8f34dd"><div class="ttname"><a href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3a2b51e711df2cded71f92128f2f8f34dd">Deep::DeviceType::DEVICE_CPU</a></div><div class="ttdeci">@ DEVICE_CPU</div><div class="ttdef"><b>Definition</b> DeviceType.h:8</div></div>
-<div class="ttc" id="anamespaceDeep_html_a79fb20681fc8065313ded67ba70f02f3a550156b6fa4de0f5ff623e2c3e19d1b2"><div class="ttname"><a href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3a550156b6fa4de0f5ff623e2c3e19d1b2">Deep::DeviceType::DEVICE_GPU</a></div><div class="ttdeci">@ DEVICE_GPU</div><div class="ttdef"><b>Definition</b> DeviceType.h:9</div></div>
+<div class="ttc" id="aclassDeep_1_1CUDABackendT_html"><div class="ttname"><a href="classDeep_1_1CUDABackendT.html">Deep::CUDABackendT</a></div><div class="ttdef"><b>Definition</b> CUDABackendT.h:30</div></div>
+<div class="ttc" id="anamespaceDeep_html"><div class="ttname"><a href="namespaceDeep.html">Deep</a></div><div class="ttdoc">This file exists to provide both Tensor.h and IComputeBackend.h with device types without introducing...</div><div class="ttdef"><b>Definition</b> Backend.cpp:10</div></div>
+<div class="ttc" id="anamespaceDeep_html_a348ceadc3b61e6a1b937b72582291411"><div class="ttname"><a href="namespaceDeep.html#a348ceadc3b61e6a1b937b72582291411">Deep::CreateBackendT</a></div><div class="ttdeci">std::unique_ptr&lt; IComputeBackendT&lt; T, AccumT &gt; &gt; CreateBackendT(DeviceType device)</div><div class="ttdoc">Factory function to create the appropriate backend for a given T/AccumT. DEVICE_GPU only has a real b...</div><div class="ttdef"><b>Definition</b> BackendT.h:28</div></div>
+<div class="ttc" id="anamespaceDeep_html_a79fb20681fc8065313ded67ba70f02f3"><div class="ttname"><a href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3">Deep::DeviceType</a></div><div class="ttdeci">DeviceType</div><div class="ttdoc">Which physical device a Tensor/IComputeBackend pair runs on.</div><div class="ttdef"><b>Definition</b> DeviceType.h:9</div></div>
+<div class="ttc" id="anamespaceDeep_html_a79fb20681fc8065313ded67ba70f02f3a2b51e711df2cded71f92128f2f8f34dd"><div class="ttname"><a href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3a2b51e711df2cded71f92128f2f8f34dd">Deep::DeviceType::DEVICE_CPU</a></div><div class="ttdeci">@ DEVICE_CPU</div><div class="ttdef"><b>Definition</b> DeviceType.h:10</div></div>
+<div class="ttc" id="anamespaceDeep_html_a79fb20681fc8065313ded67ba70f02f3a550156b6fa4de0f5ff623e2c3e19d1b2"><div class="ttname"><a href="namespaceDeep.html#a79fb20681fc8065313ded67ba70f02f3a550156b6fa4de0f5ff623e2c3e19d1b2">Deep::DeviceType::DEVICE_GPU</a></div><div class="ttdeci">@ DEVICE_GPU</div><div class="ttdef"><b>Definition</b> DeviceType.h:11</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->
