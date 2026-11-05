@@ -1,7 +1,13 @@
 var searchData=
 [
-  ['tensor_0',['Tensor',['../classDeep_1_1Tensor.html',1,'Deep']]],
-  ['tensordescriptor_1',['TensorDescriptor',['../structDeep_1_1TensorDescriptor.html',1,'Deep']]],
-  ['tensordescriptort_2',['TensorDescriptorT',['../structDeep_1_1TensorDescriptorT.html',1,'Deep']]],
-  ['timer_3',['Timer',['../classTimer.html',1,'']]]
+  ['scopedtimer_0',['ScopedTimer',['../classDeep_1_1ScopedTimer.html',1,'Deep']]],
+  ['simpleconvpclayer_1',['SimpleConvPCLayer',['../classDeep_1_1SimpleConvPCLayer.html',1,'Deep']]],
+  ['simpleconvpclayert_2',['SimpleConvPCLayerT',['../classDeep_1_1SimpleConvPCLayerT.html',1,'Deep']]],
+  ['simpleconvpcnetwork_3',['SimpleConvPCNetwork',['../classDeep_1_1SimpleConvPCNetwork.html',1,'Deep']]],
+  ['simpleconvpcnetworkt_4',['SimpleConvPCNetworkT',['../classDeep_1_1SimpleConvPCNetworkT.html',1,'Deep']]],
+  ['simplepclayer_5',['SimplePCLayer',['../classDeep_1_1SimplePCLayer.html',1,'Deep']]],
+  ['simplepclayert_6',['SimplePCLayerT',['../classDeep_1_1SimplePCLayerT.html',1,'Deep']]],
+  ['simplepcnetwork_7',['SimplePCNetwork',['../classDeep_1_1SimplePCNetwork.html',1,'Deep']]],
+  ['simplepcnetworkt_8',['SimplePCNetworkT',['../classDeep_1_1SimplePCNetworkT.html',1,'Deep']]],
+  ['streamalignedbatcher_9',['StreamAlignedBatcher',['../classDeep_1_1StreamAlignedBatcher.html',1,'Deep']]]
 ];

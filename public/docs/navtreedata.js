@@ -38,12 +38,7 @@ var NAVTREE =
     [ "Performance", "index.html#performance", null ],
     [ "Roadmap", "index.html#roadmap", null ],
     [ "Elsewhere", "index.html#elsewhere", null ],
-    [ "ConvPCLayer Mathematical Derivation", "ConvPCLayer_math.html", [
-      [ "Design Notes", "ConvPCLayer_math.html#design_notes", [
-        [ "DiscriminativePCLayer (dense)", "ConvPCLayer_math.html#dense_formulas", null ],
-        [ "ConvPCLayer (conv)", "ConvPCLayer_math.html#conv_formulas", null ]
-      ] ]
-    ] ],
+    [ "ConvPCLayer Mathematical Derivation", "ConvPCLayer_math.html", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -80,20 +75,26 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "ActivationDispatch_8h.html",
-"classDeep_1_1CPUBackend.html#ab90ddf40b36884ec112f74a890bac958",
-"classDeep_1_1CUDABackend.html#a935e793471bee964d147d59639bd3df3",
-"classDeep_1_1DirectKPPCLayer.html#a195802202f4f828bdc9364df7783c300",
-"classDeep_1_1DiscriminativePCLayer.html#a5a3a3db06625ed80f52a8239d8779d09",
-"classDeep_1_1FullConvPCLayer.html#a5feffec5218d67d6e65382387b1d2e55",
-"classDeep_1_1FullConvPCNetwork.html#a72adcde0fef6d2171b8db739f69d7b6d",
-"classDeep_1_1FullPCLayer.html#ae68ac0381c77bc37af7c9e682bcc8aa3",
-"classDeep_1_1FullPCNetwork.html#a09657f89a295839c4a6e160d30104e08",
-"classDeep_1_1GaussSeidelPCNetwork.html#aba28860eab6b2339e7e31aaef5e8a718",
-"classDeep_1_1SimpleConvPCLayer.html#a760bbc0e738fb068d8f5f6238a839d13",
-"classDeep_1_1StreamAlignedBatcher.html#aa14e92ec71dec9635bbdbef9faebb06b",
-"namespaceDeep.html#aabc8c41cc216d6a993635ca02f61dde1"
+"classDeep_1_1CPUBackend.html#a25d526e0867d536d413bc340f16241c7",
+"classDeep_1_1CPUBackendT.html#afac55a550f0454696e482667a8ac10a3",
+"classDeep_1_1ConvPCLayer.html#afee30e07ebd335ccb46344fe74ec4f09",
+"classDeep_1_1DirectKPPCLayer.html#a2a36933a1dda7672df0ba5212a4a79a8",
+"classDeep_1_1DirectKPPCLayerT.html#a88883cae6d1179f9f75b0000df2f7e30",
+"classDeep_1_1DiscriminativePCLayer.html#ae2c3689fdc9ad5e24a881d668fecf4db",
+"classDeep_1_1FullConvPCLayer.html#a7abc698e59d5a75ddde5baa4cbc6afe8",
+"classDeep_1_1FullConvPCLayerT.html#a3939ffc7f3556009b6ec7b5c4351b9b5",
+"classDeep_1_1FullConvPCNetwork.html",
+"classDeep_1_1FullPCLayer.html#a69bf2bf0bade00a00bdda253fa52e4ea",
+"classDeep_1_1FullPCLayerT.html#a9a9ab41cd596ce2968ef6a73e6ff4d2a",
+"classDeep_1_1GaussSeidelPCLayer.html#a00a67e3faab588cb2f2f4e7aeb2e7194",
+"classDeep_1_1GaussSeidelPCNetwork.html#a795672cbea690c6a4039b0f224010d8d",
+"classDeep_1_1MemoryArenaT.html#a97a5e9c5fa05a0bad656f4a56c57e78b",
+"classDeep_1_1SimpleConvPCNetwork.html#ad8051973a1f7dd181fdcf76138e4d881",
+"classDeep_1_1SimplePCLayerT.html#acca3718c34bc6f948bf9c85abb234409",
+"functions_i.html",
+"structDeep_1_1DTypeTag_3_01Posit4__2Value_01_4.html"
 ];
 
-var SYNCONMSG = 'click to disable panel synchronization';
-var SYNCOFFMSG = 'click to enable panel synchronization';
-var LISTOFALLMEMBERS = 'List of all members';
+const SYNCONMSG = 'click to disable panel synchronization';
+const SYNCOFFMSG = 'click to enable panel synchronization';
+const LISTOFALLMEMBERS = 'List of all members';

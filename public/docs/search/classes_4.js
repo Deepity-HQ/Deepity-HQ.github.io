@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['icomputebackendt_0',['IComputeBackendT',['../classDeep_1_1IComputeBackendT.html',1,'Deep']]],
-  ['icomputebackendt_3c_20float_2c_20float_20_3e_1',['IComputeBackendT&lt; float, float &gt;',['../classDeep_1_1IComputeBackendT.html',1,'Deep']]],
-  ['icomputebackendt_3c_20t_2c_20t_20_3e_2',['IComputeBackendT&lt; T, T &gt;',['../classDeep_1_1IComputeBackendT.html',1,'Deep']]]
+  ['gaussseidelpclayer_0',['GaussSeidelPCLayer',['../classDeep_1_1GaussSeidelPCLayer.html',1,'Deep']]],
+  ['gaussseidelpclayert_1',['GaussSeidelPCLayerT',['../classDeep_1_1GaussSeidelPCLayerT.html',1,'Deep']]],
+  ['gaussseidelpcnetwork_2',['GaussSeidelPCNetwork',['../classDeep_1_1GaussSeidelPCNetwork.html',1,'Deep']]],
+  ['gaussseidelpcnetworkt_3',['GaussSeidelPCNetworkT',['../classDeep_1_1GaussSeidelPCNetworkT.html',1,'Deep']]]
 ];

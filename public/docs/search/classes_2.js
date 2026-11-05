@@ -1,10 +1,19 @@
 var searchData=
 [
-  ['fp4e2m1value_0',['Fp4E2M1Value',['../structDeep_1_1Fp4E2M1Value.html',1,'Deep']]],
-  ['fullconvpclayer_1',['FullConvPCLayer',['../classDeep_1_1FullConvPCLayer.html',1,'Deep']]],
-  ['fullconvpcnetwork_2',['FullConvPCNetwork',['../classDeep_1_1FullConvPCNetwork.html',1,'Deep']]],
-  ['fullpclayer_3',['FullPCLayer',['../classDeep_1_1FullPCLayer.html',1,'Deep']]],
-  ['fullpclayert_4',['FullPCLayerT',['../classDeep_1_1FullPCLayerT.html',1,'Deep']]],
-  ['fullpcnetwork_5',['FullPCNetwork',['../classDeep_1_1FullPCNetwork.html',1,'Deep']]],
-  ['fullpcnetworkt_6',['FullPCNetworkT',['../classDeep_1_1FullPCNetworkT.html',1,'Deep']]]
+  ['devicememoryarenat_0',['DeviceMemoryArenaT',['../classDeep_1_1DeviceMemoryArenaT.html',1,'Deep']]],
+  ['devicememoryarenat_3c_20float_2c_20float_20_3e_1',['DeviceMemoryArenaT&lt; float, float &gt;',['../classDeep_1_1DeviceMemoryArenaT.html',1,'Deep']]],
+  ['directkppclayer_2',['DirectKPPCLayer',['../classDeep_1_1DirectKPPCLayer.html',1,'Deep']]],
+  ['directkppclayert_3',['DirectKPPCLayerT',['../classDeep_1_1DirectKPPCLayerT.html',1,'Deep']]],
+  ['directkppcnetwork_4',['DirectKPPCNetwork',['../classDeep_1_1DirectKPPCNetwork.html',1,'Deep']]],
+  ['directkppcnetworkt_5',['DirectKPPCNetworkT',['../classDeep_1_1DirectKPPCNetworkT.html',1,'Deep']]],
+  ['discriminativepclayer_6',['DiscriminativePCLayer',['../classDeep_1_1DiscriminativePCLayer.html',1,'Deep']]],
+  ['discriminativepcnetwork_7',['DiscriminativePCNetwork',['../classDeep_1_1DiscriminativePCNetwork.html',1,'Deep']]],
+  ['dtypetag_8',['DTypeTag',['../structDeep_1_1DTypeTag.html',1,'Deep']]],
+  ['dtypetag_3c_20double_20_3e_9',['DTypeTag&lt; double &gt;',['../structDeep_1_1DTypeTag_3_01double_01_4.html',1,'Deep']]],
+  ['dtypetag_3c_20float_20_3e_10',['DTypeTag&lt; float &gt;',['../structDeep_1_1DTypeTag_3_01float_01_4.html',1,'Deep']]],
+  ['dtypetag_3c_20fp4e2m1value_20_3e_11',['DTypeTag&lt; Fp4E2M1Value &gt;',['../structDeep_1_1DTypeTag_3_01Fp4E2M1Value_01_4.html',1,'Deep']]],
+  ['dtypetag_3c_20hwy_3a_3afloat16_5ft_20_3e_12',['DTypeTag&lt; hwy::float16_t &gt;',['../structDeep_1_1DTypeTag_3_01hwy_1_1float16__t_01_4.html',1,'Deep']]],
+  ['dtypetag_3c_20posit4_5f0value_20_3e_13',['DTypeTag&lt; Posit4_0Value &gt;',['../structDeep_1_1DTypeTag_3_01Posit4__0Value_01_4.html',1,'Deep']]],
+  ['dtypetag_3c_20posit4_5f1value_20_3e_14',['DTypeTag&lt; Posit4_1Value &gt;',['../structDeep_1_1DTypeTag_3_01Posit4__1Value_01_4.html',1,'Deep']]],
+  ['dtypetag_3c_20posit4_5f2value_20_3e_15',['DTypeTag&lt; Posit4_2Value &gt;',['../structDeep_1_1DTypeTag_3_01Posit4__2Value_01_4.html',1,'Deep']]]
 ];
