@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['scopedtimer_0',['ScopedTimer',['../classDeep_1_1ScopedTimer.html',1,'Deep']]],
-  ['simpleconvpclayer_1',['SimpleConvPCLayer',['../classDeep_1_1SimpleConvPCLayer.html',1,'Deep']]],
-  ['simpleconvpcnetwork_2',['SimpleConvPCNetwork',['../classDeep_1_1SimpleConvPCNetwork.html',1,'Deep']]],
-  ['simplepclayer_3',['SimplePCLayer',['../classDeep_1_1SimplePCLayer.html',1,'Deep']]],
-  ['simplepcnetwork_4',['SimplePCNetwork',['../classDeep_1_1SimplePCNetwork.html',1,'Deep']]],
-  ['streamalignedbatcher_5',['StreamAlignedBatcher',['../classDeep_1_1StreamAlignedBatcher.html',1,'Deep']]]
+  ['posit4_5f0value_0',['Posit4_0Value',['../structDeep_1_1Posit4__0Value.html',1,'Deep']]],
+  ['posit4_5f1value_1',['Posit4_1Value',['../structDeep_1_1Posit4__1Value.html',1,'Deep']]],
+  ['posit4_5f2value_2',['Posit4_2Value',['../structDeep_1_1Posit4__2Value.html',1,'Deep']]],
+  ['profileaccumulator_3',['ProfileAccumulator',['../structDeep_1_1ProfileAccumulator.html',1,'Deep']]],
+  ['profileentry_4',['ProfileEntry',['../structDeep_1_1ProfileEntry.html',1,'Deep']]]
 ];

@@ -1,8 +1,15 @@
 var hierarchy =
 [
+    [ "Deep::AttentionOutputLayer", "classDeep_1_1AttentionOutputLayer.html", null ],
+    [ "Deep::AttentionScoresLayer", "classDeep_1_1AttentionScoresLayer.html", null ],
+    [ "Deep::ConvPCLayerT&lt; T, AccumT &gt;", "classDeep_1_1ConvPCLayerT.html", null ],
     [ "Deep::ConvPCNetwork", "classDeep_1_1ConvPCNetwork.html", null ],
+    [ "Deep::ConvPCNetworkT&lt; T, AccumT &gt;", "classDeep_1_1ConvPCNetworkT.html", null ],
+    [ "Deep::CUDABackendT&lt; T, AccumT &gt;", "classDeep_1_1CUDABackendT.html", null ],
     [ "Deep::DeviceMemoryArenaT&lt; T, AccumT &gt;", "classDeep_1_1DeviceMemoryArenaT.html", null ],
+    [ "Deep::DirectKPPCLayerT&lt; T, AccumT &gt;", "classDeep_1_1DirectKPPCLayerT.html", null ],
     [ "Deep::DirectKPPCNetwork", "classDeep_1_1DirectKPPCNetwork.html", null ],
+    [ "Deep::DirectKPPCNetworkT&lt; T, AccumT &gt;", "classDeep_1_1DirectKPPCNetworkT.html", null ],
     [ "Deep::DiscriminativePCNetwork", "classDeep_1_1DiscriminativePCNetwork.html", null ],
     [ "Deep::DTypeTag&lt; T &gt;", "structDeep_1_1DTypeTag.html", null ],
     [ "Deep::DTypeTag&lt; double &gt;", "structDeep_1_1DTypeTag_3_01double_01_4.html", null ],
@@ -13,15 +20,21 @@ var hierarchy =
     [ "Deep::DTypeTag&lt; Posit4_1Value &gt;", "structDeep_1_1DTypeTag_3_01Posit4__1Value_01_4.html", null ],
     [ "Deep::DTypeTag&lt; Posit4_2Value &gt;", "structDeep_1_1DTypeTag_3_01Posit4__2Value_01_4.html", null ],
     [ "Deep::Fp4E2M1Value", "structDeep_1_1Fp4E2M1Value.html", null ],
+    [ "Deep::FullConvPCLayerT&lt; T, AccumT &gt;", "classDeep_1_1FullConvPCLayerT.html", null ],
     [ "Deep::FullConvPCNetwork", "classDeep_1_1FullConvPCNetwork.html", null ],
+    [ "Deep::FullConvPCNetworkT&lt; T, AccumT &gt;", "classDeep_1_1FullConvPCNetworkT.html", null ],
     [ "Deep::FullPCLayerT&lt; T, AccumT &gt;", "classDeep_1_1FullPCLayerT.html", null ],
     [ "Deep::FullPCNetwork", "classDeep_1_1FullPCNetwork.html", null ],
     [ "Deep::FullPCNetworkT&lt; T, AccumT &gt;", "classDeep_1_1FullPCNetworkT.html", null ],
+    [ "Deep::GaussSeidelPCLayerT&lt; T, AccumT &gt;", "classDeep_1_1GaussSeidelPCLayerT.html", null ],
     [ "Deep::GaussSeidelPCNetwork", "classDeep_1_1GaussSeidelPCNetwork.html", null ],
+    [ "Deep::GaussSeidelPCNetworkT&lt; T, AccumT &gt;", "classDeep_1_1GaussSeidelPCNetworkT.html", null ],
     [ "Deep::IComputeBackendT&lt; T, AccumT &gt;", "classDeep_1_1IComputeBackendT.html", null ],
     [ "Deep::IComputeBackendT&lt; float, float &gt;", "classDeep_1_1IComputeBackendT.html", [
       [ "Deep::CPUBackend", "classDeep_1_1CPUBackend.html", null ],
-      [ "Deep::CUDABackend", "classDeep_1_1CUDABackend.html", null ]
+      [ "Deep::CUDABackend", "classDeep_1_1CUDABackend.html", [
+        [ "Deep::CUDABackendT< float, float >", "classDeep_1_1CUDABackendT_3_01float_00_01float_01_4.html", null ]
+      ] ]
     ] ],
     [ "Deep::IComputeBackendT&lt; T, T &gt;", "classDeep_1_1IComputeBackendT.html", [
       [ "Deep::CPUBackendT< T, AccumT >", "classDeep_1_1CPUBackendT.html", null ]
@@ -44,8 +57,12 @@ var hierarchy =
     [ "Deep::ProfileAccumulator", "structDeep_1_1ProfileAccumulator.html", null ],
     [ "Deep::ProfileEntry", "structDeep_1_1ProfileEntry.html", null ],
     [ "Deep::ScopedTimer", "classDeep_1_1ScopedTimer.html", null ],
+    [ "Deep::SimpleConvPCLayerT&lt; T, AccumT &gt;", "classDeep_1_1SimpleConvPCLayerT.html", null ],
     [ "Deep::SimpleConvPCNetwork", "classDeep_1_1SimpleConvPCNetwork.html", null ],
+    [ "Deep::SimpleConvPCNetworkT&lt; T, AccumT &gt;", "classDeep_1_1SimpleConvPCNetworkT.html", null ],
+    [ "Deep::SimplePCLayerT&lt; T, AccumT &gt;", "classDeep_1_1SimplePCLayerT.html", null ],
     [ "Deep::SimplePCNetwork", "classDeep_1_1SimplePCNetwork.html", null ],
+    [ "Deep::SimplePCNetworkT&lt; T, AccumT &gt;", "classDeep_1_1SimplePCNetworkT.html", null ],
     [ "Deep::StreamAlignedBatcher", "classDeep_1_1StreamAlignedBatcher.html", null ],
     [ "Deep::Tensor", "classDeep_1_1Tensor.html", null ],
     [ "Deep::TensorDescriptor", "structDeep_1_1TensorDescriptor.html", null ],

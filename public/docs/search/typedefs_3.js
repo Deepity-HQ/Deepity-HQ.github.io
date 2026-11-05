@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['elementtype_0',['ElementType',['../classDeep_1_1FullPCNetworkT.html#a23a375f55ecf1ccb7639d591f9b9945b',1,'Deep::FullPCNetworkT']]]
+  ['elementtype_0',['ElementType',['../classDeep_1_1ConvPCNetworkT.html#a7c8e433a8f353aa52e825d692ac6eeca',1,'Deep::ConvPCNetworkT::ElementType'],['../classDeep_1_1DirectKPPCNetworkT.html#a0f6ad81cc8b6e73ff0cf2ab5148048bf',1,'Deep::DirectKPPCNetworkT::ElementType'],['../classDeep_1_1FullConvPCNetworkT.html#a1f9a66abbb81e785d63c2a4d0e0e3d69',1,'Deep::FullConvPCNetworkT::ElementType'],['../classDeep_1_1FullPCNetworkT.html#a23a375f55ecf1ccb7639d591f9b9945b',1,'Deep::FullPCNetworkT::ElementType'],['../classDeep_1_1GaussSeidelPCNetworkT.html#ab4a2c742938da4d36d9a51ef5813b639',1,'Deep::GaussSeidelPCNetworkT::ElementType'],['../classDeep_1_1SimpleConvPCNetworkT.html#ad804cc5bab35739a7243f4fb08a6ae25',1,'Deep::SimpleConvPCNetworkT::ElementType'],['../classDeep_1_1SimplePCNetworkT.html#a458983e38180750bcc893a55860c40c0',1,'Deep::SimplePCNetworkT::ElementType']]]
 ];
