@@ -1,3 +1,3 @@
 # Deepity Official Website
 
-This is the official website for Deepity, [available here](https://deepity-hq.github.io/). It is deployed on gh-pages using React and Vite.
+This is the official website for Deepity, [available here](https://deepity.dev/). It is deployed on gh-pages and Cloudflare Pages, using React and Vite.
