@@ -1,12 +1,17 @@
+import { renderToStaticMarkup } from "react-dom/server";
+import { createElement } from "react";
+import { HiArrowLongRight } from "react-icons/hi2";
 import { useFrame, useLoader, useThree } from "@react-three/fiber";
 import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
-import { laptopSections, openSourceText } from "../../laptopSections.ts";
+import { laptopCta } from "../../laptopSections.ts";
+import { SCREEN_H, SCREEN_W, screenButtons } from "../../laptopScreen.ts";
 
 type LaptopProps = {
   scrollProgress: number;
+  linkRefs?: React.RefObject<(HTMLElement | null)[]>;
 };
 
 function drawRoundRect(
@@ -28,33 +33,6 @@ function drawRoundRect(
   ctx.lineTo(x, y + r);
   ctx.quadraticCurveTo(x, y, x + r, y);
   ctx.closePath();
-}
-
-function wrapText(
-  ctx: CanvasRenderingContext2D,
-  text: string,
-  x: number,
-  y: number,
-  maxWidth: number,
-  lineHeight: number,
-): number {
-  const words = text.split(" ");
-  let line = "";
-  let currentY = y;
-
-  for (let n = 0; n < words.length; n++) {
-    const testLine = line + words[n] + " ";
-    const metrics = ctx.measureText(testLine);
-    if (metrics.width > maxWidth && n > 0) {
-      ctx.fillText(line, x, currentY);
-      line = words[n] + " ";
-      currentY += lineHeight;
-    } else {
-      line = testLine;
-    }
-  }
-  ctx.fillText(line, x, currentY);
-  return currentY;
 }
 
 const UI_FONT =
@@ -85,6 +63,23 @@ function drawWallpaper(ctx: CanvasRenderingContext2D, W: number, H: number) {
   haze.addColorStop(1, "rgba(0, 0, 0, 0)");
   ctx.fillStyle = haze;
   ctx.fillRect(0, 0, W, H);
+}
+
+// The arrow outline comes from the react-icons glyph, so the canvas matches the site's icons
+let arrowPath: Path2D | null = null;
+
+function drawArrow(ctx: CanvasRenderingContext2D, x: number, y: number, color: string) {
+  if (!arrowPath) {
+    const svg = renderToStaticMarkup(createElement(HiArrowLongRight));
+    arrowPath = new Path2D(/ d="([^"]+)"/.exec(svg)?.[1] ?? "");
+  }
+  const size = 40;
+  ctx.save();
+  ctx.translate(x - size / 2, y - size / 2);
+  ctx.scale(size / 24, size / 24);
+  ctx.fillStyle = color;
+  ctx.fill(arrowPath, "evenodd");
+  ctx.restore();
 }
 
 function renderLearnLeanerScreen(canvas: HTMLCanvasElement) {
@@ -119,7 +114,7 @@ function renderLearnLeanerScreen(canvas: HTMLCanvasElement) {
 
   // Window chrome: one quiet bar with muted controls and a centered address pill
   ctx.fillStyle = "rgba(14, 14, 24, 0.96)";
-  ctx.fillRect(wx, wy, ww, 126);
+  ctx.fillRect(wx, wy, ww, 84);
   [0, 1, 2].forEach((i) => {
     ctx.fillStyle = "rgba(255,255,255,0.22)";
     ctx.beginPath();
@@ -137,107 +132,72 @@ function renderLearnLeanerScreen(canvas: HTMLCanvasElement) {
   ctx.textAlign = "center";
   ctx.fillStyle = "rgba(255,255,255,0.7)";
   ctx.font = `400 22px ${UI_FONT}`;
-  ctx.fillText("learnleaner.dev", pillX + pillW / 2, wy + 43);
+  ctx.fillText("deepity.dev", pillX + pillW / 2, wy + 43);
   ctx.textAlign = "left";
 
-  // Tab row: a single active tab with a violet underline
-  ctx.fillStyle = "rgba(255,255,255,0.88)";
-  ctx.font = `500 21px ${UI_FONT}`;
-  ctx.fillText("Learn Leaner", wx + 40, wy + 97);
-  fillRound(ctx, wx + 40, wy + 117, 150, 3, 1.5, "#8b7cff");
   ctx.fillStyle = "rgba(255,255,255,0.1)";
-  ctx.fillRect(wx, wy + 125, ww, 1);
+  ctx.fillRect(wx, wy + 83, ww, 1);
 
   // Page background
-  const py = wy + 127;
+  const py = wy + 84;
   const pageGlow = ctx.createRadialGradient(W / 2, py, 0, W / 2, py, 700);
   pageGlow.addColorStop(0, "#14102e");
   pageGlow.addColorStop(1, "#07070e");
   ctx.fillStyle = pageGlow;
   ctx.fillRect(wx, py, ww, wh);
 
-  const px = wx + 64;
-  const pw = ww - 128;
   ctx.textBaseline = "alphabetic";
 
-  // Eyebrow + heading
-  ctx.fillStyle = "#a99bff";
-  ctx.font = `600 20px ${UI_FONT}`;
-  ctx.fillText("UNDER THE HOOD", px, py + 62);
+  // Centered call to action
+  const cx = wx + ww / 2;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "alphabetic";
   ctx.fillStyle = "#ffffff";
-  ctx.font = `700 60px ${UI_FONT}`;
-  ctx.fillText("Learn Leaner", px, py + 130);
-
-
-  const gap = 24;
-  const cw = (pw - gap) / 2;
-  const ch = 284;
-  const top = py + 176;
-
-  laptopSections.forEach((sec, i) => {
-    const cx = px + (i % 2) * (cw + gap);
-    const cy = top + Math.floor(i / 2) * (ch + gap);
-    fillRound(ctx, cx, cy, cw, ch, 20, "rgba(255,255,255,0.035)");
-    drawRoundRect(ctx, cx, cy, cw, ch, 20);
-    const border = ctx.createLinearGradient(cx, cy, cx + cw, cy + ch);
-    border.addColorStop(0, "rgba(160, 145, 255, 0.35)");
-    border.addColorStop(0.5, "rgba(255,255,255,0.08)");
-    border.addColorStop(1, "rgba(255,255,255,0.05)");
-    ctx.strokeStyle = border;
-    ctx.lineWidth = 1.5;
-    ctx.stroke();
-
-    // accent marker
-    const accent = ctx.createLinearGradient(0, cy + 36, 0, cy + 74);
-    accent.addColorStop(0, "#b9aeff");
-    accent.addColorStop(1, "#6d5cff");
-    fillRound(ctx, cx + 32, cy + 36, 6, 38, 3, accent);
-
-    ctx.fillStyle = "#ffffff";
-    ctx.font = `650 36px ${UI_FONT}`;
-    ctx.fillText(sec.title, cx + 56, cy + 68);
-
-    ctx.fillStyle = "rgba(255,255,255,0.64)";
-    ctx.font = `400 28px ${UI_FONT}`;
-    if (sec.body) {
-      wrapText(ctx, sec.body, cx + 32, cy + 134, cw - 104, 41);
-    } else {
-      // Word-wrap mixed plain/link text so the link never runs past the card
-      const words: { text: string; link: boolean }[] = [];
-      openSourceText.before.split(" ").forEach((w) => {
-        if (w) words.push({ text: w, link: false });
-      });
-      openSourceText.link.split(" ").forEach((w) => {
-        words.push({ text: w, link: true });
-      });
-      words.push({ text: openSourceText.after, link: false });
-
-      const maxW = cw - 104;
-      const spaceW = ctx.measureText(" ").width;
-      let x = cx + 32;
-      let y = cy + 134;
-      words.forEach((word, wi) => {
-        const w = ctx.measureText(word.text).width;
-        const attach = word.text === openSourceText.after;
-        const lead = attach || x === cx + 32 ? 0 : spaceW;
-        if (!attach && x + lead + w > cx + 32 + maxW) {
-          x = cx + 32;
-          y += 41;
-        } else {
-          x += lead;
-        }
-        ctx.fillStyle = word.link ? "#b9aeff" : "rgba(255,255,255,0.64)";
-        ctx.fillText(word.text, x, y);
-        if (word.link) {
-          // underline spans the gap to the next word when it is also a link
-          const next = words[wi + 1];
-          const extend = next?.link && x + w + spaceW + ctx.measureText(next.text).width <= cx + 32 + maxW ? spaceW : 0;
-          ctx.fillRect(x, y + 5, w + extend, 2);
-        }
-        x += w;
-      });
-    }
+  ctx.font = `700 64px ${UI_FONT}`;
+  let y = py + 285;
+  laptopCta.title.forEach((line) => {
+    ctx.fillText(line, cx, y);
+    y += 78;
   });
+  ctx.fillStyle = "rgba(255,255,255,0.62)";
+  ctx.font = `400 27px ${UI_FONT}`;
+  y += 22;
+  laptopCta.body.forEach((line) => {
+    ctx.fillText(line, cx, y);
+    y += 40;
+  });
+
+  const by = y + 34;
+  const bh = 62;
+  const w1 = 230;
+  const w2 = 300;
+  const bx = cx - (w1 + w2 + 20) / 2;
+  screenButtons.length = 0;
+  screenButtons.push(
+    { href: "/tutorial", x: bx, y: by, w: w1, h: bh },
+    { href: "/early-access", x: bx + w1 + 20, y: by, w: w2, h: bh },
+  );
+  const grad = ctx.createLinearGradient(0, by, 0, by + bh);
+  grad.addColorStop(0, "#c9c0ff");
+  grad.addColorStop(1, "#9684f5");
+  fillRound(ctx, bx, by + 4, w1, bh, 12, "#4f3fa8");
+  fillRound(ctx, bx, by, w1, bh, 12, grad);
+  ctx.fillStyle = "#15102b";
+  ctx.font = `600 24px ${UI_FONT}`;
+  ctx.textBaseline = "middle";
+  ctx.fillText("Get started", bx + w1 / 2 - 22, by + bh / 2);
+  drawArrow(ctx, bx + w1 / 2 + 64, by + bh / 2, "#15102b");
+  const b2 = bx + w1 + 20;
+  fillRound(ctx, b2, by, w2, bh, 12, "rgba(255,255,255,0.05)");
+  drawRoundRect(ctx, b2, by, w2, bh, 12);
+  ctx.strokeStyle = "rgba(255,255,255,0.2)";
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+  ctx.fillStyle = "#ffffff";
+  ctx.fillText("Request early access", b2 + w2 / 2 - 24, by + bh / 2);
+  drawArrow(ctx, b2 + w2 - 36, by + bh / 2, "#a99bff");
+  ctx.textAlign = "left";
+  ctx.textBaseline = "alphabetic";
 
   ctx.restore();
 
@@ -301,15 +261,15 @@ function createStudioEnvironment(gl: THREE.WebGLRenderer): THREE.Texture {
 
 // The page's camera uses a 30deg lens (a product-shot telephoto) instead of 45deg,
 // so the camera sits further back to keep the same framing with less distortion.
-const LENS_DISTANCE = 1.55;
+const LENS_DISTANCE = 2.1;
 
 // On narrow (phone) screens the camera sits back far enough that the whole
 // laptop fits across the width (about 1 fits it, a little under crops the sides slightly; lower = closer and crops the
 // sides).
-const NARROW_SCREEN_ZOOM = 0.95;
+const NARROW_SCREEN_ZOOM = 0.7;
 
 // World units the camera aims above the laptop on desktop, which lowers it on screen
-const DESKTOP_DROP = 0.15;
+const DESKTOP_DROP = 0.5;
 
 // Anisotropic filtering keeps the keyboard and lid detail crisp at grazing angles
 function sharpenTextures(material: THREE.Material, anisotropy: number) {
@@ -322,7 +282,7 @@ function sharpenTextures(material: THREE.Material, anisotropy: number) {
   });
 }
 
-export default function Laptop({ scrollProgress }: LaptopProps) {
+export default function Laptop({ scrollProgress, linkRefs }: LaptopProps) {
   const { scene: loadedScene } = useLoader(GLTFLoader, "/props/laptop.glb");
   const { size, gl } = useThree();
 
@@ -627,6 +587,41 @@ export default function Laptop({ scrollProgress }: LaptopProps) {
     const desktopDrop = aspect >= 1.1 ? DESKTOP_DROP : 0;
     target.set(0, targetY + desktopDrop, targetZ);
     camera.lookAt(target);
+
+    const els = linkRefs?.current;
+    const display = model.getObjectByName("ScreenDisplayContent");
+    if (els && display) {
+      camera.updateMatrixWorld();
+      display.updateWorldMatrix(true, false);
+      const visible = openT > 0.97;
+      screenButtons.forEach((b, i) => {
+        const el = els[i];
+        if (!el) return;
+        if (!visible) {
+          el.style.display = "none";
+          return;
+        }
+        let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+        [[b.x, b.y], [b.x + b.w, b.y], [b.x, b.y + b.h], [b.x + b.w, b.y + b.h]].forEach(([px, py]) => {
+          const v = new THREE.Vector3(
+            (px / SCREEN_W - 0.5) * 0.302,
+            (0.5 - py / SCREEN_H) * 0.2,
+            0,
+          );
+          display.localToWorld(v);
+          v.project(camera);
+          const sx = (v.x * 0.5 + 0.5) * size.width;
+          const sy = (-v.y * 0.5 + 0.5) * size.height;
+          minX = Math.min(minX, sx); maxX = Math.max(maxX, sx);
+          minY = Math.min(minY, sy); maxY = Math.max(maxY, sy);
+        });
+        el.style.display = "block";
+        el.style.left = `${minX}px`;
+        el.style.top = `${minY}px`;
+        el.style.width = `${maxX - minX}px`;
+        el.style.height = `${maxY - minY}px`;
+      });
+    }
   });
 
   return (

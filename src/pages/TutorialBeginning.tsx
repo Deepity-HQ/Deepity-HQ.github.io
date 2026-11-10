@@ -1,4 +1,3 @@
-import { Link } from "react-router";
 import Reveal from "../Components/Reveal.tsx";
 import UtilButton from "../Components/UtilButton.tsx";
 import TutorialRail from "../Components/TutorialRail.tsx";
@@ -28,8 +27,9 @@ model.fit(x_train, y_train, epochs=10, steps=20)
 # Run inference steps for local energy minimization
 predictions = model.predict(x_test, steps=20)`;
 
-import { btnClass, btnSolidClass } from "../Components/ui.ts";
-import { ArrowLeft, ArrowRight } from "../Components/ArrowIcons.tsx";
+import { ArrowRight } from "../Components/ArrowIcons.tsx";
+import ButtonPrimary from "../Components/ButtonPrimary.tsx";
+import ButtonSecondary from "../Components/ButtonSecondary.tsx";
 
 export default function TutorialBeginning() {
   return (
@@ -42,8 +42,8 @@ export default function TutorialBeginning() {
         <TutorialRail current={1} />
 
         <div className="px-6 py-8 md:px-12 md:py-12">
-          <div className="Michroma mb-3 text-xs uppercase tracking-[0.06em] text-[#a99bff]">Tutorial 1</div>
-          <h1 className="Michroma text-2xl font-normal tracking-[-0.03em] md:text-4xl text-white">
+          <div className="font-display mb-3 text-xs uppercase tracking-[0.06em] text-[#a99bff]">Tutorial 1</div>
+          <h1 className="font-display text-2xl font-normal tracking-[-0.03em] md:text-4xl text-white">
             Understanding the Deepity Library
           </h1>
           <p className="mt-5 text-base md:text-lg leading-relaxed text-white/70 max-w-3xl">
@@ -57,9 +57,9 @@ export default function TutorialBeginning() {
 
         <div className="border-t border-white/20 my-8 mx-8" />
 
-        <div className="px-8 md:px-12 space-y-10 Jura text-lg text-white">
+        <div className="px-8 md:px-12 space-y-10 font-body text-lg text-white">
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               1. What Makes Deepity Special?
             </h2>
             <p className="mb-4">
@@ -84,7 +84,7 @@ export default function TutorialBeginning() {
                 alt="Feedforward neural networks visualized"
                 className="block w-full border border-white/20"
               />
-              <p className="mt-3 text-center text-sm text-white/70 Jura">
+              <p className="mt-3 text-center text-sm text-white/70 font-body">
                 <a
                   href="https://github.com/wjakob/nanobind"
                   target="_blank"
@@ -101,7 +101,7 @@ export default function TutorialBeginning() {
           <div className="border-t border-white/20 my-8 mx-8" />
 
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               2. Building, Loading, and GitHub Workflows
             </h2>
             <p className="mb-4">
@@ -126,7 +126,7 @@ export default function TutorialBeginning() {
                 height="717"
                 width="2586"
               />
-              <p className="mt-3 text-center text-sm text-white/70 Jura">
+              <p className="mt-3 text-center text-sm text-white/70 font-body">
                 Fig. 2: Building Deepity using the provided{" "}
                 <code>build.py</code> script.
               </p>
@@ -139,7 +139,7 @@ export default function TutorialBeginning() {
                 language="bash"
                 code={buildCode}
               />
-              <p className="mt-3 text-center text-sm text-white/70 Jura">
+              <p className="mt-3 text-center text-sm text-white/70 font-body">
                 Fig. 3: Compiling the Deepity backend via the command line.
               </p>
             </div>
@@ -148,7 +148,7 @@ export default function TutorialBeginning() {
           <div className="border-t border-white/20 my-8 mx-8" />
 
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               3. Declarative Architecture
             </h2>
             <p className="mb-4">
@@ -167,7 +167,7 @@ export default function TutorialBeginning() {
           <div className="border-t border-white/20 my-8 mx-8" />
 
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               4. Configuring the Backend
             </h2>
             <p className="mb-4">
@@ -184,7 +184,7 @@ export default function TutorialBeginning() {
 
             <div className="mx-auto w-full max-w-[800px] flex flex-col items-center mt-6">
               <CodeBlock title="Python" language="python" code={configCode} />
-              <p className="mt-3 text-center text-sm text-white/70 Jura">
+              <p className="mt-3 text-center text-sm text-white/70 font-body">
                 Fig. 4: Configuring the optimization and inference parameters.
               </p>
             </div>
@@ -193,7 +193,7 @@ export default function TutorialBeginning() {
           <div className="border-t border-white/20 my-8 mx-8" />
 
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               5. Training and Inference
             </h2>
             <p className="mb-4">
@@ -212,7 +212,7 @@ export default function TutorialBeginning() {
 
             <div className="mx-auto w-full max-w-[800px] flex flex-col items-center mt-6">
               <CodeBlock title="Python" language="python" code={trainCode} />
-              <p className="mt-3 text-center text-sm text-white/70 Jura">
+              <p className="mt-3 text-center text-sm text-white/70 font-body">
                 Fig. 5: Executing training and settled inference.
               </p>
             </div>
@@ -227,7 +227,7 @@ export default function TutorialBeginning() {
                 height="1250"
                 width="2000"
               />
-              <p className="mt-3 text-center text-sm text-white/70 Jura">
+              <p className="mt-3 text-center text-sm text-white/70 font-body">
                 Fig. 6: A real training run on MNIST (784-512-512-10),
                 settling accuracy climbing toward 100% as weights converge.
               </p>
@@ -235,20 +235,13 @@ export default function TutorialBeginning() {
           </Reveal>
 
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pb-12 pt-8 md:pb-14">
-            <Link
-              to="/tutorial/0-introduction"
-              className={`${btnClass} w-full sm:w-auto`}
-            >
-              <ArrowLeft />
+            <ButtonSecondary to="/tutorial/0-introduction" arrow="left" className="w-full sm:w-auto">
               Part 0: Introduction
-            </Link>
-            <Link
-              to="/tutorial/2-xor"
-              className={`${btnSolidClass} w-full sm:w-auto`}
-            >
+            </ButtonSecondary>
+            <ButtonPrimary to="/tutorial/2-xor" className="w-full sm:w-auto">
               Part 2: Training on XOR
               <ArrowRight />
-            </Link>
+            </ButtonPrimary>
           </div>
         </div>
       </div>

@@ -32,7 +32,7 @@ export default function CodeTabs({ files }: { files: CodeFile[] }) {
               role="tab"
               aria-selected={i === active}
               onClick={() => setActive(i)}
-              className={`Michroma cursor-pointer rounded-lg border-0 px-4 py-1.5 text-xs ${
+              className={`font-display cursor-pointer rounded-lg border-0 px-4 py-1.5 text-xs ${
                 i === active
                   ? "bg-white/10 text-white"
                   : "bg-transparent text-white/65 hover:text-white"

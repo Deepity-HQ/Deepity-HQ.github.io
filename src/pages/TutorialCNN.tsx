@@ -1,4 +1,3 @@
-import { Link } from "react-router";
 import Reveal from "../Components/Reveal.tsx";
 import UtilButton from "../Components/UtilButton.tsx";
 import TutorialRail from "../Components/TutorialRail.tsx";
@@ -40,8 +39,9 @@ const trainLoopCode = `for epoch in range(epochs):
         # precision_rate > 0.
         net.update_precision()`;
 
-import { btnClass, btnSolidClass } from "../Components/ui.ts";
-import { ArrowLeft, ArrowRight } from "../Components/ArrowIcons.tsx";
+import { ArrowRight } from "../Components/ArrowIcons.tsx";
+import ButtonPrimary from "../Components/ButtonPrimary.tsx";
+import ButtonSecondary from "../Components/ButtonSecondary.tsx";
 
 export default function TutorialCNN() {
   return (
@@ -51,8 +51,8 @@ export default function TutorialCNN() {
         <TutorialRail current={4} />
 
         <div className="px-6 py-8 md:px-12 md:py-12">
-          <div className="Michroma mb-3 text-xs uppercase tracking-[0.06em] text-[#a99bff]">Tutorial 4</div>
-          <h1 className="Michroma text-2xl font-normal tracking-[-0.03em] md:text-4xl text-white">
+          <div className="font-display mb-3 text-xs uppercase tracking-[0.06em] text-[#a99bff]">Tutorial 4</div>
+          <h1 className="font-display text-2xl font-normal tracking-[-0.03em] md:text-4xl text-white">
             Running a Convolutional PCN
           </h1>
           <p className="mt-5 text-base md:text-lg leading-relaxed text-white/70 max-w-3xl">
@@ -66,9 +66,9 @@ export default function TutorialCNN() {
 
         <div className="border-t border-white/20 my-8 mx-8" />
 
-        <div className="px-8 md:px-12 space-y-10 Jura text-lg text-white">
+        <div className="px-8 md:px-12 space-y-10 font-body text-lg text-white">
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               1. Why Convolution for Images
             </h2>
             <p className="mb-4">
@@ -95,7 +95,7 @@ export default function TutorialCNN() {
           <div className="border-t border-white/20 my-8 mx-8" />
 
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               2. Building the Network
             </h2>
             <p className="mb-4">
@@ -118,7 +118,7 @@ export default function TutorialCNN() {
                 language="python"
                 code={cnnCode}
               />
-              <p className="mt-3 text-center text-sm text-white/70 Jura">
+              <p className="mt-3 text-center text-sm text-white/70 font-body">
                 Fig. 1: A 4-layer conv network, from examples/mnist_convpcn.py.
               </p>
             </div>
@@ -127,7 +127,7 @@ export default function TutorialCNN() {
           <div className="border-t border-white/20 my-8 mx-8" />
 
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               3. Two Carried-Over Lessons
             </h2>
             <p className="mb-4">
@@ -154,7 +154,7 @@ export default function TutorialCNN() {
                 language="python"
                 code={trainLoopCode}
               />
-              <p className="mt-3 text-center text-sm text-white/70 Jura">
+              <p className="mt-3 text-center text-sm text-white/70 font-body">
                 Fig. 2: update_precision() isn't automatic here, unlike
                 SequentialPCN.
               </p>
@@ -164,12 +164,12 @@ export default function TutorialCNN() {
           <div className="border-t border-white/20 my-8 mx-8" />
 
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               4. Running It
             </h2>
             <p className="mb-4">
               Three epochs over full MNIST, no GPU: accuracy climbs
-              32.52% → 51.92% → 58.52%, landing at 60.34% on the held-out
+              32.52% <ArrowRight className="mx-1 inline-block align-[-0.2em]" /> 51.92% <ArrowRight className="mx-1 inline-block align-[-0.2em]" /> 58.52%, landing at 60.34% on the held-out
               test set — well past the 10% chance line, and still visibly
               climbing when training stops. This isn't a tuned result the
               way the dense network in the Benchmarks page is; it's a
@@ -186,7 +186,7 @@ export default function TutorialCNN() {
                 height="997"
                 width="1378"
               />
-              <p className="mt-3 text-center text-sm text-white/70 Jura">
+              <p className="mt-3 text-center text-sm text-white/70 font-body">
                 Fig. 3: A real run of examples/mnist_convpcn.py.
               </p>
             </div>
@@ -195,7 +195,7 @@ export default function TutorialCNN() {
           <div className="border-t border-white/20 my-8 mx-8" />
 
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               5. Why Bother, Then?
             </h2>
             <p className="mb-4">
@@ -240,20 +240,13 @@ export default function TutorialCNN() {
           </Reveal>
 
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pb-12 pt-8 md:pb-14">
-            <Link
-              to="/tutorial/3-tweaked-xor"
-              className={`${btnClass} w-full sm:w-auto`}
-            >
-              <ArrowLeft />
+            <ButtonSecondary to="/tutorial/3-tweaked-xor" arrow="left" className="w-full sm:w-auto">
               Part 3: Adding Hyperparameters
-            </Link>
-            <Link
-              to="/tutorial/5-dkppcn"
-              className={`${btnSolidClass} w-full sm:w-auto`}
-            >
+            </ButtonSecondary>
+            <ButtonPrimary to="/tutorial/5-dkppcn" className="w-full sm:w-auto">
               Part 5: Direct Kolen-Pollack Networks
               <ArrowRight />
-            </Link>
+            </ButtonPrimary>
           </div>
         </div>
       </div>

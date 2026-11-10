@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import PageHeader from "../Components/PageHeader.tsx";
 import TutorialCard from "../Components/TutorialCard.tsx";
 import Reveal from "../Components/Reveal.tsx";
-import { btnClass } from "../Components/ui.ts";
+import ButtonSecondary from "../Components/ButtonSecondary.tsx";
 
 const tutorialsData = [
   {
@@ -76,6 +76,20 @@ const LEVELS = ["All", "Beginner", "Intermediate", "Hard"];
 export default function TutorialLanding() {
   const [searchQuery, setSearchQuery] = useState("");
   const [level, setLevel] = useState("All");
+  const searchRef = useRef<HTMLInputElement>(null);
+
+  // Press "/" to jump to the search box, unless already typing somewhere
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "/" || e.metaKey || e.ctrlKey || e.altKey) return;
+      const t = e.target as HTMLElement | null;
+      if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return;
+      e.preventDefault();
+      searchRef.current?.focus();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   const q = searchQuery.toLowerCase();
   const filteredTutorials = tutorialsData
@@ -89,12 +103,12 @@ export default function TutorialLanding() {
 
   return (
     <div className="min-h-screen">
-      <PageHeader title="Learn Deepity" width={1280}>
+      <PageHeader eyebrow="Tutorials" title="Learn Deepity" width={1280}>
         From first principles to practical networks: step-by-step guides for
         training predictive coding models in C++ and Python.
       </PageHeader>
 
-      <div className="mx-auto max-w-[1280px] px-5 pb-16 md:px-8">
+      <div className="mx-auto max-w-[1280px] px-5 pb-16 pt-12 md:px-8 md:pt-16">
         <div className="mx-auto max-w-xl pb-10">
           <div className="relative">
             <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
@@ -118,9 +132,10 @@ export default function TutorialLanding() {
               type="text"
               placeholder="Search guides, concepts, keywords..."
               aria-label="Search tutorials"
+              ref={searchRef}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="Jura w-full rounded-xl border border-white/15 bg-[#0c0c0d]/90 py-3.5 pl-11 pr-5 text-sm text-white transition-all placeholder:text-white/40 focus:border-[#8b7cff] focus:shadow-[0_0_24px_rgba(139,124,255,0.2)] focus:outline-none"
+              className="font-body w-full rounded-xl border border-white/15 bg-[#0c0c0d]/90 py-3.5 pl-11 pr-5 text-sm text-white transition-all placeholder:text-white/40 focus:border-[#8b7cff] focus:shadow-[0_0_24px_rgba(139,124,255,0.2)] focus:outline-none"
             />
           </div>
           <div className="mt-4 flex flex-wrap justify-center gap-2">
@@ -130,7 +145,7 @@ export default function TutorialLanding() {
                 type="button"
                 aria-pressed={level === l}
                 onClick={() => setLevel(l)}
-                className={`Michroma cursor-pointer rounded-lg border px-4 py-1.5 text-xs uppercase tracking-wider transition-colors ${
+                className={`font-display cursor-pointer rounded-lg border px-4 py-1.5 text-xs uppercase tracking-wider transition-colors ${
                   level === l
                     ? "border-transparent bg-white text-black"
                     : "border-white/10 bg-white/[0.04] text-white/70 hover:border-white/25 hover:text-white"
@@ -151,19 +166,18 @@ export default function TutorialLanding() {
             ))
           ) : (
             <div className="col-span-full py-16 text-center text-white/70">
-              <p className="Jura text-lg">
+              <p className="font-body text-lg">
                 No tutorials found matching "{searchQuery}"
               </p>
-              <button
-                type="button"
+              <ButtonSecondary
+                className="mt-4"
                 onClick={() => {
                   setSearchQuery("");
                   setLevel("All");
                 }}
-                className={`${btnClass} mt-4 cursor-pointer`}
               >
                 Reset filters
-              </button>
+              </ButtonSecondary>
             </div>
           )}
         </div>

@@ -29,7 +29,7 @@ const CodeBlock = memo(({ language, code, icon, title }: CodeBlockProps) => (
     <div className="flex items-center justify-between border-b border-white/10 bg-[#141415] px-4 py-2">
       <div className="flex items-center gap-2">
         {icon && <img src={icon} alt="" className="h-4 w-4 object-contain" />}
-        <span className="Michroma text-xs text-[#f2f2f2]">{title}</span>
+        <span className="font-display text-xs text-[#f2f2f2]">{title}</span>
       </div>
       <CopyButton code={code} label={title} />
     </div>

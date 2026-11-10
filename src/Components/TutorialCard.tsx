@@ -25,20 +25,20 @@ export default function TutorialCard({
 
       <div className="flex flex-grow flex-col p-6 md:p-7">
         <div className="mb-3 flex items-center justify-between">
-          <span className="Michroma text-[11px] uppercase tracking-wider text-[#a99bff]">
+          <span className="font-display text-[11px] uppercase tracking-wider text-[#a99bff]">
             {subtitle}
           </span>
-          <span className="Michroma inline-flex items-center gap-1.5 text-xs text-white/60 transition-all group-hover:text-[#a99bff]">
+          <span className="font-display inline-flex items-center gap-1.5 text-xs text-white/60 transition-all group-hover:text-[#a99bff]">
             Read
             <ArrowRight className="transition-transform group-hover:translate-x-0.5" />
           </span>
         </div>
 
-        <h3 className="Michroma m-0 mb-3 text-lg font-normal leading-snug text-white transition-colors group-hover:text-[#a99bff]">
+        <h3 className="font-display m-0 mb-3 text-lg font-normal leading-snug text-white transition-colors group-hover:text-[#a99bff]">
           {title}
         </h3>
 
-        <p className="Jura m-0 flex-1 text-sm leading-relaxed text-white/70">
+        <p className="font-body m-0 flex-1 text-sm leading-relaxed text-white/70">
           {description}
         </p>
       </div>
@@ -59,7 +59,7 @@ export default function TutorialCard({
           </>
         ) : (
           <div className="flex h-full w-full items-center justify-center p-6 text-center">
-            <span className="Michroma text-xs text-white/50">Deepity Guide</span>
+            <span className="font-display text-xs text-white/50">Deepity Guide</span>
           </div>
         )}
       </div>

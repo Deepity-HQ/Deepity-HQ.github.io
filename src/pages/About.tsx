@@ -4,12 +4,11 @@ import ArchDiagram from "../Components/ArchDiagram.tsx";
 import { DEVELOPER_URL, GITHUB_URL } from "../config.ts";
 import {
   bodyClass,
-  btnClass,
-  btnSolidClass,
   headingClass,
   linkClass,
 } from "../Components/ui.ts";
-import { ArrowRight, ArrowUpRight } from "../Components/ArrowIcons.tsx";
+import ButtonPrimary from "../Components/ButtonPrimary.tsx";
+import ButtonSecondary from "../Components/ButtonSecondary.tsx";
 
 const facts = [
   {
@@ -41,15 +40,15 @@ export default function About() {
   return (
     <div>
       <PageHeader
+        eyebrow="About"
         title="About Deepity"
       >
         Deepity is an open-source library for training Predictive Coding
         Networks from C++ and Python. It is built and maintained by one
         developer.
       </PageHeader>
-      <div className="mx-auto max-w-[1000px] px-5 pb-16 md:px-8">
-        <div className={`pt-2`}>
-          <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-[#8b7cff] to-[#7dd3fc]" />
+      <div className="mx-auto max-w-[1000px] px-5 pb-16 pt-12 md:px-8 md:pt-16">
+        <div>
           <h2 className={`${headingClass} text-2xl md:text-3xl`}>What it is</h2>
           <p className={`${bodyClass} mt-5 text-lg`}>
             Predictive coding is a way of training neural networks that is
@@ -57,10 +56,9 @@ export default function About() {
             people use it. Deepity makes it fast, starting on ordinary CPUs.
           </p>
           <div className="mt-6">
-            <Link to="/theory" className={btnClass}>
+            <ButtonSecondary to="/theory">
               Read the theory
-              <ArrowRight />
-            </Link>
+            </ButtonSecondary>
           </div>
         </div>
 
@@ -83,7 +81,7 @@ export default function About() {
           </p>
         </div>
 
-        <div className="mt-6 grid gap-4 md:grid-cols-2">
+        <div className="mt-12 grid gap-x-6 gap-y-10 md:grid-cols-2">
           {facts.map((f) => (
             <div
               key={f.title}
@@ -95,7 +93,7 @@ export default function About() {
           ))}
         </div>
 
-        <div className="mt-6">
+        <div>
           <ArchDiagram />
         </div>
 
@@ -119,44 +117,26 @@ export default function About() {
             and tell us what you are building.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <Link to="/early-access" className={btnSolidClass}>
+            <ButtonPrimary to="/early-access">
               Request early access
-            </Link>
-            <a
-              href={DEVELOPER_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={btnClass}
-            >
+            </ButtonPrimary>
+            <ButtonSecondary href={DEVELOPER_URL}>
               Developer Profile
-              <ArrowUpRight />
-            </a>
+            </ButtonSecondary>
           </div>
         </div>
 
         <div className={`mt-14 border-t border-white/10 pt-10 text-center`}>
           <h3 className={`${headingClass} text-xl md:text-2xl`}>Follow the project</h3>
-          <p className="Jura mx-auto mt-3 max-w-lg text-base text-white/75">
+          <p className="font-body mx-auto mt-3 max-w-lg text-base text-white/75">
             Track releases, view source code, report issues, and read the
             reference documentation.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-2.5">
             {links.map((l) => (
-              <a
-                key={l.label}
-                href={l.href}
-                {...(l.internal
-                  ? {}
-                  : { target: "_blank", rel: "noopener noreferrer" })}
-                className="Jura inline-flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-white/75 no-underline transition-colors hover:border-[#8b7cff] hover:bg-white/[0.08] hover:text-white"
-              >
-                <span>{l.label}</span>
-                {l.internal ? (
-                  <ArrowRight className="text-white/50" />
-                ) : (
-                  <ArrowUpRight className="text-white/50" />
-                )}
-              </a>
+              <ButtonSecondary key={l.label} href={l.href} arrow={l.internal ? "right" : "up-right"}>
+                {l.label}
+              </ButtonSecondary>
             ))}
           </div>
         </div>

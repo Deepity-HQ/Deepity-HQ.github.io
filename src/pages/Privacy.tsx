@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 import PageHeader from "../Components/PageHeader.tsx";
 import { CONTACT_EMAIL, GITHUB_URL } from "../config.ts";
-import { btnClass, linkClass } from "../Components/ui.ts";
-import { ArrowUpRight } from "../Components/ArrowIcons.tsx";
+import { linkClass } from "../Components/ui.ts";
+import ButtonSecondary from "../Components/ButtonSecondary.tsx";
 
 // Set to a Plausible domain if analytics are ever enabled
 const PLAUSIBLE_DOMAIN = "";
@@ -12,11 +12,11 @@ const UPDATED = "October 13, 2026";
 function Block({ title, eyebrow, children }: { title: string; eyebrow?: string; children: ReactNode }) {
   return (
     <section className="p-6 md:p-8 hover:bg-white/[0.015] transition-colors">
-      {eyebrow && <div className="Michroma mb-2 text-xs uppercase tracking-[0.06em] text-[#a99bff]">{eyebrow}</div>}
-      <h2 className="Michroma m-0 text-lg font-normal tracking-[-0.01em] text-white md:text-xl">
+      {eyebrow && <div className="font-display mb-2 text-xs uppercase tracking-[0.06em] text-[#a99bff]">{eyebrow}</div>}
+      <h2 className="font-display m-0 text-lg font-normal tracking-[-0.01em] text-white md:text-xl">
         {title}
       </h2>
-      <div className="Jura mt-3 space-y-3 text-base leading-relaxed text-white/75">{children}</div>
+      <div className="font-body mt-3 space-y-3 text-base leading-relaxed text-white/75">{children}</div>
     </section>
   );
 }
@@ -24,14 +24,14 @@ function Block({ title, eyebrow, children }: { title: string; eyebrow?: string; 
 export default function Privacy() {
   return (
     <div>
-      <PageHeader title="Privacy Policy">
+      <PageHeader eyebrow="Legal" title="Privacy policy">
         What this website collects, in plain terms. Last updated {UPDATED}.
       </PageHeader>
 
-      <div className="mx-auto max-w-3xl px-5 pb-16 md:px-8">
+      <div className="mx-auto max-w-3xl px-5 pb-16 pt-12 md:px-8 md:pt-16">
         {/* At a glance pills */}
-        <div className="mb-8 flex flex-wrap justify-center gap-2.5">
-          <span className="inline-flex items-center gap-2 rounded-xl border Jura border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-xs text-white/75">
+        <div className="mb-12 flex flex-wrap justify-center gap-2.5">
+          <span className="inline-flex items-center gap-2 rounded-xl border font-body border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-xs text-white/75">
             <svg
               className="h-3.5 w-3.5 text-emerald-400"
               viewBox="0 0 16 16"
@@ -46,7 +46,7 @@ export default function Privacy() {
             </svg>
             No tracking cookies
           </span>
-          <span className="inline-flex items-center gap-2 rounded-xl border Jura border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-xs text-white/75">
+          <span className="inline-flex items-center gap-2 rounded-xl border font-body border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-xs text-white/75">
             <svg
               className="h-3.5 w-3.5 text-emerald-400"
               viewBox="0 0 16 16"
@@ -61,7 +61,7 @@ export default function Privacy() {
             </svg>
             No data selling
           </span>
-          <span className="inline-flex items-center gap-2 rounded-xl border Jura border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-xs text-white/75">
+          <span className="inline-flex items-center gap-2 rounded-xl border font-body border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-xs text-white/75">
             <svg
               className="h-3.5 w-3.5 text-[#a99bff]"
               viewBox="0 0 16 16"
@@ -108,8 +108,10 @@ export default function Privacy() {
               The site is hosted on GitHub Pages, and GitHub may log visitors&apos;
               IP addresses as part of serving it. The early access form is
               processed by Formspree, which receives what you submit and passes
-              it on to us. Links to GitHub, Discord and other sites lead to
-              services with their own policies.
+              it on to us. The home page asks PyPI for the latest release
+              number and GitHub for the star count, so those two services see
+              your IP address when it loads. Links to GitHub, Discord and other
+              sites lead to services with their own policies.
             </p>
           </Block>
 
@@ -134,15 +136,14 @@ export default function Privacy() {
           </Block>
         </div>
 
-        <div className={`mt-8 border-t border-white/10 flex flex-col items-center justify-between gap-4 p-6 text-center sm:flex-row sm:text-left md:p-8`}>
+        <div className={`mt-12 border-t border-white/10 flex flex-col items-center justify-between gap-4 p-6 text-center sm:flex-row sm:text-left md:p-8`}>
           <div>
-            <div className="Michroma text-sm text-white">Questions about privacy?</div>
-            <div className="Jura mt-1 text-sm text-white/70">Get in touch directly with the developer.</div>
+            <div className="font-display text-sm text-white">Questions about privacy?</div>
+            <div className="font-body mt-1 text-sm text-white/70">Get in touch directly with the developer.</div>
           </div>
-          <a href={`mailto:${CONTACT_EMAIL}`} className={`${btnClass} shrink-0`}>
+          <ButtonSecondary href={`mailto:${CONTACT_EMAIL}`} className="shrink-0">
             Contact developer
-            <ArrowUpRight />
-          </a>
+          </ButtonSecondary>
         </div>
       </div>
     </div>

@@ -46,7 +46,8 @@ export default function CopyButton({ code, label }: { code: string; label: strin
       type="button"
       onClick={handleCopy}
       aria-label={`Copy ${label} code`}
-      className={`Michroma inline-flex cursor-pointer items-center gap-1.5 rounded-md border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[11px] transition-colors hover:border-white/25 ${
+      title={text}
+      className={`inline-flex h-7 w-7 cursor-pointer items-center justify-center rounded-md border border-white/10 bg-white/[0.04] transition-colors hover:border-white/25 ${
         state === "idle" ? "text-white/70 hover:text-white" : "text-white"
       }`}
     >
@@ -55,7 +56,9 @@ export default function CopyButton({ code, label }: { code: string; label: strin
       ) : (
         <LuCopy aria-hidden="true" className="h-3.5 w-3.5" />
       )}
-      <span aria-live="polite">{text}</span>
+      <span className="sr-only" aria-live="polite">
+        {text}
+      </span>
     </button>
   );
 }

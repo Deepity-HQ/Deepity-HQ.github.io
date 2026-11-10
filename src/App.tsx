@@ -1,353 +1,286 @@
-import { useEffect, useState, useRef, Suspense, lazy, type MouseEvent } from "react";
-import AnimatedWaveBackground from "./Components/UI_Fun/AnimatedWaveBackground.tsx";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
+import { hasWebGL, WebGLBoundary } from "./webgl.tsx";
 import CodeTabs, { type CodeFile } from "./Components/CodeTabs.tsx";
-import { WebGLBoundary, hasWebGL } from "./webgl.tsx";
-import { laptopSections, openSourceText } from "./laptopSections.ts";
+import CopyButton from "./Components/CopyButton.tsx";
+import FlyStage from "./Components/FlyStage.tsx";
+import useRepoStats from "./Components/useRepoStats.ts";
+import PCDemo from "./Components/PCDemo.tsx";
+import ScrollRise from "./Components/ScrollRise.tsx";
+import CountUp from "./Components/CountUp.tsx";
+import { ArrowRight, Dims } from "./Components/ArrowIcons.tsx";
+import ButtonPrimary from "./Components/ButtonPrimary.tsx";
+import ButtonSecondary from "./Components/ButtonSecondary.tsx";
 
-type Benefit = {
-  number: string;
-  title: string;
-  description: string;
-};
+// The 3D wave (and three.js) loads in its own chunk, after the page text is up
+const AnimatedWaveBackground = lazy(
+  () => import("./Components/UI_Fun/AnimatedWaveBackground.tsx"),
+);
 
-// The 3D laptop (and its 540 KB model) is only fetched when its section is near
-const LaptopScene = lazy(() => import("./Components/UI_Fun/LaptopScene.tsx"));
-
-function BenefitCard({ number, title, description }: Benefit) {
-  const cardRef = useRef<HTMLElement>(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isHovered, setHovered] = useState(false);
-
-  const handleMouseMove = (e: MouseEvent<HTMLElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    setPosition({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-  };
-
-  return (
-    <article
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      className="relative overflow-hidden rounded-2xl bg-white/[0.04] p-7 backdrop-blur-sm"
-    >
-      <div
-        className="pointer-events-none absolute -inset-px transition-opacity duration-300"
-        style={{
-          opacity: isHovered ? 1 : 0,
-          background: `radial-gradient(250px circle at ${position.x}px ${position.y}px, rgba(255,255,255,0.05), transparent 80%)`,
-        }}
-      />
-      <div className="relative z-10">
-        <p className="Jura text-sm tracking-widest text-cyan-200/70">
-          {number}
-        </p>
-        <h3 className="Michroma mt-5 text-lg text-white">{title}</h3>
-        <p className="Jura mt-4 text-lg leading-relaxed text-white/75">
-          {description}
-        </p>
-      </div>
-    </article>
-  );
-}
+const INSTALL = "pip install pydeepity";
 
 function Hero() {
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    let frame = 0;
-    const updateScrollProgress = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => {
-        setScrollProgress(Math.min(window.scrollY / window.innerHeight, 1));
-      });
-    };
-
-    updateScrollProgress();
-    window.addEventListener("scroll", updateScrollProgress, { passive: true });
-    window.addEventListener("resize", updateScrollProgress);
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", updateScrollProgress);
-      window.removeEventListener("resize", updateScrollProgress);
-    };
-  }, []);
-
+  const stats = useRepoStats();
   return (
-    <div
-      className="pointer-events-none fixed inset-0 z-10 flex flex-col items-center justify-start pt-[25vh]"
-      style={{
-        opacity: 1 - scrollProgress,
-        filter: `blur(${scrollProgress * 8}px)`,
-        transform: `translate3d(0, ${scrollProgress * -140}px, 0)`,
-      }}
-    >
-      {/* Soft dark pool behind the text so bright wave crests never wash it out */}
-      <div
-        aria-hidden="true"
-        className="absolute left-1/2 top-[25vh] h-[60vh] w-[min(1100px,120vw)] -translate-x-1/2 -translate-y-[8vh]"
-        style={{
-          background:
-            "radial-gradient(ellipse 50% 45% at 50% 42%, rgba(2,2,5,0.78) 0%, rgba(2,2,5,0.5) 45%, rgba(2,2,5,0) 100%)",
-        }}
-      />
-      <h1 className="Michroma relative text-center text-5xl text-white [text-shadow:0_2px_24px_rgba(2,2,5,0.9),0_0_6px_rgba(2,2,5,0.7)] md:text-[5.5rem] md:leading-[1.05]">
-        Learn
-        <br />
-        Differently
-      </h1>
-      <h3 className="Jura relative mt-6 text-center text-lg text-white/90 [text-shadow:0_2px_18px_rgba(2,2,5,0.95),0_0_5px_rgba(2,2,5,0.7)] md:text-3xl">
-        Train Neural Networks
-        <br />
-        Without Backpropagation
-      </h3>
-    </div>
-  );
-}
-
-function PredictiveSection() {
-  const stageRef = useRef<HTMLDivElement>(null);
-  const [exitProgress, setExitProgress] = useState(0);
-
-  useEffect(() => {
-    let frame = 0;
-    const handleScroll = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => {
-        const stage = stageRef.current;
-        if (!stage) return;
-
-        // On phones the section scrolls normally (no pin, no exit animation),
-        // so every card can be reached
-        if (!window.matchMedia("(min-width: 768px)").matches) {
-          setExitProgress(0);
-          return;
-        }
-
-        const rect = stage.getBoundingClientRect();
-        const totalDistance = rect.height - window.innerHeight;
-        if (totalDistance <= 0) return;
-
-        const rawProgress = Math.min(Math.max(-rect.top / totalDistance, 0), 1);
-        const holdThreshold = 0.5;
-        const exit =
-          rawProgress <= holdThreshold
-            ? 0
-            : (rawProgress - holdThreshold) / (1 - holdThreshold);
-
-        setExitProgress(Math.min(Math.max(exit, 0), 1));
-      });
-    };
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll);
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
-    };
-  }, []);
-
-  const opacity = Math.max(0, 1 - exitProgress * 1.05);
-  const blurPx = exitProgress * 10;
-
-  const headlineScale = 1 + exitProgress * 0.36;
-  const headlineTranslateY = exitProgress * -65;
-
-  const kickerScale = 1 + exitProgress * 0.22;
-  const kickerTranslateY = exitProgress * -80;
-
-  const descScale = 1 + exitProgress * 0.18;
-  const descTranslateY = exitProgress * -50;
-
-  const cardsOpacity = Math.max(0, 1 - exitProgress * 1.25);
-  const cardsBlur = exitProgress * 8;
-  const cardsTranslateY = exitProgress * -25;
-  const cardsScale = 1 + exitProgress * 0.04;
-
-  return (
-    <div ref={stageRef} className="relative z-0 w-full md:h-[300vh]">
-      <section
-        className="flex items-center px-6 py-16 md:sticky md:top-0 md:min-h-screen md:px-16"
-        style={{
-          pointerEvents: exitProgress > 0.85 ? "none" : "auto",
-        }}
-      >
-        <div className="mx-auto w-full max-w-6xl">
-          <p
-            className="Jura mb-3 text-sm uppercase tracking-[0.35em] text-cyan-200/80 md:mb-5 predictive-exit-text"
-            style={{
-              opacity,
-              filter: `blur(${blurPx * 0.75}px)`,
-              transform: `translate3d(0, ${kickerTranslateY}px, 0) scale(${kickerScale})`,
-              transformOrigin: "left center",
-            }}
-          >
-            Predictive coding
-          </p>
-          <h2
-            className="Michroma max-w-4xl text-2xl leading-relaxed text-white md:text-5xl predictive-exit-text"
-            style={{
-              opacity,
-              filter: `blur(${blurPx}px)`,
-              transform: `translate3d(0, ${headlineTranslateY}px, 0) scale(${headlineScale})`,
-              transformOrigin: "left center",
-            }}
-          >
-            A <span className="fancy">different</span> way to train neural
-            networks
-          </h2>
-          <p
-            className="Jura mt-4 max-w-2xl text-base leading-relaxed text-white/70 md:mt-8 md:text-2xl predictive-exit-text"
-            style={{
-              opacity,
-              filter: `blur(${blurPx * 0.75}px)`,
-              transform: `translate3d(0, ${descTranslateY}px, 0) scale(${descScale})`,
-              transformOrigin: "left center",
-            }}
-          >
-            Most AI today is trained with backpropagation, which needs a lot of
-            memory and, in practice, GPUs.
-          </p>
-
-          <div
-            className="mt-8 grid gap-5 md:mt-14 md:grid-cols-3 predictive-exit-text"
-            style={{
-              opacity: cardsOpacity,
-              filter: `blur(${cardsBlur}px)`,
-              transform: `translate3d(0, ${cardsTranslateY}px, 0) scale(${cardsScale})`,
-              transformOrigin: "center center",
-            }}
-          >
-            {benefits.map((benefit) => (
-              <BenefitCard key={benefit.number} {...benefit} />
-            ))}
-          </div>
+    <section className="relative flex min-h-screen items-center justify-center overflow-x-clip px-5 pb-44 pt-24 md:px-8 md:pb-52">
+      <div className="relative isolate mx-auto flex max-w-[1200px] flex-col items-center text-center">
+        {/* Keeps bright wave crests from washing out the text */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -inset-x-[8%] -bottom-6 -top-10 -z-10"
+          style={{
+            background:
+              "radial-gradient(ellipse 52% 55% at 50% 52%, rgba(8,8,10,0.88) 0%, rgba(8,8,10,0.7) 45%, rgba(8,8,10,0) 100%)",
+          }}
+        />
+        <div className="mb-8 flex flex-wrap items-center justify-center gap-2">
+          <ButtonSecondary href="https://pypi.org/project/pydeepity/">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#a99bff]" />
+            {stats.version} · CUDA wheels on PyPI
+          </ButtonSecondary>
         </div>
-      </section>
-    </div>
+
+        <h1 className="m-0 max-w-4xl text-balance text-[2.6rem] font-semibold leading-[1.04] tracking-[-0.045em] text-white sm:text-6xl md:text-7xl">
+          Train neural networks without backpropagation.
+        </h1>
+        <p className="mb-0 mt-7 max-w-2xl text-balance text-base leading-relaxed text-white/60 md:text-lg">
+          Deepity is an open-source predictive coding engine for Python and C++.
+          Each layer learns from its own local error. It runs on CPUs and NVIDIA
+          GPUs.
+        </p>
+
+        <div className="mt-10 flex w-full max-w-md flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:items-stretch sm:justify-center">
+          <div className="mono flex min-h-[38px] items-center justify-between gap-4 rounded-lg border border-white/15 bg-black/70 pl-4 pr-1.5 text-sm text-white">
+            <span className="select-all">
+              <span className="text-[#a99bff]">$ </span>
+              {INSTALL}
+            </span>
+            <CopyButton code={INSTALL} label="install command" />
+          </div>
+          <ButtonPrimary to="/tutorial">
+            Get started
+            <ArrowRight className="h-3.5 w-3.5" />
+          </ButtonPrimary>
+        </div>
+        <p className="mb-0 mt-5 text-sm text-white/80">
+          MIT licensed. Prebuilt wheels for Linux and Windows, Python 3.11 to
+          3.13.
+        </p>
+      </div>
+
+    </section>
   );
 }
 
-const benefits: Benefit[] = [
-  {
-    number: "01",
-    title: "Learns locally",
-    description:
-      "Each neuron adjusts from the errors right next to it, the way many neuroscientists think the brain works. No error signal has to travel back through the whole network.",
-  },
-  {
-    number: "02",
-    title: "Runs beyond GPUs",
-    description:
-      "Local learning suits edge devices, embedded systems and low-power machines, where a large GPU isn't an option.",
-  },
-  {
-    number: "03",
-    title: "Keeps learning",
-    description:
-      "Predictive coding is a good fit for systems that keep learning after deployment, a hard problem for standard networks.",
-  },
+const results = [
+  { name: "Deepity", time: 487.5, acc: "98.21%", ours: true },
+  { name: "jpc (JAX)", time: 531.4, acc: "97.55%" },
+  { name: "PyTorch backprop", time: 627.8, acc: "97.51%" },
+  { name: "ngc-learn", time: 1707.7, acc: "98%" },
 ];
+const maxTime = Math.max(...results.map((r) => r.time));
 
-const technologies = [
-  "OpenBLAS",
-  "Intel MKL",
-  "Intel libsxmm",
-  "Halide",
-  "OpenMP",
-  "Google Highway",
-  "Google Benchmark",
-  "SLEEF",
-  "CUDA",
-  "CUTLASS",
-  "cuDNN",
-  "nanobind",
-];
-
-// Shown in place of the 3D laptop when WebGL is unavailable
-function LaptopFallback() {
-  return (
-    <div className="mx-auto grid w-full max-w-[1000px] gap-4 px-6 md:grid-cols-2">
-      {laptopSections.map((section, i) => (
-        <article
-          key={section.title}
-          className="rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm"
-        >
-          <span className="Michroma text-xs text-[#a99bff]">0{i + 1}</span>
-          <h3 className="Michroma m-0 mt-3 text-lg text-white">{section.title}</h3>
-          <p className="Jura mb-0 mt-3 text-base leading-relaxed text-white/75">
-            {section.body || (
-              <>
-                {openSourceText.before}
-                <span className="underline underline-offset-4">{openSourceText.link}</span>
-                {openSourceText.after}
-              </>
-            )}
-          </p>
-        </article>
-      ))}
-    </div>
-  );
-}
-
-// Small supporting numbers under the headline cards (see the Benchmarks page)
 const stats = [
-  { value: "66.8s", label: "To train MNIST to 98.08% on one NVIDIA A100, 7.3× faster than the CPU run" },
-  { value: "49.6s", label: "To train Direct Kolen-Pollack to 95.97% on MNIST" },
-  { value: "<2MB", label: "Compiled extension, with no deep learning framework underneath" },
-  { value: "MIT", label: "Licensed. Free to use, modify and ship" },
+  {
+    node: <CountUp value={3.5} decimals={2} suffix="×" />,
+    label: "faster than ngc-learn on the same network and settings",
+  },
+  {
+    node: <CountUp value={98.21} decimals={2} suffix="%" />,
+    label: "MNIST test accuracy on a laptop CPU, in 487.5 seconds",
+  },
+  {
+    node: <CountUp value={66.8} decimals={1} suffix="s" />,
+    label:
+      "to train the same network on one NVIDIA A100, 7.3× faster than the CPU",
+  },
+  {
+    node: <CountUp value={5} decimals={0} suffix="×" />,
+    label: "faster than backpropagation at 2048 layers on a GPU, with DKP-PC",
+  },
 ];
 
-function BurningMeteor() {
+function Results() {
   return (
-    <svg
-      viewBox="0 0 512 512"
-      className="meteor-art"
-      aria-hidden="true"
-      overflow="visible"
-    >
-      <defs>
-        {/* Flames run from a transparent violet tail to a white-hot core at the rock */}
-        <linearGradient id="meteor-flame-outer" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="340" y2="340">
-          <stop offset="0" stopColor="#6d5cff" stopOpacity="0" />
-          <stop offset="0.35" stopColor="#8b7cff" stopOpacity="0.7" />
-          <stop offset="0.8" stopColor="#cfc8ff" />
-          <stop offset="1" stopColor="#ffffff" />
-        </linearGradient>
-        <linearGradient id="meteor-flame-inner" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="340" y2="340">
-          <stop offset="0" stopColor="#a99bff" stopOpacity="0" />
-          <stop offset="0.4" stopColor="#d9d3ff" stopOpacity="0.85" />
-          <stop offset="1" stopColor="#ffffff" />
-        </linearGradient>
-        {/* Anodized graphite: a lit upper-left face fading to dark */}
-        <linearGradient id="meteor-rock" x1="0.15" y1="0.1" x2="0.9" y2="0.95">
-          <stop offset="0" stopColor="#7a7a90" />
-          <stop offset="0.5" stopColor="#3e3e52" />
-          <stop offset="1" stopColor="#1c1c28" />
-        </linearGradient>
-      </defs>
-      <path className="meteor-flame meteor-flame-outer" fill="url(#meteor-flame-outer)" d="M144.345,349.7l67.39,20.636L64.631,196.91l96.855,26.033L0,0l222.943,161.485l-26.034-96.853 l173.427,147.103l-20.635-67.39c0,0,263.14,180.817,119.3,324.657C325.163,612.84,144.345,349.7,144.345,349.7z" />
-      <path className="meteor-flame meteor-flame-inner" fill="url(#meteor-flame-inner)" d="M222.943,161.485l-26.034-96.853l173.427,147.103l-20.635-67.39c0,0,263.14,180.817,119.3,324.657 L0,0L222.943,161.485z" />
-      <g className="meteor-rock">
-      <path fill="url(#meteor-rock)" stroke="#b9aeff" strokeOpacity="0.55" strokeWidth="5" strokeLinejoin="round" d="M437.25,277.514c17.677,17.677,38.154,36.034,38.154,71.362s-3.587,55.773-7.519,74.44 c-10.69,50.759-86.677,46.491-107.649,42.847c-20.187-3.508-49.105-8.125-67.122-26.142c-18.017-18.017-45.925-44.513-45.925-64.296 c0-19.783,0-50.872,0-68.536s17.664-45.219,50.165-53.698C329.855,245.013,392.385,232.648,437.25,277.514z"/>
-<g>
-<path fill="#2a2a38" d="M268.463,268.464c7.676-6.531,17.341-11.96,28.891-14.973 c32.501-8.479,95.031-20.843,139.896,24.023c17.677,17.677,38.154,36.034,38.154,71.362s-3.587,55.773-7.519,74.44 c-2.534,12.033-8.741,20.969-17.011,27.558L268.463,268.464z"/>
-<circle fill="#2a2a38" cx="327.235" cy="402.777" r="16.41"/>
-<path fill="#2a2a38" d="M284.576,321.588c-15.864-15.864-18.794-39.761-8.796-58.597c6.232-4.059,13.438-7.377,21.574-9.5 c13.096-3.416,31.069-7.461,50.797-8.141c2.429,1.682,4.747,3.591,6.91,5.753c19.464,19.464,19.464,51.021,0,70.485 C335.597,341.052,304.04,341.052,284.576,321.588z"/>
-</g>
-<g>
-<path fill="#16161f" d="M470.581,409.549c-19.241,12.041-44.908,9.708-61.643-7.027c-19.464-19.464-19.464-51.021,0-70.485 c17.192-17.192,43.815-19.188,63.21-6.007c2.059,6.78,3.256,14.316,3.256,22.845C475.404,375.82,473.316,394.104,470.581,409.549z" />
-<path fill="#16161f" d="M272.065,272.065c0.928-3.113,2.166-6.155,3.715-9.074c6.232-4.058,13.438-7.377,21.574-9.5 c13.096-3.417,31.069-7.462,50.797-8.141c2.429,1.682,4.747,3.591,6.91,5.753c19.464,19.464,19.464,51.021,0,70.485 c-6.057,6.057-13.288,10.228-20.959,12.515L272.065,272.065z"/>
-</g> 
-      </g>
-    </svg>
+    <section className="border-t border-white/10 px-5 py-24 md:px-8 md:py-32">
+      <div className="mx-auto max-w-[1200px]">
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-20">
+          <ScrollRise>
+            <p className="mono m-0 mb-5 text-xs uppercase tracking-[0.12em] text-[#a99bff]">
+              Benchmarks
+            </p>
+            <h2 className="m-0 text-balance text-3xl font-semibold leading-[1.1] tracking-[-0.035em] text-white md:text-5xl">
+              Faster than the other predictive coding libraries.
+            </h2>
+            <p className="mb-0 mt-6 max-w-md text-base leading-relaxed text-white/60">
+              The same <Dims sizes={[784, 512, 512, 10]} /> network, 20 settling steps, batch size 250
+              and 100 epochs, on one laptop CPU. A PyTorch backprop run is there
+              for reference.
+            </p>
+            <ButtonSecondary to="/benchmarks" className="mt-8">
+              Read the full benchmarks
+            </ButtonSecondary>
+          </ScrollRise>
+
+          <ScrollRise>
+            <div className="rounded-xl border border-white/10 bg-white/[0.02] p-6 md:p-8">
+              <div className="mono mb-6 flex justify-between text-[11px] uppercase tracking-[0.08em] text-white/40">
+                <span>Training time, 100 epochs</span>
+                <span>Test accuracy</span>
+              </div>
+              <div className="flex flex-col gap-6">
+                {results.map((r) => (
+                  <div key={r.name}>
+                    <div className="mb-2 flex items-baseline justify-between text-sm">
+                      <span
+                        className={
+                          r.ours ? "font-medium text-white" : "text-white/70"
+                        }
+                      >
+                        {r.name}
+                      </span>
+                      <span className="tabular mono text-white/60">
+                        <span className="mr-4 text-white/40">
+                          {r.time.toFixed(1)}s
+                        </span>
+                        <span className={r.ours ? "text-[#a99bff]" : ""}>
+                          {r.acc}
+                        </span>
+                      </span>
+                    </div>
+                    <div className="h-2 w-full rounded-full bg-white/[0.06]">
+                      <div
+                        className={`h-full rounded-full ${r.ours ? "bg-[#a99bff]" : "bg-white/30"}`}
+                        style={{ width: `${(r.time / maxTime) * 100}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </ScrollRise>
+        </div>
+
+        <div className="mt-20 grid gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+          {stats.map((s) => (
+            <div key={s.label} className="bg-[#08080a] p-6 md:p-7">
+              <div className="tabular text-4xl font-medium tracking-[-0.04em] text-white md:text-5xl">
+                {s.node}
+              </div>
+              <p className="mb-0 mt-3 text-sm leading-relaxed text-white/50">
+                {s.label}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const steps = [
+  {
+    title: "Predict.",
+    body: "Every layer holds a guess about what it is seeing, and predicts what the layer next to it should see.",
+  },
+  {
+    title: "Compare.",
+    body: "Where a prediction and a guess disagree, the gap is a prediction error. It lives in that layer and nowhere else.",
+  },
+  {
+    title: "Settle.",
+    body: "With the input and the answer clamped, each layer nudges its guess to shrink the errors around it. Repeat for T steps.",
+  },
+  {
+    title: "Update.",
+    body: "Each layer changes its weights using only its own error. No gradient travels backward through the network.",
+  },
+];
+
+function HowItWorks() {
+  return (
+    <section className="border-t border-white/10 px-5 py-24 md:px-8 md:py-32">
+      <div className="mx-auto max-w-[1200px]">
+        <ScrollRise className="max-w-2xl">
+          <p className="mono m-0 mb-5 text-xs uppercase tracking-[0.12em] text-[#a99bff]">
+            How it works
+          </p>
+          <h2 className="m-0 text-balance text-3xl font-semibold leading-[1.1] tracking-[-0.035em] text-white md:text-5xl">
+            Each layer learns from its own error.
+          </h2>
+        </ScrollRise>
+
+        <div className="mt-10 border-t border-white/10">
+          {steps.map((s, i) => (
+            <ScrollRise
+              key={s.title}
+              className="grid gap-4 border-b border-white/10 py-8 md:grid-cols-[120px_1fr_1.3fr] md:items-baseline md:gap-8 md:py-6"
+            >
+              <span className="mono text-sm text-white/35">
+                0{i + 1} <span className="text-white/20">/ 04</span>
+              </span>
+              <h3 className="m-0 text-2xl font-semibold tracking-[-0.03em] text-white md:text-3xl">
+                {s.title}
+              </h3>
+              <p className="m-0 max-w-lg text-base leading-relaxed text-white/55">
+                {s.body}
+              </p>
+            </ScrollRise>
+          ))}
+        </div>
+
+        <ButtonSecondary to="/theory" className="mt-10">
+          The theory and equations
+        </ButtonSecondary>
+      </div>
+    </section>
+  );
+}
+
+const reasons = [
+  {
+    title: "No backward graph",
+    body: "Backpropagation keeps the whole forward pass in memory until the backward pass runs. Each Deepity layer updates from a local error, so there is no stored graph.",
+  },
+  {
+    title: "No weight transport",
+    body: "Backprop sends error through the exact transpose of the forward weights. Local updates do not need that, and DKP learns the feedback pathway instead.",
+  },
+  {
+    title: "Scales with depth on GPUs",
+    body: "Backprop is a strict chain from the last layer to the first. Predictive coding layers can update together. At 2048 layers on an A100, a DKP-PC step takes 11.85 ms against 59.10 ms for backprop.",
+  },
+];
+
+function Why() {
+  return (
+    <section className="border-t border-white/10 px-5 py-24 md:px-8 md:py-32">
+      <div className="mx-auto max-w-[1200px]">
+        <ScrollRise className="max-w-2xl">
+          <p className="mono m-0 mb-5 text-xs uppercase tracking-[0.12em] text-[#a99bff]">
+            Why predictive coding
+          </p>
+          <h2 className="m-0 text-balance text-3xl font-semibold leading-[1.1] tracking-[-0.035em] text-white md:text-5xl">
+            A different cost profile.
+          </h2>
+        </ScrollRise>
+        <div className="mt-14 grid gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 md:grid-cols-3">
+          {reasons.map((r) => (
+            <ScrollRise
+              key={r.title}
+              className="bg-[#08080a] p-7 md:p-8"
+            >
+              <h3 className="m-0 text-lg font-semibold tracking-[-0.02em] text-white">
+                {r.title}
+              </h3>
+              <p className="mb-0 mt-3 text-[15px] leading-relaxed text-white/55">
+                {r.body}
+              </p>
+            </ScrollRise>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -396,199 +329,207 @@ const codeFiles: CodeFile[] = [
   { name: "train.cpp", language: "cpp", code: cppCode },
 ];
 
-export default function App() {
-  const webgl = hasWebGL();
-  const [nearLaptop, setNearLaptop] = useState(false);
-  const laptopStageRef = useRef<HTMLDivElement>(null);
-  const [laptopProgress, setLaptopProgress] = useState(() => {
-    if (typeof window !== "undefined") {
-      const params = new URLSearchParams(window.location.search);
-      const p = params.get("progress");
-      if (p !== null) return parseFloat(p);
-    }
-    return 0;
-  });
+function Code() {
+  return (
+    <section className="border-t border-white/10 px-5 py-24 md:px-8 md:py-32">
+      <div className="mx-auto grid max-w-[1200px] gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
+        <ScrollRise>
+          <p className="mono m-0 mb-5 text-xs uppercase tracking-[0.12em] text-[#a99bff]">
+            Interface
+          </p>
+          <h2 className="m-0 text-balance text-3xl font-semibold leading-[1.1] tracking-[-0.035em] text-white md:text-5xl">
+            The same network in Python and C++.
+          </h2>
+          <p className="mb-0 mt-6 max-w-md text-base leading-relaxed text-white/60">
+            The Python package is a thin layer over the C++ core, with no deep
+            learning framework underneath. These snippets build the network from
+            the benchmark.
+          </p>
+          <ButtonSecondary to="/tutorial" className="mt-8">
+            Work through the tutorials
+          </ButtonSecondary>
+        </ScrollRise>
+        <ScrollRise className="min-w-0">
+          <CodeTabs files={codeFiles} />
+        </ScrollRise>
+      </div>
+    </section>
+  );
+}
 
-  // Start loading the laptop about a screen before it comes into view
+const technologies = [
+  "OpenMP",
+  "Intel MKL",
+  "OpenBLAS",
+  "Google Highway",
+  "SLEEF",
+  "CUDA",
+  "cuBLAS",
+  "CUTLASS",
+  "nanobind",
+  "Google Benchmark",
+];
+
+function Demo() {
+  return (
+    <section className="border-t border-white/10 px-5 py-24 md:px-8 md:py-32">
+      <div className="mx-auto max-w-[1000px]">
+        <ScrollRise className="max-w-2xl">
+          <p className="mono m-0 mb-5 text-xs uppercase tracking-[0.12em] text-[#a99bff]">
+            Try it
+          </p>
+          <h2 className="m-0 text-balance text-3xl font-semibold leading-[1.1] tracking-[-0.035em] text-white md:text-5xl">
+            Watch a predictive coding network learn.
+          </h2>
+          <p className="mb-0 mt-6 text-base leading-relaxed text-white/60">
+            This 2-16-16-1 network trains in your browser. Each step, every
+            layer predicts the one above it, the neurons settle to reduce their
+            own prediction errors, and each weight changes using only the errors
+            next to it.
+          </p>
+        </ScrollRise>
+        <ScrollRise className="mt-12">
+          <PCDemo />
+        </ScrollRise>
+      </div>
+    </section>
+  );
+}
+
+function Stack() {
+  const row = [...technologies, ...technologies];
+  return (
+    <section className="border-t border-white/10 py-14">
+      <p className="mono m-0 mb-8 text-center text-xs uppercase tracking-[0.12em] text-white/35">
+        Built on
+      </p>
+      <div className="marquee-mask">
+        <div className="marquee" aria-hidden="false">
+          {row.map((t, i) => (
+            <span
+              key={`${t}-${i}`}
+              className="mx-8 whitespace-nowrap text-lg font-medium tracking-[-0.02em] text-white/45"
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ClosingText() {
+  return (
+    <section className="border-t border-white/10 px-5 py-28 md:px-8 md:py-36">
+      <ScrollRise className="mx-auto flex max-w-3xl flex-col items-center text-center">
+        <h2 className="m-0 text-balance text-4xl font-semibold leading-[1.05] tracking-[-0.04em] text-white md:text-6xl">
+          Train your first network in a few minutes.
+        </h2>
+        <p className="mb-0 mt-6 max-w-lg text-base leading-relaxed text-white/55">
+          Install the package, then follow the tutorials from XOR to a
+          convolutional network.
+        </p>
+        <div className="mt-10 flex flex-wrap justify-center gap-3">
+          <ButtonPrimary to="/tutorial">
+            Get started
+            <ArrowRight className="h-3.5 w-3.5" />
+          </ButtonPrimary>
+          <ButtonSecondary to="/early-access">
+            Request early access
+          </ButtonSecondary>
+        </div>
+      </ScrollRise>
+    </section>
+  );
+}
+
+const LaptopScene = lazy(() => import("./Components/UI_Fun/LaptopScene.tsx"));
+
+function LaptopStage() {
+  const stageRef = useRef<HTMLDivElement>(null);
+  const [near, setNear] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const linkRefs = useRef<(HTMLElement | null)[]>([]);
+
   useEffect(() => {
-    const stage = laptopStageRef.current;
-    if (!stage || !webgl) return;
-    if (typeof IntersectionObserver === "undefined") {
-      setNearLaptop(true);
-      return;
-    }
+    const stage = stageRef.current;
+    if (!stage) return;
     const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setNearLaptop(true);
+      ([e]) => {
+        if (e.isIntersecting) {
+          setNear(true);
           io.disconnect();
         }
       },
       { rootMargin: "100% 0px 100% 0px" },
     );
     io.observe(stage);
-    return () => io.disconnect();
-  }, [webgl]);
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("progress") !== null) {
-      return;
-    }
-
     let frame = 0;
-    const updateLaptopProgress = () => {
+    const update = () => {
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
-        const stage = laptopStageRef.current;
-        if (!stage) return;
-
         const rect = stage.getBoundingClientRect();
-        const totalDistance = rect.height - window.innerHeight;
-        if (totalDistance <= 0) return;
-
-        const progress = Math.min(Math.max(-rect.top / totalDistance, 0), 1);
-        setLaptopProgress(progress);
+        const total = rect.height - window.innerHeight;
+        if (total <= 0) return;
+        setProgress(Math.min(Math.max(-rect.top / total, 0), 1));
       });
     };
-
-    updateLaptopProgress();
-    window.addEventListener("scroll", updateLaptopProgress, { passive: true });
-    window.addEventListener("resize", updateLaptopProgress);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
     return () => {
+      io.disconnect();
       cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", updateLaptopProgress);
-      window.removeEventListener("resize", updateLaptopProgress);
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
     };
   }, []);
 
   return (
-    <div className="scrollbar-thin text-white">
-      <Hero />
-      <main>
-        <div className="h-svh" aria-hidden="true" />
-        <PredictiveSection />
-        <div className="relative w-full md:h-[180vh]">
-          <section className="w-full md:sticky md:top-0 md:min-h-screen flex flex-col justify-center items-center px-6 py-8 md:py-10">
-            <div className="flex justify-center items-center">
-              <h2 className="Michroma max-w-4xl text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-white text-center leading-tight md:leading-normal">
-                Learn Faster
-              </h2>
-            </div>
-            <div className="flex flex-col justify-center items-center w-full">
-              <hr className="h-1 my-4 md:my-5 w-[50%] bg-gradient-to-r from-transparent via-white/20 to-transparent border-0" />
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-5 md:grid-rows-[170px_170px_120px] max-w-[1500px] w-full">
-                <article className="relative h-full w-full overflow-hidden border-t border-white/15 pt-5 md:col-span-2 md:row-span-2">
-                                    <div className="relative z-10 flex h-full flex-col justify-center">
-                    <h3 className="Michroma mt-2 md:mt-4 text-5xl md:text-7xl text-white">
-                      3.50×
-                    </h3>
-                    <p className="Jura mt-3 md:mt-4 text-base md:text-2xl leading-relaxed text-white/75">
-                      Faster than ngc-learn (the leading neuromorphic library) at
-                      the same accuracy.
-                    </p>
-                  </div>
-                </article>
-                <article className="relative h-full w-full overflow-hidden border-t border-white/15 pt-5 md:col-span-1 md:row-span-2">
-                                    <div className="relative z-10 flex h-full flex-col justify-center">
-                    <h3 className="Michroma mt-2 md:mt-4 text-3xl md:text-5xl text-white">
-                      98.22<small className="text-lg">%</small>
-                    </h3>
-                    <p className="Jura mt-3 md:mt-4 text-base md:text-lg leading-relaxed text-white/75">
-                      Accuracy on MNIST, trained on a consumer laptop
-                    </p>
-                  </div>
-                </article>
-                <article
-                  aria-hidden="true"
-                  className="meteor-card relative flex h-48 md:h-full w-full items-center justify-center overflow-hidden md:col-span-1 md:row-span-2"
-                >
-                  <BurningMeteor />
-                </article>
-                {stats.map((stat) => (
-                  <article
-                    key={stat.label}
-                    className="relative flex flex-col justify-center border-t border-white/15 pt-4 md:col-span-1"
-                  >
-                    <h3 className="Michroma m-0 text-2xl md:text-3xl text-white">
-                      {stat.value}
-                    </h3>
-                    <p className="Jura mb-0 mt-2 text-sm md:text-base leading-snug text-white/75">
-                      {stat.label}
-                    </p>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </section>
+    <div ref={stageRef} className="relative h-[220vh] w-full border-t border-white/10">
+      <div className="sticky top-0 h-screen w-full overflow-hidden">
+        <div className="absolute inset-0">
+          <WebGLBoundary fallback={null}>
+            <Suspense fallback={null}>{near && <LaptopScene progress={progress} linkRefs={linkRefs} />}</Suspense>
+          </WebGLBoundary>
         </div>
-          <div className="slider">
-            <div className="slide-track">
-              {[...technologies, ...technologies].map((tech, index) => (
-                <div key={index} className="slide">
-                  <span className="Michroma text-lg tracking-wider text-white/70 whitespace-nowrap">
-                    {tech}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div ref={laptopStageRef} className={`relative w-full ${webgl ? "h-[220vh]" : "py-16"}`}>
-            <div
-              {...(webgl && {
-                role: "img",
-                "aria-label":
-                  "A 3D laptop opens to show Deepity: its own C++ and CUDA engine, CPU and GPU support, documentation and tests, and open source.",
-              })}
-              className={
-                webgl
-                  ? "sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden mb-10"
-                  : "w-full"
-              }
-            >
-              <WebGLBoundary fallback={<LaptopFallback />}>
-                {webgl ? (
-                <Suspense fallback={null}>
-                  {nearLaptop && <LaptopScene progress={laptopProgress} />}
-                </Suspense>
-                ) : (
-                  <LaptopFallback />
-                )}
-              </WebGLBoundary>
-            </div>
-          </div>
-          <section className="w-full flex flex-col items-center px-6 mt-10 pt-10 pb-8 md:px-16">
-            <h2 className="Michroma max-w-4xl text-4xl sm:text-6xl md:text-7xl text-white text-center leading-tight">
-              Code Examples
-            </h2>
-            <hr className="h-1 my-5 w-[50%] bg-gradient-to-r from-transparent via-white/20 to-transparent border-0" />
-            <p className="Jura mb-8 text-center text-base md:text-lg text-white/75">
-              The <span className="fancy">same network</span> in Python and C++.
-            </p>
-            <div className="w-full max-w-[1100px]">
-              <CodeTabs files={codeFiles} />
-            </div>
-          </section>
-          <section className="w-full px-6 pb-24 pt-0 md:px-16">
-            <div className="mx-auto flex max-w-[1400px] flex-col items-start justify-between gap-8 border-t border-white/15 pt-10 md:flex-row md:items-center">
-              <div>
-                <h2 className="Michroma m-0 text-2xl md:text-4xl text-white">
-                  Building with predictive coding?
-                </h2>
-                <p className="Jura mb-0 mt-3 text-base md:text-xl text-white/75">
-                  Request early access and tell us what you are working on.
-                </p>
-              </div>
-              <Link
-                to="/early-access"
-                className="Michroma shrink-0 rounded-lg bg-white px-6 py-5 text-sm text-black no-underline transition-colors hover:bg-fuchsia-400"
-              >
-                Request early access
-              </Link>
-            </div>
-          </section>
-      </main>
-      <AnimatedWaveBackground />
+        {[
+          ["/tutorial", "Get started"],
+          ["/early-access", "Request early access"],
+        ].map(([to, label], i) => (
+          <Link
+            key={to}
+            to={to}
+            aria-label={label}
+            ref={(el) => {
+              linkRefs.current[i] = el;
+            }}
+            className="absolute left-0 top-0 hidden cursor-pointer rounded-lg"
+          />
+        ))}
+      </div>
     </div>
+  );
+}
+
+function Closing() {
+  return hasWebGL() ? <LaptopStage /> : <ClosingText />;
+}
+
+export default function App() {
+  return (
+    <>
+      <Suspense fallback={null}>
+        <AnimatedWaveBackground />
+      </Suspense>
+      <Hero />
+      <FlyStage>
+        {[<Results key="r" />, <HowItWorks key="h" />, <Why key="w" />, <Code key="c" />]}
+      </FlyStage>
+      <Demo />
+      <Stack />
+      <Closing />
+    </>
   );
 }

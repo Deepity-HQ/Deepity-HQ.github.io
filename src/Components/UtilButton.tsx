@@ -1,17 +1,5 @@
+import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 import { useNavigate } from "react-router";
-
-const iconProps = {
-  xmlns: "http://www.w3.org/2000/svg",
-  width: 16,
-  height: 16,
-  viewBox: "0 0 24 24",
-  fill: "none",
-  stroke: "currentColor",
-  strokeWidth: 2.5,
-  strokeLinecap: "round" as const,
-  strokeLinejoin: "round" as const,
-  "aria-hidden": true,
-};
 
 const buttonClass =
   "flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg border-0 bg-transparent text-white/70 transition-all hover:bg-white/10 hover:text-white active:scale-95";
@@ -34,9 +22,7 @@ export default function UtilButton({
         title="Go back"
         className={buttonClass}
       >
-        <svg {...iconProps}>
-          <path d="m15 18-6-6 6-6" />
-        </svg>
+        <LuChevronLeft aria-hidden="true" className="h-4 w-4" />
       </button>
       <span className="h-3.5 w-px bg-white/10" aria-hidden="true" />
       <button
@@ -46,9 +32,7 @@ export default function UtilButton({
         title="Go to next page"
         className={buttonClass}
       >
-        <svg {...iconProps}>
-          <path d="m9 18 6-6-6-6" />
-        </svg>
+        <LuChevronRight aria-hidden="true" className="h-4 w-4" />
       </button>
     </div>
   );

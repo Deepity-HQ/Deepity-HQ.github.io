@@ -1,15 +1,14 @@
 import { lazy, Suspense } from "react";
-import { Link } from "react-router";
 import PageHeader from "../Components/PageHeader.tsx";
 import PCStepper from "../Components/PCStepper.tsx";
 import {
   bodyClass,
-  btnClass,
-  btnSolidClass,
   glassClass,
   labelClass,
 } from "../Components/ui.ts";
-import { ArrowRight, ArrowUpRight } from "../Components/ArrowIcons.tsx";
+import { ArrowUpRight } from "../Components/ArrowIcons.tsx";
+import ButtonPrimary from "../Components/ButtonPrimary.tsx";
+import ButtonSecondary from "../Components/ButtonSecondary.tsx";
 
 const PCNRepresentation = lazy(() => import("../Components/PCNRepresentation.tsx"));
 
@@ -54,16 +53,16 @@ export default function Theory() {
   return (
     <div>
       <PageHeader
+        eyebrow="Theory"
         title="How predictive coding works"
       >
         The idea behind Deepity and the equations it implements. The tutorials
         cover the same ground in more detail.
       </PageHeader>
 
-      <div className="mx-auto max-w-[1000px] px-5 pb-16 md:px-8">
-        <div className={`pt-2`}>
-          <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-[#8b7cff] to-[#7dd3fc]" />
-          <h2 className="Michroma m-0 text-2xl tracking-[-0.02em] md:text-3xl font-normal text-white">
+      <div className="mx-auto max-w-[1000px] px-5 pb-16 pt-12 md:px-8 md:pt-16">
+        <div>
+          <h2 className="font-display m-0 text-2xl tracking-[-0.02em] md:text-3xl font-normal text-white">
             Learning from local errors
           </h2>
           <p className={`${bodyClass} mt-5 text-lg`}>
@@ -78,7 +77,7 @@ export default function Theory() {
           </p>
         </div>
 
-        <div className="mt-6">
+        <div className="mt-10">
           <PCStepper />
         </div>
 
@@ -89,7 +88,7 @@ export default function Theory() {
         </div>
 
         <div className={`mt-14 border-t border-white/10 pt-10`}>
-          <h2 className="Michroma m-0 text-2xl tracking-[-0.02em] md:text-3xl font-normal text-white">
+          <h2 className="font-display m-0 text-2xl tracking-[-0.02em] md:text-3xl font-normal text-white">
             Where the cost comes from
           </h2>
           <p className={`${bodyClass} mt-5 text-lg`}>
@@ -117,18 +116,18 @@ export default function Theory() {
                       key={c.method}
                       className="hover:bg-white/[0.02] transition-colors"
                     >
-                      <td className="Jura px-5 py-3.5 font-medium text-white">
+                      <td className="font-body px-5 py-3.5 font-medium text-white">
                         {c.method}
                       </td>
                       <td
-                        className={`Michroma px-5 py-3.5 text-xs ${
+                        className={`font-display px-5 py-3.5 text-xs ${
                           isDkp ? "text-[#a99bff]" : "text-white/70"
                         }`}
                       >
                         {c.hops}
                       </td>
                       <td
-                        className={`Michroma px-5 py-3.5 text-xs ${
+                        className={`font-display px-5 py-3.5 text-xs ${
                           isDkp ? "text-[#a99bff]" : "text-white/70"
                         }`}
                       >
@@ -145,7 +144,7 @@ export default function Theory() {
             every layer through learned feedback weights, so it arrives in one
             hop and M can drop to 1 or 2. That is the main reason it trains
             faster, and it costs some accuracy: on our MNIST runs it reached
-            95.97% against 98.22% for standard settling.
+            95.97% against 98.21% for standard settling.
           </p>
           <p className={`${bodyClass} mb-0 mt-4 text-base`}>
             These are operation counts, not wall-clock time. Deepity works on
@@ -155,7 +154,7 @@ export default function Theory() {
         </div>
 
         <div className="mt-12">
-          <h2 className="Michroma m-0 text-2xl tracking-[-0.02em] md:text-3xl font-normal text-white">
+          <h2 className="font-display m-0 text-2xl tracking-[-0.02em] md:text-3xl font-normal text-white">
             What it offers
           </h2>
           <div className="mt-6 grid gap-4 md:grid-cols-2">
@@ -166,7 +165,7 @@ export default function Theory() {
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="Michroma text-xs text-[#a99bff]">
+                    <span className="font-display text-xs text-[#a99bff]">
                       0{i + 1}
                     </span>
                     {i === 0 && (
@@ -194,7 +193,7 @@ export default function Theory() {
                       </svg>
                     )}
                   </div>
-                  <h3 className="Michroma m-0 text-lg md:text-xl font-normal text-white">
+                  <h3 className="font-display m-0 text-lg md:text-xl font-normal text-white">
                     {o.title}
                   </h3>
                   <p className={`${bodyClass} mb-0 mt-3 text-sm md:text-base`}>
@@ -204,14 +203,14 @@ export default function Theory() {
               </div>
             ))}
           </div>
-          <p className="Jura mb-0 mt-4 text-sm text-white/50">
+          <p className="font-body mb-0 mt-4 text-sm text-white/50">
             These are arguments for the approach. Deepity&apos;s own results so
             far cover training speed and MNIST accuracy.
           </p>
         </div>
 
         <div className={`mt-14 border-t border-white/10 pt-10`}>
-          <h3 className="Michroma m-0 text-xl md:text-2xl font-normal text-white">
+          <h3 className="font-display m-0 text-xl md:text-2xl font-normal text-white">
             Further reading
           </h3>
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
@@ -223,7 +222,7 @@ export default function Theory() {
                 rel="noopener noreferrer"
                 className="group card-interactive flex items-center justify-between rounded-xl border border-white/10 bg-[#0e0e0f] p-4 no-underline"
               >
-                <span className="Jura text-sm font-medium text-white group-hover:text-[#a99bff] transition-colors">
+                <span className="font-body text-sm font-medium text-white group-hover:text-[#a99bff] transition-colors">
                   {r.title}
                 </span>
                 <ArrowUpRight className="ml-2 text-white/70 transition-colors group-hover:text-[#a99bff]" />
@@ -231,13 +230,12 @@ export default function Theory() {
             ))}
           </div>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link to="/tutorial/0-introduction" className={btnSolidClass}>
+            <ButtonPrimary to="/tutorial/0-introduction">
               Start the tutorials
-            </Link>
-            <Link to="/about" className={btnClass}>
+            </ButtonPrimary>
+            <ButtonSecondary to="/about">
               About Deepity
-              <ArrowRight />
-            </Link>
+            </ButtonSecondary>
           </div>
         </div>
       </div>
