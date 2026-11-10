@@ -53,7 +53,7 @@ export default function TutorialRail({ current: current_ }: { current: number })
         aria-label="Tutorials"
         className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 bg-white/[0.02] px-6 py-3.5 md:px-10"
       >
-        <div className="Michroma flex items-center gap-2 text-xs text-white/70">
+        <div className="font-display flex items-center gap-2 text-xs text-white/70">
           <Link to="/tutorial" className="no-underline transition-colors hover:text-white">
             Tutorials
           </Link>
@@ -62,7 +62,7 @@ export default function TutorialRail({ current: current_ }: { current: number })
         </div>
 
         <div className="flex items-center">
-          <span className="Michroma mr-3 hidden text-[11px] uppercase tracking-wider text-white/40 sm:inline">
+          <span className="font-display mr-3 hidden text-[11px] uppercase tracking-wider text-white/40 sm:inline">
             Part
           </span>
           {STEPS.map((s) => {
@@ -73,7 +73,7 @@ export default function TutorialRail({ current: current_ }: { current: number })
                 to={s.to}
                 aria-current={current ? "page" : undefined}
                 title={s.written ? `Tutorial ${s.n}` : `Tutorial ${s.n} (coming soon)`}
-                className={`Michroma relative px-2.5 py-1.5 text-xs no-underline transition-colors ${
+                className={`font-display relative px-2.5 py-1.5 text-xs no-underline transition-colors ${
                   current
                     ? "text-white"
                     : s.written

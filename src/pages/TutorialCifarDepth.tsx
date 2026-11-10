@@ -34,8 +34,8 @@ for _ in range(8):
 # Readout: 32->10 via a kernel covering the whole 8x8 feature map.
 net.add_layer(32, 10, 8, 8, 8, 8, 1, 1, 0, 0, 0, ...)`;
 
-import { btnClass, btnSolidClass } from "../Components/ui.ts";
-import { ArrowLeft } from "../Components/ArrowIcons.tsx";
+import ButtonPrimary from "../Components/ButtonPrimary.tsx";
+import ButtonSecondary from "../Components/ButtonSecondary.tsx";
 
 export default function TutorialCifarDepth() {
   return (
@@ -45,8 +45,8 @@ export default function TutorialCifarDepth() {
         <TutorialRail current={7} />
 
         <div className="px-6 py-8 md:px-12 md:py-12">
-          <div className="Michroma mb-3 text-xs uppercase tracking-[0.06em] text-[#a99bff]">Tutorial 7</div>
-          <h1 className="Michroma text-2xl font-normal tracking-[-0.03em] md:text-4xl text-white">
+          <div className="font-display mb-3 text-xs uppercase tracking-[0.06em] text-[#a99bff]">Tutorial 7</div>
+          <h1 className="font-display text-2xl font-normal tracking-[-0.03em] md:text-4xl text-white">
             CIFAR-10 at Depth: Two Real Bugs and a Wrong Architecture
           </h1>
           <p className="mt-5 text-base md:text-lg leading-relaxed text-white/70 max-w-3xl">
@@ -62,9 +62,9 @@ export default function TutorialCifarDepth() {
 
         <div className="border-t border-white/20 my-8 mx-8" />
 
-        <div className="px-8 md:px-12 space-y-10 Jura text-lg text-white">
+        <div className="px-8 md:px-12 space-y-10 font-body text-lg text-white">
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               1. The Question
             </h2>
             <p className="mb-4">
@@ -90,7 +90,7 @@ export default function TutorialCifarDepth() {
           <div className="border-t border-white/20 my-8 mx-8" />
 
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               2. Bug One — The Same Stale Gradient, Three Times
             </h2>
             <p className="mb-4">
@@ -136,7 +136,7 @@ export default function TutorialCifarDepth() {
                 language="cpp"
                 code={fixCode}
               />
-              <p className="mt-3 text-center text-sm text-white/70 Jura">
+              <p className="mt-3 text-center text-sm text-white/70 font-body">
                 Fig. 1: The same bug, fixed independently in three sibling classes.
               </p>
             </div>
@@ -145,7 +145,7 @@ export default function TutorialCifarDepth() {
           <div className="border-t border-white/20 my-8 mx-8" />
 
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               3. Bug Two — A Feedback Path muPC Was Never Told About
             </h2>
             <p className="mb-4">
@@ -174,7 +174,7 @@ export default function TutorialCifarDepth() {
           <div className="border-t border-white/20 my-8 mx-8" />
 
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               4. The Wrong Architecture
             </h2>
             <p className="mb-4">
@@ -210,7 +210,7 @@ export default function TutorialCifarDepth() {
                 language="python"
                 code={archCode}
               />
-              <p className="mt-3 text-center text-sm text-white/70 Jura">
+              <p className="mt-3 text-center text-sm text-white/70 font-body">
                 Fig. 2: A downsampling stem keeps the residual-eligible stack cheap.
               </p>
             </div>
@@ -219,7 +219,7 @@ export default function TutorialCifarDepth() {
           <div className="border-t border-white/20 my-8 mx-8" />
 
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               5. The Result
             </h2>
             <p className="mb-4">
@@ -241,7 +241,7 @@ export default function TutorialCifarDepth() {
                 height="1203"
                 width="3064"
               />
-              <p className="mt-3 text-center text-sm text-white/70 Jura">
+              <p className="mt-3 text-center text-sm text-white/70 font-body">
                 Fig. 3: A real run of examples/cifar10_fullconvpcn.py --mu-pc.
               </p>
             </div>
@@ -250,7 +250,7 @@ export default function TutorialCifarDepth() {
           <div className="border-t border-white/20 my-8 mx-8" />
 
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               6. What This Isn't
             </h2>
             <p className="mb-4">
@@ -281,7 +281,7 @@ export default function TutorialCifarDepth() {
           <div className="border-t border-white/20 my-8 mx-8" />
 
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               Where to Go From Here
             </h2>
             <p>
@@ -304,19 +304,12 @@ export default function TutorialCifarDepth() {
           </Reveal>
 
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pb-12 pt-8 md:pb-14">
-            <Link
-              to="/tutorial/6-fullpcn"
-              className={`${btnClass} w-full sm:w-auto`}
-            >
-              <ArrowLeft />
+            <ButtonSecondary to="/tutorial/6-fullpcn" arrow="left" className="w-full sm:w-auto">
               Part 6: muPC, iPC, and ePC Explained
-            </Link>
-            <Link
-              to="/tutorial"
-              className={`${btnSolidClass} w-full sm:w-auto`}
-            >
+            </ButtonSecondary>
+            <ButtonPrimary to="/tutorial" className="w-full sm:w-auto">
               All Tutorials Overview
-            </Link>
+            </ButtonPrimary>
           </div>
         </div>
       </div>

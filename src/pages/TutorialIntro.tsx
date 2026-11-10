@@ -1,4 +1,3 @@
-import { Link } from "react-router";
 import Reveal from "../Components/Reveal.tsx";
 import UtilButton from "../Components/UtilButton.tsx";
 import TutorialRail from "../Components/TutorialRail.tsx";
@@ -34,8 +33,9 @@ x = np.random.randn(1, 784).astype(np.float32)
 output = model.predict(x, 150)
 print(output)`;
 
-import { btnClass, btnSolidClass } from "../Components/ui.ts";
-import { ArrowLeft, ArrowRight } from "../Components/ArrowIcons.tsx";
+import { ArrowRight } from "../Components/ArrowIcons.tsx";
+import ButtonPrimary from "../Components/ButtonPrimary.tsx";
+import ButtonSecondary from "../Components/ButtonSecondary.tsx";
 
 export default function TutorialIntro() {
   return (
@@ -46,8 +46,8 @@ export default function TutorialIntro() {
 
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 px-6 py-8 md:px-12 md:py-12">
           <div className="max-w-full md:max-w-[58%]">
-            <div className="Michroma mb-3 text-xs uppercase tracking-[0.06em] text-[#a99bff]">Tutorial 0</div>
-            <h1 className="Michroma text-2xl font-normal tracking-[-0.03em] md:text-4xl text-white">
+            <div className="font-display mb-3 text-xs uppercase tracking-[0.06em] text-[#a99bff]">Tutorial 0</div>
+            <h1 className="font-display text-2xl font-normal tracking-[-0.03em] md:text-4xl text-white">
               Introduction to Predictive Coding
             </h1>
             <p className="mt-5 text-base md:text-lg leading-relaxed text-white/70">
@@ -91,9 +91,9 @@ export default function TutorialIntro() {
 
         <div className="border-t border-white/20 my-8 mx-8" />
 
-        <div className="px-8 md:px-12 space-y-10 Jura text-lg text-white">
+        <div className="px-8 md:px-12 space-y-10 font-body text-lg text-white">
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               The Limits of Classical Neural Networks
             </h2>
             <p className="mb-4">
@@ -136,7 +136,7 @@ export default function TutorialIntro() {
                   alt="Feedforward neural networks visualized"
                   className="block w-full border border-white/20"
                 />
-                <p className="mt-3 text-center text-sm text-white/70 Jura">
+                <p className="mt-3 text-center text-sm text-white/70 font-body">
                   Fig. 1: Feedforward neural networks are a classic one-way
                   pipeline.
                 </p>
@@ -150,7 +150,7 @@ export default function TutorialIntro() {
                     code={feedforwardCode}
                   />
                 </div>
-                <p className="mt-3 text-center text-sm text-white/70 Jura">
+                <p className="mt-3 text-center text-sm text-white/70 font-body">
                   Fig. 2: Standard frameworks map inputs to outputs
                   sequentially.
                 </p>
@@ -161,7 +161,7 @@ export default function TutorialIntro() {
           <div className="border-t border-white/20 my-8 mx-8" />
 
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               What is a Predictive Coding Network?
             </h2>
             <p className="mb-4">
@@ -199,14 +199,14 @@ export default function TutorialIntro() {
                 language="python"
                 code={deepityCode}
               />
-              <p className="mt-3 text-center text-sm text-white/70 Jura">
+              <p className="mt-3 text-center text-sm text-white/70 font-body">
                 Fig. 4: Equivalent code in Deepity.
               </p>
             </div>
           </Reveal>
           <div className="border-t border-white/20 my-8 mx-8" />
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               Practical Bottlenecks
             </h2>
             <p className="mb-4">
@@ -226,7 +226,7 @@ export default function TutorialIntro() {
             </p>
           </Reveal>
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               Implications of Future Work
             </h2>
             <p className="mb-4">
@@ -257,17 +257,13 @@ export default function TutorialIntro() {
           </Reveal>
 
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pb-12 pt-8 md:pb-14">
-            <Link to="/tutorial" className={`${btnClass} w-full sm:w-auto`}>
-              <ArrowLeft />
+            <ButtonSecondary to="/tutorial" arrow="left" className="w-full sm:w-auto">
               All Tutorials
-            </Link>
-            <Link
-              to="/tutorial/1-beginning"
-              className={`${btnSolidClass} w-full sm:w-auto`}
-            >
+            </ButtonSecondary>
+            <ButtonPrimary to="/tutorial/1-beginning" className="w-full sm:w-auto">
               Part 1: Understanding Deepity
               <ArrowRight />
-            </Link>
+            </ButtonPrimary>
           </div>
         </div>
       </div>

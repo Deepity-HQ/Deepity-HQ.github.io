@@ -1,4 +1,3 @@
-import { Link } from "react-router";
 import Reveal from "../Components/Reveal.tsx";
 import UtilButton from "../Components/UtilButton.tsx";
 import TutorialRail from "../Components/TutorialRail.tsx";
@@ -47,8 +46,9 @@ for _ in range(steps):
 pcn.update_weights()     # W updated from the now-settled z's
 pcn[-1].unclamp_state()`;
 
-import { btnClass, btnSolidClass } from "../Components/ui.ts";
-import { ArrowLeft, ArrowRight } from "../Components/ArrowIcons.tsx";
+import { ArrowRight } from "../Components/ArrowIcons.tsx";
+import ButtonPrimary from "../Components/ButtonPrimary.tsx";
+import ButtonSecondary from "../Components/ButtonSecondary.tsx";
 
 export default function TutorialTrainingXOR() {
   return (
@@ -58,8 +58,8 @@ export default function TutorialTrainingXOR() {
         <TutorialRail current={2} />
 
         <div className="px-6 py-8 md:px-12 md:py-12">
-          <div className="Michroma mb-3 text-xs uppercase tracking-[0.06em] text-[#a99bff]">Tutorial 2</div>
-          <h1 className="Michroma text-2xl font-normal tracking-[-0.03em] md:text-4xl text-white">
+          <div className="font-display mb-3 text-xs uppercase tracking-[0.06em] text-[#a99bff]">Tutorial 2</div>
+          <h1 className="font-display text-2xl font-normal tracking-[-0.03em] md:text-4xl text-white">
             Training a SimplePCN on XOR
           </h1>
           <p className="mt-5 text-base md:text-lg leading-relaxed text-white/70 max-w-3xl">
@@ -73,9 +73,9 @@ export default function TutorialTrainingXOR() {
 
         <div className="border-t border-white/20 my-8 mx-8" />
 
-        <div className="px-8 md:px-12 space-y-10 Jura text-lg text-white">
+        <div className="px-8 md:px-12 space-y-10 font-body text-lg text-white">
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               1. Why XOR Needs a Hidden Layer
             </h2>
             <p className="mb-4">
@@ -88,12 +88,12 @@ export default function TutorialTrainingXOR() {
               how it is trained.
             </p>
             <div className="my-6 overflow-x-auto">
-              <table className="w-full max-w-md mx-auto border-collapse text-center Jura">
+              <table className="w-full max-w-md mx-auto border-collapse text-center font-body">
                 <thead>
                   <tr className="border-b border-white/20 text-white/60 text-sm uppercase tracking-wider">
-                    <th className="py-2 px-4 Michroma text-xs">A</th>
-                    <th className="py-2 px-4 Michroma text-xs">B</th>
-                    <th className="py-2 px-4 Michroma text-xs">A XOR B</th>
+                    <th className="py-2 px-4 font-display text-xs">A</th>
+                    <th className="py-2 px-4 font-display text-xs">B</th>
+                    <th className="py-2 px-4 font-display text-xs">A XOR B</th>
                   </tr>
                 </thead>
                 <tbody className="text-white/80">
@@ -132,7 +132,7 @@ export default function TutorialTrainingXOR() {
           <div className="border-t border-white/20 my-8 mx-8" />
 
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               2. Building the Network
             </h2>
             <p className="mb-4">
@@ -159,7 +159,7 @@ export default function TutorialTrainingXOR() {
                 language="python"
                 code={xorCode}
               />
-              <p className="mt-3 text-center text-sm text-white/70 Jura">
+              <p className="mt-3 text-center text-sm text-white/70 font-body">
                 Fig. 1: The complete XOR example, from examples/xor.py.
               </p>
             </div>
@@ -168,7 +168,7 @@ export default function TutorialTrainingXOR() {
           <div className="border-t border-white/20 my-8 mx-8" />
 
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               3. Why Settling Converges
             </h2>
             <p className="mb-4">
@@ -187,7 +187,7 @@ export default function TutorialTrainingXOR() {
                 language="python"
                 code={settleCode}
               />
-              <p className="mt-3 text-center text-sm text-white/70 Jura">
+              <p className="mt-3 text-center text-sm text-white/70 font-body">
                 Fig. 2: The settling loop underneath train_step().
               </p>
             </div>
@@ -208,7 +208,7 @@ export default function TutorialTrainingXOR() {
           <div className="border-t border-white/20 my-8 mx-8" />
 
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               4. Running It
             </h2>
             <p className="mb-4">
@@ -231,7 +231,7 @@ export default function TutorialTrainingXOR() {
                 height="484"
                 width="1143"
               />
-              <p className="mt-3 text-center text-sm text-white/70 Jura">
+              <p className="mt-3 text-center text-sm text-white/70 font-body">
                 Fig. 3: A real run of examples/xor.py — every prediction's
                 sign matches its target, including the two disagreeing-input
                 rows a linear model can't get right.
@@ -240,20 +240,13 @@ export default function TutorialTrainingXOR() {
           </Reveal>
 
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pb-12 pt-8 md:pb-14">
-            <Link
-              to="/tutorial/1-beginning"
-              className={`${btnClass} w-full sm:w-auto`}
-            >
-              <ArrowLeft />
+            <ButtonSecondary to="/tutorial/1-beginning" arrow="left" className="w-full sm:w-auto">
               Part 1: Understanding Deepity
-            </Link>
-            <Link
-              to="/tutorial/3-tweaked-xor"
-              className={`${btnSolidClass} w-full sm:w-auto`}
-            >
+            </ButtonSecondary>
+            <ButtonPrimary to="/tutorial/3-tweaked-xor" className="w-full sm:w-auto">
               Part 3: Adding Hyperparameters
               <ArrowRight />
-            </Link>
+            </ButtonPrimary>
           </div>
         </div>
       </div>

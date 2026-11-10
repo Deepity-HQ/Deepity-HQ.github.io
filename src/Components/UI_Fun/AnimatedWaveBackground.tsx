@@ -1,3 +1,4 @@
+import { protectContext } from "../../threeSetup.ts";
 import { useRef, useMemo, useLayoutEffect, useEffect, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
@@ -19,7 +20,7 @@ const sepZ = 0.135;
 const fitHalfWidth = 15;
 // The camera looks only slightly downward, so the wave sits in the lower half
 // of the screen with black space above it.
-const cameraPitch = THREE.MathUtils.degToRad(6);
+const cameraPitch = THREE.MathUtils.degToRad(-5);
 
 const createDotTexture = () => {
   const canvas = document.createElement("canvas");
@@ -32,6 +33,22 @@ const createDotTexture = () => {
   gradient.addColorStop(0.2, "rgba(200, 200, 200, 0.3)");
   gradient.addColorStop(0.6, "rgba(160, 160, 160, 0.1)");
   gradient.addColorStop(1, "rgba(0, 0, 0, 0)");
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, 64, 64);
+  return new THREE.CanvasTexture(canvas);
+};
+
+// Hard-edged disc with a thin smoothed rim, so each dot reads as a solid point
+const createSolidDotTexture = () => {
+  const canvas = document.createElement("canvas");
+  canvas.width = 64;
+  canvas.height = 64;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not create the solid dot texture.");
+  const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+  gradient.addColorStop(0, "rgba(255, 255, 255, 1)");
+  gradient.addColorStop(0.82, "rgba(255, 255, 255, 1)");
+  gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, 64, 64);
   return new THREE.CanvasTexture(canvas);
@@ -108,8 +125,16 @@ const smooth = (edge0: number, edge1: number, v: number) => {
 const halfGridWidth = (gridX / 2) * sepX;
 const halfGridDepth = (gridZ / 2) * sepZ;
 
-import { markWaveReady } from "../../waveReady.ts";
 import { WebGLBoundary, hasWebGL } from "../../webgl.tsx";
+
+// Seeded so the layout is the same on every render and load
+let seed = 0x9e3779b9;
+function rand() {
+  seed = (seed + 0x6d2b79f5) | 0;
+  let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+  t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+  return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+}
 
 const CREST_STRIDE = 7;
 const TERRAIN_STRIDE = 5;
@@ -120,13 +145,12 @@ const DottedWave = () => {
   const glowRef = useRef<THREE.Points>(null);
   const glowMaterialRef = useRef<THREE.PointsMaterial>(null);
   const glowTexture = useMemo(() => createGlowTexture(), []);
+  const solidTexture = useMemo(() => createSolidDotTexture(), []);
   const colorHelper = useMemo(() => new THREE.Color(), []);
   const cameraForward = useMemo(() => new THREE.Vector3(), []);
   const scrollProgress = useRef(0);
   const animatedProgress = useRef(0);
   const frameTick = useRef(0);
-  const framesRendered = useRef(0);
-  const announcedReady = useRef(false);
 
   const {
     positions,
@@ -151,10 +175,10 @@ const DottedWave = () => {
     // per dot: random direction (x, y, z) for the scroll-out, and a 0-1 seed
     const scatterValues = new Float32Array(numParticles * 4);
     for (let n = 0; n < numParticles; n++) {
-      scatterValues[n * 4] = Math.random() * 2 - 1;
-      scatterValues[n * 4 + 1] = Math.random() * 2 - 1;
-      scatterValues[n * 4 + 2] = Math.random() * 2 - 1;
-      scatterValues[n * 4 + 3] = Math.random();
+      scatterValues[n * 4] = rand() * 2 - 1;
+      scatterValues[n * 4 + 1] = rand() * 2 - 1;
+      scatterValues[n * 4 + 2] = rand() * 2 - 1;
+      scatterValues[n * 4 + 3] = rand();
     }
 
     let i = 0;
@@ -165,7 +189,7 @@ const DottedWave = () => {
         pos[i * 3 + 2] = (iz - gridZ / 2) * sepZ;
 
         standoutFlags[i] =
-          Math.random() > 0.993 ? Math.random() * Math.PI * 2 : -1;
+          rand() > 0.993 ? rand() * Math.PI * 2 : -1;
         i++;
       }
     }
@@ -228,18 +252,6 @@ const DottedWave = () => {
     const points = pointsRef.current;
     const glowPoints = glowRef.current;
     if (!points || !glowPoints) return;
-
-    // Tell the splash screen once the first frames (shader compiles, post-
-    // processing warm-up) are behind us and the animation is running smoothly
-    framesRendered.current++;
-    if (
-      !announcedReady.current &&
-      framesRendered.current >= 12 &&
-      delta < 0.04
-    ) {
-      announcedReady.current = true;
-      markWaveReady();
-    }
 
     animatedProgress.current = THREE.MathUtils.damp(
       animatedProgress.current,
@@ -459,7 +471,9 @@ const DottedWave = () => {
         </bufferGeometry>
         <pointsMaterial
           ref={materialRef}
-          size={0.045}
+          map={solidTexture}
+          alphaTest={0.02}
+          size={0.08}
           vertexColors={true}
           transparent={true}
           depthWrite={false}
@@ -476,7 +490,7 @@ const DottedWave = () => {
         <pointsMaterial
           ref={glowMaterialRef}
           map={glowTexture}
-          size={0.7}
+          size={0.32}
           vertexColors={true}
           transparent={true}
           depthWrite={false}
@@ -515,11 +529,11 @@ const DustParticles = ({ count, size, brightness, opacity }: DustProps) => {
     // per particle: amplitude, speed, phase, twinkle speed, tint
     const motion = new Float32Array(count * 5);
     for (let i = 0; i < count; i++) {
-      motion[i * 5] = 0.15 + Math.random() * 0.5;
-      motion[i * 5 + 1] = 0.05 + Math.random() * 0.12;
-      motion[i * 5 + 2] = Math.random() * Math.PI * 2;
-      motion[i * 5 + 3] = 0.2 + Math.random() * 0.5;
-      motion[i * 5 + 4] = Math.random();
+      motion[i * 5] = 0.15 + rand() * 0.5;
+      motion[i * 5 + 1] = 0.05 + rand() * 0.12;
+      motion[i * 5 + 2] = rand() * Math.PI * 2;
+      motion[i * 5 + 3] = 0.2 + rand() * 0.5;
+      motion[i * 5 + 4] = rand();
     }
     return { positions: pos, home: homePos, colors: col, drift: motion };
   }, [count]);
@@ -657,7 +671,7 @@ export default function AnimatedWaveBackground() {
         left: 0,
         width: "100vw",
         height: "100vh",
-        backgroundColor: "#020205",
+        backgroundColor: "#08080a",
         zIndex: -1,
       }}
     >
@@ -668,10 +682,10 @@ export default function AnimatedWaveBackground() {
           zIndex: 1,
           pointerEvents: "none",
           background:
-            "radial-gradient(ellipse 85% 70% at 50% 62%, transparent 45%, rgba(2,2,5,0.9) 100%), linear-gradient(to bottom, #020205 0%, rgba(2,2,5,0) 28%)",
+            "radial-gradient(ellipse 85% 70% at 50% 62%, transparent 45%, rgba(8,8,10,0.9) 100%), linear-gradient(to bottom, #08080a 0%, rgba(8,8,10,0) 28%)",
         }}
       />
-      <WebGLBoundary fallback={<StaticWave />} onFallback={markWaveReady}>
+      <WebGLBoundary fallback={<StaticWave />}>
       {webgl ? (
       <Canvas
         camera={{ position: [0, 2.5, 30], fov: 55 }}
@@ -679,8 +693,9 @@ export default function AnimatedWaveBackground() {
         style={{ visibility: active ? "visible" : "hidden" }}
         frameloop={active ? "always" : "never"}
         gl={{ antialias: false, powerPreference: "high-performance" }}
+        onCreated={({ gl, invalidate }) => protectContext(gl, invalidate)}
       >
-        <fog attach="fog" args={["#020205", 5, 35]} />
+        <fog attach="fog" args={["#08080a", 5, 35]} />
         <WaveCamera />
         <DottedWave />
         {/* Fine specks plus a few larger soft bokeh dots, sparse, so the sky stays mostly dark */}
@@ -690,13 +705,13 @@ export default function AnimatedWaveBackground() {
           <DepthOfField
             focusDistance={0.08}
             focalLength={0.1}
-            bokehScale={2}
+            bokehScale={0.8}
             height={480}
           />
           <Bloom
-            luminanceThreshold={0.3}
+            luminanceThreshold={0.55}
             luminanceSmoothing={0.3}
-            intensity={8.0}
+            intensity={2.2}
           />
         </EffectComposer>
       </Canvas>
@@ -710,7 +725,6 @@ export default function AnimatedWaveBackground() {
 
 /** Still, dotted stand-in for the wave when WebGL is unavailable */
 function StaticWave() {
-  useEffect(() => markWaveReady(), []);
   return (
     <div
       aria-hidden="true"

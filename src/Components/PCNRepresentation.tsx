@@ -11,7 +11,7 @@ export default function PCNRepresentation() {
   return (
     <div className="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 shadow-lg lg:grid-cols-2">
       <div className="flex flex-col justify-between bg-[#0c0c0d] p-6 md:p-8">
-        <div className="Michroma mb-4 text-xs uppercase tracking-[0.06em] text-white/70">
+        <div className="font-display mb-4 text-xs uppercase tracking-[0.06em] text-white/70">
           Message passing between layers
         </div>
         <svg
@@ -19,7 +19,7 @@ export default function PCNRepresentation() {
           className="block h-auto w-full"
           role="img"
           aria-label="Layer 1 sends a prediction to layer 2; layer 2 returns a prediction error."
-          fontFamily="Michroma, sans-serif"
+          fontFamily="font-display, sans-serif"
           fontSize="11"
         >
           <defs>
@@ -45,7 +45,7 @@ export default function PCNRepresentation() {
       </div>
 
       <div className="bg-[#0c0c0d] p-6">
-        <div className="Michroma mb-2 text-xs uppercase tracking-[0.06em] text-white/70">
+        <div className="font-display mb-2 text-xs uppercase tracking-[0.06em] text-white/70">
           The equations
         </div>
         <div className="overflow-x-auto text-white">
@@ -53,7 +53,7 @@ export default function PCNRepresentation() {
             <div key={i} dangerouslySetInnerHTML={{ __html: html }} />
           ))}
         </div>
-        <p className="Jura mt-2 text-[13px] text-white/70">
+        <p className="font-body mt-2 text-[13px] text-white/70">
           μ is a layer&apos;s prediction, ε its prediction error and E the
           total energy. η is the inference rate and α the learning rate. Each
           equation involves one layer and its neighbors.

@@ -33,8 +33,8 @@ for step in range(total_steps):
     net.set_feedback_rate(fl_schedule(step))
     energy = net.train_step(X_batch, Y_batch, INFERENCE_STEPS)`;
 
-import { btnClass, btnSolidClass } from "../Components/ui.ts";
-import { ArrowLeft } from "../Components/ArrowIcons.tsx";
+import ButtonPrimary from "../Components/ButtonPrimary.tsx";
+import ButtonSecondary from "../Components/ButtonSecondary.tsx";
 
 export default function TutorialDKPPCN() {
   return (
@@ -44,8 +44,8 @@ export default function TutorialDKPPCN() {
         <TutorialRail current={5} />
 
         <div className="px-6 py-8 md:px-12 md:py-12">
-          <div className="Michroma mb-3 text-xs uppercase tracking-[0.06em] text-[#a99bff]">Tutorial 5</div>
-          <h1 className="Michroma text-2xl font-normal tracking-[-0.03em] md:text-4xl text-white">
+          <div className="font-display mb-3 text-xs uppercase tracking-[0.06em] text-[#a99bff]">Tutorial 5</div>
+          <h1 className="font-display text-2xl font-normal tracking-[-0.03em] md:text-4xl text-white">
             Direct Kolen-Pollack Networks on MNIST
           </h1>
           <p className="mt-5 text-base md:text-lg leading-relaxed text-white/70 max-w-3xl">
@@ -61,9 +61,9 @@ export default function TutorialDKPPCN() {
 
         <div className="border-t border-white/20 my-8 mx-8" />
 
-        <div className="px-8 md:px-12 space-y-10 Jura text-lg text-white">
+        <div className="px-8 md:px-12 space-y-10 font-body text-lg text-white">
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               1. Why Settling Usually Takes So Many Steps
             </h2>
             <p className="mb-4">
@@ -90,7 +90,7 @@ export default function TutorialDKPPCN() {
           <div className="border-t border-white/20 my-8 mx-8" />
 
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               2. Two Learning Rates, Two Optimizers
             </h2>
             <p className="mb-4">
@@ -113,7 +113,7 @@ export default function TutorialDKPPCN() {
                 language="python"
                 code={dkpCode}
               />
-              <p className="mt-3 text-center text-sm text-white/70 Jura">
+              <p className="mt-3 text-center text-sm text-white/70 font-body">
                 Fig. 1: The same 784-512-10 MNIST network as earlier
                 tutorials, settled in 2 steps instead of 20-30.
               </p>
@@ -123,7 +123,7 @@ export default function TutorialDKPPCN() {
           <div className="border-t border-white/20 my-8 mx-8" />
 
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               3. A Schedule Borrowed From the Paper
             </h2>
             <p className="mb-4">
@@ -152,7 +152,7 @@ export default function TutorialDKPPCN() {
           <div className="border-t border-white/20 my-8 mx-8" />
 
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               4. Running It
             </h2>
             <p className="mb-4">
@@ -174,7 +174,7 @@ export default function TutorialDKPPCN() {
                 height="2560"
                 width="4096"
               />
-              <p className="mt-3 text-center text-sm text-white/70 Jura">
+              <p className="mt-3 text-center text-sm text-white/70 font-body">
                 Fig. 2: A real run of examples/mnist_dkppcn.py.
               </p>
             </div>
@@ -183,7 +183,7 @@ export default function TutorialDKPPCN() {
           <div className="border-t border-white/20 my-8 mx-8" />
 
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               Where to Go From Here
             </h2>
             <p>
@@ -207,19 +207,12 @@ export default function TutorialDKPPCN() {
           </Reveal>
 
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pb-12 pt-8 md:pb-14">
-            <Link
-              to="/tutorial/4-cnn"
-              className={`${btnClass} w-full sm:w-auto`}
-            >
-              <ArrowLeft />
+            <ButtonSecondary to="/tutorial/4-cnn" arrow="left" className="w-full sm:w-auto">
               Part 4: Running a Convolutional PCN
-            </Link>
-            <Link
-              to="/tutorial/6-fullpcn"
-              className={`${btnSolidClass} w-full sm:w-auto`}
-            >
+            </ButtonSecondary>
+            <ButtonPrimary to="/tutorial/6-fullpcn" className="w-full sm:w-auto">
               Part 6: muPC, iPC, and ePC Explained
-            </Link>
+            </ButtonPrimary>
           </div>
         </div>
       </div>

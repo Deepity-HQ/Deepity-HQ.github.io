@@ -1,4 +1,3 @@
-import { Link } from "react-router";
 import Reveal from "../Components/Reveal.tsx";
 import UtilButton from "../Components/UtilButton.tsx";
 import TutorialRail from "../Components/TutorialRail.tsx";
@@ -51,8 +50,9 @@ log_p -= precision_rate * grad
 log_p = clamp(log_p, -5, 5)     # hard floor/ceiling
 p = exp(log_p)`;
 
-import { btnClass, btnSolidClass } from "../Components/ui.ts";
-import { ArrowLeft, ArrowRight } from "../Components/ArrowIcons.tsx";
+import { ArrowRight } from "../Components/ArrowIcons.tsx";
+import ButtonPrimary from "../Components/ButtonPrimary.tsx";
+import ButtonSecondary from "../Components/ButtonSecondary.tsx";
 
 export default function TutorialTweakedXOR() {
   return (
@@ -62,8 +62,8 @@ export default function TutorialTweakedXOR() {
         <TutorialRail current={3} />
 
         <div className="px-6 py-8 md:px-12 md:py-12">
-          <div className="Michroma mb-3 text-xs uppercase tracking-[0.06em] text-[#a99bff]">Tutorial 3</div>
-          <h1 className="Michroma text-2xl font-normal tracking-[-0.03em] md:text-4xl text-white">
+          <div className="font-display mb-3 text-xs uppercase tracking-[0.06em] text-[#a99bff]">Tutorial 3</div>
+          <h1 className="font-display text-2xl font-normal tracking-[-0.03em] md:text-4xl text-white">
             Adding Helpful Hyperparameters
           </h1>
           <p className="mt-5 text-base md:text-lg leading-relaxed text-white/70 max-w-3xl">
@@ -76,9 +76,9 @@ export default function TutorialTweakedXOR() {
 
         <div className="border-t border-white/20 my-8 mx-8" />
 
-        <div className="px-8 md:px-12 space-y-10 Jura text-lg text-white">
+        <div className="px-8 md:px-12 space-y-10 font-body text-lg text-white">
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               1. From SimplePCN to SequentialPCN
             </h2>
             <p className="mb-4">
@@ -99,7 +99,7 @@ export default function TutorialTweakedXOR() {
                 language="python"
                 code={tweakedCode}
               />
-              <p className="mt-3 text-center text-sm text-white/70 Jura">
+              <p className="mt-3 text-center text-sm text-white/70 font-body">
                 Fig. 1: The same XOR problem, trained with SequentialPCN.
               </p>
             </div>
@@ -108,7 +108,7 @@ export default function TutorialTweakedXOR() {
           <div className="border-t border-white/20 my-8 mx-8" />
 
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               2. lmbda: Weight Decay That Compounds
             </h2>
             <p className="mb-4">
@@ -124,7 +124,7 @@ export default function TutorialTweakedXOR() {
                 language="python"
                 code={decayCode}
               />
-              <p className="mt-3 text-center text-sm text-white/70 Jura">
+              <p className="mt-3 text-center text-sm text-white/70 font-body">
                 Fig. 2: The library's 1e-2 default, scaled down, still
                 compounds hard.
               </p>
@@ -145,7 +145,7 @@ export default function TutorialTweakedXOR() {
           <div className="border-t border-white/20 my-8 mx-8" />
 
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               3. precision_rate: Learning Who to Trust
             </h2>
             <p className="mb-4">
@@ -165,7 +165,7 @@ export default function TutorialTweakedXOR() {
                 language="python"
                 code={precisionCode}
               />
-              <p className="mt-3 text-center text-sm text-white/70 Jura">
+              <p className="mt-3 text-center text-sm text-white/70 font-body">
                 Fig. 3: Precision tracks 1/error² in log-space, hard-clamped
                 at both ends.
               </p>
@@ -188,7 +188,7 @@ export default function TutorialTweakedXOR() {
           <div className="border-t border-white/20 my-8 mx-8" />
 
           <Reveal as="section">
-            <h2 className="text-xl md:text-2xl mb-4 Michroma">
+            <h2 className="text-xl md:text-2xl mb-4 font-display">
               4. Running It
             </h2>
             <p className="mb-4">
@@ -210,7 +210,7 @@ export default function TutorialTweakedXOR() {
                 height="493"
                 width="1137"
               />
-              <p className="mt-3 text-center text-sm text-white/70 Jura">
+              <p className="mt-3 text-center text-sm text-white/70 font-body">
                 Fig. 4: A real run of examples/xor_tweaked.py — every
                 prediction within about 0.06 of its target's sign and
                 magnitude.
@@ -219,20 +219,13 @@ export default function TutorialTweakedXOR() {
           </Reveal>
 
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pb-12 pt-8 md:pb-14">
-            <Link
-              to="/tutorial/2-xor"
-              className={`${btnClass} w-full sm:w-auto`}
-            >
-              <ArrowLeft />
+            <ButtonSecondary to="/tutorial/2-xor" arrow="left" className="w-full sm:w-auto">
               Part 2: Training on XOR
-            </Link>
-            <Link
-              to="/tutorial/4-cnn"
-              className={`${btnSolidClass} w-full sm:w-auto`}
-            >
+            </ButtonSecondary>
+            <ButtonPrimary to="/tutorial/4-cnn" className="w-full sm:w-auto">
               Part 4: Running a Convolutional PCN
               <ArrowRight />
-            </Link>
+            </ButtonPrimary>
           </div>
         </div>
       </div>

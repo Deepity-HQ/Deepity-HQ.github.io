@@ -9,6 +9,8 @@ export type RouteMeta = {
   ogTitle?: string;
   description: string;
   noindex?: boolean;
+  // Social preview image under /og, defaults to the home page card
+  image?: string;
 };
 
 export const routes: RouteMeta[] = [
@@ -21,71 +23,83 @@ export const routes: RouteMeta[] = [
   },
   {
     path: "/about",
+    image: "about",
     title: "About · Deepity",
     description:
       "About Deepity, an open-source library for training predictive coding networks from C++ and Python, built and maintained by one developer.",
   },
   {
     path: "/benchmarks",
+    image: "benchmarks",
     title: "Benchmarks · Deepity",
     description:
-      "Deepity reaches 98.22% on MNIST, 3.50× faster than ngc-learn on one laptop CPU. Setup and results.",
+      "Deepity reaches 98.21% on MNIST, 3.50× faster than ngc-learn on one laptop CPU. Setup and results.",
   },
   {
     path: "/theory",
+    image: "theory",
     title: "How predictive coding works · Deepity",
     description:
       "How predictive coding works: local prediction errors, the equations Deepity implements, and how its cost compares with backpropagation.",
   },
   {
     path: "/tutorial",
+    image: "tutorials",
     title: "Tutorials · Deepity",
     description:
       "Tutorials for Deepity, from an introduction to predictive coding to a first look at how Deepity networks are built.",
   },
   {
     path: "/tutorial/0-introduction",
+    image: "tutorials",
     title: "Tutorial 0: Introduction to predictive coding · Deepity",
     description:
       "An introduction to predictive coding networks for readers with little or no background in predictive coding or Deepity.",
   },
   {
     path: "/tutorial/1-beginning",
+    image: "tutorials",
     title: "Tutorial 1: Understanding the Deepity library · Deepity",
     description: "What makes Deepity different, and how to load and use the library.",
   },
   {
     path: "/tutorial/2-xor",
+    image: "tutorials",
     title: "Tutorial 2: Training a SimplePCN on XOR · Deepity",
     description:
       "Build and train a small Deepity network on XOR, and see why its settling dynamics converge on a problem no linear model can solve.",
   },
   {
     path: "/tutorial/3-tweaked-xor",
+    image: "tutorials",
     title: "Tutorial 3: Adding Helpful Hyperparameters · Deepity",
     description:
       "Switch the XOR example from SimplePCN to SequentialPCN and tune weight decay and precision weighting by hand.",
   },
   {
     path: "/tutorial/4-cnn",
+    image: "tutorials",
     title: "Tutorial 4: Running a Convolutional PCN · Deepity",
     description:
       "Train a ConvolutionalPCN on MNIST and see how spatial weight sharing changes network design.",
   },
   {
     path: "/tutorial/5-dkppcn",
+    image: "tutorials",
     title: "Tutorial 5: Direct Kolen-Pollack Networks on MNIST · Deepity",
     description:
       "Train a DKPPCN on MNIST and see how direct feedback alignment lets settling converge in far fewer steps.",
   },
   {
     path: "/tutorial/6-fullpcn",
+    image: "tutorials",
     title: "Tutorial 6: muPC, iPC, and ePC Explained · Deepity",
     description:
       "A tour of FullPCLayer's independent toggles -- muPC scaling, residual connections, iPC, ePC, momentum, and cross-entropy -- and what each one actually buys you.",
   },
   {
     path: "/early-access",
+    image: "early-access",
     title: "Request early access · Deepity",
     description:
       "Request early access to Deepity and tell us what you are building with predictive coding.",
@@ -132,7 +146,7 @@ export function headTags(meta: RouteMeta): string {
   const url = canonicalFor(meta.path);
   const ogTitle = esc(meta.ogTitle ?? meta.title);
   const desc = esc(meta.description);
-  const image = `${SITE_URL}/og.png`;
+  const image = `${SITE_URL}${meta.image ? `/og/${meta.image}.png` : "/og.png"}`;
   return [
     `<title>${esc(meta.title)}</title>`,
     `<meta name="description" content="${desc}" />`,

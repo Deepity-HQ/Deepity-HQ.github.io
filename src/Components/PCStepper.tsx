@@ -30,7 +30,7 @@ export default function PCStepper() {
     <div className="rounded-2xl border border-white/10 bg-[#0a0a0b] px-4 py-10 md:px-10 md:py-14">
       <div className="mb-10 max-w-xl">
         <h2 className={`${headingClass} text-2xl md:text-3xl`}>Predict, compare, update</h2>
-        <p className="Jura mb-0 mt-4 text-white/75">
+        <p className="font-body mb-0 mt-4 text-white/75">
           Each layer repeats this cycle until its error stops changing.
         </p>
       </div>
@@ -38,19 +38,19 @@ export default function PCStepper() {
       <div className="grid items-center gap-10 md:grid-cols-[260px_1fr]">
         <div className="relative flex h-[200px] w-full flex-col justify-between rounded-2xl border border-white/10 bg-[#0e0e0f] p-6 shadow-md">
           <div className="flex items-center justify-between">
-            <span className="Michroma text-xs tracking-wider text-[#a99bff]">
+            <span className="font-display text-xs tracking-wider text-[#a99bff]">
               Step 0{active + 1} / 0{steps.length}
             </span>
-            <span className="Michroma rounded-md border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[11px] text-white/70">
+            <span className="font-display rounded-md border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[11px] text-white/70">
               Active
             </span>
           </div>
 
           <div>
-            <div className="Michroma text-2xl tracking-[-0.02em] text-white">
+            <div className="font-display text-2xl tracking-[-0.02em] text-white">
               {steps[active].name}
             </div>
-            <p className="Jura m-0 mt-2 line-clamp-2 text-xs text-white/70">
+            <p className="font-body m-0 mt-2 line-clamp-2 text-xs text-white/70">
               {steps[active].text}
             </p>
           </div>
@@ -89,18 +89,18 @@ export default function PCStepper() {
                 <div className="pb-8">
                   <div className="flex items-center gap-3">
                     <span
-                      className={`Michroma text-xl tracking-[-0.01em] ${
+                      className={`font-display text-xl tracking-[-0.01em] ${
                         i === active ? "text-white" : "text-white/70"
                       }`}
                     >
                       {s.name}
                     </span>
-                    <span className="Michroma rounded-md border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[11px] text-white/70">
+                    <span className="font-display rounded-md border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[11px] text-white/70">
                       {state}
                     </span>
                   </div>
                   <p
-                    className={`Jura m-0 mt-2 max-w-md text-base transition-colors duration-300 ${
+                    className={`font-body m-0 mt-2 max-w-md text-base transition-colors duration-300 ${
                       i === active ? "text-white/75" : "text-white/45"
                     }`}
                   >
