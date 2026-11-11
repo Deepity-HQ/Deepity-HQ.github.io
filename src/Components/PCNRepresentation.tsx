@@ -2,9 +2,11 @@ import katex from "katex";
 import "katex/dist/katex.min.css";
 
 const equations = [
-  String.raw`\mu_l = W_l\, f(x_{l-1}), \qquad \varepsilon_l = x_l - \mu_l`,
+  String.raw`\mu_l = W_l\, f(x_{l-1})`,
+  String.raw`\varepsilon_l = x_l - \mu_l`,
   String.raw`E = \tfrac{1}{2} \sum_l \lVert \varepsilon_l \rVert^2`,
-  String.raw`x_l \leftarrow x_l - \eta\, \frac{\partial E}{\partial x_l}, \qquad W_l \leftarrow W_l - \alpha\, \frac{\partial E}{\partial W_l}`,
+  String.raw`x_l \leftarrow x_l - \eta\, \frac{\partial E}{\partial x_l}`,
+  String.raw`W_l \leftarrow W_l - \alpha\, \frac{\partial E}{\partial W_l}`,
 ].map((math) => katex.renderToString(math, { displayMode: true, throwOnError: false }));
 
 export default function PCNRepresentation() {
@@ -48,7 +50,7 @@ export default function PCNRepresentation() {
         <div className="font-display mb-2 text-xs uppercase tracking-[0.06em] text-white/70">
           The equations
         </div>
-        <div className="overflow-x-auto text-white">
+        <div className="overflow-x-auto text-[0.92em] text-white sm:text-[1em] [&_.katex-display]:my-3">
           {equations.map((html, i) => (
             <div key={i} dangerouslySetInnerHTML={{ __html: html }} />
           ))}

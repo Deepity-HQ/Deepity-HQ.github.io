@@ -3,3 +3,9 @@ code {
   font-family: "JetBrains Mono Variable", "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 0.88em;
 }
+
+/* Dark scrollbars for tables, code blocks and equations that scroll sideways */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.22) transparent;
+}
