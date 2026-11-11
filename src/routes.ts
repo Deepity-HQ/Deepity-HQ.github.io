@@ -95,7 +95,14 @@ export const routes: RouteMeta[] = [
     image: "tutorials",
     title: "Tutorial 6: muPC, iPC, and ePC Explained · Deepity",
     description:
-      "A tour of FullPCLayer's independent toggles -- muPC scaling, residual connections, iPC, ePC, momentum, and cross-entropy -- and what each one actually buys you.",
+      "A tour of FullPCLayer's independent toggles -- muPC scaling, residual connections, iPC, ePC, momentum, and cross-entropy -- and what each one changes.",
+  },
+  {
+    path: "/tutorial/7-cifar-depth",
+    image: "tutorials",
+    title: "Tutorial 7: CIFAR-10 at Depth · Deepity",
+    description:
+      "A debugging session on CIFAR-10: two bugs, a wrong architecture, and a final accuracy of 28%.",
   },
   {
     path: "/early-access",

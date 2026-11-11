@@ -263,7 +263,7 @@ export default function Benchmarks() {
                   </span>
                   <CopyButton code={r.cmd} label={`${r.name} command`} />
                 </div>
-                <ButtonSecondary href={`${LOGS}/${r.log}`} arrow="up-right">
+                <ButtonSecondary href={`${LOGS}/${r.log}`}>
                   Raw log
                 </ButtonSecondary>
               </div>

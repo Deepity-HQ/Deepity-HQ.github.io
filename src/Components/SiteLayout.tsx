@@ -1,5 +1,6 @@
 import { useEffect, type ReactNode } from "react";
 import { useLocation } from "react-router";
+import DocsChooser from "./DocsChooser.tsx";
 import Navbar from "./Navbar.tsx";
 import Footer from "./Footer.tsx";
 import usePageMeta from "./usePageMeta.ts";
@@ -22,6 +23,7 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
     <>
       <ScrollToTop />
       <Navbar />
+      <DocsChooser />
       <main>{children}</main>
       <Footer />
     </>

@@ -4,20 +4,21 @@ import { GITHUB_URL } from "../config.ts";
 import { LuStar } from "react-icons/lu";
 import useRepoStats from "./useRepoStats.ts";
 import { GitHubMark } from "./icons.tsx";
+import { openDocsChooser } from "../docsChooser.ts";
 import ButtonPrimary from "./ButtonPrimary.tsx";
 
 type SectionLink = {
   text: string;
   to: string;
-  // Static pages outside the app (the docs) need a full page load
-  external?: boolean;
+  // Opens the documentation language chooser instead of navigating
+  docs?: boolean;
 };
 
 const sections: SectionLink[] = [
   { text: "Tutorials", to: "/tutorial" },
   { text: "Benchmarks", to: "/benchmarks" },
   { text: "Theory", to: "/theory" },
-  { text: "Docs", to: "/docs/index.html", external: true },
+  { text: "Docs", to: "/docs/index.html", docs: true },
   { text: "About", to: "/about" },
 ];
 
@@ -46,11 +47,19 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const renderLink = ({ text, to, external }: SectionLink, className: string) =>
-    external ? (
-      <a key={text} className={className} href={to}>
+  const renderLink = ({ text, to, docs }: SectionLink, className: string) =>
+    docs ? (
+      <button
+        key={text}
+        type="button"
+        className={`${className} cursor-pointer border-0 bg-transparent p-0 font-[inherit]`}
+        onClick={() => {
+          setOpen(false);
+          openDocsChooser();
+        }}
+      >
         {text}
-      </a>
+      </button>
     ) : (
       <NavLink key={text} className={className} to={to}>
         {text}

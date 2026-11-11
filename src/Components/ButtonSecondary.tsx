@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router";
-import { ArrowLeft, ArrowRight, ArrowUpRight } from "./ArrowIcons.tsx";
+import { ArrowLeft, ArrowRight } from "./ArrowIcons.tsx";
 
 type Props = {
   children: ReactNode;
@@ -9,8 +9,8 @@ type Props = {
   to?: string;
   // External address, such as PyPI or GitHub. Opens in a new tab.
   href?: string;
-  // Defaults to a right arrow, or an up-right arrow for external links
-  arrow?: "right" | "left" | "up-right" | "none";
+  // Defaults to a right arrow so buttons side by side always match
+  arrow?: "right" | "left" | "none";
   // Without `to` or `href` this renders a button
   onClick?: () => void;
 };
@@ -37,8 +37,7 @@ export default function ButtonSecondary({
   arrow,
   onClick,
 }: Props) {
-  const external = !!href;
-  const kind = arrow ?? (external ? "up-right" : onClick ? "none" : "right");
+  const kind = arrow ?? (onClick ? "none" : "right");
   const classes = `${base} ${className}`;
 
   const content = (
@@ -46,9 +45,6 @@ export default function ButtonSecondary({
       {kind === "left" && <ArrowLeft className={arrowClass.replace("translate-x-0.5", "-translate-x-0.5")} />}
       {children}
       {kind === "right" && <ArrowRight className={arrowClass} />}
-      {kind === "up-right" && (
-        <ArrowUpRight className="text-[#a99bff] transition-transform duration-150 group-hover:-translate-y-px group-hover:translate-x-px" />
-      )}
     </>
   );
 

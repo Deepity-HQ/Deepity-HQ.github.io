@@ -57,7 +57,7 @@ function Hero() {
             </span>
             <CopyButton code={INSTALL} label="install command" />
           </div>
-          <ButtonPrimary to="/tutorial">
+          <ButtonPrimary to="/about#get-started">
             Get started
             <ArrowRight className="h-3.5 w-3.5" />
           </ButtonPrimary>
@@ -388,6 +388,25 @@ function Demo() {
             next to it.
           </p>
         </ScrollRise>
+        <ScrollRise className="mt-12 grid gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 md:grid-cols-2">
+          {[
+            {
+              name: "Backpropagation",
+              text: "The error is measured once, at the output. It then travels backward through every layer, so each layer has to wait for all the layers after it, and the whole forward pass stays in memory until it arrives.",
+            },
+            {
+              name: "Predictive coding",
+              text: "Every layer predicts the next one and compares the prediction with what that layer actually holds. The difference is its own error, and it learns from that alone, using only what sits next to it.",
+            },
+          ].map((c, i) => (
+            <div key={c.name} className="bg-[#08080a] p-6 md:p-8">
+              <div className={`mono text-xs uppercase tracking-[0.12em] ${i ? "text-[#a99bff]" : "text-white/40"}`}>
+                {c.name}
+              </div>
+              <p className="mb-0 mt-3 text-base leading-relaxed text-white/65">{c.text}</p>
+            </div>
+          ))}
+        </ScrollRise>
         <ScrollRise className="mt-12">
           <PCDemo />
         </ScrollRise>
@@ -431,7 +450,7 @@ function ClosingText() {
           convolutional network.
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-3">
-          <ButtonPrimary to="/tutorial">
+          <ButtonPrimary to="/about#get-started">
             Get started
             <ArrowRight className="h-3.5 w-3.5" />
           </ButtonPrimary>
@@ -495,7 +514,7 @@ function LaptopStage() {
           </WebGLBoundary>
         </div>
         {[
-          ["/tutorial", "Get started"],
+          ["/about#get-started", "Get started"],
           ["/early-access", "Request early access"],
         ].map(([to, label], i) => (
           <Link
