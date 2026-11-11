@@ -41,11 +41,11 @@ const offers = [
   },
   {
     title: "Plausible in the brain",
-    text: "Local updates need no weight transport and no global backward pass, which are hard to square with real neurons. Predictive coding comes out of neuroscience, though how closely the brain follows it is still debated.",
+    text: "Local updates need no weight transport and no global backward pass, which real neurons are not known to do. Predictive coding comes out of neuroscience, though how closely the brain follows it is still debated.",
   },
   {
     title: "No separate training phase",
-    text: "Updates are local and continuous, so online and continual learning come more naturally. Locality also lets layers update in parallel, which suits edge and neuromorphic hardware. Deepity has not been benchmarked on either yet.",
+    text: "Updates are local and continuous, which suits online and continual learning. Locality also lets layers update in parallel, which suits edge and neuromorphic hardware. Deepity has not been benchmarked on either yet.",
   },
 ];
 

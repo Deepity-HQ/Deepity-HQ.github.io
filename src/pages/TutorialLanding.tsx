@@ -3,73 +3,8 @@ import PageHeader from "../Components/PageHeader.tsx";
 import TutorialCard from "../Components/TutorialCard.tsx";
 import Reveal from "../Components/Reveal.tsx";
 import ButtonSecondary from "../Components/ButtonSecondary.tsx";
+import { tutorialsData } from "../tutorialsData.ts";
 
-const tutorialsData = [
-  {
-    title: "0. Intro to Predictive Coding",
-    subtitle: "Beginner",
-    description:
-      "For people with little to no knowledge of predictive coding and Deepity.",
-    img: "/tutorials/doorway.webp",
-    link: "/tutorial/0-introduction",
-  },
-  {
-    title: "1. Understanding the Deepity Library",
-    subtitle: "Beginner",
-    description:
-      "Explanation of what makes Deepity special and how to load/use it.",
-    img: "/tutorials/laptop.webp",
-    link: "/tutorial/1-beginning",
-  },
-  {
-    title: "2. Training a SimplePCN on XOR",
-    subtitle: "Intermediate",
-    description:
-      "Get your first experience training the canonical PCN on a simple function.",
-    img: "/tutorials/ripple.webp",
-    link: "/tutorial/2-xor",
-  },
-  {
-    title: "3. Adding Helpful Hyperparameters",
-    subtitle: "Intermediate",
-    description:
-      "Now that you know how to use a SimplePCN, try converting to a SequentialPCN and tweaking parameters like precision and lambda.",
-    img: "/tutorials/dartboard.webp",
-    link: "/tutorial/3-tweaked-xor",
-  },
-  {
-    title: "4. Running a Convolutional PCN",
-    subtitle: "Hard",
-    description:
-      "Attempt to convolve the output over an image in 2D, capturing higher accuracy.",
-    img: "/tutorials/dimension.webp",
-    link: "/tutorial/4-cnn",
-  },
-  {
-    title: "5. Direct Kolen-Pollack Networks on MNIST",
-    subtitle: "Hard",
-    description:
-      "Research how propagating feedback can make convergence hyperfast.",
-    img: "/tutorials/wired.webp",
-    link: "/tutorial/5-dkppcn",
-  },
-  {
-    title: "6. muPC, iPC, and ePC Explained",
-    subtitle: "Intermediate",
-    description:
-      "A tour of every independent toggle FullPCLayer carries, and what each one actually buys you.",
-    img: "/tutorials/toolset.webp",
-    link: "/tutorial/6-fullpcn",
-  },
-  {
-    title: "7. CIFAR-10 at Depth",
-    subtitle: "Hard",
-    description:
-      "A real debugging session: two genuine bugs, a wrong architecture, and an honest 28% on CIFAR-10.",
-    img: "/tutorials/cave.webp",
-    link: "/tutorial/7-cifar-depth",
-  },
-];
 
 const LEVELS = ["All", "Beginner", "Intermediate", "Hard"];
 

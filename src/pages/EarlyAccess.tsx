@@ -206,7 +206,7 @@ export default function EarlyAccess() {
 
               <div className="flex flex-col items-center gap-2 border-t border-white/10 pt-4">
                 <p className="font-body m-0 text-center text-xs text-white/70">
-                  We only use this to reply about Deepity. No spam, ever.
+                  We only use this to reply about Deepity.
                 </p>
                 <Link to="/privacy" className={`font-body inline-flex items-center gap-1 text-xs ${linkClass}`}>
                   Read our privacy policy

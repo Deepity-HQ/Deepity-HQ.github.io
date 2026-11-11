@@ -1,4 +1,7 @@
-import { Link } from "react-router";
+import { useEffect } from "react";
+import { Link, useLocation } from "react-router";
+import { openDocsChooser } from "../docsChooser.ts";
+import GetStartedGuide from "../Components/GetStartedGuide.tsx";
 import PageHeader from "../Components/PageHeader.tsx";
 import ArchDiagram from "../Components/ArchDiagram.tsx";
 import { DEVELOPER_URL, GITHUB_URL } from "../config.ts";
@@ -30,13 +33,19 @@ const facts = [
 ];
 
 const links = [
-  { label: "Source code", href: GITHUB_URL, internal: false },
-  { label: "Releases and changelog", href: `${GITHUB_URL}/releases`, internal: false },
-  { label: "Issues", href: `${GITHUB_URL}/issues`, internal: false },
-  { label: "Documentation", href: "/docs/index.html", internal: true },
+  { label: "Source code", href: GITHUB_URL },
+  { label: "Releases and changelog", href: `${GITHUB_URL}/releases` },
+  { label: "Issues", href: `${GITHUB_URL}/issues` },
 ];
 
 export default function About() {
+  const { hash } = useLocation();
+
+  // The page loads lazily, so the layout's own hash scroll runs before this section exists
+  useEffect(() => {
+    if (hash === "#get-started") document.getElementById("get-started")?.scrollIntoView();
+  }, [hash]);
+
   return (
     <div>
       <PageHeader
@@ -97,6 +106,10 @@ export default function About() {
           <ArchDiagram />
         </div>
 
+        <div className="mt-14 border-t border-white/10 pt-10">
+          <GetStartedGuide />
+        </div>
+
         <div className={`mt-14 border-t border-white/10 pt-10`}>
           <h2 className={`${headingClass} text-2xl md:text-3xl`}>Who builds it</h2>
           <p className={`${bodyClass} mt-5 text-lg`}>
@@ -133,8 +146,9 @@ export default function About() {
             reference documentation.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-2.5">
+            <ButtonSecondary onClick={openDocsChooser}>Documentation</ButtonSecondary>
             {links.map((l) => (
-              <ButtonSecondary key={l.label} href={l.href} arrow={l.internal ? "right" : "up-right"}>
+              <ButtonSecondary key={l.label} href={l.href}>
                 {l.label}
               </ButtonSecondary>
             ))}

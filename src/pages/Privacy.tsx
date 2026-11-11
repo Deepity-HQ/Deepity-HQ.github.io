@@ -84,7 +84,7 @@ export default function Privacy() {
               Only what you send us. If you use the early access form, we receive
               your email address and whatever else you type into it (name, what
               you are building, a message). We use it to reply to you about
-              Deepity, and for nothing else.
+              Deepity.
             </p>
           </Block>
 

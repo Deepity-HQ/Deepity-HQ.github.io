@@ -162,7 +162,7 @@ export default function TutorialDKPPCN() {
               the fully tuned dense network's 98.08% from the Benchmarks
               page, but reached with an order of magnitude fewer settling
               steps per batch and roughly half the wall-clock time — the
-              tradeoff direct feedback actually buys you.
+              tradeoff that direct feedback makes.
             </p>
             <div className="mx-auto flex w-full flex-col items-center md:max-w-[700px]">
               <img

@@ -174,7 +174,7 @@ function renderLearnLeanerScreen(canvas: HTMLCanvasElement) {
   const bx = cx - (w1 + w2 + 20) / 2;
   screenButtons.length = 0;
   screenButtons.push(
-    { href: "/tutorial", x: bx, y: by, w: w1, h: bh },
+    { href: "/about#get-started", x: bx, y: by, w: w1, h: bh },
     { href: "/early-access", x: bx + w1 + 20, y: by, w: w2, h: bh },
   );
   const grad = ctx.createLinearGradient(0, by, 0, by + bh);

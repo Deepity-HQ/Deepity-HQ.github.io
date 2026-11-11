@@ -1,16 +1,18 @@
 import { Link } from "react-router";
+import { openDocsChooser } from "../docsChooser.ts";
 import { DISCORD_WIDGET_ID, GITHUB_URL } from "../config.ts";
 import { DiscordMark, GitHubMark } from "./icons.tsx";
 
-type FooterLink = { text: string; to: string; external?: boolean };
+type FooterLink = { text: string; to: string; external?: boolean; docs?: boolean };
 
 const columns: { title: string; links: FooterLink[] }[] = [
   {
     title: "Learn",
     links: [
+      { text: "Get started", to: "/about#get-started" },
       { text: "Tutorials", to: "/tutorial" },
       { text: "Theory", to: "/theory" },
-      { text: "Docs", to: "/docs/index.html", external: true },
+      { text: "Docs", to: "/docs/index.html", docs: true },
       { text: "Benchmarks", to: "/benchmarks" },
     ],
   },
@@ -75,9 +77,17 @@ export default function Footer() {
                 {col.title}
               </h2>
               <ul className="m-0 flex list-none flex-col gap-3 p-0">
-                {col.links.map(({ text, to, external }) => (
+                {col.links.map(({ text, to, external, docs }) => (
                   <li key={text}>
-                    {external ? (
+                    {docs ? (
+                      <button
+                        type="button"
+                        onClick={openDocsChooser}
+                        className={`${linkClass} cursor-pointer border-0 bg-transparent p-0 font-[inherit]`}
+                      >
+                        {text}
+                      </button>
+                    ) : external ? (
                       <a href={to} className={linkClass}>
                         {text}
                       </a>

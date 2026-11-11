@@ -53,10 +53,9 @@ export default function TutorialCifarDepth() {
             Tutorial 6 explained what muPC and the rest of{" "}
             <code>FullPCLayer</code>'s toggles do. It didn't run any of
             them. This tutorial is what happened the first time someone
-            actually tried — a real, messy debugging session that found
-            two genuine bugs, ruled out a reasonable-looking third
-            explanation, and ended up needing a different network
-            entirely.
+            tried them: a debugging session that found two bugs, ruled
+            out a third possible cause, and ended up needing a different
+            network.
           </p>
         </div>
 
