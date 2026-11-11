@@ -23,7 +23,7 @@ function Hero() {
   const stats = useRepoStats();
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-x-clip px-5 pb-44 pt-24 md:px-8 md:pb-52">
-      <div className="relative isolate mx-auto flex max-w-[1200px] flex-col items-center text-center">
+      <div className="relative isolate mx-auto flex w-full min-w-0 max-w-[1200px] flex-col items-center text-center">
         {/* Keeps bright wave crests from washing out the text */}
         <div
           aria-hidden="true"
@@ -40,7 +40,7 @@ function Hero() {
           </ButtonSecondary>
         </div>
 
-        <h1 className="m-0 max-w-4xl text-balance text-[2.6rem] font-semibold leading-[1.04] tracking-[-0.045em] text-white sm:text-6xl md:text-7xl">
+        <h1 className="m-0 max-w-full text-balance text-[min(2.6rem,calc((100vw-2.5rem)/8.6))] font-semibold leading-[1.04] tracking-[-0.045em] text-white sm:text-6xl md:text-7xl">
           Train neural networks without backpropagation.
         </h1>
         <p className="mb-0 mt-7 max-w-2xl text-balance text-base leading-relaxed text-white/60 md:text-lg">

@@ -266,7 +266,7 @@ const LENS_DISTANCE = 2.1;
 // On narrow (phone) screens the camera sits back far enough that the whole
 // laptop fits across the width (about 1 fits it, a little under crops the sides slightly; lower = closer and crops the
 // sides).
-const NARROW_SCREEN_ZOOM = 0.7;
+const NARROW_SCREEN_ZOOM = 0.58;
 
 // World units the camera aims above the laptop on desktop, which lowers it on screen
 const DESKTOP_DROP = 0.5;

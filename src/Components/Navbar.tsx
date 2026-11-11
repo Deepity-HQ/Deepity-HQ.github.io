@@ -52,7 +52,7 @@ export default function Navbar() {
       <button
         key={text}
         type="button"
-        className={`${className} cursor-pointer border-0 bg-transparent p-0 font-[inherit]`}
+        className={`${className} cursor-pointer border-0 bg-transparent p-0 text-left font-[inherit]`}
         onClick={() => {
           setOpen(false);
           openDocsChooser();

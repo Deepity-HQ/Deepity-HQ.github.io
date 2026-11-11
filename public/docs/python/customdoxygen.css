@@ -935,3 +935,75 @@ tr.heading td::before,
 tr.heading td::after {
   display: none !important;
 }
+
+/* Phones: drop the side panels and give the page the full width. The menu
+   button in the top bar still reaches every section. */
+@media (max-width: 700px) {
+  #side-nav,
+  #page-nav,
+  .page-nav-panel,
+  #page-nav-resize-handle,
+  .ui-resizable-handle {
+    display: none !important;
+  }
+
+  #doc-content {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    height: auto !important;
+    min-height: 0;
+  }
+
+  div.contents {
+    padding: 8px 18px 56px !important;
+    max-width: none;
+  }
+
+  div.headertitle {
+    padding: 16px 18px 12px !important;
+  }
+
+  div.title {
+    font-size: 20px !important;
+    overflow-wrap: anywhere;
+  }
+
+  div.fragment,
+  pre.fragment {
+    overflow-x: auto;
+  }
+
+  table.memberdecls,
+  table.memberdecls tbody,
+  table.memberdecls tr,
+  table.memberdecls td {
+    display: block;
+    width: auto;
+  }
+
+  table.memberdecls .memItemLeft,
+  table.memberdecls .memTemplItemLeft {
+    white-space: normal;
+    text-align: left;
+    padding: 0 !important;
+  }
+
+  table.memberdecls .memItemRight,
+  table.memberdecls .memTemplItemRight {
+    padding: 0 !important;
+    overflow-wrap: anywhere;
+  }
+
+  table.memberdecls .mdescLeft {
+    display: none;
+  }
+
+  table.memberdecls .mdescRight {
+    padding: 4px 0 10px !important;
+  }
+
+  .memproto,
+  .memname {
+    overflow-wrap: anywhere;
+  }
+}

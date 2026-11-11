@@ -8,10 +8,11 @@ const MARK = "<!--deepity-home-link-->";
 const snippet = `${MARK}
 <style>
 #titlearea{position:relative}
+#titlearea table{width:calc(100% - 170px)!important}
 #deepity-home{position:absolute;top:50%;right:16px;transform:translateY(-50%);display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border:1px solid rgba(255,255,255,.18);border-radius:10px;background:rgba(255,255,255,.04);color:rgba(255,255,255,.85)!important;font:500 13px/1 Inter,ui-sans-serif,system-ui,sans-serif;text-decoration:none!important;transition:border-color .15s,background .15s,color .15s}
 #deepity-home:hover{border-color:rgba(255,255,255,.35);background:rgba(255,255,255,.09);color:#fff!important}
 #deepity-home svg{width:14px;height:14px;color:#a99bff}
-@media (max-width:560px){#deepity-home span{display:none}#deepity-home{padding:8px}}
+@media (max-width:560px){#deepity-home span{display:none}#deepity-home{padding:8px}#titlearea table{width:calc(100% - 64px)!important}#projectbrief{display:none}}
 </style>
 <script>
 (function () {

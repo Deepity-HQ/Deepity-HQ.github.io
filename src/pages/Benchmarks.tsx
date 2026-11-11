@@ -157,7 +157,7 @@ export default function Benchmarks() {
                 at 32 layers. At 2048 layers a DKP-PC step takes 11.85 ms against
                 59.10 ms for backpropagation, which is 5× faster.
               </p>
-              <p className="mb-0 text-sm text-white/45">
+              <p className="mb-0 mt-4 text-sm text-white/45">
                 This times matched network shapes on random data, so it is not an
                 accuracy comparison. The 32-layer crossover depends on width and
                 batch size: narrower networks need more layers, wider ones fewer.

@@ -39,12 +39,12 @@ import ButtonSecondary from "../Components/ButtonSecondary.tsx";
 
 export default function TutorialCifarDepth() {
   return (
-    <div className="subpage-glow min-h-screen px-3 pt-32 pb-12 md:px-6">
-      <div className="mx-auto max-w-5xl overflow-hidden rounded-2xl border border-white/10 bg-[#141415]/60 shadow-2xl">
+    <div className="subpage-glow min-h-screen px-0 pt-28 pb-12 sm:px-3 sm:pt-32 md:px-6">
+      <div className="mx-auto max-w-5xl overflow-hidden border-y border-white/10 sm:rounded-2xl sm:border bg-[#141415]/60 shadow-2xl">
         <UtilButton backLink="/tutorial/6-fullpcn" nextLink="/tutorial" />
         <TutorialRail current={7} />
 
-        <div className="px-6 py-8 md:px-12 md:py-12">
+        <div className="px-5 py-8 sm:px-6 md:px-12 md:py-12">
           <div className="font-display mb-3 text-xs uppercase tracking-[0.06em] text-[#a99bff]">Tutorial 7</div>
           <h1 className="font-display text-2xl font-normal tracking-[-0.03em] md:text-4xl text-white">
             CIFAR-10 at Depth: Two Real Bugs and a Wrong Architecture
@@ -61,7 +61,7 @@ export default function TutorialCifarDepth() {
 
         <div className="border-t border-white/20 my-8 mx-8" />
 
-        <div className="px-8 md:px-12 space-y-10 font-body text-lg text-white">
+        <div className="px-5 sm:px-8 md:px-12 space-y-10 font-body text-lg text-white">
           <Reveal as="section">
             <h2 className="text-xl md:text-2xl mb-4 font-display">
               1. The Question
